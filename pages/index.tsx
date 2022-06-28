@@ -29,7 +29,7 @@ const Home: NextPage<HomeProps> = () => {
     keepPreviousData: true,
   };
 
-  const fetchRepos = useQuery<returnDataType<RepoTypes>, Error>(
+  const fetchRepos = useQuery<returnDataType<RepoTypes> | null, Error>(
     ['repos', debouncedSearch, { activePage: activePage }],
     () => getRepos(debouncedSearch, activePage),
     {
@@ -37,7 +37,7 @@ const Home: NextPage<HomeProps> = () => {
     }
   );
 
-  const fetchUsers = useQuery<returnDataType<UserTypes>, Error>(
+  const fetchUsers = useQuery<returnDataType<UserTypes> | null, Error>(
     ['users', debouncedSearch, { activePage: activePage }],
     () => getUsers(debouncedSearch, activePage),
     {
@@ -48,10 +48,13 @@ const Home: NextPage<HomeProps> = () => {
   useEffect(() => {
     if (fetchRepos.data && fetchUsers.data) {
       const totalCount = fetchUsers.data?.totalCount + fetchRepos.data.totalCount;
-      const mergedData = [...fetchUsers.data.translatedData, ...fetchRepos.data.translatedData];
-      const sortedData = mergedData.sort((a, b) => a.id - b.id) as UserTypes[] | RepoTypes[];
       setTotalCount(totalCount);
-      setDataTest(sortedData);
+      if (fetchUsers.data.translatedData && fetchRepos.data.translatedData) {
+        const mergedData = [...fetchUsers.data.translatedData, ...fetchRepos.data.translatedData] as UserTypes[] | RepoTypes[];
+        const sortedData = mergedData.sort((a, b) => a.id - b.id);
+        setDataTest(sortedData);
+        console.log(fetchUsers.data);
+      }
     }
   }, [fetchRepos.data, fetchUsers.data]);
 
@@ -72,13 +75,11 @@ const Home: NextPage<HomeProps> = () => {
 
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<returnDataType<RepoTypes>>(
-    ['repos', initialQueryString, { activePage: 1 }],
-    () => getRepos(initialQueryString, 1)
+  await queryClient.prefetchQuery<returnDataType<RepoTypes> | null>(['repos', initialQueryString, { activePage: 1 }], () =>
+    getRepos(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery<returnDataType<UserTypes>>(
-    ['users', initialQueryString, { activePage: 1 }],
-    () => getUsers(initialQueryString, 1)
+  await queryClient.prefetchQuery<returnDataType<UserTypes> | null>(['users', initialQueryString, { activePage: 1 }], () =>
+    getUsers(initialQueryString, 1)
   );
 
   return {
