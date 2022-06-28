@@ -7,24 +7,22 @@ export type returnDataType<T> = {
 
 export const getUsers = async (username: string, activePage: number): Promise<returnDataType<UserTypes> | null> => {
   const res = await fetch(`https://api.github.com/search/users?q=${username}&per_page=4&page=${activePage}`);
-  if (res.ok) {
-    const usersJson = await res.json();
-    const usersData = usersJson.items;
-    const totalCount = usersJson.total_count;
-    const translatedData = await Promise.all(
-      usersData.map(async ({ login }: { login: string }) => {
-        const resp = await fetch(`https://api.github.com/users/${login}`);
+  const usersJson = await res.json();
+  const usersData = usersJson.items;
+  const totalCount = usersJson.total_count;
+  const translatedData = await Promise.all(
+    usersData.map(async ({ login }: { login: string }) => {
+      const resp = await fetch(`https://api.github.com/users/${login}`);
+      if (resp.ok) {
         return resp.json();
-      })
-    );
-    if (translatedData) {
-      return {
-        totalCount: totalCount,
-        translatedData: translatedData,
-      };
-    }
-  }
-  throw new Error('Failed to fetch users');
+      }
+      throw new Error('Failed to fetch users');
+    })
+  );
+  return {
+    totalCount: totalCount,
+    translatedData: translatedData,
+  };
 };
 
 export const getRepos = async (username: string, activePage: number): Promise<returnDataType<RepoTypes> | null> => {

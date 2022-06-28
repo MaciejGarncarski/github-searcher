@@ -1,0 +1,10 @@
+@tailwind base;
+
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+/* purgecss start ignore */
+html {
+  @apply antialiased;
+}

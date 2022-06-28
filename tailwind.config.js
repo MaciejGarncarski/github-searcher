@@ -11,9 +11,9 @@ module.exports = {
       },
       minHeight: {
         user: '8rem',
-        stateMessage: '15rem',
+        stateMessage: '33rem',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
