@@ -6,11 +6,7 @@ interface PaginationItemProps<T> {
   handleClick: MouseEventHandler;
 }
 
-export const PaginationItem = ({
-  activePage,
-  isPrev,
-  handleClick,
-}: PaginationItemProps<number>) => {
+export const PaginationItem = ({ activePage, isPrev, handleClick }: PaginationItemProps<number>) => {
   return (
     <button
       type="button"
