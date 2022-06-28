@@ -10,9 +10,9 @@ export const PaginationList = ({ activePage, setActivePage }: PaginationListProp
   const handlePrevPage = () => setActivePage((prevPage) => prevPage - 1);
   const handleNextPage = () => setActivePage((prevPage) => prevPage + 1);
   return (
-    <div className="w-full flex justify-center align-center gap-10">
+    <div className="w-full grid grid-cols-pagination gap-10">
       <PaginationItem isPrev activePage={activePage} handleClick={handlePrevPage} />
-      <p className="text-2xl">{activePage}</p>
+      <p className="text-2xl ">{activePage}</p>
       <PaginationItem activePage={activePage} handleClick={handleNextPage} />
     </div>
   );

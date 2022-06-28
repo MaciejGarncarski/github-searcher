@@ -50,10 +50,11 @@ const Home: NextPage<HomeProps> = () => {
       const totalCount = fetchUsers.data?.totalCount + fetchRepos.data.totalCount;
       setTotalCount(totalCount);
       if (fetchUsers.data.translatedData && fetchRepos.data.translatedData) {
-        const mergedData = [...fetchUsers.data.translatedData, ...fetchRepos.data.translatedData] as UserTypes[] | RepoTypes[];
+        const mergedData = [...fetchUsers.data.translatedData, ...fetchRepos.data.translatedData] as
+          | UserTypes[]
+          | RepoTypes[];
         const sortedData = mergedData.sort((a, b) => a.id - b.id);
         setDataTest(sortedData);
-        console.log(fetchUsers.data);
       }
     }
   }, [fetchRepos.data, fetchUsers.data]);
@@ -67,7 +68,12 @@ const Home: NextPage<HomeProps> = () => {
       </Head>
 
       <Header inputValue={inputValue} setInputValue={setInputValue} />
-      <DataList totalCount={totalCount.toLocaleString('en-US')} data={dataTest} />
+      <DataList
+        totalCount={totalCount.toLocaleString('en-US')}
+        data={dataTest}
+        fetchLoading={fetchRepos.isFetching || fetchUsers.isFetching}
+        fetchError={fetchRepos.isError || fetchUsers.isError}
+      />
       <PaginationList activePage={activePage} setActivePage={setActivePage} />
     </div>
   );
@@ -75,11 +81,13 @@ const Home: NextPage<HomeProps> = () => {
 
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<returnDataType<RepoTypes> | null>(['repos', initialQueryString, { activePage: 1 }], () =>
-    getRepos(initialQueryString, 1)
+  await queryClient.prefetchQuery<returnDataType<RepoTypes> | null>(
+    ['repos', initialQueryString, { activePage: 1 }],
+    () => getRepos(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery<returnDataType<UserTypes> | null>(['users', initialQueryString, { activePage: 1 }], () =>
-    getUsers(initialQueryString, 1)
+  await queryClient.prefetchQuery<returnDataType<UserTypes> | null>(
+    ['users', initialQueryString, { activePage: 1 }],
+    () => getUsers(initialQueryString, 1)
   );
 
   return {
