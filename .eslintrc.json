@@ -1,3 +1,58 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/strict",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "plugins": [
+    "jsx-a11y",
+    "react",
+    "react-hooks",
+    "jest-dom",
+    "testing-library",
+    "@typescript-eslint",
+    "prettier"
+  ],
+
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/anchor-is-valid": 2,
+    "@typescript-eslint/no-unused-vars": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/display-name": 2,
+    "react/prop-types": 0,
+    "@typescript-eslint/explicit-member-accessibility": 2,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 2,
+    "@typescript-eslint/no-var-requires": 2,
+    "@typescript-eslint/no-use-before-define": 2,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-explicit-any": 2,
+    "@typescript-eslint/no-non-null-assertion": 2,
+    "no-undef": 2,
+    "no-unused-vars": 1,
+    "jsx-a11y/label-has-for": 2,
+    "jsx-a11y/no-noninteractive-tabindex": 2,
+    "prettier/prettier": "error",
+    "react/no-unescaped-entities": 2
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  }
 }
