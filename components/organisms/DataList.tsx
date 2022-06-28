@@ -19,7 +19,7 @@ export const DataList = ({ totalCount, data, fetchError, fetchLoading }: DataLis
   return (
     <div className="mx-8 lg:mx-20 my-7 flex flex-col justify-start align-center">
       <p className="my-4 font-bold text-2xl">{totalCount} results</p>
-      {data.map((elem: UserTypes | RepoTypes) => {
+      {data.map((elem) => {
         if ('message' && 'login' && 'name' && 'avatar_url' && 'bio' && 'location' in elem) {
           if (elem.login) {
             return (
