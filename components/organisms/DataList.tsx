@@ -17,7 +17,14 @@ export const DataList = ({ totalCount, data }: DataListProps) => {
           }
           if (elem.login) {
             return (
-              <User key={elem.id} login={elem.login} fullName={elem.name} avatar={elem.avatar_url} bio={elem.bio || ''} location={elem.location} />
+              <User
+                key={elem.id}
+                login={elem.login}
+                fullName={elem.name}
+                avatar={elem.avatar_url}
+                bio={elem.bio || ''}
+                location={elem.location}
+              />
             );
           }
         }
