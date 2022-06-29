@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+<<<<<<< HEAD
+=======
+# JetBrains IDE files
+.idea/
+
+>>>>>>> 98812ec9028a3d8ac9a37264665ef72593ff33a2
 # testing
 /coverage
 
