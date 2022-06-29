@@ -22,10 +22,10 @@ export interface UserTypes {
   company: string;
   blog: string;
   location: string;
-  email?: null;
-  hireable?: null;
-  bio?: null;
-  twitter_username?: null;
+  email?: string;
+  hireable?: string;
+  bio?: string;
+  twitter_username?: string;
   public_repos: number;
   public_gists: number;
   followers: number;
@@ -113,18 +113,20 @@ export interface RepoTypes {
   size: number;
   stargazers_count: number;
   watchers_count: number;
-  language?: null;
+  language?: string;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;
   has_wiki: boolean;
   has_pages: boolean;
   forks_count: number;
-  mirror_url?: null;
+  mirror_url?: string;
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license?: null;
+  license?: {
+    name: string;
+  };
   allow_forking: boolean;
   is_template: boolean;
   topics: string[];

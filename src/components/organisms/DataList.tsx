@@ -1,5 +1,6 @@
 import { RepoTypes, UserTypes } from '../../types/responseTypes';
 import { StateMessage } from '../atoms/StateMessage';
+import { Repository } from '../molecules/Repository';
 import { User } from '../molecules/User';
 
 type DataListProps = {
@@ -33,18 +34,35 @@ export const DataList = ({
           `bio` &&
           `location` in elem
         ) {
-          if (elem.login) {
-            return (
-              <User
-                key={elem.id}
-                login={elem.login}
-                fullName={elem.name}
-                avatar={elem.avatar_url}
-                bio={elem.bio || ``}
-                location={elem.location}
-              />
-            );
-          }
+          return (
+            <User
+              key={elem.id}
+              login={elem.login}
+              fullName={elem.name}
+              avatar={elem.avatar_url}
+              bio={elem.bio || ``}
+              location={elem.location}
+            />
+          );
+        } else if (
+          `updated_at` &&
+          `license` &&
+          `language` &&
+          `stargazers_count` &&
+          `description` &&
+          `full_name` in elem
+        ) {
+          return (
+            <Repository
+              key={elem.id}
+              fullName={elem.full_name}
+              description={elem.description}
+              stars={elem.stargazers_count}
+              language={elem.language}
+              license={elem.license}
+              updatedAt={elem.updated_at}
+            />
+          );
         }
       })}
     </div>
