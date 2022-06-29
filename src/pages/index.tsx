@@ -5,13 +5,13 @@ import { Header } from '../components/organisms/Header';
 import { DataList } from '../components/organisms/DataList';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { useDebounce } from '../hooks/useDebounce';
-import type { RepoTypes, UserTypes, apiResponseType } from '../types/responseTypes';
+import type { RepoTypes, UserTypes, ApiResponseType } from '../types/responseTypes';
 import { getRepos, getUsers, returnDataType } from './api/queries';
 import { PaginationList } from '../components/molecules/PaginationList';
 
 interface HomeProps {
-  initialReposData: apiResponseType<RepoTypes[]>;
-  initialUsersData: apiResponseType<UserTypes[]>;
+  initialReposData: ApiResponseType<RepoTypes[]>;
+  initialUsersData: ApiResponseType<UserTypes[]>;
 }
 
 const initialQueryString = `Jay`;

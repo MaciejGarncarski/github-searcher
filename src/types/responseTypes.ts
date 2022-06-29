@@ -136,7 +136,7 @@ export interface RepoTypes {
   score: number;
 }
 
-export type apiResponseType<T> = {
+export type ApiResponseType<T> = {
   totalCount: number;
   translatedData: T;
 };
