@@ -12,6 +12,12 @@
 /.next/
 /out/
 
+.husky
+.github
+.next
+.swc
+.vscode
+
 # production
 /build
 
