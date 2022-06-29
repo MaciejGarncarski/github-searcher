@@ -26,6 +26,11 @@
       "prettier --ignore-path .gitignore --write"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "next": "12.1.6",
     "react": "18.2.0",
