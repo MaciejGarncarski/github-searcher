@@ -1,28 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 import { useDebounce } from '@/hooks/useDebounce';
+import { useFetch } from '@/hooks/useFetch';
 
 import { StateInformation } from '@/components/atoms/StateInformation';
-import { ListResults } from '@/components/molecules/ListResults';
 import { Pagination } from '@/components/molecules/Pagination';
+import { ResultsList } from '@/components/molecules/ResultsList';
 
 import { getRepos, getUsers } from '@/pages/api/queries';
 
-import type {
-  ApiResponseType,
-  RepoTypes,
-  UserTypes,
-} from '@/types/responseTypes';
+import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 type SearchResultsProps = {
   inputValue: string;
   initialQueryString: string;
-};
-
-const defaultQueryOptions = {
-  refetchOnWindowFocus: false,
-  keepPreviousData: true,
 };
 
 export const SearchResults = ({
@@ -38,20 +29,12 @@ export const SearchResults = ({
     1000
   );
 
-  const fetchRepos = useQuery<ApiResponseType<RepoTypes> | null, Error>(
-    [`repos`, debouncedSearch, { activePage: activePage }],
-    () => getRepos(debouncedSearch, activePage),
-    {
-      ...defaultQueryOptions,
-    }
+  const fetchRepos = useFetch('repos', activePage, debouncedSearch, () =>
+    getRepos(debouncedSearch, activePage)
   );
 
-  const fetchUsers = useQuery<ApiResponseType<UserTypes> | null, Error>(
-    [`users`, debouncedSearch, { activePage: activePage }],
-    () => getUsers(debouncedSearch, activePage),
-    {
-      ...defaultQueryOptions,
-    }
+  const fetchUsers = useFetch('users', activePage, debouncedSearch, () =>
+    getUsers(debouncedSearch, activePage)
   );
 
   useEffect(() => {
@@ -71,13 +54,10 @@ export const SearchResults = ({
     }
   }, [fetchRepos.data, fetchUsers.data]);
 
-  const isDataFetching = fetchRepos.isFetching || fetchUsers.isFetching;
-  const isDataError = fetchRepos.isError || fetchUsers.isError;
-
-  if (isDataFetching) {
+  if (fetchRepos.isFetching || fetchUsers.isFetching) {
     return <StateInformation>Loading data...</StateInformation>;
   }
-  if (isDataError) {
+  if (fetchRepos.isError || fetchUsers.isError) {
     return (
       <StateInformation>Error occured while loading data</StateInformation>
     );
@@ -85,7 +65,7 @@ export const SearchResults = ({
 
   return (
     <>
-      <ListResults
+      <ResultsList
         totalCount={totalCount.toLocaleString(`en-US`)}
         data={dataTest}
       />

@@ -3,12 +3,12 @@ import { User } from '@/components/molecules/User';
 
 import { RepoTypes, UserTypes } from '@/types/responseTypes';
 
-type ListResultsProps = {
+type ResultsListProps = {
   totalCount: string;
   data: RepoTypes[] | UserTypes[];
 };
 
-export const ListResults = ({ totalCount, data }: ListResultsProps) => {
+export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
   return (
     <div className='mx-6 xl:mx-20 my-7 flex flex-col justify-start align-center'>
       <p className='my-4 font-bold text-2xl'>{totalCount} results</p>

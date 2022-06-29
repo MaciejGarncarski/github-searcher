@@ -73,7 +73,13 @@
   .p {
     @apply font-primary text-sm md:text-base;
   }
+
   /* #endregion  /**======== Typography =========== */
+
+  body {
+    background-color: #f6f7f8;
+    @apply min-h-screen;
+  }
 
   .layout {
     /* 1100px */

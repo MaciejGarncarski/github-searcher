@@ -28,13 +28,13 @@ export const Pagination = ({
     }
   };
   const handleNextPage = () => {
-    if (activePage < calculatedPages - 1) {
+    if (activePage <= calculatedPages - 1) {
       setActivePage((prevPage) => prevPage + 1);
     }
   };
 
   return (
-    <div className='w-full grid grid-cols-pagination place-items-center gap-6 text-2xl'>
+    <div className='w-full mb-8 grid grid-cols-pagination place-items-center gap-6 text-2xl'>
       <PaginationButton handleClick={handlePrevPage} disabled={1 <= activePage}>
         <RiArrowDropLeftLine size={40} />
         Prev
