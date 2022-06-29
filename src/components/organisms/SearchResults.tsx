@@ -59,11 +59,12 @@ export const SearchResults = ({
       const totalCount =
         fetchUsers.data?.totalCount + fetchRepos.data.totalCount;
       setTotalCount(totalCount);
-      if (fetchUsers.data.translatedData && fetchRepos.data.translatedData) {
-        const mergedData = [
-          ...fetchUsers.data.translatedData,
-          ...fetchRepos.data.translatedData,
-        ] as UserTypes[] | RepoTypes[];
+      const usersData = fetchUsers.data.translatedData;
+      const reposData = fetchRepos.data.translatedData;
+      if (usersData && reposData) {
+        const mergedData = [...usersData, ...reposData] as
+          | UserTypes[]
+          | RepoTypes[];
         const sortedData = mergedData.sort((a, b) => a.id - b.id);
         setDataTest(sortedData);
       }
