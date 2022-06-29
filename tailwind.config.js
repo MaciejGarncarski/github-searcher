@@ -6,12 +6,15 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        user: 'auto 1fr',
+        pagination: '1fr auto 1fr',
+      },
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
       },
       colors: {
         primary: {
-          // Customize it on globals.css :root
           50: 'rgb(var(--tw-color-primary-50) / <alpha-value>)',
           100: 'rgb(var(--tw-color-primary-100) / <alpha-value>)',
           200: 'rgb(var(--tw-color-primary-200) / <alpha-value>)',

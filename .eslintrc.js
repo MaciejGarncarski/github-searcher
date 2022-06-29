@@ -4,7 +4,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: ['@typescript-eslint', 'simple-import-sort', 'unused-imports'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+    'simple-import-sort',
+    'unused-imports',
+    'prettier',
+  ],
   extends: [
     'eslint:recommended',
     'next',
@@ -13,6 +19,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'prettier/prettier': 'error',
     'no-unused-vars': 'off',
     'no-console': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',

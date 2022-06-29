@@ -1,16 +1,21 @@
 import { AppProps } from 'next/app';
+import { useRef } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import '@/styles/globals.css';
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
-import '@/styles/colors.css';
-
-/**
- * !STARTERCONF info
- * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
- */
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  const queryClient = useRef(new QueryClient());
+  return (
+    <QueryClientProvider client={queryClient.current}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <ReactQueryDevtools />
+        <Component {...pageProps} />
+      </Hydrate>
+    </QueryClientProvider>
+  );
 }
 
 export default MyApp;

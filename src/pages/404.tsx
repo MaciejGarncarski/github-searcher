@@ -1,13 +1,12 @@
+import Link from 'next/link';
 import * as React from 'react';
 import { RiAlarmWarningFill } from 'react-icons/ri';
 
-import Layout from '@/components/layout/Layout';
-import ArrowLink from '@/components/links/ArrowLink';
-import Seo from '@/components/Seo';
+import { Seo } from '@/components/atoms/Seo';
 
 export default function NotFoundPage() {
   return (
-    <Layout>
+    <div>
       <Seo templateTitle='Not Found' />
 
       <main>
@@ -18,12 +17,14 @@ export default function NotFoundPage() {
               className='drop-shadow-glow animate-flicker text-red-500'
             />
             <h1 className='mt-8 text-4xl md:text-6xl'>Page Not Found</h1>
-            <ArrowLink className='mt-4 md:text-lg' href='/'>
-              Back to Home
-            </ArrowLink>
+            <Link href='/'>
+              <a className='mt-8 text-4xl text-white bg-blue-800 rounded-md py-3 px-8 hover:scale-110 transition-transform'>
+                Back To Homepage
+              </a>
+            </Link>
           </div>
         </section>
       </main>
-    </Layout>
+    </div>
   );
 }
