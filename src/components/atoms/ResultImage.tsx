@@ -16,7 +16,7 @@ export const ResultImg = ({ src, alt, isUser }: ResultImgProps) => {
       height={30}
       layout='responsive'
       alt={alt}
-      className='w-9 lg:w-12 rounded-full'
+      className='w-8 lg:w-8 rounded-full'
       imgClassName={`${isUser && 'rounded-3xl'}`}
       useSkeleton
     />

@@ -1,12 +1,10 @@
 import { formatDistanceToNowStrict, toDate } from 'date-fns';
+import { GoRepo } from 'react-icons/go';
 import { RiStarFill } from 'react-icons/ri';
 
 import { Description } from '@/components/atoms/Description';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
-import { ResultImg } from '@/components/atoms/ResultImage';
-
-import repoImg from '@/images/repo.png';
 
 type RepositoryProps = {
   fullName: string;
@@ -33,7 +31,7 @@ export const Repository = ({
 
   return (
     <ResultContainer>
-      <ResultImg src={repoImg} alt='Repository' />
+      <GoRepo size={25} className='mt-1' />
       <ResultHeading>{fullName}</ResultHeading>
 
       {description && <Description>{description}</Description>}
