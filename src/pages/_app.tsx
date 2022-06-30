@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import '@/styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryClient = useRef(new QueryClient());
   return (
     <QueryClientProvider client={queryClient.current}>
@@ -16,6 +16,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Hydrate>
     </QueryClientProvider>
   );
-}
+};
 
 export default MyApp;

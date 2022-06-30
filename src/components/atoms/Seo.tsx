@@ -16,7 +16,7 @@ type SeoProps = {
   templateTitle?: string;
 } & Partial<typeof defaultMeta>;
 
-export function Seo(props: SeoProps) {
+export const Seo = (props: SeoProps) => {
   const router = useRouter();
   const meta = {
     ...defaultMeta,
@@ -70,7 +70,7 @@ export function Seo(props: SeoProps) {
       <meta name='theme-color' content='#ffffff' />
     </Head>
   );
-}
+};
 
 type Favicons = {
   rel: string;

@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image';
 import { useState } from 'react';
 
-import clsxm from '@/lib/clsxm';
+import { clsxm } from '@/lib/clsxm';
 
 type NextImageProps = {
   useSkeleton?: boolean;
@@ -20,7 +20,7 @@ type NextImageProps = {
  * @description Must set width using `w-` className
  * @param useSkeleton add background with pulse animation, don't use it if image is transparent
  */
-export function NextImage({
+export const NextImage = ({
   useSkeleton = false,
   src,
   width,
@@ -30,7 +30,7 @@ export function NextImage({
   imgClassName,
   blurClassName,
   ...rest
-}: NextImageProps) {
+}: NextImageProps) => {
   const [status, setStatus] = useState(useSkeleton ? 'loading' : 'complete');
   const widthIsSet = className?.includes('w-') ?? false;
 
@@ -54,4 +54,4 @@ export function NextImage({
       />
     </figure>
   );
-}
+};

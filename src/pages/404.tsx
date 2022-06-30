@@ -4,7 +4,7 @@ import { RiAlarmWarningFill } from 'react-icons/ri';
 
 import { Seo } from '@/components/atoms/Seo';
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <div>
       <Seo templateTitle='Not Found' />
@@ -27,4 +27,6 @@ export default function NotFoundPage() {
       </main>
     </div>
   );
-}
+};
+
+export default NotFoundPage;

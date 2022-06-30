@@ -34,15 +34,11 @@ export const Pagination = ({
   };
 
   return (
-    <div className='w-full mb-8 grid grid-cols-pagination place-items-center gap-6 text-2xl'>
+    <div className='w-full mb-8 flex items-center justify-center gap-40 text-2xl'>
       <PaginationButton handleClick={handlePrevPage} disabled={1 <= activePage}>
         <RiArrowDropLeftLine size={40} />
         Prev
       </PaginationButton>
-
-      <p className='text-2xl '>
-        {activePage}/{calculatedPages}
-      </p>
       <PaginationButton
         handleClick={handleNextPage}
         disabled={activePage > calculatedPages - 1}
