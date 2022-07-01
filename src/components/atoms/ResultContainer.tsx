@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 const variants = {
   initial: {
-    y: 30,
+    y: 35,
     opacity: 0,
   },
   animate: {
