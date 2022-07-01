@@ -26,7 +26,7 @@ export const Pagination = ({
   };
 
   return (
-    <div className='w-full mb-8 flex items-center justify-center gap-25 xl:gap-40 text-2xl'>
+    <div className='w-full mb-8 flex items-center justify-center gap-10 xl:gap-40 text-2xl'>
       <PaginationButton handleClick={handlePrevPage} disabled={1 <= activePage}>
         <RiArrowDropLeftLine size={40} />
         Prev

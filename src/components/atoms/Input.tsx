@@ -21,7 +21,7 @@ export const Input = ({ setSearchedValue }: InputProps) => {
     <input
       type='search'
       placeholder='Search'
-      className='px-3 py-2 bg-transparent rounded-md border border-white text-white'
+      className='w-40 lg:w-auto px-3 py-2 bg-transparent rounded-md border border-white text-white'
       value={inputValue}
       onInput={onInput}
     />
