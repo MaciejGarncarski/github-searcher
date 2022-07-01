@@ -1,29 +1,17 @@
-import { ChangeEvent } from 'react';
-
+import { Input } from '@/components/atoms/Input';
 import { Logo } from '@/components/molecules/Logo';
 
 import logoImg from '@/images/GitHub-Mark-Light-64px.png';
 
 type HeaderProps = {
-  inputValue: string;
-  setInputValue: (inputValue: string) => void;
+  setSearchedValue: (value: string) => void;
 };
 
-export const Header = ({ inputValue, setInputValue }: HeaderProps) => {
-  const handleChange = (inputEvent: InputEvent | ChangeEvent) => {
-    setInputValue((inputEvent.target as HTMLInputElement).value);
-  };
-
+export const Header = ({ setSearchedValue }: HeaderProps) => {
   return (
     <header className='bg-slate-900 py-2 px-4 lg:px-10 lg:py-3 flex justify-between items-center'>
       <Logo src={logoImg} alt='github mark' size={48} placeholder='blur'></Logo>
-      <input
-        type='search'
-        placeholder='Search'
-        className='px-3 py-2 bg-transparent rounded-md border border-white text-white'
-        value={inputValue}
-        onChange={handleChange}
-      />
+      <Input setSearchedValue={setSearchedValue} />
     </header>
   );
 };

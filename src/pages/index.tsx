@@ -22,14 +22,13 @@ interface HomeProps {
 const initialQueryString = `Maciej Garncarski`;
 
 const Home: NextPage<HomeProps> = () => {
-  const [inputValue, setInputValue] = useState<string>(``);
-
+  const [searchedValue, setSearchedValue] = useState<string>(``);
   return (
-    <Layout inputValue={inputValue} setInputValue={setInputValue}>
+    <Layout setSearchedValue={setSearchedValue}>
       <Seo />
 
       <SearchResults
-        inputValue={inputValue}
+        searchedValue={searchedValue}
         initialQueryString={initialQueryString}
       />
     </Layout>

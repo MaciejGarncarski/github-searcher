@@ -12,12 +12,12 @@ import { getRepos, getUsers } from '@/pages/api/queries';
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 type SearchResultsProps = {
-  inputValue: string;
+  searchedValue: string;
   initialQueryString: string;
 };
 
 export const SearchResults = ({
-  inputValue,
+  searchedValue,
   initialQueryString,
 }: SearchResultsProps) => {
   const [dataTest, setDataTest] = useState<UserTypes[] | RepoTypes[]>([]);
@@ -25,7 +25,7 @@ export const SearchResults = ({
   const [activePage, setActivePage] = useState<number>(1);
 
   const debouncedSearch = useDebounce(
-    inputValue === `` ? initialQueryString : inputValue,
+    searchedValue === `` ? initialQueryString : searchedValue,
     1000
   );
 
