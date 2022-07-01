@@ -1,28 +1,29 @@
+
 ## Overview 🎉
-Typescript app, created to learn typescript and understand how much React makes life easier.
-This app is imitating e-commerce shop, but without checkout & payments yet sadly.
+It's a simple Next app, It uses Github's REST API to render users and repositories.
+I made this app, because I was bored as hell ⚆_⚆
+
 
 ## List of functions 📃
-- Routing
-- Custom 404 page
-- Adding items to cart
-- Filter
-    - Star count
-    - Min. price
-    - Max. price
+- Search
+	- Users
+	- Repositories
+- Pagination
 
 ## Tech used 🔧
-- Typescript
-- SASS
-- Font Awesome
+- Next + Typescript
+- Tailwind
+- React-Query
+- Eslint + Prettier + Husky + Conventional Commits
+- Jest + React Testing Library
+- Github API
 
 ## Screenshot 📺
-### Homepage
-![Website preview](https://github.com/MaciejGarncarski/shoe-shop/blob/main/screenshots/home.png?raw=true?raw=true "Homepage")
-### Product list and filters
-![Website preview](https://github.com/MaciejGarncarski/shoe-shop/blob/main/screenshots/shop.png?raw=true?raw=true  "Shop")
-### Shopping cart
-![Website preview](https://github.com/MaciejGarncarski/shoe-shop/blob/main/screenshots/cart.png?raw=true?raw=true  "Cart")
+### Mobile
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/screenshot-mobile.png?raw=true?raw=true "Desktop view")
+
+### Desktop
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/screenshot-desktop.png?raw=true?raw=true "Desktop view")
 
 ## Instalation & running 💾
 
@@ -37,4 +38,4 @@ pnpm run dev
 ```
 
 ## Live 📍
-https://shoe-shop-omega.vercel.app/
+https://github-api-chi-seven.vercel.app/
