@@ -4,44 +4,39 @@ import { RiArrowDropLeftLine, RiArrowDropRightLine } from 'react-icons/ri';
 import { PaginationButton } from '@/components/atoms/PaginationButton';
 
 interface PaginationProps<T> {
-  totalCount: number;
+  totalPages: number;
   activePage: T;
   setActivePage: Dispatch<SetStateAction<T>>;
 }
 
 export const Pagination = ({
-  totalCount,
+  totalPages,
   activePage,
   setActivePage,
 }: PaginationProps<number>) => {
-  const totalPages = totalCount / 10;
-
-  const isWholeNumber = totalPages - Math.floor(totalPages) === 0;
-
-  const calculatedPages = isWholeNumber
-    ? totalPages
-    : Math.floor(totalPages) + 1;
-
   const handlePrevPage = () => {
     if (1 < activePage) {
       setActivePage((prevPage) => prevPage - 1);
     }
   };
   const handleNextPage = () => {
-    if (activePage <= calculatedPages - 1) {
+    if (activePage <= totalPages - 1) {
       setActivePage((prevPage) => prevPage + 1);
     }
   };
 
   return (
-    <div className='w-full mb-8 flex items-center justify-center gap-40 text-2xl'>
+    <div className='w-full mb-8 flex items-center justify-center gap-25 xl:gap-40 text-2xl'>
       <PaginationButton handleClick={handlePrevPage} disabled={1 <= activePage}>
         <RiArrowDropLeftLine size={40} />
         Prev
       </PaginationButton>
+      <p>
+        {activePage}/{totalPages}
+      </p>
       <PaginationButton
         handleClick={handleNextPage}
-        disabled={activePage > calculatedPages - 1}
+        disabled={activePage > totalPages - 1}
       >
         Next
         <RiArrowDropRightLine size={40} />

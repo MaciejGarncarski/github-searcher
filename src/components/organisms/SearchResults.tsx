@@ -54,6 +54,8 @@ export const SearchResults = ({
     }
   }, [fetchRepos.data, fetchUsers.data]);
 
+  const totalPages = Math.ceil(totalCount / 10);
+
   if (fetchRepos.isFetching || fetchUsers.isFetching) {
     return <StateInformation>Loading data...</StateInformation>;
   }
@@ -70,7 +72,7 @@ export const SearchResults = ({
         data={dataTest}
       />
       <Pagination
-        totalCount={totalCount}
+        totalPages={totalPages}
         activePage={activePage}
         setActivePage={setActivePage}
       />
