@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { useDebounce } from '@/hooks/useDebounce';
-import { useFetch } from '@/hooks/useFetch';
 
 import { StateInformation } from '@/components/atoms/StateInformation';
 import { Pagination } from '@/components/molecules/Pagination';
@@ -20,7 +20,9 @@ export const SearchResults = ({
   searchedValue,
   initialQueryString,
 }: SearchResultsProps) => {
-  const [dataTest, setDataTest] = useState<UserTypes[] | RepoTypes[]>([]);
+  const [repoUserData, setRepoUserData] = useState<(UserTypes | RepoTypes)[]>(
+    []
+  );
   const [totalCount, setTotalCount] = useState<number>(0);
   const [activePage, setActivePage] = useState<number>(1);
 
@@ -29,27 +31,34 @@ export const SearchResults = ({
     1000
   );
 
-  const fetchRepos = useFetch('repos', activePage, debouncedSearch, () =>
-    getRepos(debouncedSearch, activePage)
+  const fetchOptions = {
+    page: activePage,
+    search: debouncedSearch,
+  };
+
+  const fetchRepos = useQuery(
+    ['repos', { ...fetchOptions }],
+    () => getRepos(debouncedSearch, activePage),
+    { keepPreviousData: true, refetchOnWindowFocus: false }
   );
 
-  const fetchUsers = useFetch('users', activePage, debouncedSearch, () =>
-    getUsers(debouncedSearch, activePage)
+  const fetchUsers = useQuery(
+    ['users', { ...fetchOptions }],
+    () => getUsers(debouncedSearch, activePage),
+    { keepPreviousData: true, refetchOnWindowFocus: false }
   );
 
   useEffect(() => {
     if (fetchRepos.data && fetchUsers.data) {
       const totalCount =
-        fetchUsers.data?.totalCount + fetchRepos.data.totalCount;
+        fetchUsers.data.totalCount + fetchRepos.data.totalCount;
       setTotalCount(totalCount);
       const usersData = fetchUsers.data.translatedData;
       const reposData = fetchRepos.data.translatedData;
       if (usersData && reposData) {
-        const mergedData = [...usersData, ...reposData] as
-          | UserTypes[]
-          | RepoTypes[];
+        const mergedData = [...usersData, ...reposData];
         const sortedData = mergedData.sort((a, b) => a.id - b.id);
-        setDataTest(sortedData);
+        setRepoUserData(sortedData);
       }
     }
   }, [fetchRepos.data, fetchUsers.data]);
@@ -69,7 +78,7 @@ export const SearchResults = ({
     <>
       <ResultsList
         totalCount={totalCount.toLocaleString(`en-US`)}
-        data={dataTest}
+        data={repoUserData}
       />
       <Pagination
         totalPages={totalPages}

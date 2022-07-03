@@ -1,3 +1,4 @@
+import { Heading } from '@/components/atoms/Heading';
 import { Repository } from '@/components/molecules/Repository';
 import { User } from '@/components/molecules/User';
 
@@ -5,13 +6,15 @@ import { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 type ResultsListProps = {
   totalCount: string;
-  data: RepoTypes[] | UserTypes[];
+  data: (UserTypes | RepoTypes)[];
 };
 
 export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
   return (
-    <div className='mx-6 xl:mx-20 my-7 flex flex-col justify-start align-center'>
-      <p className='my-4 font-bold text-2xl'>{totalCount} results</p>
+    <section className='mx-6 xl:mx-20 my-7 flex flex-col justify-start align-center'>
+      <Heading type='h2' className='py-4 text-3xl'>
+        {totalCount} results
+      </Heading>
       {data.map((elem) => {
         const isUserType = `login` && `name` && `avatar_url` in elem;
         const isRepoType = `updated_at` && `license` && `full_name` in elem;
@@ -22,7 +25,7 @@ export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
               login={elem.login}
               fullName={elem.name}
               avatar={elem.avatar_url}
-              bio={elem.bio || ``}
+              bio={elem.bio}
               location={elem.location}
             />
           );
@@ -40,6 +43,6 @@ export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
           );
         }
       })}
-    </div>
+    </section>
   );
 };

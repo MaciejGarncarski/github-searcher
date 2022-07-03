@@ -6,7 +6,7 @@ type StateInformationProps = {
 
 export const StateInformation = ({ children }: StateInformationProps) => {
   return (
-    <div className='min-h-screen grid place-content-center text-2xl'>
+    <div className='min-h-state-messsage grid place-content-center text-2xl px-10 text-center'>
       {children}
     </div>
   );

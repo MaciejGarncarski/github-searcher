@@ -6,6 +6,10 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      minHeight: {
+        'state-messsage': '75vh',
+        user: '8rem',
+      },
       gridTemplateColumns: {
         user: 'auto 1fr',
         pagination: '1fr auto 1fr',

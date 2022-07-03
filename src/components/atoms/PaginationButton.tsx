@@ -14,7 +14,7 @@ export const PaginationButton = ({
   return (
     <button
       type='button'
-      className='transition-all enabled:text-blue-500 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex items-center'
+      className='transition-all justify-self-center enabled:text-blue-600 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex items-center'
       disabled={disabled}
       onClick={handleClick}
     >

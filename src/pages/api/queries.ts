@@ -5,12 +5,14 @@ export type ApiResponseType<T> = {
   translatedData: T[];
 };
 
+const perPage = 4;
+
 export const getUsers = async (
   username: string,
   activePage: number
-): Promise<ApiResponseType<UserTypes> | null> => {
+): Promise<ApiResponseType<UserTypes>> => {
   const res = await fetch(
-    `https://api.github.com/search/users?q=${username}&per_page=4&page=${activePage}`
+    `https://api.github.com/search/users?q=${username}&per_page=${perPage}&page=${activePage}`
   );
   const usersJson = await res.json();
   const usersData = usersJson.items;
@@ -33,9 +35,9 @@ export const getUsers = async (
 export const getRepos = async (
   username: string,
   activePage: number
-): Promise<ApiResponseType<RepoTypes> | null> => {
+): Promise<ApiResponseType<RepoTypes>> => {
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=${username}&per_page=6&page=${activePage}`
+    `https://api.github.com/search/repositories?q=${username}&per_page=${perPage}&page=${activePage}`
   );
   if (res.ok) {
     const resJson = await res.json();
