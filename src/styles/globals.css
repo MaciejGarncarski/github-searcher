@@ -77,8 +77,8 @@
   /* #endregion  /**======== Typography =========== */
 
   body {
-    background-color: #f6f7f8;
     @apply min-h-screen;
+    @apply bg-slate-100;
   }
 
   .layout {

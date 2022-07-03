@@ -7,11 +7,7 @@ type DescriptionProps = {
 
 export const Description = ({ italic, children }: DescriptionProps) => {
   return (
-    <p
-      className={`col-start-2 self-center text-lg text-slate-700 ${
-        italic && 'italic'
-      } `}
-    >
+    <p className={`col-start-2 self-center text-lg ${italic && 'italic'} `}>
       {children}
     </p>
   );

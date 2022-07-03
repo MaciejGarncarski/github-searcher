@@ -1,9 +1,11 @@
-import { formatDistanceToNowStrict, toDate } from 'date-fns';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
 import { RiStarFill } from 'react-icons/ri';
 import { useQuery } from 'react-query';
 
 import { Description } from '@/components/atoms/Description';
+import { RepositoryTag } from '@/components/atoms/RepositoryTag';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 
@@ -27,8 +29,8 @@ export const Repository = ({
   updatedAt,
 }: RepositoryProps) => {
   const dateObject = new Date(updatedAt);
-  const date = toDate(dateObject);
-  const timeSinceUpdate = formatDistanceToNowStrict(date, { addSuffix: true });
+  dayjs.extend(relativeTime);
+  const dateFromNow = dayjs(dateObject).fromNow();
 
   const color = useQuery(
     'github language color',
@@ -51,25 +53,24 @@ export const Repository = ({
       <ResultHeading>{fullName}</ResultHeading>
 
       {description && <Description italic>{description}</Description>}
-      <ul className='col-start-2 items-center flex gap-x-4 flex-wrap'>
-        <li className='flex items-center gap-1'>
+      <ul className='col-start-2 items-center flex gap-x-2 gap-y-2 flex-wrap'>
+        <RepositoryTag className='gap-x-1'>
           <RiStarFill />
           {stars}
-        </li>
-        {color.data && (
-          <li className='flex items-center gap-1'>
+        </RepositoryTag>
+        {color.data[language ?? '']?.color && (
+          <RepositoryTag className='gap-x-2'>
             <span
               style={{
-                backgroundColor:
-                  color.data[language ?? '']?.color ?? 'transparent',
+                backgroundColor: color.data[language ?? '']?.color,
               }}
-              className='w-3 h-3 rounded-xl'
+              className='w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-xl'
             ></span>
             {language}
-          </li>
+          </RepositoryTag>
         )}
-        {license && <li>{license.name}</li>}
-        <li>Updated {timeSinceUpdate}</li>
+        {license && <RepositoryTag>{license.name}</RepositoryTag>}
+        <RepositoryTag>Updated {dateFromNow}</RepositoryTag>
       </ul>
     </ResultContainer>
   );

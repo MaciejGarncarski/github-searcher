@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from 'react-icons/ri';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
+import { PaginationProgress } from '@/components/atoms/PaginationProgress';
 
 interface PaginationProps<T> {
   totalPages: number;
@@ -34,8 +35,7 @@ export const Pagination = ({
     };
 
     if (canShowRightDots && !canShowLeftDots) {
-      const pages = calculatePageQueue(activePage, activePage + 5);
-      setPageQueue([...pages, '...']);
+      setPageQueue(['1', '2', '3', '4', '...']);
     } else if (canShowLeftDots && !canShowRightDots) {
       const pages = calculatePageQueue(activePage - 4, activePage);
       setPageQueue(['...', ...pages]);
@@ -66,31 +66,25 @@ export const Pagination = ({
   };
 
   return (
-    <div className='w-full text-2xl mb-8 grid grid-cols-2 grid-rows-2 gap-y-1 md:flex md:justify-center md:gap-10 lg:gap-20'>
+    <div className='w-full text-2xl mb-8 grid grid-cols-2 grid-rows-2 md:flex md:justify-center md:gap-10 lg:gap-20'>
       <PaginationButton handleClick={handlePrevPage} disabled={1 <= activePage}>
         <RiArrowDropLeftLine size={40} />
         Prev
       </PaginationButton>
-      <div className='flex row-start-1 row-end-2 col-start-1 col-end-3 justify-center items-center gap-4'>
+      <div className='flex row-start-1 row-end-2 col-start-1 col-end-3 justify-center items-center gap-2 md:gap-4'>
         {pageQueue.map((pageNum, idx) => {
           if (pageNum === '...') {
             return <span key={idx}>&hellip;</span>;
           }
           return (
-            <p
+            <PaginationProgress
               key={idx}
+              activePage={activePage}
+              pageNum={pageNum}
               onClick={() => setActivePage(+pageNum)}
-              className={`
-              px-4 py-2 rounded
-              
-              ${
-                activePage === +pageNum
-                  ? 'bg-blue-600 text-white cursor-default'
-                  : 'cursor-pointer'
-              }`}
             >
               {pageNum}
-            </p>
+            </PaginationProgress>
           );
         })}
       </div>

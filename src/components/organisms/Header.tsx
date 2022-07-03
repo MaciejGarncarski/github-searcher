@@ -9,7 +9,7 @@ type HeaderProps = {
 
 export const Header = ({ setSearchedValue }: HeaderProps) => {
   return (
-    <header className='bg-slate-900 py-2 px-4 lg:px-10 lg:py-3 flex justify-between items-center'>
+    <header className='bg-gray-800 py-2 px-4 lg:px-10 lg:py-3 flex justify-between items-center'>
       <Logo src={logoImg} alt='github mark' size={48} placeholder='blur'></Logo>
       <Input setSearchedValue={setSearchedValue} />
     </header>
