@@ -40,7 +40,7 @@ export const Repository = ({
       );
       return response.json();
     },
-    { refetchOnWindowFocus: false }
+    { refetchOnWindowFocus: false, keepPreviousData: true }
   );
 
   if (color.isFetching) {

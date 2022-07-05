@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
 type PaginationProgressProps = {
@@ -13,8 +14,9 @@ export const PaginationProgress = ({
   activePage,
   onClick,
 }: PaginationProgressProps) => {
+  const animateY = activePage !== +pageNum ? { y: -6 } : {};
   return (
-    <button
+    <motion.button
       type='button'
       onClick={onClick}
       className={`
@@ -25,8 +27,11 @@ export const PaginationProgress = ({
         ? 'bg-blue-600 text-white cursor-default'
         : 'cursor-pointer'
     }`}
+      whileTap={activePage !== +pageNum ? { scale: 0.9 } : {}}
+      whileHover={animateY}
+      whileFocus={animateY}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };

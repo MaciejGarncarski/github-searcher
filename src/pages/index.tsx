@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import { Seo } from '@/components/atoms/Seo';
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/components/molecules/Layout';
 import { SearchResults } from '@/components/organisms/SearchResults';
 
 import { getRepos, getUsers } from '@/pages/api/queries';
@@ -19,10 +19,11 @@ interface HomeProps {
   initialUsersData: ApiResponseType<UserTypes[]>;
 }
 
-const initialQueryString = `MaciejGarncarski`;
+const initialQueryString = `JavaScript`;
 
 const Home: NextPage<HomeProps> = () => {
   const [searchedValue, setSearchedValue] = useState<string>(``);
+
   return (
     <Layout setSearchedValue={setSearchedValue}>
       <Seo />
@@ -38,11 +39,11 @@ const Home: NextPage<HomeProps> = () => {
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<ApiResponseType<RepoTypes> | null>(
-    [`repos`, initialQueryString, { activePage: 1 }],
+    [`repos`, { page: 1, search: initialQueryString }],
     () => getRepos(initialQueryString, 1)
   );
   await queryClient.prefetchQuery<ApiResponseType<UserTypes> | null>(
-    [`users`, initialQueryString, { activePage: 1 }],
+    [`users`, { page: 1, search: initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );
 
