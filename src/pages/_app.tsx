@@ -6,15 +6,19 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import '@/styles/globals.css';
 
+import { ActivePageProvider } from '@/contexts/activePage-context';
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryClient = useRef(new QueryClient());
   return (
-    <QueryClientProvider client={queryClient.current}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <ReactQueryDevtools />
-        <Component {...pageProps} />
-      </Hydrate>
-    </QueryClientProvider>
+    <ActivePageProvider>
+      <QueryClientProvider client={queryClient.current}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ReactQueryDevtools />
+          <Component {...pageProps} />
+        </Hydrate>
+      </QueryClientProvider>
+    </ActivePageProvider>
   );
 };
 

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useActivePage } from '@/hooks/useActivePage';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
 
@@ -16,12 +15,12 @@ export const SearchResults = ({
   searchedValue,
   initialQueryString,
 }: SearchResultsProps) => {
-  const [activePage, setActivePage] = useState<number>(1);
-
   const debouncedSearch = useDebounce(
     searchedValue === `` ? initialQueryString : searchedValue,
     1200
   );
+
+  const { activePage } = useActivePage();
 
   const { fetchRepos, fetchUsers, totalCount, repoUserData } = useSearch(
     activePage,
@@ -49,11 +48,7 @@ export const SearchResults = ({
         totalCount={totalCount.toLocaleString(`en-US`)}
         data={repoUserData}
       />
-      <Pagination
-        totalPages={Math.ceil(totalCount / 10)}
-        activePage={activePage}
-        setActivePage={setActivePage}
-      />
+      <Pagination totalPages={Math.ceil(totalCount / 10)} />
     </>
   );
 };

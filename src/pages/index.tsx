@@ -22,8 +22,7 @@ interface HomeProps {
 const initialQueryString = `JavaScript`;
 
 const Home: NextPage<HomeProps> = () => {
-  const [searchedValue, setSearchedValue] = useState<string>(``);
-
+  const [searchedValue, setSearchedValue] = useState<string>('');
   return (
     <Layout setSearchedValue={setSearchedValue}>
       <Seo />

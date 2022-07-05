@@ -21,9 +21,7 @@ export const usePagination = (activePage: number, totalPages: number) => {
 
     const activePageRounded = Math.ceil(activePage / 100) * 100;
 
-    const previousHundred = (
-      activePage - 100 < 0 ? 1 : activePage - 100
-    ).toString();
+    const previousHundred = Math.max(1, activePage - 100).toString();
 
     const nextHundred = Math.min(
       totalPages,

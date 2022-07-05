@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 const defaultMeta = {
   title: 'Github Searcher',
   siteName: 'Github-api search',
-  description: 'A github api app',
+  description: `It's a simple Next app, It uses Github's REST API to render users and repositories. I made this app, because I was bored as hell ⚆_⚆`,
   url: 'https://github-api-chi-seven.vercel.app/',
   type: 'website',
   robots: 'follow, index',
