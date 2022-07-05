@@ -33,9 +33,7 @@ export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
       </Heading>
       <motion.ul variants={variants} initial='initial' animate='animate'>
         {data.map((elem) => {
-          const isUserType = `login` && `name` && `avatar_url` in elem;
-          const isRepoType = `updated_at` && `license` && `full_name` in elem;
-          if (isUserType) {
+          if ('avatar_url' in elem) {
             return (
               <User
                 key={elem.id}
@@ -46,7 +44,7 @@ export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
                 location={elem.location}
               />
             );
-          } else if (isRepoType) {
+          } else if ('updated_at' in elem) {
             return (
               <Repository
                 key={elem.id}
