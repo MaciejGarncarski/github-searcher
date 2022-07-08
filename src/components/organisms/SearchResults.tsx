@@ -47,7 +47,6 @@ export const SearchResults = ({
         totalCount={totalCount.toLocaleString(`en-US`)}
         data={repoUserData}
       />
-      <ResultPlaceholder />
       <Pagination totalPages={Math.ceil(totalCount / 10)} />
     </>
   );

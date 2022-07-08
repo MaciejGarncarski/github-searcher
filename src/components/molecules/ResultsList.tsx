@@ -11,17 +11,17 @@ type ResultsListProps = {
   data: (UserTypes | RepoTypes)[];
 };
 
-const variants: Variants = {
+const containerVariants: Variants = {
   initial: {
-    y: 35,
+    x: -80,
     opacity: 0,
   },
   animate: {
-    y: 0,
+    x: 0,
     opacity: 1,
     transition: {
+      duration: 2,
       type: 'spring',
-      staggerChildren: 0.3,
     },
   },
 };
@@ -39,7 +39,11 @@ export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
       <Heading type='h2' className='py-4 text-3xl'>
         {totalCount} results
       </Heading>
-      <motion.ul variants={variants} initial='initial' animate='animate'>
+      <motion.ul
+        variants={containerVariants}
+        initial='initial'
+        animate='animate'
+      >
         {data.map((elem) => {
           if ('avatar_url' in elem) {
             return (
