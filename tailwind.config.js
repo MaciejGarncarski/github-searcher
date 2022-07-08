@@ -46,16 +46,17 @@ module.exports = {
         },
         shimmer: {
           '0%': {
-            backgroundPosition: '-700px 0',
+            transform: 'translateX(-100%);',
           },
           '100%': {
-            backgroundPosition: '700px 0',
+            backgroundPosition: 'translateX(100%);',
           },
         },
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
-        shimmer: 'shimmer 1.3s linear infinite',
+        shimmer: 'shimmer 2.5s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },

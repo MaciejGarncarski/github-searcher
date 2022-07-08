@@ -16,14 +16,16 @@ export const usePagination = (activePage: number, totalPages: number) => {
     const calculatePageQueue = (start: number, end: number) => {
       const pagesArray = [...Array(totalPages).keys()];
       const pages = pagesArray.slice(start, end);
-      return pages;
+      const pagesAsStrings = pages.map((page) => page.toString());
+
+      return pagesAsStrings;
     };
 
     const activePageRounded = Math.ceil(activePage / 100) * 100;
 
-    const previousHundred = Math.max(1, activePage - 100).toString();
+    const previous100Pages = Math.max(1, activePage - 100).toString();
 
-    const nextHundred = Math.min(
+    const next100Pages = Math.min(
       totalPages,
       activePage + 10 >= activePageRounded
         ? activePageRounded + 100
@@ -31,28 +33,18 @@ export const usePagination = (activePage: number, totalPages: number) => {
     ).toString();
 
     if (canShowRightDots && !canShowLeftDots) {
-      setPageQueue(['1', '2', '3', '4', '...', nextHundred]);
+      setPageQueue(['1', '2', '3', '4', '...', next100Pages]);
     } else if (canShowLeftDots && !canShowRightDots) {
-      const pages = calculatePageQueue(activePage - 4, activePage);
-      const pagesToString = pages.map((page) => page.toString());
-
-      setPageQueue([previousHundred, '...', ...pagesToString]);
+      const pages = calculatePageQueue(totalPages - 3, totalPages);
+      setPageQueue([previous100Pages, '...', ...pages, totalPages.toString()]);
     } else if (canShowLeftDots && canShowRightDots) {
       const pages = calculatePageQueue(activePage - 2, activePage + 3);
-      const pagesToString = pages.map((page) => page.toString());
-
-      setPageQueue([
-        previousHundred,
-        '...',
-        ...pagesToString,
-        '...',
-        nextHundred,
-      ]);
+      setPageQueue([previous100Pages, '...', ...pages, '...', next100Pages]);
     } else {
       if (totalPages <= 3 && totalPages > 1) {
         const pages = [...Array(totalPages).keys()];
-        const pagesToString = pages.map((page) => page.toString());
-        setPageQueue([...pagesToString]);
+        const pagesAsStrings = pages.map((page) => page.toString());
+        setPageQueue([...pagesAsStrings]);
       }
     }
   }, [activePage, totalPages]);

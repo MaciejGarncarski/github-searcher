@@ -1,5 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 
+import { useActivePage } from '@/hooks/useActivePage';
+
 type InputProps = {
   setSearchedValue: (value: string) => void;
 };
@@ -7,13 +9,15 @@ type InputProps = {
 export const Input = ({ setSearchedValue }: InputProps) => {
   const [inputValue, setInputValue] = useState<string>('');
 
+  const { setActivePage } = useActivePage();
+
   useEffect(() => {
     setSearchedValue(inputValue);
   }, [inputValue, setSearchedValue]);
 
   const onInput = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;
-
+    setActivePage(1);
     setInputValue(target.value);
   };
 

@@ -1,14 +1,14 @@
 import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
-type placeholders = 'blur' | 'empty';
-type sizes = 16 | 32 | 48 | 64 | 128 | 256;
+type Placeholders = 'blur' | 'empty';
+type Sizes = 16 | 32 | 48 | 64 | 128 | 256;
 
 type LogoProps = {
   src: StaticImageData;
   alt: string;
-  placeholder: placeholders;
-  size: sizes;
+  placeholder: Placeholders;
+  size: Sizes;
 };
 
 import { NextImage } from '@/components/atoms/NextImage';

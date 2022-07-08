@@ -4,7 +4,7 @@ import { useActivePage } from '@/hooks/useActivePage';
 import { usePagination } from '@/hooks/usePagination';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
-import { PaginationProgress } from '@/components/atoms/PaginationProgress';
+import { PaginationNumber } from '@/components/atoms/PaginationNumber';
 
 interface PaginationProps {
   totalPages: number;
@@ -42,14 +42,14 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
             return <span key={idx}>&hellip;</span>;
           }
           return (
-            <PaginationProgress
+            <PaginationNumber
               key={idx}
               activePage={activePage}
               pageNum={pageNum}
               onClick={() => setActivePage(+pageNum)}
             >
               {pageNum}
-            </PaginationProgress>
+            </PaginationNumber>
           );
         })}
       </div>

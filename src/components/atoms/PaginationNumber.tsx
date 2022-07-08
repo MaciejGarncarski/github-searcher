@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
-type PaginationProgressProps = {
+type PaginationNumberProps = {
   children: ReactNode;
   pageNum: string;
   activePage: number;
   onClick: MouseEventHandler;
 };
 
-export const PaginationProgress = ({
+export const PaginationNumber = ({
   children,
   pageNum,
   activePage,
   onClick,
-}: PaginationProgressProps) => {
+}: PaginationNumberProps) => {
   const animateY = activePage !== +pageNum ? { y: -8 } : {};
   return (
     <motion.button
