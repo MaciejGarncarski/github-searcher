@@ -26,6 +26,13 @@ const variants: Variants = {
 };
 
 export const ResultsList = ({ totalCount, data }: ResultsListProps) => {
+  if (+totalCount === 0) {
+    return (
+      <Heading type='h2' className='mt-20 ml-20'>
+        No results found
+      </Heading>
+    );
+  }
   return (
     <section className='mx-6 xl:mx-20 my-7 flex flex-col justify-start align-center'>
       <Heading type='h2' className='py-4 text-3xl'>

@@ -26,13 +26,13 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
     }
   };
 
-  if (totalPages === 1) {
+  if (totalPages <= 1) {
     return null;
   }
 
   return (
     <div className='w-full text-2xl my-10 grid grid-cols-2 grid-rows-2 md:flex md:justify-center md:gap-10 lg:gap-20'>
-      <PaginationButton onClick={handlePrevPage} disabled={1 <= activePage}>
+      <PaginationButton onClick={handlePrevPage} disabled={activePage === 1}>
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
       </PaginationButton>

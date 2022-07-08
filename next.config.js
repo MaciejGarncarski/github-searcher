@@ -7,10 +7,7 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: [
-      'avatars.github.com',
-      'avatars.githubusercontent.com',
-    ],
+    domains: ['avatars.github.com', 'avatars.githubusercontent.com'],
   },
 
   webpack(config) {
