@@ -2,10 +2,10 @@ import { useActivePage } from '@/hooks/useActivePage';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
 
-import { ErrorMessage } from '@/components/atoms/ErrorMessage';
+import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import { Pagination } from '@/components/molecules/Pagination';
 import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
-import { ResultsList } from '@/components/molecules/ResultsList';
+import { ResultsList } from '@/components/organisms/ResultsList';
 
 type SearchResultsProps = {
   searchedValue: string;
@@ -34,18 +34,18 @@ export const SearchResults = ({
     fetchRepos.isLoading ||
     fetchUsers.isLoading
   ) {
-    return <ResultPlaceholder />;
+    return <ResultPlaceholder placeholderAmount={4} />;
   }
 
   if (fetchRepos.isError || fetchUsers.isError) {
-    return <ErrorMessage />;
+    return <ErrorMessage error="Couldn't load data" emoji='😭' />;
   }
 
   return (
     <>
       <ResultsList
         totalCount={totalCount.toLocaleString(`en-US`)}
-        data={repoUserData}
+        apiData={repoUserData}
       />
       <Pagination totalPages={Math.ceil(totalCount / 10)} />
     </>

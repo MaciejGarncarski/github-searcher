@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FormEvent, useEffect, useState } from 'react';
 
 import { useActivePage } from '@/hooks/useActivePage';
@@ -22,7 +23,9 @@ export const Input = ({ setSearchedValue }: InputProps) => {
   };
 
   return (
-    <input
+    <motion.input
+      whileFocus={{ scaleX: 1.1 }}
+      whileHover={{ scaleX: 1.1 }}
       type='search'
       placeholder='Search'
       className='w-40 lg:w-auto px-3 py-2 bg-transparent rounded border-1 border-white text-white placeholder:text-white'

@@ -1,11 +1,14 @@
 import { ReactNode } from 'react';
 
-type DescriptionProps = {
+type ResultDescriptionProps = {
   italic?: boolean;
   children: ReactNode;
 };
 
-export const Description = ({ italic, children }: DescriptionProps) => {
+export const ResultDescription = ({
+  italic,
+  children,
+}: ResultDescriptionProps) => {
   return (
     <p className={`col-start-2 self-center text-lg ${italic && 'italic'} `}>
       {children}

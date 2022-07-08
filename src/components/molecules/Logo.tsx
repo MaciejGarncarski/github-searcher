@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
@@ -15,7 +16,7 @@ import { NextImage } from '@/components/atoms/NextImage';
 
 export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
   return (
-    <h1>
+    <motion.h1 whileFocus={{ scale: 1.1 }} whileHover={{ scale: 1.1 }}>
       <Link href='/'>
         <a>
           <NextImage
@@ -28,6 +29,6 @@ export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
           />
         </a>
       </Link>
-    </h1>
+    </motion.h1>
   );
 };

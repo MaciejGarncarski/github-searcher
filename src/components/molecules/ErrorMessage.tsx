@@ -17,7 +17,15 @@ const containerVariants: Variants = {
   },
 };
 
-export const ErrorMessage = () => {
+type ErrorMessageProps = {
+  error: string;
+  emoji?: string;
+};
+
+export const ErrorMessage = ({
+  error = 'Error',
+  emoji = '🌋',
+}: ErrorMessageProps) => {
   return (
     <motion.div
       variants={containerVariants}
@@ -26,7 +34,7 @@ export const ErrorMessage = () => {
       exit='initial'
       className='min-h-state-messsage grid place-content-center text-5xl lg:text-6xl mx-10 text-center overflow-hidden'
     >
-      Error occured while loading data
+      {error}
       <br />
       <motion.span
         initial={{ rotate: -360 }}
@@ -41,7 +49,7 @@ export const ErrorMessage = () => {
         }}
         className='text-7xl lg:text-8xl mt-10'
       >
-        👿
+        {emoji}
       </motion.span>
     </motion.div>
   );

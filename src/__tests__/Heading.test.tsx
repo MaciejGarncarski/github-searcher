@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react';
 
-import { Heading } from '../components/atoms/Heading';
+import { Text } from '../components/atoms/Text';
 
 const sampleText = 'Hello';
 
 const expectText = (text: string) =>
   expect(screen.getByText(text)).toBeInTheDocument();
 
-describe('<Heading />', () => {
-  test('Should render empty Heading', () => {
-    render(<Heading> </Heading>);
+describe('<Text />', () => {
+  test('Should render empty Text', () => {
+    render(<Text> </Text>);
   });
-  test('Should render Heading with text', () => {
-    render(<Heading>{sampleText}</Heading>);
+  test('Should render Text with text', () => {
+    render(<Text>{sampleText}</Text>);
     expectText(sampleText);
   });
-  test('Should render Heading with type h5', () => {
-    render(<Heading type='h5'>{sampleText}</Heading>);
+  test('Should render Text with type h5', () => {
+    render(<Text type='h5'>{sampleText}</Text>);
   });
-  test('Should render Heading with className', () => {
-    render(<Heading className='text-blue-300'>{sampleText}</Heading>);
+  test('Should render Text with className', () => {
+    render(<Text className='text-blue-300'>{sampleText}</Text>);
   });
 });

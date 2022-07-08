@@ -1,8 +1,8 @@
-import { Description } from '@/components/atoms/Description';
-import { Heading } from '@/components/atoms/Heading';
 import { NextImage } from '@/components/atoms/NextImage';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
+import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
+import { Text } from '@/components/atoms/Text';
 
 type UserProps = {
   login: string;
@@ -27,11 +27,11 @@ export const User = ({ login, fullName, avatar, bio, location }: UserProps) => {
       />
       <div className='col-start-2 '>
         <ResultHeading>{fullName}</ResultHeading>
-        <Heading type='p' className='text-xl'>
+        <Text type='p' className='text-xl'>
           {login}
-        </Heading>
+        </Text>
       </div>
-      {bio && <Description italic>{bio}</Description>}
+      {bio && <ResultDescription italic>{bio}</ResultDescription>}
       {location && <div className='col-start-2'>{location}</div>}
     </ResultContainer>
   );

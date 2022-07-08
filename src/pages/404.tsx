@@ -2,7 +2,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { RiAlarmWarningFill } from 'react-icons/ri';
 
-import { Seo } from '@/components/atoms/Seo';
+import { Seo } from '@/components/Seo';
 
 const NotFoundPage = () => {
   return (

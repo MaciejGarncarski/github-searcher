@@ -4,9 +4,9 @@ import { GoRepo } from 'react-icons/go';
 import { RiStarFill } from 'react-icons/ri';
 import { useQuery } from 'react-query';
 
-import { Description } from '@/components/atoms/Description';
 import { RepositoryTag } from '@/components/atoms/RepositoryTag';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
+import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 
 type RepositoryProps = {
@@ -52,7 +52,9 @@ export const Repository = ({
       <GoRepo size={25} className='mt-1' />
       <ResultHeading>{fullName}</ResultHeading>
 
-      {description && <Description italic>{description}</Description>}
+      {description && (
+        <ResultDescription italic>{description}</ResultDescription>
+      )}
       <ul className='col-start-2 items-center flex gap-x-2 gap-y-2 flex-wrap'>
         <RepositoryTag className='gap-x-1'>
           <RiStarFill />

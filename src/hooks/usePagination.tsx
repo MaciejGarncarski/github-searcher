@@ -10,7 +10,7 @@ export const usePagination = (activePage: number, totalPages: number) => {
   ]);
 
   useEffect(() => {
-    const canShowLeftDots = activePage > 2;
+    const canShowLeftDots = activePage > 3;
     const canShowRightDots = totalPages - 2 > activePage;
 
     const calculatePageQueue = (start: number, end: number) => {

@@ -15,10 +15,8 @@ export const containerVariants: Variants = {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 1.5,
-      mass: 2,
-      stiffness: 150,
-      damping: 12,
+      duration: 1.25,
+      mass: 1.2,
       type: 'spring',
     },
   },

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 
-import { Description } from '@/components/atoms/Description';
+import { ResultDescription } from '@/components/atoms/ResultDescription';
 
-describe('<Description />', () => {
-  test('should render description with text', () => {
-    render(<Description>DEESCC</Description>);
+describe('<ResultDescription />', () => {
+  test('should render ResultDescription with text', () => {
+    render(<ResultDescription>DEESCC</ResultDescription>);
     expect(screen.getByText('DEESCC')).toBeInTheDocument();
   });
 });

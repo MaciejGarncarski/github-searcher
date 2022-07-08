@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-type HeadingProps = {
+type TextProps = {
   type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
   children: ReactNode;
 };
 
-export const Heading = ({ type, children, className }: HeadingProps) => {
+export const Text = ({ type, children, className }: TextProps) => {
   const TagName = type ?? 'p';
   return (
     <TagName

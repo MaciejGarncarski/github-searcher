@@ -2,9 +2,9 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
-import { Seo } from '@/components/atoms/Seo';
-import { Layout } from '@/components/organisms/Layout';
-import { SearchResults } from '@/components/organisms/SearchResults';
+import { Layout } from '@/components/Layout';
+import { SearchResults } from '@/components/molecules/SearchResults';
+import { Seo } from '@/components/Seo';
 
 import { getRepos, getUsers } from '@/pages/api/queries';
 
