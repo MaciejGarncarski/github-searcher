@@ -6,16 +6,19 @@ type ResultContainerProps = {
   className?: string;
 };
 
-const containerVariants: Variants = {
+export const containerVariants: Variants = {
   initial: {
-    x: -80,
+    x: -60,
     opacity: 0,
   },
   animate: {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 2,
+      duration: 1.5,
+      mass: 2,
+      stiffness: 150,
+      damping: 12,
       type: 'spring',
     },
   },

@@ -1,8 +1,8 @@
+import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
 import { useRef } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import '@/styles/globals.css';
 
@@ -14,8 +14,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ActivePageProvider>
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
-          <ReactQueryDevtools />
-          <Component {...pageProps} />
+          <MotionConfig reducedMotion='user'>
+            <Component {...pageProps} />
+          </MotionConfig>
         </Hydrate>
       </QueryClientProvider>
     </ActivePageProvider>

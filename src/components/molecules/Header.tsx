@@ -1,5 +1,5 @@
 import { Input } from '@/components/atoms/Input';
-import { Logo } from '@/components/molecules/Logo';
+import { Logo } from '@/components/atoms/Logo';
 
 import logoImg from '@/images/GitHub-Mark-Light-64px.png';
 

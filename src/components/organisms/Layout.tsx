@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Header } from '@/components/organisms/Header';
+import { Header } from '@/components/molecules/Header';
 
 type LayoutProps = {
   setSearchedValue: (value: string) => void;

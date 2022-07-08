@@ -1,6 +1,7 @@
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { Heading } from '@/components/atoms/Heading';
+import { containerVariants } from '@/components/atoms/ResultContainer';
 import { Repository } from '@/components/molecules/Repository';
 import { User } from '@/components/molecules/User';
 
@@ -9,21 +10,6 @@ import { RepoTypes, UserTypes } from '@/types/responseTypes';
 type ResultsListProps = {
   totalCount: string;
   data: (UserTypes | RepoTypes)[];
-};
-
-const containerVariants: Variants = {
-  initial: {
-    x: -80,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 2,
-      type: 'spring',
-    },
-  },
 };
 
 export const ResultsList = ({ totalCount, data }: ResultsListProps) => {

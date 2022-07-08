@@ -13,7 +13,7 @@ interface PaginationProps {
 export const Pagination = ({ totalPages }: PaginationProps) => {
   const { activePage, setActivePage } = useActivePage();
 
-  const [pageQueue] = usePagination(activePage, totalPages);
+  const pageQueue = usePagination(activePage, totalPages);
 
   const handlePrevPage = () => {
     if (1 < activePage) {

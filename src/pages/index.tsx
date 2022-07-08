@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import { Seo } from '@/components/atoms/Seo';
-import { Layout } from '@/components/molecules/Layout';
+import { Layout } from '@/components/organisms/Layout';
 import { SearchResults } from '@/components/organisms/SearchResults';
 
 import { getRepos, getUsers } from '@/pages/api/queries';

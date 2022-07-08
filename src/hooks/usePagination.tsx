@@ -49,5 +49,5 @@ export const usePagination = (activePage: number, totalPages: number) => {
     }
   }, [activePage, totalPages]);
 
-  return [pageQueue];
+  return pageQueue;
 };
