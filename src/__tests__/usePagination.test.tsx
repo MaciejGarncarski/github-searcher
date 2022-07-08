@@ -1,0 +1,28 @@
+import { renderHook } from '@testing-library/react';
+
+import { usePagination } from '@/hooks/usePagination';
+
+describe('usePagination', () => {
+  test('should have proper page numbers', () => {
+    const { result } = renderHook(() => usePagination(1, 10));
+    expect(result.current).toStrictEqual(['1', '2', '3', '4', '...', '10']);
+  });
+  test('should have proper page numbers', () => {
+    const { result } = renderHook(() => usePagination(8, 10));
+    expect(result.current).toStrictEqual(['1', '...', '7', '8', '9', '10']);
+  });
+  test('should have proper page numbers', () => {
+    const { result } = renderHook(() => usePagination(30, 50));
+    expect(result.current).toStrictEqual([
+      '1',
+      '...',
+      '28',
+      '29',
+      '30',
+      '31',
+      '32',
+      '...',
+      '50',
+    ]);
+  });
+});

@@ -12,4 +12,13 @@ describe('<Pagination />', () => {
     expect(prevBtn).toHaveAttribute('disabled');
     expect(nextBtn).not.toHaveAttribute('disabled');
   });
+  test('page numbers show correctly', () => {
+    render(<Pagination totalPages={6} />);
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('2')).toBeInTheDocument();
+    expect(screen.getByText('3')).toBeInTheDocument();
+    expect(screen.getByText('4')).toBeInTheDocument();
+    expect(screen.getByText('…')).toBeInTheDocument();
+    expect(screen.getByText('6')).toBeInTheDocument();
+  });
 });

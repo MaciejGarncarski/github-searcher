@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { Header } from '@/components/organisms/Header';
+import { Header } from '@/components/molecules/Header';
 
 describe('<Header />', () => {
   test('should display a header', () => {
