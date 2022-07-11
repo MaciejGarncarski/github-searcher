@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: npm init
+        run: npm init -y
+
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@v1
 
