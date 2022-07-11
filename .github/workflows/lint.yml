@@ -16,8 +16,6 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
@@ -28,7 +26,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔬 Lint
-        run: npm run lint:strict
+        run: yarn lint:strict
 
   typecheck:
     name: ʦ TypeScript
@@ -49,7 +47,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔎 Type check
-        run: npm run typecheck
+        run: yarn typecheck
 
   prettier:
     name: 💅 Prettier
@@ -70,7 +68,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🔎 Type check
-        run: npm run format:check
+        run: yarn format:check
 
   test:
     name: 🃏 Test
@@ -91,4 +89,4 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: 🃏 Run jest
-        run: npm run test
+        run: yarn test
