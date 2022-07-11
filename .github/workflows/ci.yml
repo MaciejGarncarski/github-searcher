@@ -24,14 +24,11 @@ jobs:
       - name: Install dependencies (with cache)
         uses: bahmutov/npm-install@v1
 
-      - name: testxd
-        run: ls ${{github.workspace}}
-
       - name: Check types
-        run: pnpm run type-check
+        run: npm run type-check
 
       - name: Check linting
-        run: pnpm run lint
+        run: npm run lint
 
       - name: Check commits messages
         uses: wagoid/commitlint-github-action@v5
