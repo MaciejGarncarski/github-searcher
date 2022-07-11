@@ -18,7 +18,7 @@ const NotFoundPage = () => {
             />
             <h1 className='mt-8 text-4xl md:text-6xl'>Page Not Found</h1>
             <Link href='/'>
-              <a className='mt-8 text-4xl text-white bg-blue-800 rounded-md py-3 px-8 hover:scale-110 transition-transform'>
+              <a className='mt-8 rounded-md bg-blue-800 py-3 px-8 text-4xl text-white transition-transform hover:scale-110'>
                 Back To Homepage
               </a>
             </Link>
