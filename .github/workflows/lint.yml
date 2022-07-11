@@ -7,13 +7,6 @@ on:
   pull_request: {}
 
 jobs:
-  kebab:
-    name: kebabxdd
-    runs-on: ubuntu-latest
-    steps:
-      - name: show me
-        run: ls -a
-
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
@@ -28,6 +21,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
+
+      - name: init npm
+        run: npm init -y
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
