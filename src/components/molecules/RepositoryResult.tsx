@@ -9,7 +9,7 @@ import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 
-type RepositoryProps = {
+type RepositoryResultProps = {
   fullName: string;
   description?: string;
   stars: number;
@@ -20,14 +20,14 @@ type RepositoryProps = {
   updatedAt: Date;
 };
 
-export const Repository = ({
+export const RepositoryResult = ({
   fullName,
   description,
   stars,
   language,
   license,
   updatedAt,
-}: RepositoryProps) => {
+}: RepositoryResultProps) => {
   const dateObject = new Date(updatedAt);
   dayjs.extend(relativeTime);
   const dateFromNow = dayjs(dateObject).fromNow();
@@ -50,10 +50,12 @@ export const Repository = ({
   return (
     <ResultContainer>
       <GoRepo size={25} className='mt-1' />
-      <ResultHeading>{fullName}</ResultHeading>
+      <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
 
       {description && (
-        <ResultDescription italic>{description}</ResultDescription>
+        <ResultDescription italic className='w-full'>
+          {description}
+        </ResultDescription>
       )}
       <ul className='col-start-2 items-center flex gap-x-2 gap-y-2 flex-wrap'>
         <RepositoryTag className='gap-x-1'>

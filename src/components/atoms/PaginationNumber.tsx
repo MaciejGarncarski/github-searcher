@@ -23,7 +23,7 @@ export const PaginationNumber = ({
     px-2 py-0.5 md:px-4 md:py-1.5 rounded-md
     ${
       activePage === +pageNum
-        ? 'bg-blue-600 text-white cursor-default'
+        ? 'bg-blue-600 text-white cursor-not-allowed'
         : 'cursor-pointer'
     }`}
       whileTap={activePage !== +pageNum ? { scale: 0.9 } : {}}

@@ -9,9 +9,7 @@ type TextProps = {
 export const Text = ({ type, children, className }: TextProps) => {
   const TagName = type ?? 'p';
   return (
-    <TagName
-      className={`break-all ${type !== 'p' && 'font-bold'} ${className ?? ''}`}
-    >
+    <TagName className={`${type !== 'p' && 'font-bold'} ${className}`}>
       {children}
     </TagName>
   );

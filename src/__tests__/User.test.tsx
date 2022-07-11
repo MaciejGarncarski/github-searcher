@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 
-import { User } from '@/components/molecules/User';
+import { UserResult } from '@/components/molecules/UserResult';
 
-describe('<User />', () => {
+describe('<UserResult />', () => {
   test('should display a user', () => {
     render(
-      <User
+      <UserResult
         login='mocked'
         fullName='mocked user'
         avatar='https://avatars.githubusercontent.com/u/60816511?v=4'

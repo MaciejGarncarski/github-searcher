@@ -10,8 +10,8 @@ export const usePagination = (activePage: number, totalPages: number) => {
   ]);
 
   useEffect(() => {
-    const canShowLeftDots = activePage > 3;
     const canShowRightDots = totalPages - 2 > activePage;
+    const canShowLeftDots = activePage > 3;
 
     const calculatePageQueue = (start: number, end: number) => {
       const pagesArray = [...Array(totalPages).keys()];
@@ -40,12 +40,10 @@ export const usePagination = (activePage: number, totalPages: number) => {
     } else if (canShowLeftDots && canShowRightDots) {
       const pages = calculatePageQueue(activePage - 2, activePage + 3);
       setPageQueue([previous100Pages, '...', ...pages, '...', next100Pages]);
-    } else {
-      if (totalPages <= 3 && totalPages > 1) {
-        const pages = [...Array(totalPages).keys()];
-        const pagesAsStrings = pages.map((page) => page.toString());
-        setPageQueue([...pagesAsStrings]);
-      }
+    } else if (totalPages <= 3) {
+      const pages = [...Array(totalPages).keys()];
+      const pagesAsStrings = pages.map((page) => (page + 1).toString());
+      setPageQueue([...pagesAsStrings]);
     }
   }, [activePage, totalPages]);
 

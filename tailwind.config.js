@@ -9,6 +9,10 @@ module.exports = {
       minHeight: {
         'state-messsage': '75vh',
         user: '8rem',
+        page: 'calc(100vh - 6rem)',
+      },
+      minWidth: {
+        px: '1px',
       },
       gridTemplateColumns: {
         user: 'auto 1fr',

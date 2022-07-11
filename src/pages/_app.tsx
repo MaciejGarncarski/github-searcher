@@ -1,5 +1,6 @@
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
+import NextProgress from 'next-progress';
 import { useRef } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query';
@@ -14,6 +15,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ActivePageProvider>
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
+          <NextProgress
+            height='4px'
+            delay={300}
+            color='#2563eb'
+            options={{ showSpinner: false }}
+          />
           <MotionConfig reducedMotion='user'>
             <Component {...pageProps} />
           </MotionConfig>

@@ -27,6 +27,7 @@ specifiers:
   jest: ^27.5.1
   lint-staged: ^12.5.0
   next: ^12.1.6
+  next-progress: ^2.2.0
   next-sitemap: ^2.5.28
   postcss: ^8.4.14
   prettier: ^2.7.1
@@ -45,6 +46,7 @@ dependencies:
   dayjs: 1.11.3
   framer-motion: 6.3.16_biqbaboplfbrettd7655fr4n2y
   next: 12.2.0_biqbaboplfbrettd7655fr4n2y
+  next-progress: 2.2.0_next@12.2.0+react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -5894,6 +5896,17 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
+  /next-progress/2.2.0_next@12.2.0+react@18.2.0:
+    resolution: {integrity: sha512-g6VBoaj2SfUhKiBSJW/7ju06Ks3r3mUK79HdrLJ7fmvnjeyHPViAKLQDsMN1QIoBcTqN1hR7A8sISiMfm01qmQ==}
+    peerDependencies:
+      next: '>=6.0.0'
+      react: '>=16.0.0'
+    dependencies:
+      next: 12.2.0_biqbaboplfbrettd7655fr4n2y
+      nprogress: 0.2.0
+      react: 18.2.0
+    dev: false
+
   /next-sitemap/2.5.28_next@12.2.0:
     resolution: {integrity: sha512-rDMTa7nLE0ikYnu8JDCrwQufIRm4b4Sg8BK11DGdDAmYpXmcmw4Qvm+oVBR8gUL97E6i2ihTM+cRx8mgENDACA==}
     engines: {node: '>=14.18'}
@@ -5993,6 +6006,10 @@ packages:
     dependencies:
       path-key: 3.1.1
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check/2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
