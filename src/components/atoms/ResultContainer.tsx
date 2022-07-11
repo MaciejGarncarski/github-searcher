@@ -29,7 +29,7 @@ export const ResultContainer = ({
   return (
     <motion.article
       variants={containerVariants}
-      className={`grid w-full min-h-user px-2 lg:px-4 py-4 grid-cols-user gap-x-3 gap-y-4 border-t-2 border-gray-300 ${className}`}
+      className={`grid min-h-user w-full grid-cols-user gap-x-3 gap-y-4 border-t-2 border-gray-300 px-2 py-4 lg:px-4 ${className}`}
     >
       {children}
     </motion.article>

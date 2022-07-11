@@ -18,8 +18,8 @@ export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
   return (
-    <section className='mx-6 xl:mx-20 my-7 flex flex-col justify-start align-center'>
-      <Text type='h2' className='py-4 text-3xl break-words'>
+    <section className='align-center mx-6 my-7 flex flex-col justify-start xl:mx-20'>
+      <Text type='h2' className='break-words py-4 text-3xl'>
         {totalCount} results
       </Text>
       <motion.ul

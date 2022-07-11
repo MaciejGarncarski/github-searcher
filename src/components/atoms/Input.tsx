@@ -28,7 +28,7 @@ export const Input = ({ setSearchedValue }: InputProps) => {
       whileHover={{ scaleX: 1.1 }}
       type='search'
       placeholder='Search'
-      className='w-40 lg:w-auto px-3 py-2 bg-transparent rounded border-1 border-white text-white placeholder:text-white'
+      className='border-1 w-40 rounded border-white bg-transparent px-3 py-2 text-white placeholder:text-white lg:w-auto'
       value={inputValue}
       onInput={onInput}
     />

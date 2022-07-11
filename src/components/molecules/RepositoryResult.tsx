@@ -57,7 +57,7 @@ export const RepositoryResult = ({
           {description}
         </ResultDescription>
       )}
-      <ul className='col-start-2 items-center flex gap-x-2 gap-y-2 flex-wrap'>
+      <ul className='col-start-2 flex flex-wrap items-center gap-x-2 gap-y-2'>
         <RepositoryTag className='gap-x-1'>
           <RiStarFill />
           {stars}
@@ -68,7 +68,7 @@ export const RepositoryResult = ({
               style={{
                 backgroundColor: color.data[language ?? '']?.color,
               }}
-              className='w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-xl'
+              className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
             ></span>
             {language}
           </RepositoryTag>

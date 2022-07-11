@@ -25,7 +25,7 @@ export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
             height={size}
             alt={alt}
             placeholder={placeholder}
-            className='w-11 lg:w-initial'
+            className='lg:w-initial w-11'
           />
         </a>
       </Link>

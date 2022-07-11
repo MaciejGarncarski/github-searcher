@@ -17,14 +17,14 @@ export const placeholderVariants: Variants = {
 export const ResultSkeleton = () => {
   return (
     <ResultContainer>
-      <div className=' bg-slate-300 h-8 w-8 rounded-full'></div>
-      <div className='col-start-2 col-end-3 bg-slate-300 rounded-lg w-full md:max-w-sm'></div>
-      <div className='col-start-2 col-end-3 bg-slate-300 h-8 rounded-lg w-4/5 md:max-w-md'></div>
-      <div className='flex gap-2 md:gap-4 col-start-2 col-end-3 h-7 md:h-8'>
+      <div className=' h-8 w-8 rounded-full bg-slate-300'></div>
+      <div className='col-start-2 col-end-3 w-full rounded-lg bg-slate-300 md:max-w-sm'></div>
+      <div className='col-start-2 col-end-3 h-8 w-4/5 rounded-lg bg-slate-300 md:max-w-md'></div>
+      <div className='col-start-2 col-end-3 flex h-7 gap-2 md:h-8 md:gap-4'>
         {[...Array(3).keys()].map((el) => {
           return (
             <div
-              className='bg-slate-300 rounded-lg w-10 md:w-24'
+              className='w-10 rounded-lg bg-slate-300 md:w-24'
               key={el}
             ></div>
           );
@@ -45,9 +45,9 @@ export const ResultPlaceholder = ({
       initial='initial'
       animate='animate'
       exit={{ opacity: 0 }}
-      className='mx-6 xl:mx-20 my-7 flex flex-col animate-pulse'
+      className='mx-6 my-7 flex animate-pulse flex-col xl:mx-20'
     >
-      <span className='bg-slate-300 w-48 m-4 h-10 rounded-md'></span>
+      <span className='m-4 h-10 w-48 rounded-md bg-slate-300'></span>
       {Array.from({ length: placeholderAmount }, (_, number: number) => {
         return <ResultSkeleton key={number} />;
       })}

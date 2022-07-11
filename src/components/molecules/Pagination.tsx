@@ -31,12 +31,12 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   }
 
   return (
-    <div className='w-full text-2xl my-10 grid grid-cols-2 grid-rows-2 md:flex md:justify-center gap-4 md:gap-10 lg:gap-20'>
+    <div className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-2xl md:flex md:justify-center md:gap-10 lg:gap-20'>
       <PaginationButton onClick={handlePrevPage} disabled={activePage === 1}>
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
       </PaginationButton>
-      <div className='flex row-start-1 row-end-2 col-start-1 col-end-3 justify-center items-center gap-1 md:gap-4'>
+      <div className='col-start-1 col-end-3 row-start-1 row-end-2 flex items-center justify-center gap-1 md:gap-4'>
         {pageQueue.map((pageNum, idx) => {
           if (pageNum === '...') {
             return <span key={idx}>&hellip;</span>;

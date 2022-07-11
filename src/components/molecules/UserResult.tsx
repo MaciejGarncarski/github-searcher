@@ -32,7 +32,7 @@ export const UserResult = ({
               height={30}
               layout='responsive'
               alt={`${login}'s avatar`}
-              className='w-8 lg:w-8 rounded-full'
+              className='w-8 rounded-full lg:w-8'
               imgClassName='rounded-3xl'
               useSkeleton
             />
