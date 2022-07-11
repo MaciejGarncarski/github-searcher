@@ -1761,7 +1761,7 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@testing-library/dom@^8.5.0":
+"@testing-library/dom@^8.16.0", "@testing-library/dom@^8.5.0":
   version "8.16.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.16.0.tgz#d6fc50250aed17b1035ca1bd64655e342db3936a"
   integrity sha512-uxF4zmnLHHDlmW4l+0WDjcgLVwCvH+OVLpD8Dfp+Bjfz85prwxWGbwXgJdLtkgjD0qfOzkJF9SmA6YZPsMYX4w==
