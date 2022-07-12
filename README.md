@@ -29,12 +29,12 @@ I made this app, because I was bored as hell ⚆_⚆
 
 ### Install node dependencies
 ```
-pnpm install
+yarn install
 ```
 
 ### Start dev server
 ```
-pnpm run dev
+yarn dev
 ```
 
 ## Live 📍
