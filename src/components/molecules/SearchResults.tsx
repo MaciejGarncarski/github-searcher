@@ -1,3 +1,6 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import { useActivePage } from '@/hooks/useActivePage';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
@@ -16,24 +19,37 @@ export const SearchResults = ({
   searchedValue,
   initialQueryString,
 }: SearchResultsProps) => {
+  const router = useRouter();
+  const { activePage, setActivePage } = useActivePage();
+
   const debouncedSearch = useDebounce(
     searchedValue === `` ? initialQueryString : searchedValue,
     1200
   );
-
-  const { activePage } = useActivePage();
 
   const { fetchRepos, fetchUsers, totalCount, repoUserData } = useSearch(
     activePage,
     debouncedSearch
   );
 
-  if (
+  const isLoading =
     fetchRepos.isFetching ||
     fetchUsers.isFetching ||
     fetchRepos.isLoading ||
-    fetchUsers.isLoading
-  ) {
+    fetchUsers.isLoading;
+
+  useEffect(() => {
+    if (!isLoading) {
+      router.push(`?page=${activePage}`, undefined, { shallow: true });
+    }
+    if (router.query.page) {
+      setActivePage(parseInt(router.query.page as string));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePage, isLoading]);
+
+  if (isLoading) {
     return <ResultPlaceholder placeholderAmount={4} />;
   }
 

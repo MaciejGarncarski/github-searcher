@@ -1,6 +1,6 @@
 import { motion, Variants } from 'framer-motion';
 
-const containerVariants: Variants = {
+const errorVariants: Variants = {
   initial: {
     y: 200,
     opacity: 0,
@@ -28,7 +28,7 @@ export const ErrorMessage = ({
 }: ErrorMessageProps) => {
   return (
     <motion.div
-      variants={containerVariants}
+      variants={errorVariants}
       initial='initial'
       animate='animate'
       exit='initial'

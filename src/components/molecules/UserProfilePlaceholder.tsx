@@ -1,16 +1,6 @@
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-export const placeholderVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+import { placeholderVariants } from '@/components/molecules/ResultPlaceholder';
 
 export const UserProfilePlaceholder = () => {
   return (

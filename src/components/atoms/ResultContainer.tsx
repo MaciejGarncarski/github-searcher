@@ -8,7 +8,7 @@ type ResultContainerProps = {
 
 export const containerVariants: Variants = {
   initial: {
-    x: -60,
+    x: -40,
     opacity: 0,
   },
   animate: {

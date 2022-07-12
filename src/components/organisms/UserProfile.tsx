@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
@@ -8,6 +9,7 @@ import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Text } from '@/components/atoms/Text';
 import { UserTagList } from '@/components/atoms/UserTagList';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
+import { placeholderVariants } from '@/components/molecules/ResultPlaceholder';
 import { UserProfilePlaceholder } from '@/components/molecules/UserProfilePlaceholder';
 
 import { UserTypes } from '@/types/responseTypes';
@@ -61,7 +63,12 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
   }
 
   return (
-    <main className='my-10 flex min-h-page flex-col items-center justify-center gap-6 text-3xl lg:gap-8 lg:text-4xl'>
+    <motion.main
+      variants={placeholderVariants}
+      initial='initial'
+      animate='animate'
+      className='my-10 flex min-h-page flex-col items-center justify-center gap-6 text-3xl lg:gap-8 lg:text-4xl'
+    >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>
         <ResultHeading className='text-4xl lg:text-5xl'>
@@ -84,6 +91,6 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         {data.bio}
       </ResultDescription>
       <UserTagList data={tagsData} />
-    </main>
+    </motion.main>
   );
 };

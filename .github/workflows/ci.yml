@@ -14,6 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Set up Node
@@ -25,10 +26,10 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Check types
-        run: yarn type-check
+        run: pnpm type-check
 
       - name: Check linting
-        run: yarn lint
+        run: pnpm lint
 
       - name: Check commits messages
         uses: wagoid/commitlint-github-action@v5

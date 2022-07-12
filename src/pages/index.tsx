@@ -19,7 +19,7 @@ interface HomeProps {
   initialUsersData: ApiResponseType<UserTypes[]>;
 }
 
-const initialQueryString = `JavaScript`;
+export const initialQueryString = `JavaScript`;
 
 const Home: NextPage<HomeProps> = () => {
   const [searchedValue, setSearchedValue] = useState<string>('');

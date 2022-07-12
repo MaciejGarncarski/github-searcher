@@ -2,6 +2,7 @@
   "name": "github-api",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@7.5.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
