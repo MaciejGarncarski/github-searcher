@@ -19,20 +19,18 @@ jobs:
         with:
           persist-credentials: false      
 
+      - name: 🌋 Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.5.0
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7.5.0
-          run_install: true
-
-      # - name: 📥 Download deps
-      #   uses: bahmutov/npm-install@v1
+      - name: 📥 Download deps
+        run: pnpm install
 
       - name: 🔬 Lint
         run: pnpm lint:strict
@@ -46,23 +44,21 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
-        with: 
-          persist-credentials: false
+        with:
+          persist-credentials: false      
+
+      - name: 🌋 Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.5.0
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7.5.0
-          run_install: true
-          
-      # - name: 📥 Download deps
-      #   uses: bahmutov/npm-install@v1
+      - name: 📥 Download deps
+        run: pnpm install
 
       - name: 🔎 Type check
         run: pnpm typecheck
@@ -84,15 +80,12 @@ jobs:
           node-version: 16
 
       - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
+        name: 📥 Download deps
         id: pnpm-install
         with:
           version: 7.5.0
           run_install: true
           
-      # - name: 📥 Download deps
-      #   uses: bahmutov/npm-install@v1
-
       - name: 🔎 Type check
         run: pnpm format:check
 
@@ -105,23 +98,21 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
-        with: 
-          persist-credentials: false
+        with:
+          persist-credentials: false      
+
+      - name: 🌋 Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.5.0
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7.5.0
-          run_install: true
-          
-      # - name: 📥 Download deps
-      #   uses: bahmutov/npm-install@v1
-
+      - name: 📥 Download deps
+        run: pnpm install
+        
       - name: 🃏 Run jest
         run: pnpm test

@@ -3,3 +3,10 @@ README.md
 .prettierrc.js
 public/favicon/site.webmanifest
 pnpm-lock.yaml
+.github/
+.husky/
+.next/
+.swc/
+.vscode/
+node_modules/
+public/
