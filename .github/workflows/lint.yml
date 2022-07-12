@@ -19,7 +19,7 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🌋 Setup pnpm
+      - name: 🛠️ Setup pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
@@ -47,7 +47,7 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🌋 Setup pnpm
+      - name: 🛠️ Setup pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
@@ -72,19 +72,21 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
-        with: 
-          persist-credentials: false
+        with:
+          persist-credentials: false      
+
+      - name: 🛠️ Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.5.0
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: 📥 Download deps
-        id: pnpm-install
-        with:
-          version: 7.5.0
-          run_install: true
+      - name: 📥 Download deps
+        run: pnpm install
           
       - name: 🔎 Type check
         run: pnpm format:check
@@ -101,7 +103,7 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🌋 Setup pnpm
+      - name: 🛠️ Setup pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
