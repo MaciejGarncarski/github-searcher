@@ -4,8 +4,8 @@ import { NextImage } from '@/components/atoms/NextImage';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
-import { TagItem } from '@/components/atoms/TagItem';
-import { TagsContainer } from '@/components/atoms/TagsContainer';
+import { Shield } from '@/components/atoms/Shield';
+import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 import { Text } from '@/components/atoms/Text';
 
 type UserResultProps = {
@@ -45,9 +45,9 @@ export const UserResult = ({
               </Text>
             </div>
             {bio && <ResultDescription italic>{bio}</ResultDescription>}
-            <TagsContainer>
-              {location && <TagItem>{location}</TagItem>}
-            </TagsContainer>
+            <ShieldsContainer>
+              {location && <Shield>{location}</Shield>}
+            </ShieldsContainer>
           </ResultContainer>
         </a>
       </Link>

@@ -67,7 +67,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className='my-10 flex min-h-page flex-col items-center justify-center gap-6 text-3xl lg:gap-8 lg:text-4xl'
+      className='my-10 flex min-h-page flex-col items-center gap-6 text-3xl lg:justify-center lg:gap-8 lg:text-4xl'
     >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>
@@ -81,7 +81,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         alt={`${data.login}'s avatar`}
         width={200}
         height={200}
-        className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56'
+        className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56 '
         imgClassName='rounded-full'
       />
       <ResultDescription

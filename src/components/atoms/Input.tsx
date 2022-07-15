@@ -10,11 +10,11 @@ type InputProps = {
 export const Input = ({ setSearchedValue }: InputProps) => {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const { setActivePage } = useActivePage();
-
   useEffect(() => {
     setSearchedValue(inputValue);
   }, [inputValue, setSearchedValue]);
+
+  const { setActivePage } = useActivePage();
 
   const onInput = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;

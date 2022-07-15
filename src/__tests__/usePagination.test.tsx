@@ -16,11 +16,9 @@ describe('usePagination', () => {
     expect(result.current).toStrictEqual([
       '1',
       '...',
-      '28',
       '29',
       '30',
       '31',
-      '32',
       '...',
       '50',
     ]);

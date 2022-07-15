@@ -32,7 +32,7 @@ export const ErrorMessage = ({
       initial='initial'
       animate='animate'
       exit='initial'
-      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl lg:text-6xl'
+      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl drop-shadow-xl lg:text-6xl'
     >
       {error}
       <br />
@@ -47,7 +47,7 @@ export const ErrorMessage = ({
             bounce: 0.3,
           },
         }}
-        className='mt-10 text-7xl lg:text-8xl'
+        className='mt-10 text-7xl  lg:text-8xl'
       >
         {emoji}
       </motion.span>

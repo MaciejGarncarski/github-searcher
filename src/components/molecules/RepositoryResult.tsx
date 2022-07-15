@@ -7,8 +7,8 @@ import { useQuery } from 'react-query';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
-import { TagItem } from '@/components/atoms/TagItem';
-import { TagsContainer } from '@/components/atoms/TagsContainer';
+import { Shield } from '@/components/atoms/Shield';
+import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 
 type RepositoryResultProps = {
   fullName: string;
@@ -58,13 +58,13 @@ export const RepositoryResult = ({
           {description}
         </ResultDescription>
       )}
-      <TagsContainer>
-        <TagItem className='gap-x-1'>
+      <ShieldsContainer>
+        <Shield className='gap-x-1'>
           <RiStarFill />
           {stars}
-        </TagItem>
+        </Shield>
         {color.data[language ?? '']?.color && (
-          <TagItem className='gap-x-2'>
+          <Shield className='gap-x-2'>
             <span
               style={{
                 backgroundColor: color.data[language ?? '']?.color,
@@ -72,11 +72,11 @@ export const RepositoryResult = ({
               className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
             ></span>
             {language}
-          </TagItem>
+          </Shield>
         )}
-        {license && <TagItem>{license.name}</TagItem>}
-        <TagItem>Updated {dateFromNow}</TagItem>
-      </TagsContainer>
+        {license && <Shield>{license.name}</Shield>}
+        <Shield>Updated {dateFromNow}</Shield>
+      </ShieldsContainer>
     </ResultContainer>
   );
 };
