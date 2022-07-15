@@ -4,6 +4,8 @@ import { NextImage } from '@/components/atoms/NextImage';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
+import { TagItem } from '@/components/atoms/TagItem';
+import { TagsContainer } from '@/components/atoms/TagsContainer';
 import { Text } from '@/components/atoms/Text';
 
 type UserResultProps = {
@@ -22,19 +24,19 @@ export const UserResult = ({
   location,
 }: UserResultProps) => {
   return (
-    <li>
+    <li className='rounded-md transition-colors hover:bg-slate-300'>
       <Link href={`/user/${login}`} passHref>
-        <a>
+        <a className='transition-colors  focus:bg-slate-300'>
           <ResultContainer>
             <NextImage
               src={avatar}
-              width={30}
-              height={30}
+              width={176}
+              height={176}
               layout='responsive'
               alt={`${login}'s avatar`}
               className='w-8 rounded-full lg:w-8'
               imgClassName='rounded-3xl'
-              useSkeleton
+              // priority={true}
             />
             <div className='col-start-2 '>
               <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
@@ -43,7 +45,9 @@ export const UserResult = ({
               </Text>
             </div>
             {bio && <ResultDescription italic>{bio}</ResultDescription>}
-            {location && <div className='col-start-2'>{location}</div>}
+            <TagsContainer>
+              {location && <TagItem>{location}</TagItem>}
+            </TagsContainer>
           </ResultContainer>
         </a>
       </Link>

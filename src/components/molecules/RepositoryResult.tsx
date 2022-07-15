@@ -4,10 +4,11 @@ import { GoRepo } from 'react-icons/go';
 import { RiStarFill } from 'react-icons/ri';
 import { useQuery } from 'react-query';
 
-import { RepositoryTag } from '@/components/atoms/RepositoryTag';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
+import { TagItem } from '@/components/atoms/TagItem';
+import { TagsContainer } from '@/components/atoms/TagsContainer';
 
 type RepositoryResultProps = {
   fullName: string;
@@ -57,13 +58,13 @@ export const RepositoryResult = ({
           {description}
         </ResultDescription>
       )}
-      <ul className='col-start-2 flex flex-wrap items-center gap-x-2 gap-y-2'>
-        <RepositoryTag className='gap-x-1'>
+      <TagsContainer>
+        <TagItem className='gap-x-1'>
           <RiStarFill />
           {stars}
-        </RepositoryTag>
+        </TagItem>
         {color.data[language ?? '']?.color && (
-          <RepositoryTag className='gap-x-2'>
+          <TagItem className='gap-x-2'>
             <span
               style={{
                 backgroundColor: color.data[language ?? '']?.color,
@@ -71,11 +72,11 @@ export const RepositoryResult = ({
               className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
             ></span>
             {language}
-          </RepositoryTag>
+          </TagItem>
         )}
-        {license && <RepositoryTag>{license.name}</RepositoryTag>}
-        <RepositoryTag>Updated {dateFromNow}</RepositoryTag>
-      </ul>
+        {license && <TagItem>{license.name}</TagItem>}
+        <TagItem>Updated {dateFromNow}</TagItem>
+      </TagsContainer>
     </ResultContainer>
   );
 };

@@ -38,22 +38,23 @@ export const SearchResults = ({
     fetchRepos.isLoading ||
     fetchUsers.isLoading;
 
+  const isError = fetchRepos.isError || fetchUsers.isError;
+
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && !isError) {
       router.push(`?page=${activePage}`, undefined, { shallow: true });
     }
     if (router.query.page) {
-      setActivePage(parseInt(router.query.page as string));
+      setActivePage(+router.query.page);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage, isLoading]);
+  }, [activePage, isError, isLoading]);
 
   if (isLoading) {
     return <ResultPlaceholder placeholderAmount={4} />;
   }
 
-  if (fetchRepos.isError || fetchUsers.isError) {
+  if (isError) {
     return <ErrorMessage error="Couldn't load data" emoji='😭' />;
   }
 

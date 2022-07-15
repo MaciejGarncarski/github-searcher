@@ -24,8 +24,8 @@ export const Input = ({ setSearchedValue }: InputProps) => {
 
   return (
     <motion.input
-      whileFocus={{ scaleX: 1.1 }}
-      whileHover={{ scaleX: 1.1 }}
+      whileFocus={{ scaleX: 1.06 }}
+      whileHover={{ scaleX: 1.06 }}
       type='search'
       placeholder='Search'
       className='border-1 w-40 rounded border-white bg-transparent px-3 py-2 text-white placeholder:text-white lg:w-auto'
