@@ -81,13 +81,10 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         alt={`${data.login}'s avatar`}
         width={200}
         height={200}
-        className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56 '
+        className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56'
         imgClassName='rounded-full'
       />
-      <ResultDescription
-        italic
-        className='w-72 break-words text-center text-2xl lg:w-2/5'
-      >
+      <ResultDescription italic className='px-10 text-center text-2xl lg:w-1/3'>
         {data.bio}
       </ResultDescription>
       <UserTagList data={tagsData} />

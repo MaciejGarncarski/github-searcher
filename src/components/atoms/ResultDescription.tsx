@@ -15,7 +15,7 @@ export const ResultDescription = ({
     <p
       className={` col-start-2 self-center text-lg ${
         italic && 'italic'
-      } break-all ${className}`}
+      } ${className}`}
     >
       {children}
     </p>
