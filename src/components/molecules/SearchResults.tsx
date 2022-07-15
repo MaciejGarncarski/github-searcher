@@ -20,7 +20,7 @@ export const SearchResults = ({
   initialQueryString,
 }: SearchResultsProps) => {
   const router = useRouter();
-  const { activePage, setActivePage } = useActivePage();
+  const { activePage } = useActivePage();
 
   const debouncedSearch = useDebounce(
     searchedValue === `` ? initialQueryString : searchedValue,
@@ -44,9 +44,7 @@ export const SearchResults = ({
     if (!isLoading && !isError) {
       router.push(`?page=${activePage}`, undefined, { shallow: true });
     }
-    if (router.query.page) {
-      setActivePage(+router.query.page);
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage, isError, isLoading]);
 

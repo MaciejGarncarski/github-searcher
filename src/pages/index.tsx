@@ -1,6 +1,9 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
+
+import { useActivePage } from '@/hooks/useActivePage';
 
 import { Layout } from '@/components/Layout';
 import { SearchResults } from '@/components/molecules/SearchResults';
@@ -23,6 +26,16 @@ export const initialQueryString = `JavaScript`;
 
 const Home: NextPage<HomeProps> = () => {
   const [searchedValue, setSearchedValue] = useState<string>('');
+
+  const { setActivePage } = useActivePage();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.page) {
+      setActivePage(+router.query.page);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout setSearchedValue={setSearchedValue}>

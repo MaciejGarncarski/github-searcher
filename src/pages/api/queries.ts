@@ -6,7 +6,7 @@ export type ApiResponseType<T> = {
 };
 
 const perPage = 4;
-const fetchHeaders = {
+const headers = {
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
 };
 
@@ -16,7 +16,7 @@ export const getUsers = async (
 ): Promise<ApiResponseType<UserTypes>> => {
   const res = await fetch(
     `https://api.github.com/search/users?q=${username}&per_page=${perPage}&page=${activePage}`,
-    fetchHeaders
+    headers
   );
   const usersJson = await res.json();
   const usersData = usersJson.items;
@@ -42,7 +42,7 @@ export const getRepos = async (
 ): Promise<ApiResponseType<RepoTypes>> => {
   const res = await fetch(
     `https://api.github.com/search/repositories?q=${username}&per_page=${perPage}&page=${activePage}`,
-    fetchHeaders
+    headers
   );
   if (res.ok) {
     const resJson = await res.json();
