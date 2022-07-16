@@ -24,7 +24,7 @@ export const UserResult = ({
   location,
 }: UserResultProps) => {
   return (
-    <li className='rounded-md transition-colors hover:bg-slate-300'>
+    <li>
       <Link href={`/user/${login}`} passHref>
         <a className='transition-colors  focus:bg-slate-300'>
           <ResultContainer>
@@ -46,7 +46,7 @@ export const UserResult = ({
             </div>
             {bio && <ResultDescription italic>{bio}</ResultDescription>}
             <ShieldsContainer>
-              {location && <Shield>{location}</Shield>}
+              {location && <Shield>🏠 {location}</Shield>}
             </ShieldsContainer>
           </ResultContainer>
         </a>

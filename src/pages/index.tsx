@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import { useActivePage } from '@/hooks/useActivePage';
+import { useSearchValue } from '@/hooks/useSearchValue';
 
 import { Layout } from '@/components/Layout';
 import { SearchResults } from '@/components/molecules/SearchResults';
@@ -22,29 +23,27 @@ interface HomeProps {
   initialUsersData: ApiResponseType<UserTypes[]>;
 }
 
-export const initialQueryString = `JavaScript`;
+export const initialQueryString = `Typescript`;
 
 const Home: NextPage<HomeProps> = () => {
-  const [searchedValue, setSearchedValue] = useState<string>('');
-
+  const { setSearchedValue } = useSearchValue();
   const { setActivePage } = useActivePage();
+
   const router = useRouter();
 
   useEffect(() => {
     if (router.query.page) {
       setActivePage(+router.query.page);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (router.query.q && typeof router.query.q === 'string') {
+      setSearchedValue(router.query.q);
+    }
+  }, [router.query, setActivePage, setSearchedValue]);
 
   return (
     <Layout setSearchedValue={setSearchedValue}>
       <Seo />
-
-      <SearchResults
-        searchedValue={searchedValue}
-        initialQueryString={initialQueryString}
-      />
+      <SearchResults initialQueryString={initialQueryString} />
     </Layout>
   );
 };

@@ -21,7 +21,7 @@ type UserProfileProps = {
 };
 
 export type TagDataType = {
-  Icon: IconType;
+  Icon: IconType | string;
   value: string;
   title: string;
   key: number;
@@ -47,6 +47,12 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       title: 'Followers',
       key: 3,
     },
+    {
+      Icon: '🏠',
+      value: `${data?.location}`,
+      title: 'Location',
+      key: 4,
+    },
   ];
 
   if (isLoading) {
@@ -67,11 +73,11 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className='my-10 flex min-h-page flex-col items-center gap-6 text-3xl lg:justify-center lg:gap-8 lg:text-4xl'
+      className='my-10 mx-8 flex min-h-page flex-col items-center gap-6 text-3xl lg:justify-center lg:gap-10 lg:text-4xl'
     >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>
-        <ResultHeading className='text-4xl lg:text-5xl'>
+        <ResultHeading className='text-center text-4xl lg:text-5xl'>
           {data.name}
         </ResultHeading>
         <Text>{data.login}</Text>
@@ -84,7 +90,10 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56'
         imgClassName='rounded-full'
       />
-      <ResultDescription italic className='px-10 text-center text-2xl lg:w-1/3'>
+      <ResultDescription
+        italic
+        className='w-full break-words px-4 text-center text-2xl lg:w-1/3 lg:break-normal'
+      >
         {data.bio}
       </ResultDescription>
       <UserTagList data={tagsData} />

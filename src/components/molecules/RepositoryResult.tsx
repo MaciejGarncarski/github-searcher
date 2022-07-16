@@ -74,8 +74,8 @@ export const RepositoryResult = ({
             {language}
           </Shield>
         )}
-        {license && <Shield>{license.name}</Shield>}
-        <Shield>Updated {dateFromNow}</Shield>
+        {license && <Shield>📜 {license.name}</Shield>}
+        <Shield>⏰ Updated {dateFromNow}</Shield>
       </ShieldsContainer>
     </ResultContainer>
   );

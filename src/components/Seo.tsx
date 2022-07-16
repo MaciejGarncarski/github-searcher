@@ -43,6 +43,10 @@ export const Seo = (props: SeoProps) => {
       <meta name='twitter:title' content={meta.title} />
       <meta name='twitter:description' content={meta.description} />
       <meta name='twitter:image' content={meta.image} />
+      <meta
+        name='keywords'
+        content='github search, github api, api search, search github users, github user search, search repo github, github, api, search, user repos,'
+      />
       {meta.date && (
         <>
           <meta property='article:published_time' content={meta.date} />

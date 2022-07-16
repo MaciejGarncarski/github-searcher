@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useActivePage } from '@/hooks/useActivePage';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
+import { useSearchValue } from '@/hooks/useSearchValue';
 
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import { Pagination } from '@/components/molecules/Pagination';
@@ -11,16 +12,14 @@ import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { ResultsList } from '@/components/organisms/ResultsList';
 
 type SearchResultsProps = {
-  searchedValue: string;
   initialQueryString: string;
 };
 
-export const SearchResults = ({
-  searchedValue,
-  initialQueryString,
-}: SearchResultsProps) => {
+export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
   const router = useRouter();
   const { activePage } = useActivePage();
+
+  const { searchedValue } = useSearchValue();
 
   const debouncedSearch = useDebounce(
     searchedValue === `` ? initialQueryString : searchedValue,
@@ -42,7 +41,17 @@ export const SearchResults = ({
 
   useEffect(() => {
     if (!isLoading && !isError) {
-      router.push(`?page=${activePage}`, undefined, { shallow: true });
+      if (searchedValue !== '') {
+        router.push({
+          pathname: '/',
+          query: {
+            q: searchedValue,
+            page: activePage,
+          },
+        });
+      } else {
+        router.push(`?page=${activePage}`, undefined, { shallow: true });
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
