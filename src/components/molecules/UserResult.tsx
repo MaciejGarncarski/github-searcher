@@ -32,7 +32,6 @@ export const UserResult = ({
               src={avatar}
               width={176}
               height={176}
-              layout='responsive'
               alt={`${login}'s avatar`}
               className='w-8 rounded-full lg:w-8'
               imgClassName='rounded-3xl'

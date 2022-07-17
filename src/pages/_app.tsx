@@ -1,7 +1,7 @@
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
 import NextProgress from 'next-progress';
-import { useRef } from 'react';
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -12,11 +12,12 @@ import { ActivePageProvider } from '@/contexts/activePage-context';
 import { SearchProvider } from '@/contexts/searchValue-context';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const queryClient = useRef(new QueryClient());
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <ActivePageProvider>
       <SearchProvider>
-        <QueryClientProvider client={queryClient.current}>
+        <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <NextProgress
               height='4px'

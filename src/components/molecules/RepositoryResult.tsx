@@ -44,9 +44,24 @@ export const RepositoryResult = ({
     { refetchOnWindowFocus: false, keepPreviousData: true }
   );
 
-  if (color.isFetching) {
-    return <p>loading colors...</p>;
-  }
+  const RepositoryLangugage = () => {
+    if (language) {
+      return (
+        <Shield className='gap-x-2'>
+          {color.data && (
+            <span
+              style={{
+                backgroundColor: color.data[language ?? '']?.color,
+              }}
+              className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
+            ></span>
+          )}
+          {language}
+        </Shield>
+      );
+    }
+    return null;
+  };
 
   return (
     <ResultContainer>
@@ -63,17 +78,7 @@ export const RepositoryResult = ({
           <RiStarFill />
           {stars}
         </Shield>
-        {color.data[language ?? '']?.color && (
-          <Shield className='gap-x-2'>
-            <span
-              style={{
-                backgroundColor: color.data[language ?? '']?.color,
-              }}
-              className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
-            ></span>
-            {language}
-          </Shield>
-        )}
+        <RepositoryLangugage />
         {license && <Shield>📜 {license.name}</Shield>}
         <Shield>⏰ Updated {dateFromNow}</Shield>
       </ShieldsContainer>

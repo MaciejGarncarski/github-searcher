@@ -9,6 +9,11 @@ module.exports = {
   images: {
     domains: ['avatars.github.com', 'avatars.githubusercontent.com'],
   },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
 
   webpack(config) {
     config.module.rules.push({

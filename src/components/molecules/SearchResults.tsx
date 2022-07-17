@@ -42,12 +42,8 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
   useEffect(() => {
     if (!isLoading && !isError) {
       if (searchedValue !== '') {
-        router.push({
-          pathname: '/',
-          query: {
-            q: searchedValue,
-            page: activePage,
-          },
+        router.push(`?q=${searchedValue}&page=${activePage}`, undefined, {
+          shallow: true,
         });
       } else {
         router.push(`?page=${activePage}`, undefined, { shallow: true });
