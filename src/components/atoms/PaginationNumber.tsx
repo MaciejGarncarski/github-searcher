@@ -20,10 +20,11 @@ export const PaginationNumber = ({
       type='button'
       onClick={onClick}
       className={`
-    rounded-md px-2 py-0.5 md:px-4 md:py-1.5
+    rounded-md px-2 py-0.5 dark:text-white md:px-4
+    md:py-1.5
     ${
       activePage === +pageNum
-        ? 'cursor-not-allowed bg-blue-600 text-white'
+        ? 'cursor-not-allowed bg-blue-600 text-white dark:bg-blue-400'
         : 'cursor-pointer'
     }`}
       whileTap={activePage !== +pageNum ? { scale: 0.9 } : {}}

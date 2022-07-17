@@ -39,7 +39,7 @@ export const UserResult = ({
             />
             <div className='col-start-2 '>
               <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
-              <Text type='p' className='text-xl'>
+              <Text type='p' className='text-xl dark:text-white'>
                 {login}
               </Text>
             </div>

@@ -52,7 +52,7 @@ export const RepositoryResult = ({
               style={{
                 backgroundColor: color.data[language ?? '']?.color,
               }}
-              className='h-3.5 w-3.5 rounded-xl lg:h-4 lg:w-4'
+              className='h-3.5 w-3.5 rounded-xl border dark:border-white lg:h-4 lg:w-4 '
             ></span>
           )}
           {language}

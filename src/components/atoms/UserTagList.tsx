@@ -14,7 +14,7 @@ export const UserTagList = ({ data }: UserTagListProps) => {
         return (
           <li
             key={key}
-            className='flex items-center justify-center gap-2 rounded-md bg-gray-700 py-2 px-4 text-white shadow-md'
+            className='flex items-center justify-center gap-2 rounded-md bg-gray-700 py-2 px-4 text-white shadow-md dark:bg-slate-600'
             title={title}
           >
             {typeof Icon === 'string' ? Icon : <Icon />}

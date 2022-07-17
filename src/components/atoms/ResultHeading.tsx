@@ -9,7 +9,10 @@ type ResultsHeadingProps = {
 
 export const ResultHeading = ({ children, className }: ResultsHeadingProps) => {
   return (
-    <Text type='h2' className={`break-all text-blue-600 ${className}`}>
+    <Text
+      type='h2'
+      className={`break-all text-blue-600 dark:text-blue-400 ${className}`}
+    >
       {children}
     </Text>
   );

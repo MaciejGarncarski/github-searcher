@@ -80,7 +80,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         <ResultHeading className='text-center text-4xl lg:text-5xl'>
           {data.name}
         </ResultHeading>
-        <Text>{data.login}</Text>
+        <Text className='dark:text-white'>{data.login}</Text>
       </div>
       <NextImage
         src={data.avatar_url}
@@ -89,6 +89,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
         height={200}
         className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56'
         imgClassName='rounded-full'
+        priority
       />
       <ResultDescription
         italic

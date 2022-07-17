@@ -9,7 +9,7 @@ type HeaderProps = {
 
 export const Header = ({ inputDisabled = false }: HeaderProps) => {
   return (
-    <header className='flex items-center justify-between bg-gray-800 py-2 px-4 lg:px-10 lg:py-3'>
+    <header className='flex items-center justify-between bg-gray-700 py-2 px-4 dark:bg-gray-900 lg:px-10 lg:py-3'>
       <Logo
         src={logoImg}
         alt='github mark'
