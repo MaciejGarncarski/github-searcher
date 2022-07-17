@@ -73,7 +73,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className='my-10 mx-8 flex min-h-page flex-col items-center gap-6 text-3xl lg:justify-center lg:gap-10 lg:text-4xl'
+      className='mx-8 mt-12 flex min-h-page flex-col items-center gap-7 text-3xl lg:justify-center lg:gap-10 lg:text-4xl'
     >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>

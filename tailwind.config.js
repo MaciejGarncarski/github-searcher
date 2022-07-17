@@ -13,6 +13,7 @@ module.exports = {
       },
       minWidth: {
         px: '1px',
+        '200px': '200px',
       },
       gridTemplateColumns: {
         user: 'auto 1fr',

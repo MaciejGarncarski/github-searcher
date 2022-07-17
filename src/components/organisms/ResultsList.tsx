@@ -18,7 +18,7 @@ export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
   return (
-    <section className='align-center mx-6 my-7 flex flex-col justify-start xl:mx-20'>
+    <section className='align-center mx-6 my-7 flex flex-col justify-start xl:mx-24'>
       <Text type='h2' className='break-words py-4 text-3xl'>
         {totalCount} results
       </Text>

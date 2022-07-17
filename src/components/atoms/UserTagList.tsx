@@ -8,6 +8,9 @@ export const UserTagList = ({ data }: UserTagListProps) => {
   return (
     <ul className='flex flex-wrap justify-center gap-4 text-xl lg:text-2xl'>
       {data.map(({ Icon, value, key, title }) => {
+        if (value === 'null') {
+          return null;
+        }
         return (
           <li
             key={key}

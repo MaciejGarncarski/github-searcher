@@ -36,7 +36,7 @@ export const UserResult = ({
               alt={`${login}'s avatar`}
               className='w-8 rounded-full lg:w-8'
               imgClassName='rounded-3xl'
-              // priority={true}
+              priority={true}
             />
             <div className='col-start-2 '>
               <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
