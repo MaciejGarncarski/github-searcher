@@ -20,7 +20,7 @@ export const Input = () => {
       whileHover={{ scaleX: 1.06 }}
       type='search'
       placeholder='Search'
-      className='border-1 w-40 rounded border-white bg-transparent px-3 py-2 text-white placeholder:text-white lg:w-auto'
+      className='border-1 w-40 rounded border-white bg-transparent px-3 py-2 text-white placeholder:text-white lg:w-72'
       value={searchedValue}
       onInput={onInput}
     />

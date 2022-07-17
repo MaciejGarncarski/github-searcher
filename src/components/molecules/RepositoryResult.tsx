@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
-import { RiStarFill } from 'react-icons/ri';
 import { useQuery } from 'react-query';
 
 import { ResultContainer } from '@/components/atoms/ResultContainer';
@@ -74,10 +73,7 @@ export const RepositoryResult = ({
         </ResultDescription>
       )}
       <ShieldsContainer>
-        <Shield className='gap-x-1'>
-          <RiStarFill />
-          {stars}
-        </Shield>
+        <Shield className='gap-x-1'>⭐ {stars}</Shield>
         <RepositoryLangugage />
         {license && <Shield>📜 {license.name}</Shield>}
         <Shield>⏰ Updated {dateFromNow}</Shield>

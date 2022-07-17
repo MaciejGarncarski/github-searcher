@@ -58,7 +58,12 @@ export const getServerSideProps = async () => {
     [`users`, { page: 1, search: initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );
-
+  await queryClient.prefetchQuery('github language color', async () => {
+    const response = await fetch(
+      'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
+    );
+    return await response.json();
+  });
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

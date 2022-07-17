@@ -9,7 +9,6 @@ import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Text } from '@/components/atoms/Text';
 import { UserTagList } from '@/components/atoms/UserTagList';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
-import { placeholderVariants } from '@/components/molecules/ResultPlaceholder';
 import { UserProfilePlaceholder } from '@/components/molecules/UserProfilePlaceholder';
 
 import { UserTypes } from '@/types/responseTypes';
@@ -26,6 +25,7 @@ export type TagDataType = {
   title: string;
   key: number;
 };
+import { placeholderVariants } from '@/components/molecules/UserProfilePlaceholder';
 
 export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
   const tagsData: TagDataType[] = [

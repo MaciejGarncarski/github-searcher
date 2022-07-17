@@ -1,18 +1,6 @@
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { ResultContainer } from '@/components/atoms/ResultContainer';
-
-export const placeholderVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
 
 export const ResultSkeleton = () => {
   return (
@@ -40,13 +28,7 @@ export const ResultPlaceholder = ({
   placeholderAmount: number;
 }) => {
   return (
-    <motion.section
-      variants={placeholderVariants}
-      initial='initial'
-      animate='animate'
-      exit={{ opacity: 0 }}
-      className='mx-6 my-7 flex animate-pulse flex-col xl:mx-20'
-    >
+    <motion.section className='mx-6 my-7 flex animate-pulse flex-col xl:mx-20'>
       <span className='m-4 h-10 w-48 rounded-md bg-slate-300'></span>
       {Array.from({ length: placeholderAmount }, (_, number: number) => {
         return <ResultSkeleton key={number} />;

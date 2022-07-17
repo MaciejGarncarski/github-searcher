@@ -20,7 +20,7 @@ module.exports = {
         pagination: '1fr auto 1fr',
       },
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ['Lato', ...fontFamily.sans],
       },
       colors: {
         primary: {
