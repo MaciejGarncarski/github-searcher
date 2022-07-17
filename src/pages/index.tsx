@@ -41,7 +41,7 @@ const Home: NextPage<HomeProps> = () => {
   }, [router.query, setActivePage, setSearchedValue]);
 
   return (
-    <Layout setSearchedValue={setSearchedValue}>
+    <Layout>
       <Seo />
       <SearchResults initialQueryString={initialQueryString} />
     </Layout>
