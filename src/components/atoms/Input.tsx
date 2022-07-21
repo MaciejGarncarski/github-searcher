@@ -1,11 +1,17 @@
-import { motion } from 'framer-motion';
 import { FormEvent } from 'react';
 
 import { useActivePage } from '@/hooks/useActivePage';
 import { useSearchValue } from '@/hooks/useSearchValue';
 
-export const Input = () => {
+type InputProps = {
+  type: 'text' | 'number' | 'search' | 'reset' | 'password' | 'email';
+  placeholder?: string;
+  className?: string;
+};
+
+export const Input = ({ type, placeholder, className = '' }: InputProps) => {
   const { searchedValue, setSearchedValue } = useSearchValue();
+
   const { setActivePage } = useActivePage();
 
   const onInput = (event: FormEvent) => {
@@ -14,13 +20,29 @@ export const Input = () => {
     setSearchedValue(target.value);
   };
 
+  const commonClasses = 'px-2 py-1 border-none lg:text-xl';
+
+  if (type === 'reset') {
+    return (
+      <input
+        type={type}
+        disabled={searchedValue === ''}
+        className={`
+        ${commonClasses}
+        ${className}
+        ${searchedValue === '' && 'hidden'}
+        bg-gray-200
+        text-black transition-colors hover:cursor-pointer hover:bg-gray-50
+        `}
+      />
+    );
+  }
+
   return (
-    <motion.input
-      whileFocus={{ scaleX: 1.06 }}
-      whileHover={{ scaleX: 1.06 }}
-      type='search'
-      placeholder='Search'
-      className='border-1 w-40 rounded border-white bg-transparent px-3 py-2 text-white placeholder:text-white lg:w-72'
+    <input
+      type={type}
+      placeholder={placeholder}
+      className={`${commonClasses} placeholder:text-white  ${className}`}
       value={searchedValue}
       onInput={onInput}
     />

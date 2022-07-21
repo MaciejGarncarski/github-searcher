@@ -23,9 +23,9 @@ export const getUsers = async (
   const totalCount = usersJson.total_count;
   const translatedData = await Promise.all(
     usersData.map(async ({ login }: { login: string }) => {
-      const resp = await fetch(`https://api.github.com/users/${login}`);
-      if (resp.ok) {
-        return resp.json();
+      const res = await fetch(`https://api.github.com/users/${login}`);
+      if (res.ok) {
+        return res.json();
       }
       throw new Error(`Failed to fetch users`);
     })

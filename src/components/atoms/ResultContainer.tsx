@@ -24,7 +24,7 @@ export const containerVariants: Variants = {
 
 export const ResultContainer = ({
   children,
-  className,
+  className = '',
 }: ResultContainerProps) => {
   return (
     <motion.article

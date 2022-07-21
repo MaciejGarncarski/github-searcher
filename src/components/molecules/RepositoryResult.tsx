@@ -1,7 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
-import { useQuery } from 'react-query';
 
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
@@ -33,7 +33,7 @@ export const RepositoryResult = ({
   const dateFromNow = dayjs(dateObject).fromNow();
 
   const color = useQuery(
-    'github language color',
+    ['github language color'],
     async () => {
       const response = await fetch(
         'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'

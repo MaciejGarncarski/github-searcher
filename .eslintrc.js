@@ -10,12 +10,14 @@ module.exports = {
     'simple-import-sort',
     'unused-imports',
     'prettier',
+    'jsx-a11y',
   ],
   extends: [
     'eslint:recommended',
     'next',
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
     'prettier',
   ],
   rules: {

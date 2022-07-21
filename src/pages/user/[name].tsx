@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
 
 import { Layout } from '@/components/Layout';
 import { UserProfile } from '@/components/organisms/UserProfile';

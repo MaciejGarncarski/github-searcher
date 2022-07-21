@@ -34,13 +34,19 @@ export const usePagination = (activePage: number, totalPages: number) => {
 
     if (canShowRightDots && !canShowLeftDots) {
       setPageQueue(['1', '2', '3', '4', '...', next100Pages]);
-    } else if (canShowLeftDots && !canShowRightDots) {
+    }
+
+    if (canShowLeftDots && !canShowRightDots) {
       const pages = calculatePageQueue(totalPages - 3, totalPages);
       setPageQueue([previous100Pages, '...', ...pages, totalPages.toString()]);
-    } else if (canShowLeftDots && canShowRightDots) {
+    }
+
+    if (canShowLeftDots && canShowRightDots) {
       const pages = calculatePageQueue(activePage - 1, activePage + 2);
       setPageQueue([previous100Pages, '...', ...pages, '...', next100Pages]);
-    } else if (totalPages <= 3) {
+    }
+
+    if (totalPages <= 3) {
       const pages = [...Array(totalPages).keys()];
       const pagesAsStrings = pages.map((page) => (page + 1).toString());
       setPageQueue([...pagesAsStrings]);

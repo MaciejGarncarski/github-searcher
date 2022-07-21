@@ -14,7 +14,9 @@ type ResultsListProps = {
 };
 
 export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
-  if (+totalCount === 0) {
+  const totalCountNumber = parseInt(totalCount.split(',').join(''), 10);
+
+  if (totalCountNumber === 0) {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
   return (
@@ -40,7 +42,8 @@ export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
                 location={apiResponse.location}
               />
             );
-          } else if ('updated_at' in apiResponse) {
+          }
+          if ('updated_at' in apiResponse) {
             return (
               <RepositoryResult
                 key={apiResponse.id}
@@ -53,6 +56,7 @@ export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
               />
             );
           }
+          return null;
         })}
       </motion.ul>
     </section>

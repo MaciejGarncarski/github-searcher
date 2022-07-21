@@ -1,14 +1,14 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 import { getRepos, getUsers } from '@/pages/api/queries';
 
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 export const useSearch = (activePage: number, debouncedSearch: string) => {
-  const [repoUserData, setRepoUserData] = useState<(UserTypes | RepoTypes)[]>(
-    []
-  );
+  const [apiResponseData, setApiResponseData] = useState<
+    (UserTypes | RepoTypes)[]
+  >([]);
   const [totalCount, setTotalCount] = useState<number>(0);
 
   const fetchOptions = {
@@ -38,7 +38,7 @@ export const useSearch = (activePage: number, debouncedSearch: string) => {
       if (usersData && reposData) {
         const mergedData = [...usersData, ...reposData];
         const sortedData = mergedData.sort((a, b) => a.id - b.id);
-        setRepoUserData(sortedData);
+        setApiResponseData(sortedData);
       }
     }
   }, [fetchRepos.data, fetchUsers.data]);
@@ -46,7 +46,7 @@ export const useSearch = (activePage: number, debouncedSearch: string) => {
   return {
     fetchUsers,
     fetchRepos,
-    repoUserData,
+    apiResponseData,
     totalCount,
   };
 };

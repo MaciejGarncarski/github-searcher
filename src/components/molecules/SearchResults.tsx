@@ -17,16 +17,17 @@ type SearchResultsProps = {
 
 export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
   const router = useRouter();
-  const { activePage } = useActivePage();
 
-  const { searchedValue } = useSearchValue();
+  const { activePage, setActivePage } = useActivePage();
+
+  const { searchedValue, setSearchedValue } = useSearchValue();
 
   const debouncedSearch = useDebounce(
     searchedValue === `` ? initialQueryString : searchedValue,
     1200
   );
 
-  const { fetchRepos, fetchUsers, totalCount, repoUserData } = useSearch(
+  const { fetchRepos, fetchUsers, totalCount, apiResponseData } = useSearch(
     activePage,
     debouncedSearch
   );
@@ -36,22 +37,40 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
     fetchUsers.isFetching ||
     fetchRepos.isLoading ||
     fetchUsers.isLoading;
-
   const isError = fetchRepos.isError || fetchUsers.isError;
 
   useEffect(() => {
-    if (!isLoading && !isError) {
-      if (searchedValue !== '') {
-        router.push(`?q=${searchedValue}&page=${activePage}`, undefined, {
-          shallow: true,
-        });
-      } else {
-        router.push(`?page=${activePage}`, undefined, { shallow: true });
-      }
+    if (isLoading && isError) {
+      return;
+    }
+
+    if (searchedValue !== '') {
+      router.push(`?q=${searchedValue}&page=${activePage}`, undefined, {
+        shallow: true,
+      });
+    }
+
+    if (searchedValue === '') {
+      router.push(`?page=${activePage}`, undefined, { shallow: true });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage, isError, isLoading]);
+
+  useEffect(() => {
+    if (router.query.page) {
+      setActivePage(+router.query.page);
+    }
+    if (router.query.q && typeof router.query.q === 'string') {
+      setSearchedValue(router.query.q);
+    }
+  }, [router.query, setActivePage, setSearchedValue]);
+
+  useEffect(() => {
+    if (apiResponseData.length === 0) {
+      setActivePage(1);
+    }
+  }, [apiResponseData.length, setActivePage]);
 
   if (isLoading) {
     return <ResultPlaceholder placeholderAmount={4} />;
@@ -65,7 +84,7 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
     <>
       <ResultsList
         totalCount={totalCount.toLocaleString(`en-US`)}
-        apiData={repoUserData}
+        apiData={apiResponseData}
       />
       <Pagination totalPages={Math.ceil(totalCount / 10)} />
     </>

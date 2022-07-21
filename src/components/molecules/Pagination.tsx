@@ -36,11 +36,14 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
       </PaginationButton>
-      <div className='col-start-1 col-end-3 row-start-1 row-end-2 flex items-center justify-center gap-1 md:gap-4'>
+      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-4 flex items-center justify-center gap-1 md:gap-4'>
         {pageQueue.map((pageNum, idx) => {
           if (pageNum === '...') {
             return (
-              <span className='dark:text-white' key={idx}>
+              <span
+                className='flex-grow text-center dark:text-white '
+                key={idx}
+              >
                 &hellip;
               </span>
             );

@@ -23,7 +23,6 @@ export type TagDataType = {
   Icon: IconType | string;
   value: string;
   title: string;
-  key: number;
 };
 import { placeholderVariants } from '@/components/molecules/UserProfilePlaceholder';
 
@@ -33,25 +32,21 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       Icon: GoRepo,
       value: `${data?.public_repos}`,
       title: 'Number of repos',
-      key: 1,
     },
     {
       Icon: GoOrganization,
       value: `${data?.following} following`,
       title: 'Following',
-      key: 2,
     },
     {
       Icon: GoOrganization,
       value: `${data?.followers} followers`,
       title: 'Followers',
-      key: 3,
     },
     {
       Icon: '🏠',
       value: `${data?.location}`,
       title: 'Location',
-      key: 4,
     },
   ];
 
@@ -73,7 +68,7 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className='mx-8 mt-12 flex min-h-page flex-col items-center gap-7 text-3xl lg:justify-center lg:gap-10 lg:text-4xl'
+      className='mx-8 mt-12 flex min-h-page flex-col items-center gap-7 text-3xl dark:text-white lg:justify-center lg:gap-10 lg:text-4xl'
     >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>

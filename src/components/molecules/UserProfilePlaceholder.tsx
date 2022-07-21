@@ -21,7 +21,6 @@ export const UserProfilePlaceholder = () => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      exit={{ opacity: 0 }}
       className='my-7 flex min-h-page animate-pulse flex-col items-center justify-center gap-6 md:gap-10'
     >
       <div

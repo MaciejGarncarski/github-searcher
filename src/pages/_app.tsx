@@ -1,10 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Hydrate } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
 import NextProgress from 'next-progress';
 import { useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { Hydrate } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import '@/styles/globals.css';
 

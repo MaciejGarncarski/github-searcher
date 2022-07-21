@@ -13,7 +13,7 @@ export const ResultDescription = ({
 }: ResultDescriptionProps) => {
   return (
     <p
-      className={`col-start-2 self-center text-lg dark:text-gray-200 ${
+      className={`col-start-2 self-center text-lg ${
         italic && 'italic'
       } ${className}`}
     >
