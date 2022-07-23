@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
 
+import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
@@ -63,21 +64,23 @@ export const RepositoryResult = ({
   };
 
   return (
-    <ResultContainer>
-      <GoRepo size={25} className='mt-1' />
-      <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
+    <ResultListItem>
+      <ResultContainer>
+        <GoRepo size={25} className='mt-1' />
+        <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
 
-      {description && (
-        <ResultDescription italic className='w-full'>
-          {description}
-        </ResultDescription>
-      )}
-      <ShieldsContainer>
-        <Shield className='gap-x-1'>⭐ {stars}</Shield>
-        <RepositoryLangugage />
-        {license && <Shield>📜 {license.name}</Shield>}
-        <Shield>⏰ Updated {dateFromNow}</Shield>
-      </ShieldsContainer>
-    </ResultContainer>
+        {description && (
+          <ResultDescription italic className='w-full'>
+            {description}
+          </ResultDescription>
+        )}
+        <ShieldsContainer>
+          <Shield className='gap-x-1'>⭐ {stars}</Shield>
+          <RepositoryLangugage />
+          {license && <Shield>📜 {license.name}</Shield>}
+          <Shield>⏰ Updated {dateFromNow}</Shield>
+        </ShieldsContainer>
+      </ResultContainer>
+    </ResultListItem>
   );
 };

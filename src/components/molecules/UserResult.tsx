@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { NextImage } from '@/components/atoms/NextImage';
+import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
@@ -23,10 +24,12 @@ export const UserResult = ({
   bio,
   location,
 }: UserResultProps) => {
+  const whileHover = { scale: 1.02 };
+
   return (
-    <li>
+    <ResultListItem whileHover={whileHover}>
       <Link href={`/user/${login}`} passHref>
-        <a className='transition-colors  focus:bg-slate-300'>
+        <a>
           <ResultContainer>
             <NextImage
               src={avatar}
@@ -50,6 +53,6 @@ export const UserResult = ({
           </ResultContainer>
         </a>
       </Link>
-    </li>
+    </ResultListItem>
   );
 };

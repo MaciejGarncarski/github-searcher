@@ -20,8 +20,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <NextProgress
-              height='4px'
-              delay={300}
+              height='2px'
+              delay={200}
               color='#2563eb'
               options={{ showSpinner: false }}
             />

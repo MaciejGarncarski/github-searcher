@@ -1,6 +1,6 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
-import { useActivePage } from '@/hooks/useActivePage';
+import { useActivePage } from '@/hooks/useContexts';
 import { usePagination } from '@/hooks/usePagination';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
@@ -31,7 +31,7 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   }
 
   return (
-    <div className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-2xl  md:flex md:justify-center md:gap-10 lg:gap-20'>
+    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-2xl md:my-20  md:flex md:justify-center md:gap-10 lg:gap-20'>
       <PaginationButton onClick={handlePrevPage} disabled={activePage === 1}>
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
@@ -67,6 +67,6 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
         Next
         <HiOutlineChevronRight className='mt-1' size={24} />
       </PaginationButton>
-    </div>
+    </nav>
   );
 };
