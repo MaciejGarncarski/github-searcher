@@ -1,4 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
@@ -8,25 +10,41 @@ import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Text } from '@/components/atoms/Text';
 import { UserTagList } from '@/components/atoms/UserTagList';
-import { ErrorMessage } from '@/components/molecules/ErrorMessage';
-import { UserProfilePlaceholder } from '@/components/molecules/UserProfilePlaceholder';
+import {
+  placeholderVariants,
+  UserProfilePlaceholder,
+} from '@/components/molecules/UserProfilePlaceholder';
 
 import { UserTypes } from '@/types/responseTypes';
-
-type UserProfileProps = {
-  isLoading: boolean;
-  isError: boolean;
-  data: UserTypes | undefined;
-};
 
 export type TagDataType = {
   Icon: IconType | string;
   value: string;
   title: string;
 };
-import { placeholderVariants } from '@/components/molecules/UserProfilePlaceholder';
 
-export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
+export const UserProfile = () => {
+  const router = useRouter();
+  const { name } = router.query;
+
+  const fetchHeaders = {
+    headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
+  };
+
+  const { data } = useQuery(
+    ['users', { username: name }],
+    async (): Promise<UserTypes> => {
+      const resp = await fetch(
+        `https://api.github.com/users/${name}`,
+        fetchHeaders
+      );
+      if (resp.ok) {
+        return resp.json();
+      }
+      throw new Error("Could'nt fetch user profile");
+    }
+  );
+
   const tagsData: TagDataType[] = [
     {
       Icon: GoRepo,
@@ -50,17 +68,8 @@ export const UserProfile = ({ isLoading, isError, data }: UserProfileProps) => {
     },
   ];
 
-  if (isLoading) {
+  if (!data) {
     return <UserProfilePlaceholder />;
-  }
-
-  if (isError || !data) {
-    return (
-      <main className='text-3xl lg:text-4xl'>
-        <BackLink />
-        <ErrorMessage error="Couldn't load this profile" emoji='😣' />;
-      </main>
-    );
   }
 
   return (
