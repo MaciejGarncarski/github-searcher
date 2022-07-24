@@ -5,16 +5,10 @@ import { useActivePage, useSearchValue } from '@/hooks/useContexts';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
 
-import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import { Pagination } from '@/components/molecules/Pagination';
-import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { ResultsList } from '@/components/organisms/ResultsList';
 
-type SearchResultsProps = {
-  initialQueryString: string;
-};
-
-export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
+export const SearchResults = () => {
   const router = useRouter();
 
   const { activePage, setActivePage } = useActivePage();
@@ -22,7 +16,7 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
   const { searchedValue } = useSearchValue();
 
   const debouncedSearch = useDebounce(
-    searchedValue === `` ? initialQueryString : searchedValue,
+    searchedValue === `` ? 'Typescript' : searchedValue,
     1200
   );
 
@@ -77,13 +71,13 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
     }
   }, [apiResponseData.length, setActivePage]);
 
-  if (isLoading) {
-    return <ResultPlaceholder placeholderAmount={4} />;
-  }
+  // if (isLoading) {
+  //   return <ResultPlaceholder placeholderAmount={4} />;
+  // }
 
-  if (isError) {
-    return <ErrorMessage error="Couldn't load data" emoji='😭' />;
-  }
+  // if (isError) {
+  //   return <ErrorMessage error="Couldn't load data" emoji='😭' />;
+  // }
 
   return (
     <>
@@ -91,6 +85,7 @@ export const SearchResults = ({ initialQueryString }: SearchResultsProps) => {
         totalCount={totalCount.toLocaleString(`en-US`)}
         apiData={apiResponseData}
       />
+
       <Pagination totalPages={Math.ceil(totalCount / 10)} />
     </>
   );

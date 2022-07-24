@@ -10,6 +10,8 @@ import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Shield } from '@/components/atoms/Shield';
 import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 
+import { getColors } from '@/pages/api/queries';
+
 type RepositoryResultProps = {
   fullName: string;
   description?: string;
@@ -33,16 +35,7 @@ export const RepositoryResult = ({
   dayjs.extend(relativeTime);
   const dateFromNow = dayjs(dateObject).fromNow();
 
-  const color = useQuery(
-    ['github language color'],
-    async () => {
-      const response = await fetch(
-        'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
-      );
-      return response.json();
-    },
-    { refetchOnWindowFocus: false, keepPreviousData: true }
-  );
+  const color = useQuery(['github language color'], getColors);
 
   const RepositoryLangugage = () => {
     if (language) {

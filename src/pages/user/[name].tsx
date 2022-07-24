@@ -27,10 +27,6 @@ const ProfilePage: NextPage = () => {
         return resp.json();
       }
       throw new Error("Could'nt fetch user profile");
-    },
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
     }
   );
 

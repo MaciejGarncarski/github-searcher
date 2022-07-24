@@ -24,6 +24,7 @@ export const PaginationButton = ({
       disabled={disabled}
       onClick={onClick}
       whileTap={{ scale: 0.9 }}
+      whileFocus={{ scale: 1.08 }}
       whileHover={!disabled ? { scale: 1.08 } : {}}
     >
       {children}

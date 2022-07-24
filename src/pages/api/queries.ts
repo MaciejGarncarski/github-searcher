@@ -53,5 +53,15 @@ export const getRepos = async (
       translatedData: translatedData,
     };
   }
-  throw new Error(`Error when fetching repos data`);
+  throw new Error(`Failed to fetch repos`);
+};
+
+export const getColors = async () => {
+  const res = await fetch(
+    'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
+  );
+  if (res.ok) {
+    return res.json();
+  }
+  throw new Error(`Failed to fetch colors`);
 };

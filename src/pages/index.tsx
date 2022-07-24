@@ -1,11 +1,15 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { NextPage } from 'next';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { Layout } from '@/components/Layout';
+import { ErrorMessage } from '@/components/molecules/ErrorMessage';
+import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { SearchResults } from '@/components/molecules/SearchResults';
 import { Seo } from '@/components/Seo';
 
-import { getRepos, getUsers } from '@/pages/api/queries';
+import { getColors, getRepos, getUsers } from '@/pages/api/queries';
 
 import type {
   ApiResponseType,
@@ -13,18 +17,24 @@ import type {
   UserTypes,
 } from '@/types/responseTypes';
 
-interface HomeProps {
+type HomeProps = {
   initialReposData: ApiResponseType<RepoTypes[]>;
   initialUsersData: ApiResponseType<UserTypes[]>;
-}
+};
 
-export const initialQueryString = `Typescript`;
+const initialQueryString = `Typescript`;
 
 const Home: NextPage<HomeProps> = () => {
   return (
     <Layout>
       <Seo />
-      <SearchResults initialQueryString={initialQueryString} />
+      <ErrorBoundary
+        fallback={<ErrorMessage error="Couldn't load data" emoji='😭' />}
+      >
+        <Suspense fallback={<ResultPlaceholder placeholderAmount={4} />}>
+          <SearchResults />
+        </Suspense>
+      </ErrorBoundary>
     </Layout>
   );
 };
@@ -39,12 +49,7 @@ export const getServerSideProps = async () => {
     [`users`, { page: 1, search: initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery(['github language color'], async () => {
-    const response = await fetch(
-      'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
-    );
-    return await response.json();
-  });
+  await queryClient.prefetchQuery(['github language color'], getColors);
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

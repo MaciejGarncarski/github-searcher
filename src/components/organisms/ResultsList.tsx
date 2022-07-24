@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
-import { RepositoryResult } from '@/components/molecules/RepositoryResult';
 import { placeholderVariants } from '@/components/molecules/UserProfilePlaceholder';
-import { UserResult } from '@/components/molecules/UserResult';
+import { RepositoryResult } from '@/components/organisms/RepositoryResult';
+import { UserResult } from '@/components/organisms/UserResult';
 
 import { RepoTypes, UserTypes } from '@/types/responseTypes';
 

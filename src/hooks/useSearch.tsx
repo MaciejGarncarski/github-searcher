@@ -16,16 +16,12 @@ export const useSearch = (activePage: number, debouncedSearch: string) => {
     search: debouncedSearch,
   };
 
-  const fetchRepos = useQuery(
-    ['repos', { ...fetchOptions }],
-    () => getRepos(debouncedSearch, activePage),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
+  const fetchRepos = useQuery(['repos', { ...fetchOptions }], () =>
+    getRepos(debouncedSearch, activePage)
   );
 
-  const fetchUsers = useQuery(
-    ['users', { ...fetchOptions }],
-    () => getUsers(debouncedSearch, activePage),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
+  const fetchUsers = useQuery(['users', { ...fetchOptions }], () =>
+    getUsers(debouncedSearch, activePage)
   );
 
   useEffect(() => {
