@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { NextImage } from '@/components/atoms/NextImage';
 import { ResultListItem } from '@/components/atoms/RepositoryListItem';
@@ -31,15 +32,17 @@ export const UserResult = ({
       <Link href={`/user/${login}`} passHref>
         <a>
           <ResultContainer>
-            <NextImage
-              src={avatar}
-              width={176}
-              height={176}
-              alt={`${login}'s avatar`}
-              className='w-8 rounded-full lg:w-8'
-              imgClassName='rounded-3xl'
-              priority={true}
-            />
+            <Suspense fallback={<p>loading...</p>}>
+              <NextImage
+                src={avatar}
+                width={176}
+                height={176}
+                alt={`${login}'s avatar`}
+                className='w-8 rounded-full lg:w-8'
+                imgClassName='rounded-3xl'
+                priority={true}
+              />
+            </Suspense>
             <div className='col-start-2 '>
               <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
               <Text type='p' className='text-xl dark:text-white'>

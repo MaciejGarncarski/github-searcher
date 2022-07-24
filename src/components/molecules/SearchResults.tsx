@@ -71,14 +71,6 @@ export const SearchResults = () => {
     }
   }, [apiResponseData.length, setActivePage]);
 
-  // if (isLoading) {
-  //   return <ResultPlaceholder placeholderAmount={4} />;
-  // }
-
-  // if (isError) {
-  //   return <ErrorMessage error="Couldn't load data" emoji='😭' />;
-  // }
-
   return (
     <>
       <ResultsList

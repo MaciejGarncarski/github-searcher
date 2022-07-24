@@ -19,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
     defaultOptions: {
       queries: {
+        retry: 1,
         keepPreviousData: true,
         refetchOnWindowFocus: false,
         suspense: true,
