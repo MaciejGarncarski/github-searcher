@@ -3,14 +3,13 @@ import { ReactNode } from 'react';
 import { Header } from '@/components/organisms/Header';
 
 type LayoutProps = {
-  inputDisabled?: boolean;
   children: ReactNode;
 };
 
-export const Layout = ({ inputDisabled, children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Header inputDisabled={inputDisabled ?? false} />
+      <Header />
       {children}
     </>
   );

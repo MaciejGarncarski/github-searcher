@@ -1,12 +1,12 @@
-import { NextPage } from 'next';
+import { QueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
-import { BackLink } from '@/components/atoms/BackLink';
+import { getSingleUser } from '@/utils/queries';
+import { StringGuard } from '@/utils/StringGuard';
+
 import { Layout } from '@/components/Layout';
-import { ErrorMessage } from '@/components/molecules/ErrorMessage';
-import { UserProfilePlaceholder } from '@/components/molecules/UserProfilePlaceholder';
 import { UserProfile } from '@/components/organisms/UserProfile';
 import { Seo } from '@/components/Seo';
 
@@ -14,25 +14,38 @@ const ProfilePage: NextPage = () => {
   const router = useRouter();
   const { name } = router.query;
 
-  const ErrorUI = () => {
-    return (
-      <main className='text-3xl lg:text-4xl'>
-        <BackLink />
-        <ErrorMessage error="Couldn't load this profile" emoji='😣' />;
-      </main>
-    );
-  };
-
   return (
-    <Layout inputDisabled>
+    <Layout>
       <Seo templateTitle={name ? `${name}` : 'Loading Profile'} />
-      <ErrorBoundary fallback={<ErrorUI />}>
-        <Suspense fallback={<UserProfilePlaceholder />}>
-          <UserProfile />
-        </Suspense>
-      </ErrorBoundary>
+      <UserProfile />
     </Layout>
   );
 };
 
 export default ProfilePage;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const userName = StringGuard(query.name);
+
+  if (!userName) {
+    return {
+      redirect: '/',
+      props: {},
+    };
+  }
+
+  const queryClient = new QueryClient();
+  const fetchHeaders = {
+    headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
+  };
+
+  await queryClient.prefetchQuery(['users', { username: userName }], () =>
+    getSingleUser(userName, fetchHeaders)
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

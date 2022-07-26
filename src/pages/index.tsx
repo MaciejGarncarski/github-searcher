@@ -1,25 +1,18 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { NextPage } from 'next';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+
+import type { ApiResponse } from '@/utils/queries';
+import { getColors, getRepos, getUsers } from '@/utils/queries';
 
 import { Layout } from '@/components/Layout';
-import { ErrorMessage } from '@/components/molecules/ErrorMessage';
-import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { SearchResults } from '@/components/molecules/SearchResults';
 import { Seo } from '@/components/Seo';
 
-import { getColors, getRepos, getUsers } from '@/pages/api/queries';
-
-import type {
-  ApiResponseType,
-  RepoTypes,
-  UserTypes,
-} from '@/types/responseTypes';
+import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 type HomeProps = {
-  initialReposData: ApiResponseType<RepoTypes[]>;
-  initialUsersData: ApiResponseType<UserTypes[]>;
+  initialReposData: ApiResponse<RepoTypes[]>;
+  initialUsersData: ApiResponse<UserTypes[]>;
 };
 
 const initialQueryString = `Typescript`;
@@ -28,24 +21,18 @@ const Home: NextPage<HomeProps> = () => {
   return (
     <Layout>
       <Seo />
-      <ErrorBoundary
-        fallback={<ErrorMessage error="Couldn't load data" emoji='😭' />}
-      >
-        <Suspense fallback={<ResultPlaceholder placeholderAmount={4} />}>
-          <SearchResults />
-        </Suspense>
-      </ErrorBoundary>
+      <SearchResults />
     </Layout>
   );
 };
 
-export const getServerSideProps = async () => {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<ApiResponseType<RepoTypes> | null>(
+  await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>(
     [`repos`, { page: 1, search: initialQueryString }],
     () => getRepos(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery<ApiResponseType<UserTypes> | null>(
+  await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>(
     [`users`, { page: 1, search: initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );
@@ -55,6 +42,6 @@ export const getServerSideProps = async () => {
       dehydratedState: dehydrate(queryClient),
     },
   };
-};
+}
 
 export default Home;

@@ -1,28 +1,47 @@
 import { motion } from 'framer-motion';
 
+import { useActivePage, useSearchValue } from '@/hooks/useContexts';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useSearch } from '@/hooks/useSearch';
+
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
+import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { placeholderVariants } from '@/components/molecules/UserProfilePlaceholder';
 import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
-import { RepoTypes, UserTypes } from '@/types/responseTypes';
+export const ResultsList = () => {
+  const { activePage } = useActivePage();
 
-type ResultsListProps = {
-  totalCount: string;
-  apiData: (UserTypes | RepoTypes)[];
-};
+  const { searchedValue } = useSearchValue();
 
-export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
-  const totalCountNumber = parseInt(totalCount.split(',').join(''), 10);
+  const debouncedSearch = useDebounce(
+    searchedValue === `` ? 'Typescript' : searchedValue,
+    1200
+  );
 
-  if (totalCountNumber === 0) {
+  const { totalCount, apiResponseData, fetchRepos, fetchUsers } = useSearch(
+    activePage,
+    debouncedSearch
+  );
+
+  if (fetchUsers.isFetching || fetchRepos.isFetching) {
+    return <ResultPlaceholder placeholderAmount={5} />;
+  }
+
+  if (fetchUsers.isError || fetchRepos.isError) {
+    return <ErrorMessage error="Couldn't load data" emoji='😭' />;
+  }
+
+  if (totalCount === 0) {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
+
   return (
     <section className='align-center flex flex-col justify-start px-6 py-7  xl:px-24'>
       <Text type='h2' className='break-words py-4  text-3xl dark:text-white'>
-        {totalCount} results
+        {totalCount.toLocaleString('en-GB')} results
       </Text>
       <motion.ul
         variants={placeholderVariants}
@@ -30,7 +49,7 @@ export const ResultsList = ({ totalCount, apiData }: ResultsListProps) => {
         animate='animate'
         exit={{ opacity: 0 }}
       >
-        {apiData.map((apiResponse) => {
+        {apiResponseData.map((apiResponse) => {
           if ('avatar_url' in apiResponse) {
             return (
               <UserResult

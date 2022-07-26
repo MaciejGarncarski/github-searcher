@@ -12,8 +12,8 @@ import { useState } from 'react';
 
 import '@/styles/globals.css';
 
-import { ActivePageProvider } from '@/contexts/activePage-context';
-import { SearchProvider } from '@/contexts/searchValue-context';
+import { ActivePageProvider } from '@/contexts/activePageContext';
+import { SearchProvider } from '@/contexts/searchValueContext';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
@@ -22,7 +22,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         retry: 1,
         keepPreviousData: true,
         refetchOnWindowFocus: false,
-        suspense: true,
       },
     },
   };

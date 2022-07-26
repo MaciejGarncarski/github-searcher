@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import { ActivePageContext } from '@/contexts/activePage-context';
-import { SearchContext } from '@/contexts/searchValue-context';
+import { ActivePageContext } from '@/contexts/activePageContext';
+import { SearchContext } from '@/contexts/searchValueContext';
 
 export const useActivePage = () => {
   const context = useContext(ActivePageContext);

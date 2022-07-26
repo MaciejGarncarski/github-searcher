@@ -28,7 +28,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
         type={type}
         disabled={searchedValue === ''}
         whileTap={{ scale: 0.9 }}
-        className={`cursor-pointer  bg-gray-200 px-2 transition-colors hover:bg-slate-500 hover:text-white ${
+        className={`cursor-pointer  bg-slate-200 px-2 transition-colors hover:bg-slate-600 hover:text-white ${
           isInputEmpty ? 'hidden' : ''
         }`}
       >
@@ -41,7 +41,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
     <motion.input
       type={type}
       placeholder={placeholder}
-      className={` border-gray-200 bg-transparent text-white transition-colors placeholder:text-gray-200 hover:bg-slate-500 focus:bg-slate-500 md:text-xl ${
+      className={`placeholder:text-slate-200-200 border-slate-200 bg-transparent text-xl text-white transition-colors hover:bg-slate-600 focus:bg-slate-600 md:text-2xl ${
         isInputEmpty ? '' : 'border-r-2'
       }`}
       value={searchedValue}

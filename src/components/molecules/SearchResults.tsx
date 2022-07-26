@@ -20,7 +20,7 @@ export const SearchResults = () => {
     1200
   );
 
-  const { fetchRepos, fetchUsers, totalCount, apiResponseData } = useSearch(
+  const { fetchRepos, fetchUsers, apiResponseData } = useSearch(
     activePage,
     debouncedSearch
   );
@@ -73,12 +73,8 @@ export const SearchResults = () => {
 
   return (
     <>
-      <ResultsList
-        totalCount={totalCount.toLocaleString(`en-US`)}
-        apiData={apiResponseData}
-      />
-
-      <Pagination totalPages={Math.ceil(totalCount / 10)} />
+      <ResultsList />
+      <Pagination />
     </>
   );
 };

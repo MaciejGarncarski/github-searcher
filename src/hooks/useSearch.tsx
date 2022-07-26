@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { getRepos, getUsers } from '@/pages/api/queries';
+import { getRepos, getUsers } from '@/utils/queries';
 
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 

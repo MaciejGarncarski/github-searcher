@@ -4,18 +4,20 @@ import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
+import { getSingleUser } from '@/utils/queries';
+import { StringGuard } from '@/utils/StringGuard';
+
 import { BackLink } from '@/components/atoms/BackLink';
 import { NextImage } from '@/components/atoms/NextImage';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Text } from '@/components/atoms/Text';
 import { UserTagList } from '@/components/atoms/UserTagList';
+import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import {
   placeholderVariants,
   UserProfilePlaceholder,
 } from '@/components/molecules/UserProfilePlaceholder';
-
-import { UserTypes } from '@/types/responseTypes';
 
 export type TagDataType = {
   Icon: IconType | string;
@@ -26,23 +28,14 @@ export type TagDataType = {
 export const UserProfile = () => {
   const router = useRouter();
   const { name } = router.query;
+  const userName = StringGuard(name);
 
   const fetchHeaders = {
     headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
   };
-
-  const { data } = useQuery(
-    ['users', { username: name }],
-    async (): Promise<UserTypes> => {
-      const resp = await fetch(
-        `https://api.github.com/users/${name}`,
-        fetchHeaders
-      );
-      if (resp.ok) {
-        return resp.json();
-      }
-      throw new Error("Could'nt fetch user profile");
-    }
+  const { data, isError, isLoading, isFetching } = useQuery(
+    ['users', { username: userName }],
+    () => getSingleUser(userName, fetchHeaders)
   );
 
   const tagsData: TagDataType[] = [
@@ -68,8 +61,16 @@ export const UserProfile = () => {
     },
   ];
 
-  if (!data) {
+  if (isLoading || isFetching) {
     return <UserProfilePlaceholder />;
+  }
+  if (!data || isError) {
+    return (
+      <main className='text-3xl lg:text-4xl'>
+        <BackLink />
+        <ErrorMessage error="Couldn't load this profile" emoji='😣' />;
+      </main>
+    );
   }
 
   return (
@@ -91,8 +92,8 @@ export const UserProfile = () => {
         alt={`${data.login}'s avatar`}
         width={200}
         height={200}
-        className='h-44 w-44 drop-shadow-xl lg:h-56 lg:w-56'
-        imgClassName='rounded-full'
+        className='drop-shadow-xl '
+        imgClassName='h-44 w-44 lg:h-56 lg:w-56 rounded-full'
         priority
       />
       {data.bio && (

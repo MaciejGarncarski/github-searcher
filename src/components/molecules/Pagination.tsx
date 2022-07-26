@@ -1,18 +1,26 @@
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { useActivePage } from '@/hooks/useContexts';
+import { useSearchValue } from '@/hooks/useContexts';
+import { useDebounce } from '@/hooks/useDebounce';
 import { usePagination } from '@/hooks/usePagination';
+import { useSearch } from '@/hooks/useSearch';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
 import { PaginationNumber } from '@/components/atoms/PaginationNumber';
-
-interface PaginationProps {
-  totalPages: number;
-}
-
-export const Pagination = ({ totalPages }: PaginationProps) => {
+export const Pagination = () => {
   const { activePage, setActivePage } = useActivePage();
 
+  const { searchedValue } = useSearchValue();
+
+  const debouncedSearch = useDebounce(
+    searchedValue === `` ? 'Typescript' : searchedValue,
+    1200
+  );
+
+  const { totalCount } = useSearch(activePage, debouncedSearch);
+
+  const totalPages = Math.ceil(totalCount / 10);
   const pageQueue = usePagination(activePage, totalPages);
 
   const handlePrevPage = () => {
@@ -36,14 +44,11 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
       </PaginationButton>
-      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-4 flex items-center justify-center gap-1 md:gap-4'>
+      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-4 grid grid-cols-7 gap-1 md:gap-2'>
         {pageQueue.map((pageNum, idx) => {
           if (pageNum === '...') {
             return (
-              <span
-                className='flex-grow text-center dark:text-white '
-                key={idx}
-              >
+              <span className=' text-center dark:text-white ' key={idx}>
                 &hellip;
               </span>
             );

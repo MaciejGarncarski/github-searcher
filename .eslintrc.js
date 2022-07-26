@@ -54,7 +54,7 @@ module.exports = {
           // {s}css files
           ['^.+\\.s?css$'],
           // Lib and hooks
-          ['^@/lib', '^@/hooks'],
+          ['^@/lib', '^@/hooks', '^@/utils'],
           // static data
           ['^@/data'],
           // components

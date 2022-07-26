@@ -13,7 +13,7 @@ export const Form = () => {
 
   return (
     <form
-      className='flex justify-end rounded border-2 border-gray-200'
+      className='flex justify-end rounded border border-slate-200'
       onReset={handleReset}
       onSubmit={(formEv: FormEvent) => formEv.preventDefault()}
     >

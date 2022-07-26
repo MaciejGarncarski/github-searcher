@@ -10,20 +10,26 @@ type LogoProps = {
   size: Sizes;
 };
 
+import Link from 'next/link';
+
 import { NextImage } from '@/components/atoms/NextImage';
 
 export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
   return (
     <h1>
-      <NextImage
-        src={src}
-        width={size}
-        height={size}
-        alt={alt}
-        placeholder={placeholder}
-        className='lg:w-initial w-11'
-        priority={true}
-      />
+      <Link href='/' passHref>
+        <a>
+          <NextImage
+            src={src}
+            width={size}
+            height={size}
+            alt={alt}
+            placeholder={placeholder}
+            className='lg:w-initial w-11'
+            priority={true}
+          />
+        </a>
+      </Link>
     </h1>
   );
 };

@@ -137,8 +137,3 @@ export interface RepoTypes {
   default_branch: string;
   score: number;
 }
-
-export type ApiResponseType<T> = {
-  totalCount: number;
-  translatedData: T[];
-};

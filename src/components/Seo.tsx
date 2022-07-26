@@ -72,13 +72,6 @@ export const Seo = (props: SeoProps) => {
         content='/favicon/ms-icon-144x144.png'
       />
       <meta name='theme-color' content='#ffffff' />
-
-      <link rel='preconnect' href='https://api.github.com/' />
-      <link rel='dns-prefetch' href='https://api.github.com/' />
-      <link rel='preconnect' href='https://avatars.github.com/' />
-      <link rel='dns-prefetch' href='https://avatars.github.com/' />
-      <link rel='preconnect' href='https://avatars.githubusercontent.com/' />
-      <link rel='dns-prefetch' href='https://avatars.githubusercontent.com/' />
     </Head>
   );
 };

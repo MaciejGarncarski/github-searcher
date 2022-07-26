@@ -32,14 +32,13 @@ export const ErrorMessage = ({
       initial='initial'
       animate='animate'
       exit='initial'
-      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl drop-shadow-xl dark:text-gray-300 lg:text-6xl'
+      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl drop-shadow-xl dark:text-white lg:text-6xl'
     >
       {error}
-      <br />
       <motion.span
-        initial={{ rotate: -360 }}
+        initial={{ rotate: 100 }}
         animate={{
-          rotate: 0,
+          rotate: [100, -50, 0],
           transition: {
             duration: 1.5,
             delay: 0.3,

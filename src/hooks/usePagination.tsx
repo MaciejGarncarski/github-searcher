@@ -18,7 +18,10 @@ export const usePagination = (activePage: number, totalPages: number) => {
       const pages = pagesArray.slice(start, end);
       const pagesAsStrings = pages.map((page) => page.toString());
 
-      return pagesAsStrings;
+      return {
+        asStrings: pagesAsStrings,
+        asNumbers: pages,
+      };
     };
 
     const activePageRounded = Math.ceil(activePage / 100) * 100;
@@ -33,17 +36,33 @@ export const usePagination = (activePage: number, totalPages: number) => {
     ).toString();
 
     if (canShowRightDots && !canShowLeftDots) {
-      setPageQueue(['1', '2', '3', '4', '...', next100Pages]);
+      setPageQueue(['1', '2', '3', '4', '5', '...', next100Pages]);
     }
 
     if (canShowLeftDots && !canShowRightDots) {
-      const pages = calculatePageQueue(totalPages - 3, totalPages);
-      setPageQueue([previous100Pages, '...', ...pages, totalPages.toString()]);
+      const pages = calculatePageQueue(totalPages - 2, totalPages);
+
+      const halfOfPages = (Math.min(...pages.asNumbers) / 2).toString();
+
+      setPageQueue([
+        previous100Pages,
+        '...',
+        halfOfPages,
+        '...',
+        ...pages.asStrings,
+        totalPages.toString(),
+      ]);
     }
 
     if (canShowLeftDots && canShowRightDots) {
       const pages = calculatePageQueue(activePage - 1, activePage + 2);
-      setPageQueue([previous100Pages, '...', ...pages, '...', next100Pages]);
+      setPageQueue([
+        previous100Pages,
+        '...',
+        ...pages.asStrings,
+        '...',
+        next100Pages,
+      ]);
     }
 
     if (totalPages <= 3) {

@@ -1,6 +1,6 @@
-import { RepoTypes, UserTypes } from '../../types/responseTypes';
+import { RepoTypes, UserTypes } from '../types/responseTypes';
 
-export type ApiResponseType<T> = {
+export type ApiResponse<T> = {
   totalCount: number;
   translatedData: T[];
 };
@@ -13,7 +13,7 @@ const headers = {
 export const getUsers = async (
   username: string,
   activePage: number
-): Promise<ApiResponseType<UserTypes>> => {
+): Promise<ApiResponse<UserTypes>> => {
   const res = await fetch(
     `https://api.github.com/search/users?q=${username}&per_page=${perPage}&page=${activePage}`,
     headers
@@ -39,7 +39,7 @@ export const getUsers = async (
 export const getRepos = async (
   username: string,
   activePage: number
-): Promise<ApiResponseType<RepoTypes>> => {
+): Promise<ApiResponse<RepoTypes>> => {
   const res = await fetch(
     `https://api.github.com/search/repositories?q=${username}&per_page=${perPage}&page=${activePage}`,
     headers
@@ -54,6 +54,26 @@ export const getRepos = async (
     };
   }
   throw new Error(`Failed to fetch repos`);
+};
+
+type fetchHeadersType = {
+  headers: {
+    Authorization: string;
+  };
+};
+
+export const getSingleUser = async (
+  name: string,
+  fetchHeaders: fetchHeadersType
+): Promise<UserTypes> => {
+  const resp = await fetch(
+    `https://api.github.com/users/${name}`,
+    fetchHeaders
+  );
+  if (resp.ok) {
+    return resp.json();
+  }
+  throw new Error("Could'nt fetch user profile");
 };
 
 export const getColors = async () => {
