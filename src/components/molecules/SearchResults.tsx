@@ -32,11 +32,7 @@ export const SearchResults = () => {
     fetchUsers.isLoading;
   const isError = fetchRepos.isError || fetchUsers.isError;
 
-  useEffect(() => {
-    if (isLoading && isError) {
-      return;
-    }
-
+  const pushRoutes = () => {
     if (searchedValue !== '') {
       router.push(
         {
@@ -61,7 +57,13 @@ export const SearchResults = () => {
         { shallow: true }
       );
     }
+  };
 
+  useEffect(() => {
+    if (isLoading && isError) {
+      return;
+    }
+    pushRoutes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage, isError, isLoading]);
 

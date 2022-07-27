@@ -4,6 +4,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       minHeight: {
@@ -18,6 +19,7 @@ module.exports = {
       gridTemplateColumns: {
         user: 'auto 1fr',
         pagination: '1fr auto 1fr',
+        header: 'repeat(3, auto)',
       },
       fontFamily: {
         primary: ['Lato', ...fontFamily.sans],

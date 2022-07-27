@@ -17,7 +17,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
   const onInput = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;
     setActivePage(1);
-    setSearchedValue(target.value);
+    setSearchedValue(target.value.trim());
   };
 
   const isInputEmpty = searchedValue === '';
@@ -25,11 +25,11 @@ export const Input = ({ type, placeholder }: InputProps) => {
   if (type === 'reset') {
     return (
       <motion.button
-        type={type}
+        type='reset'
         disabled={searchedValue === ''}
         whileTap={{ scale: 0.9 }}
-        className={`cursor-pointer  bg-slate-200 px-2 transition-colors hover:bg-slate-600 hover:text-white ${
-          isInputEmpty ? 'hidden' : ''
+        className={`cursor-pointer bg-slate-200 px-2 text-slate-900 transition-colors  disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-200 ${
+          searchedValue === '' ? '' : 'hover:bg-slate-600 hover:text-white'
         }`}
       >
         <RiCloseLine size={32} />
@@ -41,8 +41,8 @@ export const Input = ({ type, placeholder }: InputProps) => {
     <motion.input
       type={type}
       placeholder={placeholder}
-      className={`placeholder:text-slate-200-200 border-slate-200 bg-transparent text-xl text-white transition-colors hover:bg-slate-600 focus:bg-slate-600 md:text-2xl ${
-        isInputEmpty ? '' : 'border-r-2'
+      className={`bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl ${
+        isInputEmpty ? '' : 'border-r-1'
       }`}
       value={searchedValue}
       onInput={onInput}

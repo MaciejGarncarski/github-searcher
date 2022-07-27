@@ -17,8 +17,8 @@ import { NextImage } from '@/components/atoms/NextImage';
 export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
   return (
     <h1>
-      <Link href='/' passHref>
-        <a>
+      <Link href='/' shallow>
+        <a className='flex items-center gap-5'>
           <NextImage
             src={src}
             width={size}
@@ -28,6 +28,7 @@ export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
             className='lg:w-initial w-11'
             priority={true}
           />
+          <span className='hidden text-white lg:inline'>Github Searcher</span>
         </a>
       </Link>
     </h1>
