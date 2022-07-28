@@ -27,20 +27,24 @@ export const ThemeSwitch = () => {
     htmlTag.style.colorScheme = themeColor;
   };
 
-  const detectTheme = useCallback((e: MediaQueryListEvent | MediaQueryList) => {
-    const colorScheme = e.matches ? 'dark' : 'light';
-
-    if (colorScheme === 'dark') {
-      changeTheme('dark');
-    }
-    if (colorScheme === 'light') {
-      changeTheme('light');
-    }
-  }, []);
+  const handleChange = useCallback(
+    (colorScheme: MediaQueryList | MediaQueryListEvent) => {
+      if (colorScheme.matches) {
+        changeTheme('dark');
+      }
+      if (!colorScheme.matches) {
+        changeTheme('light');
+      }
+    },
+    []
+  );
 
   useEffect(() => {
-    detectTheme(window.matchMedia('(prefers-color-scheme: dark)'));
-  }, [detectTheme]);
+    const detectColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    detectColorScheme.addEventListener('change', handleChange);
+
+    return () => detectColorScheme.removeEventListener('change', handleChange);
+  }, [handleChange]);
 
   useEffect(() => {
     if (value === 'light') {
@@ -50,14 +54,12 @@ export const ThemeSwitch = () => {
       changeTheme('dark');
     }
     if (value === 'system') {
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', detectTheme);
+      const detectColorScheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      );
+      handleChange(detectColorScheme);
     }
-    return window.removeEventListener('change', () =>
-      detectTheme(window.matchMedia('(prefers-color-scheme: dark)'))
-    );
-  }, [detectTheme, value]);
+  }, [handleChange, value]);
 
   return (
     <label className=' ml-auto cursor-pointer justify-self-start drop-shadow-lg lg:ml-10 lg:self-center'>

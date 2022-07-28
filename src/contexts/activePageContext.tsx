@@ -16,13 +16,11 @@ export const ActivePageContext =
 
 export const ActivePageProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const { page } = router.query;
 
-  const pageQuery =
-    typeof router.query.page === 'string' ? +router.query.page : 1;
-
-  const activePageQuery = pageQuery >= 1 ? pageQuery : 1;
-
-  const [activePage, setActivePage] = useState<number>(activePageQuery);
+  const [activePage, setActivePage] = useState<number>(
+    typeof page === 'string' ? +page : 1
+  );
 
   const value = {
     activePage,

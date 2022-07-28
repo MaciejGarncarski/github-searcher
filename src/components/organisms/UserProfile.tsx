@@ -26,14 +26,13 @@ export type TagDataType = {
 };
 
 export const UserProfile = () => {
-  const router = useRouter();
-  const { name } = router.query;
-  const userName = StringGuard(name);
+  const { query } = useRouter();
+  const userName = StringGuard(query.name);
 
   const fetchHeaders = {
     headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
   };
-  const { data, isError, isLoading, isFetching } = useQuery(
+  const { data, isError, isFetching, isLoading } = useQuery(
     ['users', { username: userName }],
     () => getSingleUser(userName, fetchHeaders)
   );

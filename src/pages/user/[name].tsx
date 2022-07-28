@@ -11,12 +11,11 @@ import { UserProfile } from '@/components/organisms/UserProfile';
 import { Seo } from '@/components/Seo';
 
 const ProfilePage: NextPage = () => {
-  const router = useRouter();
-  const { name } = router.query;
+  const { query } = useRouter();
 
   return (
     <Layout>
-      <Seo templateTitle={name ? `${name}` : 'Loading Profile'} />
+      <Seo templateTitle={query.name ? `${query.name}` : 'Loading Profile'} />
       <UserProfile />
     </Layout>
   );

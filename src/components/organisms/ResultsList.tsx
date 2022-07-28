@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import { useActivePage, useSearchValue } from '@/hooks/useContexts';
+import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useSearch } from '@/hooks/useSearch';
 
@@ -12,9 +14,9 @@ import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
-  const { activePage } = useActivePage();
-
-  const { searchedValue } = useSearchValue();
+  const { push, isReady } = useRouter();
+  const { activePage, setActivePage } = useActivePage();
+  const { searchedValue } = useSearchedValue();
 
   const debouncedSearch = useDebounce(
     searchedValue === `` ? 'Typescript' : searchedValue,
@@ -25,6 +27,32 @@ export const ResultsList = () => {
     activePage,
     debouncedSearch
   );
+
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+
+    if (searchedValue.trim() !== '') {
+      push(`?q=${searchedValue}&page=${activePage}`, undefined, {
+        shallow: true,
+      });
+    }
+
+    if (searchedValue.trim() === '') {
+      push(`?page=${activePage}`, undefined, {
+        shallow: true,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePage, isReady, searchedValue]);
+
+  useEffect(() => {
+    if (apiResponseData.length === 0) {
+      setActivePage(1);
+    }
+  }, [apiResponseData.length, setActivePage]);
 
   if (fetchUsers.isFetching || fetchRepos.isFetching) {
     return <ResultPlaceholder placeholderAmount={5} />;

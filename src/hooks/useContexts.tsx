@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { ActivePageContext } from '@/contexts/activePageContext';
-import { SearchContext } from '@/contexts/searchValueContext';
+import { SearchContext } from '@/contexts/searchedValueContext';
 
 export const useActivePage = () => {
   const context = useContext(ActivePageContext);
@@ -11,7 +11,7 @@ export const useActivePage = () => {
   return context;
 };
 
-export const useSearchValue = () => {
+export const useSearchedValue = () => {
   const context = useContext(SearchContext);
   if (context === undefined) {
     throw new Error(

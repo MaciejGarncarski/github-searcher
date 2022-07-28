@@ -1,11 +1,11 @@
 import { FormEvent } from 'react';
 
-import { useSearchValue } from '@/hooks/useContexts';
+import { useSearchedValue } from '@/hooks/useContexts';
 
 import { Input } from '@/components/atoms/Input';
 
 export const Form = () => {
-  const { setSearchedValue } = useSearchValue();
+  const { setSearchedValue } = useSearchedValue();
 
   const handleReset = () => {
     setSearchedValue('');

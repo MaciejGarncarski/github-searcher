@@ -1,7 +1,8 @@
+import { useCallback } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { useActivePage } from '@/hooks/useContexts';
-import { useSearchValue } from '@/hooks/useContexts';
+import { useSearchedValue } from '@/hooks/useContexts';
 import { useDebounce } from '@/hooks/useDebounce';
 import { usePagination } from '@/hooks/usePagination';
 import { useSearch } from '@/hooks/useSearch';
@@ -11,30 +12,34 @@ import { PaginationNumber } from '@/components/atoms/PaginationNumber';
 export const Pagination = () => {
   const { activePage, setActivePage } = useActivePage();
 
-  const { searchedValue } = useSearchValue();
+  const { searchedValue } = useSearchedValue();
 
   const debouncedSearch = useDebounce(
     searchedValue === `` ? 'Typescript' : searchedValue,
     1200
   );
 
-  const { totalCount } = useSearch(activePage, debouncedSearch);
+  const { totalCount, fetchUsers, fetchRepos } = useSearch(
+    activePage,
+    debouncedSearch
+  );
 
   const totalPages = Math.ceil(totalCount / 10);
   const pageQueue = usePagination(activePage, totalPages);
 
-  const handlePrevPage = () => {
+  const handlePrevPage = useCallback(() => {
     if (1 < activePage) {
       setActivePage(activePage - 1);
     }
-  };
-  const handleNextPage = () => {
+  }, [activePage, setActivePage]);
+
+  const handleNextPage = useCallback(() => {
     if (activePage <= totalPages - 1) {
       setActivePage(activePage + 1);
     }
-  };
+  }, [activePage, setActivePage, totalPages]);
 
-  if (totalPages <= 1) {
+  if (totalPages <= 1 || fetchUsers.isError || fetchRepos.isError) {
     return null;
   }
 

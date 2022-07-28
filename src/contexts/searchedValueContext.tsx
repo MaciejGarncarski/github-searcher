@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { createContext, ReactNode, useState } from 'react';
 
+import { StringGuard } from '@/utils/StringGuard';
+
 type SearchContextProps = {
   searchedValue: string;
   setSearchedValue: (number: string) => void;
@@ -16,10 +18,9 @@ export const SearchContext =
 
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const { q } = router.query;
 
-  const [searchedValue, setSearchedValue] = useState<string>(
-    typeof router.query.q === 'string' ? router.query.q : ''
-  );
+  const [searchedValue, setSearchedValue] = useState<string>(StringGuard(q));
 
   const value = {
     searchedValue,

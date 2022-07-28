@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { BsArrowLeft } from 'react-icons/bs';
 
-import { useSearchValue } from '@/hooks/useContexts';
+import { useSearchedValue } from '@/hooks/useContexts';
 import type { ApiResponse } from '@/utils/queries';
 import { getColors, getRepos, getUsers } from '@/utils/queries';
 
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
 
 export const BackLink = () => {
-  const { searchedValue } = useSearchValue();
+  const { searchedValue } = useSearchedValue();
   const queryClient = useQueryClient();
 
   const searchString = searchedValue === '' ? 'Typescript' : searchedValue;
@@ -26,6 +26,7 @@ export const BackLink = () => {
     );
     await queryClient.prefetchQuery(['github language color'], getColors);
   };
+
   return (
     <Link href='/' passHref>
       <motion.a

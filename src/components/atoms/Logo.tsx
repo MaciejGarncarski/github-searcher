@@ -17,7 +17,7 @@ import { NextImage } from '@/components/atoms/NextImage';
 export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
   return (
     <h1>
-      <Link href='/' shallow>
+      <Link href='/'>
         <a className='flex items-center gap-5'>
           <NextImage
             src={src}

@@ -9,7 +9,6 @@ import { SearchResults } from '@/components/molecules/SearchResults';
 import { Seo } from '@/components/Seo';
 
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
-
 type HomeProps = {
   initialReposData: ApiResponse<RepoTypes[]>;
   initialUsersData: ApiResponse<UserTypes[]>;
@@ -26,7 +25,7 @@ const Home: NextPage<HomeProps> = () => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>(
     [`repos`, { page: 1, search: initialQueryString }],

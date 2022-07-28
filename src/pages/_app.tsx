@@ -13,7 +13,7 @@ import { useState } from 'react';
 import '@/styles/globals.css';
 
 import { ActivePageProvider } from '@/contexts/activePageContext';
-import { SearchProvider } from '@/contexts/searchValueContext';
+import { SearchProvider } from '@/contexts/searchedValueContext';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
