@@ -1,21 +1,17 @@
 import { ReactNode } from 'react';
 
 type ResultDescriptionProps = {
-  italic?: boolean;
   children: ReactNode;
   className?: string;
 };
 
 export const ResultDescription = ({
-  italic,
   children,
-  className,
+  className = '',
 }: ResultDescriptionProps) => {
   return (
     <p
-      className={`col-start-2 self-center break-all text-lg ${
-        italic && 'italic'
-      } ${className}`}
+      className={`col-start-2 max-w-prose self-center overflow-hidden text-xl leading-relaxed  ${className}`}
     >
       {children}
     </p>

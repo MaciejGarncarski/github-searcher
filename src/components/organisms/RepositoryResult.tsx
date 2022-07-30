@@ -46,7 +46,7 @@ export const RepositoryResult = ({
               style={{
                 backgroundColor: color.data[language ?? '']?.color,
               }}
-              className='h-3.5 w-3.5 rounded-xl border dark:border-white lg:h-4 lg:w-4 '
+              className='h-5 w-5 rounded-xl border dark:border-white'
             ></span>
           )}
           {language}
@@ -59,11 +59,11 @@ export const RepositoryResult = ({
   return (
     <ResultListItem>
       <ResultContainer>
-        <GoRepo size={25} className='mt-1' />
-        <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
+        <GoRepo size={32} className='mt-1' />
+        <ResultHeading>{fullName}</ResultHeading>
 
         {description && (
-          <ResultDescription italic className='w-full'>
+          <ResultDescription className='w-full'>
             {description}
           </ResultDescription>
         )}

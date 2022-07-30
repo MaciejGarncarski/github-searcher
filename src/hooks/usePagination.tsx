@@ -42,7 +42,9 @@ export const usePagination = (activePage: number, totalPages: number) => {
     if (canShowLeftDots && !canShowRightDots) {
       const pages = calculatePageQueue(totalPages - 2, totalPages);
 
-      const halfOfPages = (Math.min(...pages.asNumbers) / 2).toString();
+      const halfOfPages = Math.floor(
+        Math.min(...pages.asNumbers) / 2
+      ).toString();
 
       setPageQueue([
         previous100Pages,

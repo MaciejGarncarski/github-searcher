@@ -27,6 +27,7 @@ export const UserResult = ({
 }: UserResultProps) => {
   const whileHover = { scale: 1.02 };
 
+  const userDescription = bio?.substring(0, 200) + '\u2026';
   return (
     <ResultListItem whileHover={whileHover}>
       <Link href={`/user/${login}`} passHref>
@@ -38,18 +39,25 @@ export const UserResult = ({
                 width={176}
                 height={176}
                 alt={`${login}'s avatar`}
-                className='w-8 rounded-full lg:w-8'
+                className='w-9 rounded-full'
                 imgClassName='rounded-3xl'
                 priority={true}
               />
             </Suspense>
-            <div className='col-start-2 '>
-              <ResultHeading className='text-2xl'>{fullName}</ResultHeading>
-              <Text type='p' className='text-xl dark:text-white'>
+
+            <div className='col-start-2 row-span-full '>
+              <ResultHeading className='flex items-center gap-3 underline'>
+                {fullName}
+              </ResultHeading>
+              <Text type='p' className='text-2xl dark:text-white'>
                 {login}
               </Text>
             </div>
-            {bio && <ResultDescription italic>{bio}</ResultDescription>}
+            {bio && (
+              <ResultDescription>
+                {bio.length > 120 ? userDescription : bio}
+              </ResultDescription>
+            )}
             <ShieldsContainer>
               {location && <Shield>🏠 {location}</Shield>}
             </ShieldsContainer>

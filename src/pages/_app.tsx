@@ -7,7 +7,7 @@ import { Hydrate } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
-import NextProgress from 'next-progress';
+import NextNProgress from 'nextjs-progressbar';
 import { useState } from 'react';
 
 import '@/styles/globals.css';
@@ -33,11 +33,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <SearchProvider>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <NextProgress
-              height='2px'
-              delay={200}
+            <NextNProgress
               color='#2563eb'
-              options={{ showSpinner: false }}
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={3}
+              showOnShallow={true}
+              options={{ easing: 'ease', speed: 500 }}
             />
             <MotionConfig reducedMotion='user'>
               <ReactQueryDevtools />

@@ -96,10 +96,7 @@ export const UserProfile = () => {
         priority
       />
       {data.bio && (
-        <ResultDescription
-          italic
-          className='w-full break-words px-4 text-center text-2xl lg:w-1/3 lg:break-normal'
-        >
+        <ResultDescription className='w-full break-words px-4 text-center text-3xl lg:w-1/3 lg:break-normal'>
           {data.bio}
         </ResultDescription>
       )}

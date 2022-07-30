@@ -44,12 +44,15 @@ export const Pagination = () => {
   }
 
   return (
-    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-2xl md:mt-20  md:flex md:justify-center md:gap-10 lg:gap-20'>
+    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-3xl md:mt-20  md:flex md:justify-center md:gap-10 '>
       <PaginationButton onClick={handlePrevPage} disabled={activePage === 1}>
         <HiOutlineChevronLeft className='mt-1' size={24} />
         Prev
       </PaginationButton>
-      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 grid grid-cols-7 gap-1 md:gap-2'>
+      <span className='col-start-1 col-end-3 row-start-1 row-end-2 mx-auto md:hidden'>
+        {activePage}/{totalPages}
+      </span>
+      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
         {pageQueue.map((pageNum, idx) => {
           if (pageNum === '...') {
             return (

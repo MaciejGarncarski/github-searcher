@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FormEvent } from 'react';
-import { RiCloseLine } from 'react-icons/ri';
+import { IoMdClose } from 'react-icons/io';
 
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 
@@ -30,7 +30,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
           searchedValue === '' ? '' : 'hover:bg-slate-600 hover:text-white'
         }`}
       >
-        <RiCloseLine size={32} />
+        <IoMdClose size={32} />
       </motion.button>
     );
   }
@@ -39,7 +39,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
     <motion.input
       type={type}
       placeholder={placeholder}
-      className='border-0 bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl'
+      className='w-full border-0 bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:w-auto md:text-2xl'
       value={searchedValue}
       onInput={onInput}
     />

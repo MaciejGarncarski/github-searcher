@@ -15,7 +15,7 @@ import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
   const { push, isReady } = useRouter();
-  const { activePage, setActivePage } = useActivePage();
+  const { activePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
 
   const debouncedSearch = useDebounce(
@@ -48,12 +48,6 @@ export const ResultsList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage, isReady, searchedValue]);
 
-  useEffect(() => {
-    if (apiResponseData.length === 0) {
-      setActivePage(1);
-    }
-  }, [apiResponseData.length, setActivePage]);
-
   if (fetchUsers.isFetching || fetchRepos.isFetching) {
     return <ResultPlaceholder placeholderAmount={5} />;
   }
@@ -67,15 +61,16 @@ export const ResultsList = () => {
   }
 
   return (
-    <section className='align-center flex flex-col justify-start px-6 py-7  xl:px-24'>
-      <Text type='h2' className='break-words py-4  text-3xl dark:text-white'>
-        {totalCount.toLocaleString('en-GB')} results
+    <section className='align-center flex flex-col justify-start px-5 py-7  xl:px-24'>
+      <Text type='h2' className='break-words py-4 text-4xl dark:text-white'>
+        {totalCount.toLocaleString('en-GB')}
+
+        {totalCount > 1 ? ' results' : ' result'}
       </Text>
       <motion.ul
         variants={placeholderVariants}
         initial='initial'
         animate='animate'
-        exit={{ opacity: 0 }}
       >
         {apiResponseData.map((apiResponse) => {
           if ('avatar_url' in apiResponse) {

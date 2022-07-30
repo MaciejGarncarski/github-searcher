@@ -5,7 +5,7 @@ import { SearchContext } from '@/contexts/searchedValueContext';
 
 export const useActivePage = () => {
   const context = useContext(ActivePageContext);
-  if (context === undefined) {
+  if (context === undefined || context === null) {
     throw new Error('useActivePage must be used within a ActivePageProvider');
   }
   return context;
@@ -13,7 +13,7 @@ export const useActivePage = () => {
 
 export const useSearchedValue = () => {
   const context = useContext(SearchContext);
-  if (context === undefined) {
+  if (context === undefined || context === null) {
     throw new Error(
       'useSearchValue must be used within a SearchContextProvider'
     );

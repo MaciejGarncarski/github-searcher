@@ -22,7 +22,7 @@ module.exports = {
         header: 'repeat(3, auto)',
       },
       fontFamily: {
-        primary: ['Lato', ...fontFamily.sans],
+        primary: [...fontFamily.sans],
       },
       colors: {
         primary: {

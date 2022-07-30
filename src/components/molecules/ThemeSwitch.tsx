@@ -1,30 +1,43 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
+import { IconType } from 'react-icons';
+import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
-import { ThemeIcon } from '@/components/atoms/ThemeIcon';
+import { ThemeButton } from '@/components/atoms/ThemeButton';
+
+type ThemeInfo = {
+  themeColor: 'dark' | 'light' | 'system';
+  Icon: IconType;
+};
+
+const themes: ThemeInfo[] = [
+  {
+    themeColor: 'light',
+    Icon: BsSun,
+  },
+  {
+    themeColor: 'dark',
+    Icon: BsMoon,
+  },
+  {
+    themeColor: 'system',
+    Icon: BsLaptop,
+  },
+];
 
 export const ThemeSwitch = () => {
   const [value, setValue] = useLocalStorage('theme', 'light');
-
-  const checked = value === 'dark';
-
-  const handleClick = () => {
-    if (value === 'light') {
-      setValue('dark');
-    }
-    if (value === 'dark') {
-      setValue('system');
-    }
-    if (value === 'system') {
-      setValue('light');
-    }
-  };
 
   const changeTheme = (themeColor: string) => {
     const htmlTag = document.documentElement;
     htmlTag.className = themeColor;
     htmlTag.style.colorScheme = themeColor;
+  };
+
+  const handleThemeChange = (themeColor: 'dark' | 'light' | 'system') => {
+    setValue(themeColor);
   };
 
   const handleChange = useCallback(
@@ -38,13 +51,6 @@ export const ThemeSwitch = () => {
     },
     []
   );
-
-  useEffect(() => {
-    const detectColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    detectColorScheme.addEventListener('change', handleChange);
-
-    return () => detectColorScheme.removeEventListener('change', handleChange);
-  }, [handleChange]);
 
   useEffect(() => {
     if (value === 'light') {
@@ -61,15 +67,26 @@ export const ThemeSwitch = () => {
     }
   }, [handleChange, value]);
 
+  useEffect(() => {
+    const detectColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    detectColorScheme.addEventListener('change', handleChange);
+    return () => detectColorScheme.removeEventListener('change', handleChange);
+  }, [handleChange]);
+
   return (
-    <label className=' ml-auto cursor-pointer justify-self-start drop-shadow-lg lg:ml-10 lg:self-center'>
-      <input
-        className='peer absolute h-0 w-0 opacity-0'
-        type='checkbox'
-        checked={checked}
-        onChange={handleClick}
-      />
-      <ThemeIcon theme={value} />
-    </label>
+    <fieldset className='mt-4 flex flex-col gap-y-3 text-white'>
+      <legend className='mb-4 text-3xl'>Choose theme</legend>
+      {themes.map(({ themeColor, Icon }) => {
+        return (
+          <ThemeButton
+            key={themeColor}
+            themeColor={themeColor}
+            Icon={Icon}
+            activeThemeColor={value}
+            onChange={() => handleThemeChange(themeColor)}
+          />
+        );
+      })}
+    </fieldset>
   );
 };
