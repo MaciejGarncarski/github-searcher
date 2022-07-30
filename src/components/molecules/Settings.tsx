@@ -42,7 +42,10 @@ export const Settings = () => {
   }, [isOpen]);
 
   return (
-    <div className='flex items-end justify-self-end md:relative' ref={formRef}>
+    <div
+      className='col-span-2 row-start-1 flex items-end justify-self-end md:relative'
+      ref={formRef}
+    >
       <motion.button
         title='settings'
         className='text-5xl text-white'
@@ -55,8 +58,8 @@ export const Settings = () => {
         <IoMdSettings />
       </motion.button>
       <form
-        className={`absolute right-0 min-w-max  rounded-lg bg-slate-700 p-8 shadow-xl transition-all md:left-0 ${
-          isOpen ? 'top-32 block md:top-16' : 'hidden'
+        className={`absolute right-0 min-w-max rounded-lg  bg-slate-700 p-8 shadow-xl transition-all lg:-right-8 ${
+          isOpen ? 'top-32 block lg:top-16' : 'hidden'
         }`}
       >
         <ThemeSwitch />

@@ -8,8 +8,8 @@ export const Header = () => {
   return (
     <header className='sticky top-0 z-20 grid grid-cols-2 gap-y-4 bg-slate-700 px-8 pt-2 pb-4 shadow-xl lg:flex lg:gap-x-20 lg:px-10 lg:py-3'>
       <Logo src={logoImg} alt='github mark' size={48} placeholder='empty' />
-      <Settings />
       <SearchForm />
+      <Settings />
     </header>
   );
 };
