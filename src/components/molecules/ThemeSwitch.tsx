@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
-import { useCallback } from 'react';
 import { IconType } from 'react-icons';
 import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useThemeChange } from '@/hooks/useThemeChange';
 
 import { ThemeButton } from '@/components/atoms/ThemeButton';
 
@@ -30,48 +29,11 @@ const themes: ThemeInfo[] = [
 export const ThemeSwitch = () => {
   const [value, setValue] = useLocalStorage('theme', 'light');
 
-  const changeTheme = (themeColor: string) => {
-    const htmlTag = document.documentElement;
-    htmlTag.className = themeColor;
-    htmlTag.style.colorScheme = themeColor;
-  };
-
   const handleThemeChange = (themeColor: 'dark' | 'light' | 'system') => {
     setValue(themeColor);
   };
 
-  const handleChange = useCallback(
-    (colorScheme: MediaQueryList | MediaQueryListEvent) => {
-      if (colorScheme.matches) {
-        changeTheme('dark');
-      }
-      if (!colorScheme.matches) {
-        changeTheme('light');
-      }
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (value === 'light') {
-      changeTheme('light');
-    }
-    if (value === 'dark') {
-      changeTheme('dark');
-    }
-    if (value === 'system') {
-      const detectColorScheme = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      );
-      handleChange(detectColorScheme);
-    }
-  }, [handleChange, value]);
-
-  useEffect(() => {
-    const detectColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    detectColorScheme.addEventListener('change', handleChange);
-    return () => detectColorScheme.removeEventListener('change', handleChange);
-  }, [handleChange]);
+  useThemeChange(value);
 
   return (
     <fieldset className='mt-4 flex flex-col gap-y-3 text-white'>
