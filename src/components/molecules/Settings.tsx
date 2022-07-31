@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { IoMdClose, IoMdSettings } from 'react-icons/io';
 
+import { ColorSwitch } from '@/components/molecules/ColorSwitch';
 import { ThemeSwitch } from '@/components/molecules/ThemeSwitch';
 
 const buttonVariants: Variants = {
@@ -57,12 +58,13 @@ export const Settings = () => {
       >
         <IoMdSettings />
       </motion.button>
-      <form
+      <div
         className={`absolute right-0 min-w-max rounded-lg  bg-slate-700 p-8 shadow-xl transition-all lg:-right-8 ${
-          isOpen ? 'top-32 block lg:top-16' : 'hidden'
+          isOpen ? 'top-20 block' : 'hidden'
         }`}
       >
         <ThemeSwitch />
+        <ColorSwitch />
         <motion.button
           type='button'
           onClick={() => setIsOpen(false)}
@@ -72,7 +74,7 @@ export const Settings = () => {
         >
           <IoMdClose />
         </motion.button>
-      </form>
+      </div>
     </div>
   );
 };

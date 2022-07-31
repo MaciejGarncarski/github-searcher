@@ -6,8 +6,10 @@ import { useThemeChange } from '@/hooks/useThemeChange';
 
 import { ThemeButton } from '@/components/atoms/ThemeButton';
 
+export type ThemeColors = 'dark' | 'light' | 'system';
+
 type ThemeInfo = {
-  themeColor: 'dark' | 'light' | 'system';
+  themeColor: ThemeColors;
   Icon: IconType;
 };
 
@@ -29,15 +31,15 @@ const themes: ThemeInfo[] = [
 export const ThemeSwitch = () => {
   const [value, setValue] = useLocalStorage('theme', 'light');
 
-  const handleThemeChange = (themeColor: 'dark' | 'light' | 'system') => {
+  const handleThemeChange = (themeColor: ThemeColors) => {
     setValue(themeColor);
   };
 
   useThemeChange(value);
 
   return (
-    <fieldset className='mt-4 flex flex-col gap-y-3 text-white'>
-      <legend className='mb-4 text-3xl'>Choose theme</legend>
+    <form className='mt-4 flex flex-col gap-y-3 text-white'>
+      <h3 className='mb-4 text-3xl'>Choose theme</h3>
       {themes.map(({ themeColor, Icon }) => {
         return (
           <ThemeButton
@@ -49,6 +51,6 @@ export const ThemeSwitch = () => {
           />
         );
       })}
-    </fieldset>
+    </form>
   );
 };

@@ -13,15 +13,16 @@ import { useState } from 'react';
 import '@/styles/globals.css';
 
 import { ActivePageProvider } from '@/contexts/activePageContext';
+import { MainColorProvider } from '@/contexts/mainColorContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
     defaultOptions: {
       queries: {
-        retry: 1,
-        keepPreviousData: true,
+        retry: 2,
         refetchOnWindowFocus: false,
+        staleTime: 30 * 1000,
       },
     },
   };
@@ -31,22 +32,24 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ActivePageProvider>
       <SearchProvider>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <NextNProgress
-              color='#2563eb'
-              startPosition={0.3}
-              stopDelayMs={200}
-              height={3}
-              showOnShallow={true}
-              options={{ easing: 'ease', speed: 500 }}
-            />
-            <MotionConfig reducedMotion='user'>
-              <ReactQueryDevtools />
-              <Component {...pageProps} />
-            </MotionConfig>
-          </Hydrate>
-        </QueryClientProvider>
+        <MainColorProvider>
+          <QueryClientProvider client={queryClient}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <NextNProgress
+                color='#2563eb'
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={3}
+                showOnShallow={true}
+                options={{ easing: 'ease', speed: 500 }}
+              />
+              <MotionConfig reducedMotion='user'>
+                <ReactQueryDevtools />
+                <Component {...pageProps} />
+              </MotionConfig>
+            </Hydrate>
+          </QueryClientProvider>
+        </MainColorProvider>
       </SearchProvider>
     </ActivePageProvider>
   );

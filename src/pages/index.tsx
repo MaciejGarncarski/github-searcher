@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import type { NextPage } from 'next';
+import type { GetServerSidePropsContext, NextPage } from 'next';
 
 import type { ApiResponse } from '@/utils/queries';
 import { getColors, getRepos, getUsers } from '@/utils/queries';
@@ -9,6 +9,7 @@ import { SearchResults } from '@/components/molecules/SearchResults';
 import { Seo } from '@/components/Seo';
 
 import type { RepoTypes, UserTypes } from '@/types/responseTypes';
+
 type HomeProps = {
   initialReposData: ApiResponse<RepoTypes[]>;
   initialUsersData: ApiResponse<UserTypes[]>;
@@ -25,17 +26,18 @@ const Home: NextPage<HomeProps> = () => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { q, page } = context.query;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>(
-    [`repos`, { page: 1, search: initialQueryString }],
+    [`repos`, { page: page ?? 1, search: q ?? initialQueryString }],
     () => getRepos(initialQueryString, 1)
   );
+  await queryClient.prefetchQuery(['github language color'], getColors);
   await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>(
-    [`users`, { page: 1, search: initialQueryString }],
+    [`users`, { page: page ?? 1, search: q ?? initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery(['github language color'], getColors);
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

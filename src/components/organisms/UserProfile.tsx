@@ -32,6 +32,7 @@ export const UserProfile = () => {
   const fetchHeaders = {
     headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
   };
+
   const { data, isError, isFetching, isLoading } = useQuery(
     ['users', { username: userName }],
     () => getSingleUser(userName, fetchHeaders)
@@ -77,14 +78,14 @@ export const UserProfile = () => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className='mx-8 mt-12 flex min-h-page flex-col items-center gap-7 text-3xl dark:text-white lg:justify-center lg:gap-10 lg:text-4xl'
+      className=''
     >
       <BackLink />
       <div className='flex flex-col items-center gap-2'>
         <ResultHeading className='text-center text-4xl lg:text-5xl'>
           {data.name}
         </ResultHeading>
-        <Text className='dark:text-white'>{data.login}</Text>
+        <Text className='text-3xl dark:text-white'>{data.login}</Text>
       </div>
       <NextImage
         src={data.avatar_url}
@@ -96,7 +97,7 @@ export const UserProfile = () => {
         priority
       />
       {data.bio && (
-        <ResultDescription className='w-full break-words px-4 text-center text-3xl lg:w-1/3 lg:break-normal'>
+        <ResultDescription className='text-center text-3xl lg:w-1/3 lg:break-normal'>
           {data.bio}
         </ResultDescription>
       )}

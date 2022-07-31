@@ -9,6 +9,7 @@ import { useSearch } from '@/hooks/useSearch';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
 import { PaginationNumber } from '@/components/atoms/PaginationNumber';
+
 export const Pagination = () => {
   const { activePage, setActivePage } = useActivePage();
 

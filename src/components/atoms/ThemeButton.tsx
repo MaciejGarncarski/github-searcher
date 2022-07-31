@@ -1,6 +1,6 @@
 import { IconType } from 'react-icons';
 
-type ThemeColors = 'dark' | 'light' | 'system';
+import type { ThemeColors } from '@/components/molecules/ThemeSwitch';
 
 type ThemeButtonProps = {
   themeColor: ThemeColors;

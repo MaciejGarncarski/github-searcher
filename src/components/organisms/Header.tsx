@@ -6,7 +6,7 @@ import logoImg from '@/images/GitHub-Mark-Light-64px.png';
 
 export const Header = () => {
   return (
-    <header className='sticky top-0 z-20 grid grid-cols-2 gap-y-4 bg-slate-700 px-8 pt-2 pb-4 shadow-xl lg:flex lg:gap-x-20 lg:px-10 lg:py-3'>
+    <header className='sticky top-0 z-20 flex items-center justify-between gap-x-6 bg-slate-700 px-4 py-3 shadow-xl sm:gap-x-20 sm:px-10 sm:py-3'>
       <Logo src={logoImg} alt='github mark' size={48} placeholder='empty' />
       <SearchForm />
       <Settings />

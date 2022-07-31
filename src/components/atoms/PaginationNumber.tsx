@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
+import { useMainColor } from '@/hooks/useContexts';
+import { backgroundColors } from '@/utils/colors';
+
 type PaginationNumberProps = {
   children: ReactNode;
   pageNum: string;
@@ -15,6 +18,8 @@ export const PaginationNumber = ({
   onClick,
 }: PaginationNumberProps) => {
   const animateY = activePage === +pageNum ? { y: 0 } : { y: -8 };
+  const { mainColor } = useMainColor();
+
   return (
     <motion.button
       type='button'
@@ -25,7 +30,7 @@ export const PaginationNumber = ({
     md:py-1.5 
     ${
       activePage === +pageNum
-        ? 'cursor-not-allowed bg-blue-600 text-white dark:bg-blue-400'
+        ? `cursor-not-allowed ${backgroundColors[mainColor]} text-white transition-colors`
         : 'cursor-pointer'
     }`}
       whileTap={activePage === +pageNum ? {} : { scale: 0.9 }}
