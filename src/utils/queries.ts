@@ -56,7 +56,7 @@ export const getRepos = async (
   throw new Error(`Failed to fetch repos`);
 };
 
-type fetchHeadersType = {
+type Headers = {
   headers: {
     Authorization: string;
   };
@@ -64,7 +64,7 @@ type fetchHeadersType = {
 
 export const getSingleUser = async (
   name: string,
-  fetchHeaders: fetchHeadersType
+  fetchHeaders: Headers | undefined
 ): Promise<UserTypes> => {
   const resp = await fetch(
     `https://api.github.com/users/${name}`,

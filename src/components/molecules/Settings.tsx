@@ -47,17 +47,21 @@ export const Settings = () => {
       className='col-span-2 row-start-1 flex items-end justify-self-end md:relative'
       ref={formRef}
     >
-      <motion.button
+      <button
         title='settings'
-        className='text-5xl text-white'
+        className='overflow-hidden rounded-full p-1 text-5xl text-white transition-colors hover:bg-slate-500 focus:bg-slate-500'
         type='button'
         onClick={() => setIsOpen((prevState) => !prevState)}
-        initial='closed'
-        variants={buttonVariants}
-        animate={isOpen ? 'open' : 'closed'}
       >
-        <IoMdSettings />
-      </motion.button>
+        <motion.span
+          className='flex items-center'
+          initial='closed'
+          variants={buttonVariants}
+          animate={isOpen ? 'open' : 'closed'}
+        >
+          <IoMdSettings />
+        </motion.span>
+      </button>
       <div
         className={`absolute right-0 min-w-max rounded-lg  bg-slate-700 p-8 shadow-xl transition-all lg:-right-8 ${
           isOpen ? 'top-20 block' : 'hidden'
@@ -68,7 +72,7 @@ export const Settings = () => {
         <motion.button
           type='button'
           onClick={() => setIsOpen(false)}
-          className='absolute right-2 top-2 text-4xl text-white'
+          className='absolute right-2 top-2 rounded-full p-1 text-4xl text-white hover:bg-slate-500 focus:bg-slate-500'
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

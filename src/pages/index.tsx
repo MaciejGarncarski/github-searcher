@@ -2,7 +2,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 
 import type { ApiResponse } from '@/utils/queries';
-import { getColors, getRepos, getUsers } from '@/utils/queries';
+import { getRepos, getUsers } from '@/utils/queries';
 
 import { Layout } from '@/components/Layout';
 import { SearchResults } from '@/components/molecules/SearchResults';
@@ -33,7 +33,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     [`repos`, { page: page ?? 1, search: q ?? initialQueryString }],
     () => getRepos(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery(['github language color'], getColors);
   await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>(
     [`users`, { page: page ?? 1, search: q ?? initialQueryString }],
     () => getUsers(initialQueryString, 1)

@@ -5,15 +5,15 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import { ColorButton } from '@/components/atoms/ColorButton';
 
-export type ColorType = 'blue' | 'red' | 'green' | 'yellow';
+export type Color = 'blue' | 'red' | 'green' | 'yellow';
 
-const colors: ColorType[] = ['blue', 'red', 'green', 'yellow'];
+const colors: Color[] = ['blue', 'red', 'green', 'yellow'];
 
 export const ColorSwitch = () => {
   const [value, setValue] = useLocalStorage('mainColor', 'blue');
   const { setMainColor } = useMainColor();
 
-  const handleColorChange = (themeColor: ColorType) => {
+  const handleColorChange = (themeColor: Color) => {
     setValue(themeColor);
   };
 

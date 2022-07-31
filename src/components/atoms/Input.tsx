@@ -4,10 +4,17 @@ import { IoMdClose } from 'react-icons/io';
 
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 
-type InputProps = {
-  type: 'text' | 'number' | 'search' | 'reset' | 'password' | 'email';
-  placeholder?: string;
-};
+type InputType = 'text' | 'number' | 'search' | 'password' | 'email' | 'tel';
+
+type InputProps =
+  | {
+      type: 'reset';
+      placeholder?: never;
+    }
+  | {
+      type: InputType;
+      placeholder?: string;
+    };
 
 export const Input = ({ type, placeholder }: InputProps) => {
   const { searchedValue, setSearchedValue } = useSearchedValue();
@@ -24,7 +31,8 @@ export const Input = ({ type, placeholder }: InputProps) => {
     return (
       <motion.button
         type='reset'
-        disabled={searchedValue === ''}
+        data-testid='reset-btn'
+        disabled={searchedValue === '' ? true : false}
         whileTap={{ scale: 0.9 }}
         className={`cursor-pointer bg-slate-200 px-2 text-slate-900  transition-colors disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-200 ${
           searchedValue === '' ? '' : 'hover:bg-slate-600 hover:text-white'

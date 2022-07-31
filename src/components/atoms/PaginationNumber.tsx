@@ -1,24 +1,24 @@
 import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
-import { useMainColor } from '@/hooks/useContexts';
+import { useActivePage, useMainColor } from '@/hooks/useContexts';
 import { backgroundColors } from '@/utils/colors';
 
 type PaginationNumberProps = {
   children: ReactNode;
   pageNum: string;
-  activePage: number;
   onClick: MouseEventHandler;
 };
 
 export const PaginationNumber = ({
   children,
   pageNum,
-  activePage,
   onClick,
 }: PaginationNumberProps) => {
-  const animateY = activePage === +pageNum ? { y: 0 } : { y: -8 };
+  const { activePage } = useActivePage();
   const { mainColor } = useMainColor();
+
+  const animateY = activePage === +pageNum ? { y: 0 } : { y: -8 };
 
   return (
     <motion.button

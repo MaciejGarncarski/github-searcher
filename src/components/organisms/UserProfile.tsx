@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
-import { getSingleUser } from '@/utils/queries';
+import { useUser } from '@/hooks/useUser';
 import { StringGuard } from '@/utils/StringGuard';
 
 import { BackLink } from '@/components/atoms/BackLink';
@@ -19,7 +18,7 @@ import {
   UserProfilePlaceholder,
 } from '@/components/molecules/UserProfilePlaceholder';
 
-export type TagDataType = {
+export type TagData = {
   Icon: IconType | string;
   value: string;
   title: string;
@@ -29,16 +28,9 @@ export const UserProfile = () => {
   const { query } = useRouter();
   const userName = StringGuard(query.name);
 
-  const fetchHeaders = {
-    headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
-  };
+  const { data, isError, isFetching, isLoading } = useUser(userName);
 
-  const { data, isError, isFetching, isLoading } = useQuery(
-    ['users', { username: userName }],
-    () => getSingleUser(userName, fetchHeaders)
-  );
-
-  const tagsData: TagDataType[] = [
+  const tagsData: TagData[] = [
     {
       Icon: GoRepo,
       value: `${data?.public_repos}`,
