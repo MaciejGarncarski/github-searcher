@@ -4,6 +4,8 @@ import { useMainColor } from '@/hooks/useContexts';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 import { ColorButton } from '@/components/atoms/ColorButton';
+import { SettingFormContainer } from '@/components/atoms/SettingFormContainer';
+import { SettingHeading } from '@/components/atoms/SettingHeading';
 
 export type Color = 'blue' | 'red' | 'green' | 'yellow';
 
@@ -22,8 +24,9 @@ export const ColorSwitch = () => {
   }, [setMainColor, value]);
 
   return (
-    <form className='mt-4 flex flex-col gap-y-3 text-white'>
-      <h3 className='mb-4 text-3xl'>Choose color</h3>
+    <SettingFormContainer>
+      <SettingHeading>Color</SettingHeading>
+
       <div className='flex items-center justify-center gap-2'>
         {colors.map((color) => {
           return (
@@ -36,6 +39,6 @@ export const ColorSwitch = () => {
           );
         })}
       </div>
-    </form>
+    </SettingFormContainer>
   );
 };

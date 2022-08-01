@@ -4,6 +4,8 @@ import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useThemeChange } from '@/hooks/useThemeChange';
 
+import { SettingFormContainer } from '@/components/atoms/SettingFormContainer';
+import { SettingHeading } from '@/components/atoms/SettingHeading';
 import { ThemeButton } from '@/components/atoms/ThemeButton';
 
 export type ThemeColors = 'dark' | 'light' | 'system';
@@ -38,8 +40,8 @@ export const ThemeSwitch = () => {
   useThemeChange(value);
 
   return (
-    <form className='mt-4 flex flex-col gap-y-3 text-white'>
-      <h3 className='mb-4 text-3xl'>Choose theme</h3>
+    <SettingFormContainer>
+      <SettingHeading>Theme</SettingHeading>
       {themes.map(({ themeColor, Icon }) => {
         return (
           <ThemeButton
@@ -51,6 +53,6 @@ export const ThemeSwitch = () => {
           />
         );
       })}
-    </form>
+    </SettingFormContainer>
   );
 };

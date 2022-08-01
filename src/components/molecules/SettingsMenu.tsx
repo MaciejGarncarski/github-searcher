@@ -12,10 +12,10 @@ type SettingsMenuProps = {
 const menuVariants: Variants = {
   open: {
     display: 'block',
-    scale: [0.8, 1.03, 1],
+    scale: 1,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
       type: 'spring',
     },
   },
@@ -24,7 +24,7 @@ const menuVariants: Variants = {
     opacity: 0,
     transition: {
       ease: 'linear',
-      duration: 0.25,
+      duration: 0.1,
     },
     transitionEnd: {
       display: 'none',
@@ -35,10 +35,11 @@ const menuVariants: Variants = {
 export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
   return (
     <motion.aside
+      data-testid='settings-menu'
       variants={menuVariants}
       initial='closed'
       animate={isOpen ? 'open' : 'closed'}
-      className='absolute right-0 top-20 z-20 min-w-max rounded-md bg-slate-700 p-8 shadow-xl lg:-right-8 lg:rounded-xl'
+      className='absolute right-2 top-24 z-20 min-w-max rounded-md bg-slate-700 p-8 shadow-xl lg:top-20 lg:-right-8 lg:rounded-xl'
     >
       <ThemeSwitch />
       <ColorSwitch />
