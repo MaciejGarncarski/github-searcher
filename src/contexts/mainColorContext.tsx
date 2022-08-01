@@ -2,11 +2,11 @@ import { createContext, ReactNode, useState } from 'react';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
-import { ColorType } from '@/components/molecules/ColorSwitch';
+import { Color } from '@/components/molecules/ColorSwitch';
 
 type ActivePageContextProps = {
-  mainColor: ColorType;
-  setMainColor: (string: ColorType) => void;
+  mainColor: Color;
+  setMainColor: (string: Color) => void;
 };
 
 const contextDefaultValues: ActivePageContextProps = {
@@ -20,7 +20,7 @@ export const MainColorContext =
 export const MainColorProvider = ({ children }: { children: ReactNode }) => {
   const [value] = useLocalStorage('mainColor', 'blue');
 
-  const [mainColor, setMainColor] = useState<ColorType>(value);
+  const [mainColor, setMainColor] = useState<Color>(value);
 
   const colorValue = {
     mainColor,

@@ -1,7 +1,7 @@
-import type { TagDataType } from '@/components/organisms/UserProfile';
+import type { TagData } from '@/components/organisms/UserProfile';
 
 type UserTagListProps = {
-  data: TagDataType[];
+  data: TagData[];
 };
 
 export const UserTagList = ({ data }: UserTagListProps) => {
