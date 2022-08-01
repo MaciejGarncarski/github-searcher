@@ -3,6 +3,7 @@ import { FormEvent } from 'react';
 import { useSearchedValue } from '@/hooks/useContexts';
 
 import { Input } from '@/components/atoms/Input';
+import { ResetButton } from '@/components/atoms/ResetButton';
 
 export const SearchForm = () => {
   const { setSearchedValue } = useSearchedValue();
@@ -18,7 +19,7 @@ export const SearchForm = () => {
       onSubmit={(formEv: FormEvent) => formEv.preventDefault()}
     >
       <Input type='text' placeholder='Search' />
-      <Input type='reset' />
+      <ResetButton />
     </form>
   );
 };

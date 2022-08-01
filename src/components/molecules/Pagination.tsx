@@ -54,18 +54,20 @@ export const Pagination = () => {
         {activePage}/{totalPages}
       </span>
       <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
-        {pageQueue.map((pageNum, idx) => {
+        {pageQueue.map((pageNum) => {
           if (pageNum === '...') {
             return (
-              <span className=' text-center dark:text-white ' key={idx}>
+              <span
+                className=' text-center dark:text-white '
+                key={pageNum + Math.random()}
+              >
                 &hellip;
               </span>
             );
           }
           return (
             <PaginationNumber
-              key={idx}
-              activePage={activePage}
+              key={pageNum}
               pageNum={pageNum}
               onClick={() => setActivePage(+pageNum)}
             >

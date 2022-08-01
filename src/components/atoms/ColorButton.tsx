@@ -1,10 +1,10 @@
 import { backgroundColors } from '@/utils/colors';
 
-import { ColorType } from '@/components/molecules/ColorSwitch';
+import { Color } from '@/components/molecules/ColorSwitch';
 
 type ColorButtonProps = {
-  color: ColorType;
-  activeColor: ColorType;
+  color: Color;
+  activeColor: Color;
   onChange: () => void;
 };
 
@@ -22,7 +22,7 @@ export const ColorButton = ({
         onChange={onChange}
       />
       <span
-        className={`inline-block h-8 w-8 rounded-full border-2 border-transparent text-xl shadow-lg transition-all peer-checked:scale-110 peer-checked:border-slate-200  peer-focus:outline peer-focus:outline-offset-2 ${backgroundColors[color]}`}
+        className={`inline-block h-8 w-8 rounded-full border-2 border-transparent text-xl opacity-70 shadow-lg transition-all peer-checked:scale-110 peer-checked:border-slate-200 peer-checked:opacity-100  peer-focus:outline peer-focus:outline-offset-2 ${backgroundColors[color]}`}
       ></span>
     </label>
   );

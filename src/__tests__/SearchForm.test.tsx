@@ -4,6 +4,7 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { createMockRouter } from '@/utils/createMockRouter';
 
 import { Input } from '@/components/atoms/Input';
+import { ResetButton } from '@/components/atoms/ResetButton';
 
 import { SearchContext } from '@/contexts/searchedValueContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';
@@ -18,7 +19,7 @@ describe('<Input />', () => {
         }}
       >
         <Input type='text' />
-        <Input type='reset' />
+        <ResetButton />
       </SearchContext.Provider>
     );
     expect(screen.getByTestId('reset-btn')).toHaveProperty('disabled', true);
@@ -32,7 +33,7 @@ describe('<Input />', () => {
         }}
       >
         <Input type='text' />
-        <Input type='reset' />
+        <ResetButton />
       </SearchContext.Provider>
     );
     expect(screen.getByTestId('reset-btn')).toHaveProperty('disabled', false);

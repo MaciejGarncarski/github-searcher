@@ -1,10 +1,9 @@
 import { motion, Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import { IoMdClose, IoMdSettings } from 'react-icons/io';
+import { IoMdSettings } from 'react-icons/io';
 
-import { ColorSwitch } from '@/components/molecules/ColorSwitch';
-import { ThemeSwitch } from '@/components/molecules/ThemeSwitch';
+import { SettingsMenu } from '@/components/molecules/SettingsMenu';
 
 const buttonVariants: Variants = {
   open: {
@@ -47,7 +46,9 @@ export const Settings = () => {
       className='col-span-2 row-start-1 flex items-end justify-self-end md:relative'
       ref={formRef}
     >
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         title='settings'
         className='overflow-hidden rounded-full p-1 text-5xl text-white transition-colors hover:bg-slate-500 focus:bg-slate-500'
         type='button'
@@ -61,24 +62,8 @@ export const Settings = () => {
         >
           <IoMdSettings />
         </motion.span>
-      </button>
-      <div
-        className={`absolute right-0 min-w-max rounded-lg  bg-slate-700 p-8 shadow-xl transition-all lg:-right-8 ${
-          isOpen ? 'top-20 block' : 'hidden'
-        }`}
-      >
-        <ThemeSwitch />
-        <ColorSwitch />
-        <motion.button
-          type='button'
-          onClick={() => setIsOpen(false)}
-          className='absolute right-2 top-2 rounded-full p-1 text-4xl text-white hover:bg-slate-500 focus:bg-slate-500'
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <IoMdClose />
-        </motion.button>
-      </div>
+      </motion.button>
+      <SettingsMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
