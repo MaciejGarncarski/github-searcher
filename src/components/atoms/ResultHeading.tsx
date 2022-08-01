@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { useMainColor } from '@/hooks/useContexts';
-import { textColors } from '@/utils/colors';
+import { textColors } from '@/utils/colorsConfig';
 
 import { Text } from '@/components/atoms/Text';
 

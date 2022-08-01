@@ -27,7 +27,7 @@ export const ColorSwitch = () => {
     <SettingFormContainer>
       <SettingHeading>Color</SettingHeading>
 
-      <div className='flex items-center justify-center gap-2'>
+      <div className='flex items-center justify-center gap-2 landscape:flex-col'>
         {colors.map((color) => {
           return (
             <ColorButton

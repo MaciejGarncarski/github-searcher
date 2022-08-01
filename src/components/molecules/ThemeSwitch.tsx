@@ -40,7 +40,7 @@ export const ThemeSwitch = () => {
   useThemeChange(value);
 
   return (
-    <SettingFormContainer>
+    <SettingFormContainer themeSwitch>
       <SettingHeading>Theme</SettingHeading>
       {themes.map(({ themeColor, Icon }) => {
         return (

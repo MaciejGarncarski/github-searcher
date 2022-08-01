@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
 import { useMainColor } from '@/hooks/useContexts';
-import { textColors } from '@/utils/colors';
+import { textColors } from '@/utils/colorsConfig';
 
 interface PaginationButtonProps {
   disabled?: boolean;

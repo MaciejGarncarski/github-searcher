@@ -1,4 +1,4 @@
-import { backgroundColors } from '@/utils/colors';
+import { backgroundColors } from '@/utils/colorsConfig';
 
 import { Color } from '@/components/molecules/ColorSwitch';
 

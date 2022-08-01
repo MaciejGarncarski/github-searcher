@@ -43,7 +43,7 @@ export const Settings = () => {
 
   return (
     <div
-      className='col-span-2 row-start-1 flex items-end justify-self-end md:relative'
+      className='col-span-2 row-start-1 flex items-end justify-self-end lg:relative'
       ref={formRef}
     >
       <motion.button
@@ -63,7 +63,7 @@ export const Settings = () => {
           <IoMdSettings />
         </motion.span>
       </motion.button>
-      <SettingsMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isOpen && <SettingsMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
     </div>
   );
 };
