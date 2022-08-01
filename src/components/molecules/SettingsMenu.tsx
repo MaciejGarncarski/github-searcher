@@ -13,18 +13,10 @@ const menuVariants: Variants = {
   open: {
     y: 0,
     opacity: 1,
-    transition: {
-      duration: 0.9,
-      type: 'spring',
-      bounce: 0.6,
-    },
   },
   closed: {
     y: -20,
     opacity: 0,
-    transition: {
-      duration: 0,
-    },
   },
 };
 
@@ -36,6 +28,11 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
         variants={menuVariants}
         initial='closed'
         exit='closed'
+        transition={{
+          duration: 0.9,
+          type: 'spring',
+          bounce: 0.6,
+        }}
         animate={isOpen ? 'open' : 'closed'}
         className='absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-md bg-slate-700 p-8 shadow-xl lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'
       >

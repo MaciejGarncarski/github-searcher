@@ -31,7 +31,7 @@ const themes: ThemeInfo[] = [
 ];
 
 export const ThemeSwitch = () => {
-  const [value, setValue] = useLocalStorage('theme', 'light');
+  const [value, setValue] = useLocalStorage('theme', 'system');
 
   const handleThemeChange = (themeColor: ThemeColors) => {
     setValue(themeColor);
