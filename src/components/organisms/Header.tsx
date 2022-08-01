@@ -39,7 +39,7 @@ export const Header = () => {
     },
     hidden: {
       opacity: 0.7,
-      y: -60,
+      y: -200,
       transition: {
         ease: 'easeInOut',
       },
