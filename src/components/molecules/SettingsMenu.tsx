@@ -15,6 +15,7 @@ const menuVariants: Variants = {
     scale: [0.8, 1.03, 1],
     opacity: 1,
     transition: {
+      duration: 0.5,
       type: 'spring',
     },
   },
@@ -23,6 +24,7 @@ const menuVariants: Variants = {
     opacity: 0,
     transition: {
       ease: 'linear',
+      duration: 0.25,
     },
     transitionEnd: {
       display: 'none',
