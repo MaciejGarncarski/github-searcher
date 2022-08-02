@@ -1,39 +1,49 @@
 import { motion } from 'framer-motion';
-import { MouseEventHandler, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
-import { useActivePage, useMainColor } from '@/hooks/useContexts';
+import { useActivePage, useSettings } from '@/hooks/useContexts';
+import { useSearch } from '@/hooks/useSearch';
 import { backgroundColors } from '@/utils/colorsConfig';
 
 type PaginationNumberProps = {
   children: ReactNode;
-  pageNum: string;
-  onClick: MouseEventHandler;
+  pageNumber: number;
 };
 
 export const PaginationNumber = ({
   children,
-  pageNum,
-  onClick,
+  pageNumber,
 }: PaginationNumberProps) => {
-  const { activePage } = useActivePage();
-  const { mainColor } = useMainColor();
+  const { activePage, setActivePage } = useActivePage();
 
-  const animateY = activePage === +pageNum ? { y: 0 } : { y: -8 };
+  const { accentColor } = useSettings();
+  const { fetchRepos, fetchUsers } = useSearch();
 
+  const animateY = activePage === pageNumber ? { y: 0 } : { y: -8 };
+
+  const handleClick = () => {
+    if (activePage === pageNumber) {
+      return null;
+    }
+
+    setActivePage(pageNumber);
+    fetchUsers.refetch();
+    fetchRepos.refetch();
+  };
   return (
     <motion.button
       type='button'
-      onClick={onClick}
+      onClick={handleClick}
       className={`
     flex-grow rounded-md px-2 py-0.5 dark:text-white
     md:px-4
     md:py-1.5 
     ${
-      activePage === +pageNum
-        ? `cursor-not-allowed ${backgroundColors[mainColor]} text-white transition-colors`
+      activePage === pageNumber
+        ? `cursor-not-allowed ${backgroundColors[accentColor]} text-white transition-colors`
         : 'cursor-pointer'
     }`}
-      whileTap={activePage === +pageNum ? {} : { scale: 0.9 }}
+      whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}
       whileHover={animateY}
       whileFocus={animateY}
     >

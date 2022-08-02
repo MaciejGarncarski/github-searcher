@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 
 import { ActivePageContext } from '@/contexts/activePageContext';
-import { MainColorContext } from '@/contexts/mainColorContext';
 import { SearchContext } from '@/contexts/searchedValueContext';
+import { SettingsContext } from '@/contexts/settingsContext';
 
 export const useActivePage = () => {
   const context = useContext(ActivePageContext);
-  if (context === undefined || context === null) {
+  if (context === undefined) {
     throw new Error('useActivePage must be used within a ActivePageProvider');
   }
   return context;
@@ -14,7 +14,7 @@ export const useActivePage = () => {
 
 export const useSearchedValue = () => {
   const context = useContext(SearchContext);
-  if (context === undefined || context === null) {
+  if (context === undefined) {
     throw new Error(
       'useSearchValue must be used within a SearchContextProvider'
     );
@@ -22,9 +22,9 @@ export const useSearchedValue = () => {
   return context;
 };
 
-export const useMainColor = () => {
-  const context = useContext(MainColorContext);
-  if (context === undefined || context === null) {
+export const useSettings = () => {
+  const context = useContext(SettingsContext);
+  if (context === undefined) {
     throw new Error(
       'useSearchValue must be used within a SearchContextProvider'
     );

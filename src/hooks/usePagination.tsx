@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const usePagination = (activePage: number, totalPages: number) => {
-  const [pageQueue, setPageQueue] = useState<string[]>([
-    '1',
-    '2',
-    '3',
-    '4',
-    '...',
-  ]);
+  const [pageQueue, setPageQueue] = useState<string[]>([]);
 
   useEffect(() => {
     const canShowRightDots = totalPages - 2 > activePage;
@@ -67,7 +61,7 @@ export const usePagination = (activePage: number, totalPages: number) => {
       ]);
     }
 
-    if (totalPages <= 3) {
+    if (totalPages <= 5) {
       const pages = [...Array(totalPages).keys()];
       const pagesAsStrings = pages.map((page) => (page + 1).toString());
       setPageQueue([...pagesAsStrings]);

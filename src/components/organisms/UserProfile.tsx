@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
-import { GoOrganization, GoRepo } from 'react-icons/go';
 
 import { useUser } from '@/hooks/useUser';
+import { getTagsData } from '@/utils/getTagsData';
 import { StringGuard } from '@/utils/StringGuard';
 
 import { BackLink } from '@/components/atoms/BackLink';
@@ -25,40 +25,22 @@ export type TagData = {
 };
 
 export const UserProfile = () => {
-  const { query } = useRouter();
-  const userName = StringGuard(query.name);
+  const { query, isReady } = useRouter();
+  const userName = isReady ? StringGuard(query.name) : 'typescript';
 
-  const { data, isError, isFetching, isLoading } = useUser(userName);
+  const { data, isError, isFetching, isLoading } = useUser(
+    userName ?? 'typescript'
+  );
 
-  const tagsData: TagData[] = [
-    {
-      Icon: GoRepo,
-      value: `${data?.public_repos}`,
-      title: 'Number of repos',
-    },
-    {
-      Icon: GoOrganization,
-      value: `${data?.following} following`,
-      title: 'Following',
-    },
-    {
-      Icon: GoOrganization,
-      value: `${data?.followers} followers`,
-      title: 'Followers',
-    },
-    {
-      Icon: '🏠',
-      value: `${data?.location}`,
-      title: 'Location',
-    },
-  ];
+  const tagsData = getTagsData(data);
 
-  if (isLoading || isFetching) {
+  if (isLoading || isFetching || !isReady) {
     return <UserProfilePlaceholder />;
   }
+
   if (!data || isError) {
     return (
-      <main className='text-3xl lg:text-4xl'>
+      <main className='text-3xl md:text-4xl'>
         <BackLink />
         <ErrorMessage error="Couldn't load this profile" emoji='😣' />;
       </main>
@@ -70,30 +52,34 @@ export const UserProfile = () => {
       variants={placeholderVariants}
       initial='initial'
       animate='animate'
-      className=''
+      className='mx-8 mt-8 flex min-h-profile flex-col items-center justify-center md:mx-auto md:max-w-6xl md:items-start md:px-8'
     >
       <BackLink />
-      <div className='flex flex-col items-center gap-2'>
-        <ResultHeading className='text-center text-4xl lg:text-5xl'>
-          {data.name}
-        </ResultHeading>
-        <Text className='text-3xl dark:text-white'>{data.login}</Text>
+      <div className='mx-auto my-6 flex flex-col justify-center gap-y-14 gap-x-6 rounded-xl py-10 md:grid md:max-w-screen-xl md:grid-cols-profile md:place-content-center md:bg-slate-700 md:px-20 md:shadow-xl '>
+        <NextImage
+          src={data.avatar_url}
+          alt={`${data.login}'s avatar`}
+          width={200}
+          height={200}
+          className='flex items-center justify-center drop-shadow-xl md:justify-end '
+          imgClassName='h-44 w-44 rounded-full'
+          priority
+        />
+        <div className='flex flex-col items-center justify-center gap-2 justify-self-start md:items-start '>
+          <ResultHeading className='text-4xl md:break-normal md:break-words md:text-5xl'>
+            {data.name}
+          </ResultHeading>
+          <Text className='text-3xl font-semibold md:text-white'>
+            @{data.login}
+          </Text>
+        </div>
+        {data.bio && (
+          <ResultDescription className='justify-self-center text-center text-3xl md:col-start-1 md:col-end-3 md:mx-28 md:max-w-prose md:break-normal md:text-white'>
+            {data.bio}
+          </ResultDescription>
+        )}
+        <UserTagList data={tagsData} />
       </div>
-      <NextImage
-        src={data.avatar_url}
-        alt={`${data.login}'s avatar`}
-        width={200}
-        height={200}
-        className='drop-shadow-xl '
-        imgClassName='h-44 w-44 lg:h-56 lg:w-56 rounded-full'
-        priority
-      />
-      {data.bio && (
-        <ResultDescription className='text-center text-3xl lg:w-1/3 lg:break-normal'>
-          {data.bio}
-        </ResultDescription>
-      )}
-      <UserTagList data={tagsData} />
     </motion.main>
   );
 };

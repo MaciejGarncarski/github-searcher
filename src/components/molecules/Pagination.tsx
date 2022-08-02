@@ -2,9 +2,8 @@ import { useCallback } from 'react';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { useActivePage } from '@/hooks/useContexts';
-import { useSearchedValue } from '@/hooks/useContexts';
-import { useDebounce } from '@/hooks/useDebounce';
 import { usePagination } from '@/hooks/usePagination';
+import { useResultsData } from '@/hooks/useResultsData';
 import { useSearch } from '@/hooks/useSearch';
 
 import { PaginationButton } from '@/components/atoms/PaginationButton';
@@ -13,32 +12,33 @@ import { PaginationNumber } from '@/components/atoms/PaginationNumber';
 export const Pagination = () => {
   const { activePage, setActivePage } = useActivePage();
 
-  const { searchedValue } = useSearchedValue();
+  const { fetchUsers, fetchRepos } = useSearch();
 
-  const debouncedSearch = useDebounce(
-    searchedValue === `` ? 'Typescript' : searchedValue,
-    1200
-  );
-
-  const { totalCount, fetchUsers, fetchRepos } = useSearch(
-    activePage,
-    debouncedSearch
-  );
+  const { totalCount } = useResultsData(fetchRepos.data, fetchUsers.data);
 
   const totalPages = Math.ceil(totalCount / 10);
   const pageQueue = usePagination(activePage, totalPages);
 
-  const handlePrevPage = useCallback(() => {
+  const refetchData = useCallback(() => {
+    fetchUsers.refetch();
+    fetchRepos.refetch();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchRepos, fetchUsers]);
+
+  const handlePrevPage = () => {
     if (1 < activePage) {
       setActivePage(activePage - 1);
+      refetchData();
     }
-  }, [activePage, setActivePage]);
+  };
 
-  const handleNextPage = useCallback(() => {
+  const handleNextPage = () => {
     if (activePage <= totalPages - 1) {
       setActivePage(activePage + 1);
+      refetchData();
     }
-  }, [activePage, setActivePage, totalPages]);
+  };
 
   if (totalPages <= 1 || fetchUsers.isError || fetchRepos.isError) {
     return null;
@@ -54,24 +54,20 @@ export const Pagination = () => {
         {activePage}/{totalPages}
       </span>
       <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
-        {pageQueue.map((pageNum) => {
-          if (pageNum === '...') {
+        {pageQueue.map((pageNumber) => {
+          if (pageNumber === '...') {
             return (
-              <span
-                className=' text-center dark:text-white '
-                key={pageNum + Math.random()}
-              >
+              <span className='text-center dark:text-white ' key={pageNumber}>
                 &hellip;
               </span>
             );
           }
           return (
             <PaginationNumber
-              key={pageNum}
-              pageNum={pageNum}
-              onClick={() => setActivePage(+pageNum)}
+              key={pageNumber}
+              pageNumber={parseInt(pageNumber, 10)}
             >
-              {pageNum}
+              {pageNumber}
             </PaginationNumber>
           );
         })}

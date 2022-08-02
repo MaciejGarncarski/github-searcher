@@ -1,15 +1,17 @@
 import { ReactNode } from 'react';
 
+import { clsxm } from '@/lib/clsxm';
+
 type TextProps = {
   type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
   className?: string;
   children: ReactNode;
 };
 
-export const Text = ({ type, children, className }: TextProps) => {
-  const TagName = type ?? 'p';
+export const Text = ({ type = 'p', children, className }: TextProps) => {
+  const TagName = type;
   return (
-    <TagName className={`${type !== 'p' && 'font-bold'} ${className}`}>
+    <TagName className={clsxm(className, type !== 'p' && 'font-bold')}>
       {children}
     </TagName>
   );

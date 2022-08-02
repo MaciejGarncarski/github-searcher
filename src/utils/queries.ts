@@ -2,7 +2,7 @@ import { RepoTypes, UserTypes } from '../types/responseTypes';
 
 export type ApiResponse<T> = {
   totalCount: number;
-  translatedData: T[];
+  data: T[];
 };
 
 const perPage = 4;
@@ -21,7 +21,7 @@ export const getUsers = async (
   const usersJson = await res.json();
   const usersData = usersJson.items;
   const totalCount = usersJson.total_count;
-  const translatedData = await Promise.all(
+  const data = await Promise.all(
     usersData.map(async ({ login }: { login: string }) => {
       const res = await fetch(`https://api.github.com/users/${login}`);
       if (res.ok) {
@@ -32,7 +32,7 @@ export const getUsers = async (
   );
   return {
     totalCount: totalCount,
-    translatedData: translatedData,
+    data: data,
   };
 };
 
@@ -47,10 +47,10 @@ export const getRepos = async (
   if (res.ok) {
     const resJson = await res.json();
     const totalCount = resJson.total_count;
-    const translatedData = resJson.items;
+    const data = resJson.items;
     return {
       totalCount: totalCount,
-      translatedData: translatedData,
+      data: data,
     };
   }
   throw new Error(`Failed to fetch repos`);

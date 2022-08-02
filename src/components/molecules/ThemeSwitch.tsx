@@ -1,8 +1,7 @@
 import { IconType } from 'react-icons';
 import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { useThemeChange } from '@/hooks/useThemeChange';
+import { useSettings } from '@/hooks/useContexts';
 
 import { SettingFormContainer } from '@/components/atoms/SettingFormContainer';
 import { SettingHeading } from '@/components/atoms/SettingHeading';
@@ -31,13 +30,7 @@ const themes: ThemeInfo[] = [
 ];
 
 export const ThemeSwitch = () => {
-  const [value, setValue] = useLocalStorage('theme', 'system');
-
-  const handleThemeChange = (themeColor: ThemeColors) => {
-    setValue(themeColor);
-  };
-
-  useThemeChange(value);
+  const { theme, setTheme } = useSettings();
 
   return (
     <SettingFormContainer themeSwitch>
@@ -48,8 +41,8 @@ export const ThemeSwitch = () => {
             key={themeColor}
             themeColor={themeColor}
             Icon={Icon}
-            activeThemeColor={value}
-            onChange={() => handleThemeChange(themeColor)}
+            activeThemeColor={theme}
+            onChange={() => setTheme(themeColor)}
           />
         );
       })}

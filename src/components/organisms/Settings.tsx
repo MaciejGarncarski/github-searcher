@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { IoMdSettings } from 'react-icons/io';
 
+import { useSettings } from '@/hooks/useContexts';
+import { useThemeChange } from '@/hooks/useThemeChange';
+
 import { SettingsMenu } from '@/components/molecules/SettingsMenu';
 
 const buttonVariants: Variants = {
@@ -16,6 +19,9 @@ const buttonVariants: Variants = {
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useSettings();
+
+  useThemeChange(theme);
 
   const formRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);

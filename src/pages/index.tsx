@@ -1,6 +1,9 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSidePropsContext, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
+import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 import type { ApiResponse } from '@/utils/queries';
 import { getRepos, getUsers } from '@/utils/queries';
 
@@ -18,6 +21,26 @@ type HomeProps = {
 const initialQueryString = `Typescript`;
 
 const Home: NextPage<HomeProps> = () => {
+  const { replace } = useRouter();
+  const { searchedValue } = useSearchedValue();
+  const { activePage } = useActivePage();
+
+  useEffect(() => {
+    if (searchedValue.trim() !== '') {
+      replace(`/?q=${searchedValue}&page=${activePage}`, undefined, {
+        shallow: true,
+      });
+    }
+
+    if (searchedValue.trim() === '') {
+      replace(`/?page=${activePage}`, undefined, {
+        shallow: true,
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePage]);
+
   return (
     <Layout>
       <Seo />

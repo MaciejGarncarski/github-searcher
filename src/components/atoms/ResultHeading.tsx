@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
-import { useMainColor } from '@/hooks/useContexts';
+import { clsxm } from '@/lib/clsxm';
+import { useSettings } from '@/hooks/useContexts';
 import { textColors } from '@/utils/colorsConfig';
 
 import { Text } from '@/components/atoms/Text';
@@ -14,12 +15,18 @@ export const ResultHeading = ({
   children,
   className = '',
 }: ResultsHeadingProps) => {
-  const { mainColor } = useMainColor();
+  const { accentColor } = useSettings();
+
+  const [color, setColor] = useState('blue');
+
+  useEffect(() => {
+    setColor(accentColor);
+  }, [accentColor]);
 
   return (
     <Text
       type='h2'
-      className={`break-all text-3xl transition-colors ${textColors[mainColor]} ${className}`}
+      className={clsxm(textColors[color], className, 'break-all text-3xl')}
     >
       {children}
     </Text>

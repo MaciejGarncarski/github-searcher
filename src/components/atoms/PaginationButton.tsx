@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { MouseEventHandler, ReactNode } from 'react';
 
-import { useMainColor } from '@/hooks/useContexts';
+import { useSettings } from '@/hooks/useContexts';
 import { textColors } from '@/utils/colorsConfig';
 
 interface PaginationButtonProps {
@@ -15,14 +15,14 @@ export const PaginationButton = ({
   onClick,
   children,
 }: PaginationButtonProps) => {
-  const { mainColor } = useMainColor();
+  const { accentColor } = useSettings();
 
   return (
     <motion.button
       type='button'
       className={`flex items-center gap-2 justify-self-center transition-colors 
       hover:cursor-pointer
-      ${textColors[mainColor]}
+      ${textColors[accentColor]}
       disabled:cursor-not-allowed
       disabled:opacity-50
       `}

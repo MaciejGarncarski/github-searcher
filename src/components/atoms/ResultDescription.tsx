@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { clsxm } from '@/lib/clsxm';
+
 type ResultDescriptionProps = {
   children: ReactNode;
   className?: string;
@@ -11,7 +13,10 @@ export const ResultDescription = ({
 }: ResultDescriptionProps) => {
   return (
     <p
-      className={`col-start-2 max-w-prose self-center overflow-hidden text-xl leading-relaxed  ${className}`}
+      className={clsxm(
+        'col-start-2  max-w-prose self-center overflow-hidden text-xl leading-relaxed',
+        className
+      )}
     >
       {children}
     </p>

@@ -2,27 +2,27 @@ import { render, screen } from '@testing-library/react';
 
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 
-import { MainColorContext } from '@/contexts/mainColorContext';
+import { SettingsContext } from '@/contexts/settingsContext';
 
-describe('useMainColor', () => {
+describe('useSettings', () => {
   test('color should match context color', () => {
     render(
-      <MainColorContext.Provider
-        value={{ mainColor: 'red', setMainColor: jest.fn() }}
+      <SettingsContext.Provider
+        value={{ accentColor: 'red', setAccentColor: jest.fn() }}
       >
         <ResultHeading>typescript</ResultHeading>
-      </MainColorContext.Provider>
+      </SettingsContext.Provider>
     );
 
     expect(screen.getByText('typescript')).toHaveClass('text-red-500');
   });
   test('color should not match context color', () => {
     render(
-      <MainColorContext.Provider
-        value={{ mainColor: 'blue', setMainColor: jest.fn() }}
+      <SettingsContext.Provider
+        value={{ accentColor: 'blue', setAccentColor: jest.fn() }}
       >
         <ResultHeading>typescript</ResultHeading>
-      </MainColorContext.Provider>
+      </SettingsContext.Provider>
     );
 
     expect(screen.getByText('typescript')).not.toHaveClass('text-red-500');

@@ -13,8 +13,8 @@ import { useState } from 'react';
 import '@/styles/globals.css';
 
 import { ActivePageProvider } from '@/contexts/activePageContext';
-import { MainColorProvider } from '@/contexts/mainColorContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';
+import { SettingsProvider } from '@/contexts/settingsContext';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
@@ -32,7 +32,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ActivePageProvider>
       <SearchProvider>
-        <MainColorProvider>
+        <SettingsProvider>
           <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
               <NextNProgress
@@ -49,7 +49,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               </MotionConfig>
             </Hydrate>
           </QueryClientProvider>
-        </MainColorProvider>
+        </SettingsProvider>
       </SearchProvider>
     </ActivePageProvider>
   );

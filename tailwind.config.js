@@ -11,6 +11,7 @@ module.exports = {
         'state-messsage': '75vh',
         user: '8rem',
         page: 'calc(100vh - 6rem)',
+        profile: '85vh',
       },
       minWidth: {
         px: '1px',
@@ -20,6 +21,7 @@ module.exports = {
         user: 'auto 1fr',
         pagination: '1fr auto 1fr',
         header: 'repeat(3, auto)',
+        profile: '30% 1fr',
       },
       fontFamily: {
         primary: [...fontFamily.sans],

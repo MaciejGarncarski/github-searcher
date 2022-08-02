@@ -14,7 +14,7 @@ export const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       setPosY(window.scrollY);
-      if (window.scrollY > posY) {
+      if (window.scrollY > posY && window.scrollY > 300) {
         setIsVisible(false);
       } else {
         setIsVisible(true);

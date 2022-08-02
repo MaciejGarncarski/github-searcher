@@ -28,6 +28,7 @@ export const UserResult = ({
   const whileHover = { scale: 1.02 };
 
   const userDescription = bio?.substring(0, 200) + '\u2026';
+
   return (
     <ResultListItem whileHover={whileHover}>
       <Link href={`/user/${login}`} passHref>
@@ -50,7 +51,7 @@ export const UserResult = ({
                 {fullName}
               </ResultHeading>
               <Text type='p' className='text-2xl dark:text-white'>
-                {login}
+                @{login}
               </Text>
             </div>
             {bio && (

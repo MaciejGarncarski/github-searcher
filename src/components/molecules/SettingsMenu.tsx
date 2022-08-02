@@ -11,7 +11,7 @@ type SettingsMenuProps = {
 
 const menuVariants: Variants = {
   open: {
-    y: 0,
+    y: [-20, 5, 0],
     opacity: 1,
   },
   closed: {
@@ -29,9 +29,8 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
         initial='closed'
         exit='closed'
         transition={{
-          duration: 0.9,
+          duration: 0.5,
           type: 'spring',
-          bounce: 0.6,
         }}
         animate={isOpen ? 'open' : 'closed'}
         className='absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-md bg-slate-700 p-8 shadow-xl lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'

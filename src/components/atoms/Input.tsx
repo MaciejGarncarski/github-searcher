@@ -18,7 +18,6 @@ type InputProps = {
 
 export const Input = ({ type, placeholder }: InputProps) => {
   const { searchedValue, setSearchedValue } = useSearchedValue();
-
   const { setActivePage } = useActivePage();
 
   const onInput = (event: FormEvent) => {
@@ -31,7 +30,7 @@ export const Input = ({ type, placeholder }: InputProps) => {
     <motion.input
       type={type}
       placeholder={placeholder}
-      className='w-full border-0 bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:w-auto md:text-2xl'
+      className='w-full border-0 bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl'
       value={searchedValue}
       onInput={onInput}
     />

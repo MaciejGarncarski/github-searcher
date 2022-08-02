@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import { dehydrate } from '@tanstack/react-query';
-import { GetServerSideProps, NextPage } from 'next';
+import { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 import { getSingleUser } from '@/utils/queries';
@@ -23,17 +23,11 @@ const ProfilePage: NextPage = () => {
 
 export default ProfilePage;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const userName = StringGuard(query.name);
 
-  if (!userName) {
-    return {
-      redirect: '/',
-      props: {},
-    };
-  }
-
   const queryClient = new QueryClient();
+
   const fetchHeaders = {
     headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
   };
@@ -47,4 +41,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       dehydratedState: dehydrate(queryClient),
     },
   };
-};
+}

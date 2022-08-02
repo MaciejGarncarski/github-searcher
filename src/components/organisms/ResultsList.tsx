@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
-import { useDebounce } from '@/hooks/useDebounce';
+import { useResultsData } from '@/hooks/useResultsData';
 import { useSearch } from '@/hooks/useSearch';
 
 import { Text } from '@/components/atoms/Text';
@@ -14,49 +12,29 @@ import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
-  const { push, isReady } = useRouter();
-  const { activePage } = useActivePage();
-  const { searchedValue } = useSearchedValue();
-
-  const debouncedSearch = useDebounce(
-    searchedValue === `` ? 'Typescript' : searchedValue,
-    1200
-  );
-
-  const { totalCount, apiResponseData, fetchRepos, fetchUsers } = useSearch(
-    activePage,
-    debouncedSearch
-  );
+  const { fetchRepos, fetchUsers } = useSearch();
 
   useEffect(() => {
-    if (!isReady) {
-      return;
-    }
-
-    if (searchedValue.trim() !== '') {
-      push(`?q=${searchedValue}&page=${activePage}`, undefined, {
-        shallow: true,
-      });
-    }
-
-    if (searchedValue.trim() === '') {
-      push(`?page=${activePage}`, undefined, {
-        shallow: true,
-      });
-    }
+    fetchRepos.refetch();
+    fetchUsers.refetch();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage, isReady, searchedValue]);
+  }, []);
+
+  const { totalCount, sortedResults } = useResultsData(
+    fetchRepos.data,
+    fetchUsers.data
+  );
 
   if (fetchUsers.isFetching || fetchRepos.isFetching) {
     return <ResultPlaceholder placeholderAmount={5} />;
   }
 
-  if (fetchUsers.isError || fetchRepos.isError) {
+  const isDataError = fetchUsers.isError || fetchRepos.isError;
+  if (isDataError || (totalCount === 0 && fetchUsers.status === 'loading')) {
     return <ErrorMessage error="Couldn't load data" emoji='😭' />;
   }
-
-  if (totalCount === 0) {
+  if (totalCount === 0 && fetchUsers.status !== 'loading') {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
 
@@ -72,29 +50,29 @@ export const ResultsList = () => {
         initial='initial'
         animate='animate'
       >
-        {apiResponseData.map((apiResponse) => {
-          if ('avatar_url' in apiResponse) {
+        {sortedResults.map((result) => {
+          if ('avatar_url' in result) {
             return (
               <UserResult
-                key={apiResponse.id}
-                login={apiResponse.login}
-                fullName={apiResponse.name}
-                avatar={apiResponse.avatar_url}
-                bio={apiResponse.bio}
-                location={apiResponse.location}
+                key={result.id}
+                login={result.login}
+                fullName={result.name}
+                avatar={result.avatar_url}
+                bio={result.bio}
+                location={result.location}
               />
             );
           }
-          if ('updated_at' in apiResponse) {
+          if ('updated_at' in result) {
             return (
               <RepositoryResult
-                key={apiResponse.id}
-                fullName={apiResponse.full_name}
-                description={apiResponse.description}
-                stars={apiResponse.stargazers_count}
-                language={apiResponse.language}
-                license={apiResponse.license}
-                updatedAt={apiResponse.updated_at}
+                key={result.id}
+                fullName={result.full_name}
+                description={result.description}
+                stars={result.stargazers_count}
+                language={result.language}
+                license={result.license}
+                updatedAt={result.updated_at}
               />
             );
           }
