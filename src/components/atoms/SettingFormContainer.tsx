@@ -5,10 +5,7 @@ type SettingFormContainerProps = {
   themeSwitch?: boolean;
 };
 
-export const SettingFormContainer = ({
-  children,
-  themeSwitch,
-}: SettingFormContainerProps) => {
+export const SettingFormContainer = ({ children, themeSwitch }: SettingFormContainerProps) => {
   return (
     <form
       className={`mt-4 flex flex-col justify-center text-white landscape:mt-1 landscape:mr-7 ${

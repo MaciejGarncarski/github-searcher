@@ -19,8 +19,7 @@ const contextDefaultValues: SettingsContextProps = {
   setTheme: () => null,
 };
 
-export const SettingsContext =
-  createContext<SettingsContextProps>(contextDefaultValues);
+export const SettingsContext = createContext<SettingsContextProps>(contextDefaultValues);
 
 export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   const [accentColor, setAccentColor] = useLocalStorage('mainColor', 'blue');
@@ -33,9 +32,5 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
     setTheme,
   };
 
-  return (
-    <SettingsContext.Provider value={settingValues}>
-      {children}
-    </SettingsContext.Provider>
-  );
+  return <SettingsContext.Provider value={settingValues}>{children}</SettingsContext.Provider>;
 };

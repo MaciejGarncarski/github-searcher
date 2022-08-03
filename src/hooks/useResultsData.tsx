@@ -9,9 +9,7 @@ export const useResultsData = (
   usersData: ApiResponse<UserTypes> | undefined
 ) => {
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [sortedResults, setSortedResults] = useState<(UserTypes | RepoTypes)[]>(
-    []
-  );
+  const [sortedResults, setSortedResults] = useState<(UserTypes | RepoTypes)[]>([]);
 
   useEffect(() => {
     if (reposData && usersData) {

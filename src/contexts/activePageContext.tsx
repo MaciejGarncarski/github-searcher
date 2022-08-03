@@ -11,25 +11,18 @@ const contextDefaultValues: ActivePageContextProps = {
   setActivePage: () => null,
 };
 
-export const ActivePageContext =
-  createContext<ActivePageContextProps>(contextDefaultValues);
+export const ActivePageContext = createContext<ActivePageContextProps>(contextDefaultValues);
 
 export const ActivePageProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const { page } = router.query;
 
-  const [activePage, setActivePage] = useState<number>(
-    typeof page === 'string' ? +page : 1
-  );
+  const [activePage, setActivePage] = useState<number>(typeof page === 'string' ? +page : 1);
 
   const value = {
     activePage,
     setActivePage,
   };
 
-  return (
-    <ActivePageContext.Provider value={value}>
-      {children}
-    </ActivePageContext.Provider>
-  );
+  return <ActivePageContext.Provider value={value}>{children}</ActivePageContext.Provider>;
 };

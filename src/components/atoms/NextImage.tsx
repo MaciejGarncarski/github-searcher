@@ -18,18 +18,8 @@ export const NextImage = ({
   const widthIsSet = className?.includes('w-') ?? false;
 
   return (
-    <figure
-      style={!widthIsSet ? { width: `${width}px` } : undefined}
-      className={className}
-    >
-      <Image
-        className={imgClassName}
-        src={src}
-        width={width}
-        height={height}
-        alt={alt}
-        {...rest}
-      />
+    <figure style={!widthIsSet ? { width: `${width}px` } : undefined} className={className}>
+      <Image className={imgClassName} src={src} width={width} height={height} alt={alt} {...rest} />
     </figure>
   );
 };

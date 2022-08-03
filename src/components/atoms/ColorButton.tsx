@@ -1,5 +1,5 @@
 import { useSettings } from '@/hooks/useContexts';
-import { backgroundColors } from '@/utils/colorsConfig';
+import { backgroundColors } from '@/utils/colorsData';
 
 import { Color } from '@/components/molecules/ColorSwitch';
 

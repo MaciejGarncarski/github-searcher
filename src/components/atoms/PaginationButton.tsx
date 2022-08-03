@@ -1,14 +1,10 @@
 import { motion } from 'framer-motion';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
-import {
-  useActivePage,
-  useSearchedValue,
-  useSettings,
-} from '@/hooks/useContexts';
-import { useReplace } from '@/hooks/useReplace';
+import { useChangeParams } from '@/hooks/useChangeParams';
+import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
-import { textColors } from '@/utils/colorsConfig';
+import { textColors } from '@/utils/colorsData';
 type PaginationButtonType = 'prev' | 'next';
 
 type PaginationButtonProps = {
@@ -16,17 +12,14 @@ type PaginationButtonProps = {
   type: PaginationButtonType;
 };
 
-export const PaginationButton = ({
-  type,
-  totalPages,
-}: PaginationButtonProps) => {
+export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) => {
   const { accentColor } = useSettings();
   const { searchedValue } = useSearchedValue();
   const { activePage, setActivePage } = useActivePage();
 
   const { fetchedRepos, fetchedUsers } = useResults(searchedValue, activePage);
 
-  const replaceParams = useReplace();
+  const { changeParams } = useChangeParams();
 
   const refetchData = () => {
     fetchedUsers.refetch();
@@ -37,7 +30,7 @@ export const PaginationButton = ({
     if (1 < activePage) {
       setActivePage(activePage - 1);
       refetchData();
-      replaceParams(searchedValue, activePage - 1);
+      changeParams(searchedValue, activePage - 1);
     }
   };
 
@@ -45,7 +38,7 @@ export const PaginationButton = ({
     if (activePage <= totalPages - 1) {
       setActivePage(activePage + 1);
       refetchData();
-      replaceParams(searchedValue, activePage + 1);
+      changeParams(searchedValue, activePage + 1);
     }
   };
 

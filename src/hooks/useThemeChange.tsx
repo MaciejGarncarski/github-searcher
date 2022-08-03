@@ -7,17 +7,14 @@ export const useThemeChange = (value: string) => {
     htmlTag.style.colorScheme = themeColor;
   };
 
-  const handleChange = useCallback(
-    (colorScheme: MediaQueryList | MediaQueryListEvent) => {
-      if (colorScheme.matches) {
-        changeTheme('dark');
-      }
-      if (!colorScheme.matches) {
-        changeTheme('light');
-      }
-    },
-    []
-  );
+  const handleChange = useCallback((colorScheme: MediaQueryList | MediaQueryListEvent) => {
+    if (colorScheme.matches) {
+      changeTheme('dark');
+    }
+    if (!colorScheme.matches) {
+      changeTheme('light');
+    }
+  }, []);
 
   useEffect(() => {
     if (value === 'light') {
@@ -27,9 +24,7 @@ export const useThemeChange = (value: string) => {
       changeTheme('dark');
     }
     if (value === 'system') {
-      const detectColorScheme = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      );
+      const detectColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
       handleChange(detectColorScheme);
     }
   }, [handleChange, value]);

@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 
+import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
 
@@ -10,35 +10,16 @@ import { SearchButton } from '@/components/atoms/SearchButton';
 
 export const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
-  const { searchedValue, setSearchedValue } = useSearchedValue();
+  const { setSearchedValue } = useSearchedValue();
   const { activePage, setActivePage } = useActivePage();
-  const router = useRouter();
-
-  const { fetchedRepos, fetchedUsers } = useResults(
-    inputValue,
-    activePage,
-    true
-  );
-
-  const redirect = () => {
-    if (searchedValue.trim() !== '') {
-      router.replace(`/?q=${inputValue}&page=${activePage}`, undefined, {
-        shallow: true,
-      });
-    }
-
-    if (searchedValue.trim() === '') {
-      router.replace(`/?page=${activePage}`, undefined, {
-        shallow: true,
-      });
-    }
-  };
+  const { changeParams } = useChangeParams();
+  const { fetchedRepos, fetchedUsers } = useResults(inputValue, activePage, true);
 
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
     setSearchedValue(inputValue);
     setActivePage(1);
-    redirect();
+    changeParams(inputValue, activePage);
     setTimeout(() => {
       fetchedRepos.refetch();
       fetchedUsers.refetch();
@@ -62,7 +43,7 @@ export const SearchForm = () => {
         setInputValue={setInputValue}
       />
       <ResetButton inputValue={inputValue} />
-      <SearchButton />
+      <SearchButton inputValue={inputValue} />
     </form>
   );
 };

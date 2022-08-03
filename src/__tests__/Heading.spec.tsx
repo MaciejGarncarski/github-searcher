@@ -4,8 +4,7 @@ import { Text } from '../components/atoms/Text';
 
 const sampleText = 'Hello';
 
-const expectText = (text: string) =>
-  expect(screen.getByText(text)).toBeInTheDocument();
+const expectText = (text: string) => expect(screen.getByText(text)).toBeInTheDocument();
 
 describe('<Text />', () => {
   test('Should render empty Text', () => {

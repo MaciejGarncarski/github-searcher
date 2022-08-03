@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
 import { useSettings } from '@/hooks/useContexts';
-import { shieldColors } from '@/utils/colorsConfig';
+import { shieldColors } from '@/utils/colorsData';
 
 type ShieldProps = {
   children: ReactNode;

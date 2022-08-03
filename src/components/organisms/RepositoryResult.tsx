@@ -61,11 +61,7 @@ export const RepositoryResult = ({
         <GoRepo size={32} className='mt-1' />
         <ResultHeading>{fullName}</ResultHeading>
 
-        {description && (
-          <ResultDescription className='w-full'>
-            {description}
-          </ResultDescription>
-        )}
+        {description && <ResultDescription className='w-full'>{description}</ResultDescription>}
         <ShieldsContainer>
           <Shield className='gap-x-1'>⭐ {stars}</Shield>
           <RepositoryLangugage />

@@ -18,13 +18,7 @@ type UserResultProps = {
   location: string;
 };
 
-export const UserResult = ({
-  login,
-  fullName,
-  avatar,
-  bio,
-  location,
-}: UserResultProps) => {
+export const UserResult = ({ login, fullName, avatar, bio, location }: UserResultProps) => {
   const whileHover = { scale: 1.02 };
 
   const userDescription = bio?.substring(0, 200) + '\u2026';
@@ -55,13 +49,9 @@ export const UserResult = ({
               </Text>
             </div>
             {bio && (
-              <ResultDescription>
-                {bio.length > 120 ? userDescription : bio}
-              </ResultDescription>
+              <ResultDescription>{bio.length > 120 ? userDescription : bio}</ResultDescription>
             )}
-            <ShieldsContainer>
-              {location && <Shield>🏠 {location}</Shield>}
-            </ShieldsContainer>
+            <ShieldsContainer>{location && <Shield>🏠 {location}</Shield>}</ShieldsContainer>
           </ResultContainer>
         </a>
       </Link>

@@ -28,9 +28,7 @@ export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
             imgClassName='w-20'
             priority={true}
           />
-          <span className='hidden text-5xl text-white lg:inline'>
-            Github Searcher
-          </span>
+          <span className='hidden text-5xl text-white lg:inline'>Github Searcher</span>
         </a>
       </Link>
     </h1>

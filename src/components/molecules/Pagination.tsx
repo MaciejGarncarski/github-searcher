@@ -10,10 +10,7 @@ export const Pagination = () => {
   const { activePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
 
-  const { fetchedRepos, fetchedUsers, isError } = useResults(
-    searchedValue,
-    activePage
-  );
+  const { fetchedRepos, fetchedUsers, isError } = useResults(searchedValue, activePage);
   const { totalCount } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 
   const totalPages = Math.ceil(totalCount / 10);
@@ -33,19 +30,13 @@ export const Pagination = () => {
         {pageQueue.map((pageNumber) => {
           if (pageNumber === '...') {
             return (
-              <span
-                className='text-center dark:text-white '
-                key={pageNumber + Math.random()}
-              >
+              <span className='text-center dark:text-white ' key={pageNumber + Math.random()}>
                 &hellip;
               </span>
             );
           }
           return (
-            <PaginationNumber
-              key={pageNumber}
-              pageNumber={parseInt(pageNumber, 10)}
-            >
+            <PaginationNumber key={pageNumber} pageNumber={parseInt(pageNumber, 10)}>
               {pageNumber}
             </PaginationNumber>
           );

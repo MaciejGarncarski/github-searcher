@@ -33,25 +33,15 @@ export const UserProfilePlaceholder = () => {
       <div
         className={`col-start-2 col-end-3 h-8 w-2/3 rounded-lg opacity-60 ${bgColors} md:max-w-xs`}
       ></div>
-      <div
-        className={` h-44 w-44 rounded-full opacity-90 lg:h-52 lg:w-52 ${bgColors}`}
-      ></div>
+      <div className={` h-44 w-44 rounded-full opacity-90 lg:h-52 lg:w-52 ${bgColors}`}></div>
       <div
         className={`col-start-2 col-end-3 h-8 w-3/5 rounded-lg opacity-90 ${bgColors} md:max-w-sm`}
       ></div>
       <div className='col-start-2 col-end-3 flex flex-wrap justify-center gap-4 md:h-12 md:gap-8'>
-        <div
-          className={`w-24 rounded-lg ${bgColors} h-10  opacity-60 md:w-32`}
-        ></div>
-        <div
-          className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}
-        ></div>
-        <div
-          className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}
-        ></div>
-        <div
-          className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}
-        ></div>
+        <div className={`w-24 rounded-lg ${bgColors} h-10  opacity-60 md:w-32`}></div>
+        <div className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}></div>
+        <div className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}></div>
+        <div className={`w-24 rounded-lg ${bgColors} h-10 opacity-60 md:w-32`}></div>
       </div>
     </motion.div>
   );

@@ -22,10 +22,7 @@ type ErrorMessageProps = {
   emoji?: string;
 };
 
-export const ErrorMessage = ({
-  error = 'Error',
-  emoji = '🌋',
-}: ErrorMessageProps) => {
+export const ErrorMessage = ({ error = 'Error', emoji = '🌋' }: ErrorMessageProps) => {
   return (
     <motion.div
       variants={errorVariants}

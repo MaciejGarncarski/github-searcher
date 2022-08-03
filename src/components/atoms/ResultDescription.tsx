@@ -7,10 +7,7 @@ type ResultDescriptionProps = {
   className?: string;
 };
 
-export const ResultDescription = ({
-  children,
-  className = '',
-}: ResultDescriptionProps) => {
+export const ResultDescription = ({ children, className = '' }: ResultDescriptionProps) => {
   return (
     <p
       className={clsxm(

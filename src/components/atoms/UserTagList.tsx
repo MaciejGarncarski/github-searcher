@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
 import { useSettings } from '@/hooks/useContexts';
-import { tagColors } from '@/utils/colorsConfig';
+import { tagColors } from '@/utils/colorsData';
 
+import { Color } from '@/components/molecules/ColorSwitch';
 import type { TagData } from '@/components/organisms/UserProfile';
 
 type UserTagListProps = {
@@ -13,7 +14,7 @@ type UserTagListProps = {
 export const UserTagList = ({ data }: UserTagListProps) => {
   const { accentColor } = useSettings();
 
-  const [color, setColor] = useState('blue');
+  const [color, setColor] = useState<Color>('blue');
 
   useEffect(() => {
     setColor(accentColor);

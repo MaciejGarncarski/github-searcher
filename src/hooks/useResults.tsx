@@ -4,17 +4,19 @@ import { useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { getRepos, getUsers } from '@/utils/queries';
 
-export const useResults = (
-  searchedValue: string,
-  activePage: number,
-  enabled?: boolean
-) => {
+export const useResults = (searchedValue: string, activePage: number, enabled?: boolean) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(enabled ?? false);
 
-  const debouncedSearch = useDebounce(
-    searchedValue === `` ? 'Typescript' : searchedValue,
-    1200
-  );
+  const handleFinally = () => {
+    setIsEnabled(false);
+  };
+
+  const queryOptions = {
+    enabled: isEnabled,
+  };
+
+  const debouncedSearch = useDebounce(searchedValue === `` ? 'Typescript' : searchedValue, 1200);
+
   const fetchValues = {
     searchedValue: debouncedSearch,
     page: activePage,
@@ -22,20 +24,14 @@ export const useResults = (
 
   const fetchedRepos = useQuery(
     ['repos', fetchValues],
-    () =>
-      getRepos(debouncedSearch, activePage).finally(() => {
-        setIsEnabled(false);
-      }),
-    { enabled: isEnabled }
+    () => getRepos(debouncedSearch, activePage).finally(handleFinally),
+    queryOptions
   );
 
   const fetchedUsers = useQuery(
     ['users', fetchValues],
-    () =>
-      getUsers(debouncedSearch, activePage).finally(() => {
-        setIsEnabled(false);
-      }),
-    { enabled: isEnabled }
+    () => getUsers(debouncedSearch, activePage).finally(handleFinally),
+    queryOptions
   );
 
   const isError = fetchedRepos.isError || fetchedUsers.isError;

@@ -1,9 +1,4 @@
-import {
-  motion,
-  TargetAndTransition,
-  VariantLabels,
-  Variants,
-} from 'framer-motion';
+import { motion, TargetAndTransition, VariantLabels, Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
 type Variant = TargetAndTransition | VariantLabels;
@@ -31,12 +26,7 @@ export const containerVariants: Variants = {
   },
 };
 
-export const ResultListItem = ({
-  children,
-  whileHover,
-  whileTap,
-  whileFocus,
-}: ResultItemProps) => {
+export const ResultListItem = ({ children, whileHover, whileTap, whileFocus }: ResultItemProps) => {
   return (
     <motion.li
       variants={containerVariants}

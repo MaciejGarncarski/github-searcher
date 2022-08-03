@@ -4,7 +4,7 @@ import { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 import { getSingleUser } from '@/utils/queries';
-import { StringGuard } from '@/utils/StringGuard';
+import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';
 import { UserProfile } from '@/components/organisms/UserProfile';
@@ -24,7 +24,7 @@ const ProfilePage: NextPage = () => {
 export default ProfilePage;
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
-  const userName = StringGuard(query.name);
+  const userName = stringGuard(query.name);
 
   const queryClient = new QueryClient();
 

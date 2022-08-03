@@ -2,35 +2,24 @@ import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
-import {
-  useActivePage,
-  useSearchedValue,
-  useSettings,
-} from '@/hooks/useContexts';
-import { useReplace } from '@/hooks/useReplace';
+import { useChangeParams } from '@/hooks/useChangeParams';
+import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
-import { backgroundColors } from '@/utils/colorsConfig';
+import { backgroundColors } from '@/utils/colorsData';
 
 type PaginationNumberProps = {
   children: ReactNode;
   pageNumber: number;
 };
 
-export const PaginationNumber = ({
-  children,
-  pageNumber,
-}: PaginationNumberProps) => {
+export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps) => {
   const { activePage, setActivePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
   const { accentColor } = useSettings();
 
-  const { fetchedRepos, fetchedUsers } = useResults(
-    searchedValue,
-    activePage,
-    true
-  );
+  const { fetchedRepos, fetchedUsers } = useResults(searchedValue, activePage, true);
 
-  const replaceParams = useReplace();
+  const { changeParams } = useChangeParams();
 
   const animateY = activePage === pageNumber ? { y: 0 } : { y: -8 };
 
@@ -38,7 +27,7 @@ export const PaginationNumber = ({
     setActivePage(pageNumber);
     fetchedUsers.refetch();
     fetchedRepos.refetch();
-    replaceParams(searchedValue, pageNumber);
+    changeParams(searchedValue, pageNumber);
   };
 
   return (

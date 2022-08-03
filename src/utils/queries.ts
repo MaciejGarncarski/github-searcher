@@ -66,10 +66,7 @@ export const getSingleUser = async (
   name: string,
   fetchHeaders: Headers | undefined
 ): Promise<UserTypes> => {
-  const resp = await fetch(
-    `https://api.github.com/users/${name}`,
-    fetchHeaders
-  );
+  const resp = await fetch(`https://api.github.com/users/${name}`, fetchHeaders);
   if (resp.ok) {
     return resp.json();
   }
@@ -77,9 +74,7 @@ export const getSingleUser = async (
 };
 
 export const getColors = async () => {
-  const res = await fetch(
-    'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json'
-  );
+  const res = await fetch('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json');
   if (res.ok) {
     return res.json();
   }

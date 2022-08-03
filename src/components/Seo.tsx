@@ -22,9 +22,7 @@ export const Seo = (props: SeoProps) => {
     ...defaultMeta,
     ...props,
   };
-  meta['title'] = props.templateTitle
-    ? `${props.templateTitle} | ${meta.siteName}`
-    : meta.title;
+  meta['title'] = props.templateTitle ? `${props.templateTitle} | ${meta.siteName}` : meta.title;
 
   return (
     <Head>
@@ -39,7 +37,7 @@ export const Seo = (props: SeoProps) => {
       <meta property='og:title' content={meta.title} />
       <meta name='image' property='og:image' content={meta.image} />
       <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:site' content='@th_clarence' />
+      <meta name='twitter:site' content='@MaciejGarncarski' />
       <meta name='twitter:title' content={meta.title} />
       <meta name='twitter:description' content={meta.description} />
       <meta name='twitter:image' content={meta.image} />
@@ -50,16 +48,8 @@ export const Seo = (props: SeoProps) => {
       {meta.date && (
         <>
           <meta property='article:published_time' content={meta.date} />
-          <meta
-            name='publish_date'
-            property='og:publish_date'
-            content={meta.date}
-          />
-          <meta
-            name='author'
-            property='article:author'
-            content='Theodorus Clarence'
-          />
+          <meta name='publish_date' property='og:publish_date' content={meta.date} />
+          <meta name='author' property='article:author' content='Maciej Garncarski' />
         </>
       )}
 
@@ -67,10 +57,7 @@ export const Seo = (props: SeoProps) => {
         <link key={linkProps.href} {...linkProps} />
       ))}
       <meta name='msapplication-TileColor' content='#334155' />
-      <meta
-        name='msapplication-TileImage'
-        content='/favicon/ms-icon-144x144.png'
-      />
+      <meta name='msapplication-TileImage' content='/favicon/ms-icon-144x144.png' />
       <meta name='theme-color' content='#334155' />
     </Head>
   );

@@ -7,10 +7,7 @@ type ResultContainerProps = {
   className?: string;
 };
 
-export const ResultContainer = ({
-  children,
-  className = '',
-}: ResultContainerProps) => {
+export const ResultContainer = ({ children, className = '' }: ResultContainerProps) => {
   return (
     <article
       className={clsxm(

@@ -15,9 +15,7 @@ export const useActivePage = () => {
 export const useSearchedValue = () => {
   const context = useContext(SearchContext);
   if (context === undefined) {
-    throw new Error(
-      'useSearchValue must be used within a SearchContextProvider'
-    );
+    throw new Error('useSearchValue must be used within a SearchContextProvider');
   }
   return context;
 };
@@ -25,9 +23,7 @@ export const useSearchedValue = () => {
 export const useSettings = () => {
   const context = useContext(SettingsContext);
   if (context === undefined) {
-    throw new Error(
-      'useSearchValue must be used within a SearchContextProvider'
-    );
+    throw new Error('useSearchValue must be used within a SearchContextProvider');
   }
   return context;
 };

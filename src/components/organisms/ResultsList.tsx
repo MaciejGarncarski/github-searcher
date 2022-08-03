@@ -22,10 +22,7 @@ export const ResultsList = () => {
     true
   );
 
-  const { totalCount, sortedResults } = useResultsData(
-    fetchedRepos.data,
-    fetchedUsers.data
-  );
+  const { totalCount, sortedResults } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 
   if (isFetching) {
     return <ResultPlaceholder placeholderAmount={5} />;
@@ -45,11 +42,7 @@ export const ResultsList = () => {
 
         {totalCount > 1 ? ' results' : ' result'}
       </Text>
-      <motion.ul
-        variants={placeholderVariants}
-        initial='initial'
-        animate='animate'
-      >
+      <motion.ul variants={placeholderVariants} initial='initial' animate='animate'>
         {sortedResults.map((result) => {
           if ('avatar_url' in result) {
             return (

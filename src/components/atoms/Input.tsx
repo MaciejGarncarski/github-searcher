@@ -1,13 +1,7 @@
 import { motion } from 'framer-motion';
 import { FormEvent } from 'react';
 
-type InputType =
-  | 'text'
-  | 'number'
-  | 'search'
-  | 'password'
-  | 'email'
-  | 'telephone';
+type InputType = 'text' | 'number' | 'search' | 'password' | 'email' | 'telephone';
 
 type InputProps = {
   type: InputType;
@@ -16,12 +10,7 @@ type InputProps = {
   placeholder?: string;
 };
 
-export const Input = ({
-  type,
-  placeholder,
-  setInputValue,
-  inputValue,
-}: InputProps) => {
+export const Input = ({ type, placeholder, setInputValue, inputValue }: InputProps) => {
   const onInput = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;
     setInputValue(target.value);

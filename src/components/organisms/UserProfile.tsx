@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { IconType } from 'react-icons';
 
 import { useSingleUser } from '@/hooks/useSingleUser';
-import { getTagsData } from '@/utils/getTagsData';
-import { StringGuard } from '@/utils/StringGuard';
+import { stringGuard } from '@/utils/stringGuard';
+import { getTagsData } from '@/utils/tagsData';
 
 import { BackButton } from '@/components/atoms/BackButton';
 import { NextImage } from '@/components/atoms/NextImage';
@@ -26,11 +26,9 @@ export type TagData = {
 
 export const UserProfile = () => {
   const { query, isReady } = useRouter();
-  const userName = isReady ? StringGuard(query.name) : 'typescript';
+  const userName = isReady ? stringGuard(query.name) : 'typescript';
 
-  const { data, isError, isFetching, isLoading } = useSingleUser(
-    userName ?? 'typescript'
-  );
+  const { data, isError, isFetching, isLoading } = useSingleUser(userName);
 
   const tagsData = getTagsData(data);
 
@@ -70,9 +68,7 @@ export const UserProfile = () => {
             <ResultHeading className='break-normal break-words text-center text-4xl md:text-left md:text-5xl'>
               {data.name}
             </ResultHeading>
-            <Text className='text-3xl font-semibold md:text-white'>
-              @{data.login}
-            </Text>
+            <Text className='text-3xl font-semibold md:text-white'>@{data.login}</Text>
           </div>
         </div>
 

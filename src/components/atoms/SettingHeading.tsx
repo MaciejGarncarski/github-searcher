@@ -5,9 +5,5 @@ type SettingHeadingProps = {
 };
 
 export const SettingHeading = ({ children }: SettingHeadingProps) => {
-  return (
-    <h3 className='mb-2 text-center text-2xl font-normal text-slate-300 '>
-      {children}
-    </h3>
-  );
+  return <h3 className='mb-2 text-center text-2xl font-normal text-slate-300 '>{children}</h3>;
 };

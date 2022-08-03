@@ -8,7 +8,12 @@ describe('useSettings', () => {
   test('color should match context color', () => {
     render(
       <SettingsContext.Provider
-        value={{ accentColor: 'red', setAccentColor: jest.fn() }}
+        value={{
+          accentColor: 'red',
+          setAccentColor: jest.fn(),
+          theme: 'system',
+          setTheme: jest.fn(),
+        }}
       >
         <ResultHeading>typescript</ResultHeading>
       </SettingsContext.Provider>
@@ -19,7 +24,12 @@ describe('useSettings', () => {
   test('color should not match context color', () => {
     render(
       <SettingsContext.Provider
-        value={{ accentColor: 'blue', setAccentColor: jest.fn() }}
+        value={{
+          accentColor: 'blue',
+          setAccentColor: jest.fn(),
+          theme: 'system',
+          setTheme: jest.fn(),
+        }}
       >
         <ResultHeading>typescript</ResultHeading>
       </SettingsContext.Provider>

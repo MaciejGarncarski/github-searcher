@@ -9,12 +9,7 @@ type ThemeButtonProps = {
   onChange: () => void;
 };
 
-export const ThemeButton = ({
-  themeColor,
-  Icon,
-  activeThemeColor,
-  onChange,
-}: ThemeButtonProps) => {
+export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: ThemeButtonProps) => {
   return (
     <label className='w-full cursor-pointer justify-self-start shadow-slate-600/40  drop-shadow-lg  lg:self-center'>
       <input
