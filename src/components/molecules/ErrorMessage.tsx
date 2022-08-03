@@ -32,7 +32,7 @@ export const ErrorMessage = ({
       initial='initial'
       animate='animate'
       exit='initial'
-      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl drop-shadow-xl dark:text-white lg:text-6xl'
+      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl shadow-slate-600/40 drop-shadow-xl  dark:text-white lg:text-6xl'
     >
       {error}
       <motion.span

@@ -16,7 +16,7 @@ export const Shield = ({ children, className }: ShieldProps) => {
       className={clsxm(
         className,
         shieldColors[accentColor],
-        'max-w-210px flex items-center break-words rounded-md py-1 px-4  text-center text-xl text-white shadow-md  dark:text-white'
+        'max-w-210px flex items-center break-words rounded-md py-1 px-4  text-center text-xl text-white shadow-md  shadow-slate-600/40   dark:text-white'
       )}
     >
       {children}

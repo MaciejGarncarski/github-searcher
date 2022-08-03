@@ -6,7 +6,7 @@ const fetchHeaders = {
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
 };
 
-export const useUser = (userName: string) => {
+export const useSingleUser = (userName: string) => {
   const { data, isError, isFetching, isLoading } = useQuery(
     ['users', { username: userName }],
     () => getSingleUser(userName, fetchHeaders)

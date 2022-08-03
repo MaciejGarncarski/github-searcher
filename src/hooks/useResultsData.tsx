@@ -18,6 +18,7 @@ export const useResultsData = (
       const totalCount = usersData.totalCount + reposData.totalCount;
       setTotalCount(totalCount);
     }
+    return () => setTotalCount(0);
   }, [reposData, usersData]);
 
   useEffect(() => {
@@ -28,6 +29,8 @@ export const useResultsData = (
     const mergedData = [...usersData.data, ...reposData.data];
     const mergedAndSortedData = mergedData.sort((a, b) => a.id - b.id);
     setSortedResults(mergedAndSortedData);
+
+    return () => setSortedResults([]);
   }, [reposData, usersData]);
 
   return { totalCount, sortedResults };

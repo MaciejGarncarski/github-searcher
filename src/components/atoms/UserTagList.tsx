@@ -20,7 +20,7 @@ export const UserTagList = ({ data }: UserTagListProps) => {
   }, [accentColor]);
 
   return (
-    <ul className='flex flex-wrap justify-center gap-4 text-xl font-semibold md:col-span-2 md:max-w-prose md:justify-self-center md:text-xl'>
+    <ul className='flex flex-wrap justify-center gap-4 text-xl font-semibold md:col-span-2 md:mx-auto md:max-w-prose md:justify-self-center md:text-xl'>
       {data.map(({ Icon, value, title }) => {
         if (value === 'null' || value === '') {
           return null;
@@ -30,7 +30,7 @@ export const UserTagList = ({ data }: UserTagListProps) => {
             key={title}
             className={clsxm(
               tagColors[color],
-              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-md '
+              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-md shadow-slate-600/40'
             )}
             title={title}
           >

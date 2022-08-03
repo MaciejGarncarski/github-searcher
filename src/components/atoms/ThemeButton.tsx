@@ -16,7 +16,7 @@ export const ThemeButton = ({
   onChange,
 }: ThemeButtonProps) => {
   return (
-    <label className='w-full cursor-pointer justify-self-start drop-shadow-lg lg:self-center'>
+    <label className='w-full cursor-pointer justify-self-start shadow-slate-600/40  drop-shadow-lg  lg:self-center'>
       <input
         className='peer absolute h-0 w-0 opacity-0'
         type='radio'

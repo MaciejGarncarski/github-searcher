@@ -26,7 +26,7 @@ export const ResultHeading = ({
   return (
     <Text
       type='h2'
-      className={clsxm(textColors[color], className, 'break-all text-3xl')}
+      className={clsxm('break-all text-3xl', textColors[color], className)}
     >
       {children}
     </Text>

@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
 
+import { useSearchedValue } from '@/hooks/useContexts';
+import { useActivePage } from '@/hooks/useContexts';
+import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
-import { useSearch } from '@/hooks/useSearch';
 
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
@@ -12,29 +13,28 @@ import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
-  const { fetchRepos, fetchUsers } = useSearch();
+  const { searchedValue } = useSearchedValue();
+  const { activePage } = useActivePage();
 
-  useEffect(() => {
-    fetchRepos.refetch();
-    fetchUsers.refetch();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const { totalCount, sortedResults } = useResultsData(
-    fetchRepos.data,
-    fetchUsers.data
+  const { fetchedRepos, fetchedUsers, isError, isFetching } = useResults(
+    searchedValue,
+    activePage,
+    true
   );
 
-  if (fetchUsers.isFetching || fetchRepos.isFetching) {
+  const { totalCount, sortedResults } = useResultsData(
+    fetchedRepos.data,
+    fetchedUsers.data
+  );
+
+  if (isFetching) {
     return <ResultPlaceholder placeholderAmount={5} />;
   }
 
-  const isDataError = fetchUsers.isError || fetchRepos.isError;
-  if (isDataError || (totalCount === 0 && fetchUsers.status === 'loading')) {
+  if (isError || (totalCount === 0 && fetchedUsers.status === 'loading')) {
     return <ErrorMessage error="Couldn't load data" emoji='😭' />;
   }
-  if (totalCount === 0 && fetchUsers.status !== 'loading') {
+  if (totalCount === 0 || sortedResults.length === 0) {
     return <ErrorMessage error='No results found' emoji='🤐' />;
   }
 

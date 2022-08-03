@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
 import { FormEvent } from 'react';
 
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
-
 type InputType =
   | 'text'
   | 'number'
@@ -13,25 +11,28 @@ type InputType =
 
 type InputProps = {
   type: InputType;
+  inputValue: string;
+  setInputValue: (value: string) => void;
   placeholder?: string;
 };
 
-export const Input = ({ type, placeholder }: InputProps) => {
-  const { searchedValue, setSearchedValue } = useSearchedValue();
-  const { setActivePage } = useActivePage();
-
+export const Input = ({
+  type,
+  placeholder,
+  setInputValue,
+  inputValue,
+}: InputProps) => {
   const onInput = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;
-    setActivePage(1);
-    setSearchedValue(target.value);
+    setInputValue(target.value);
   };
 
   return (
     <motion.input
       type={type}
       placeholder={placeholder}
-      className='w-full border-0 bg-transparent text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl'
-      value={searchedValue}
+      className='w-full border-0 bg-slate-700 text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl'
+      value={inputValue}
       onInput={onInput}
     />
   );

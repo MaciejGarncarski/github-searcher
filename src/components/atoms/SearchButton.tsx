@@ -1,15 +1,10 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 
-type SearchButtonProps = {
-  onClick: () => void;
-};
-
-export const SearchButton = ({ onClick }: SearchButtonProps) => {
+export const SearchButton = () => {
   return (
     <button
-      type='button'
-      onClick={onClick}
-      className='px-2 text-white transition-colors hover:bg-slate-600'
+      type='submit'
+      className=' bg-slate-600 px-2 text-white transition-colors hover:border-slate-700 hover:bg-slate-200 hover:text-slate-600 focus:border-slate-700 focus:bg-slate-200 focus:text-slate-600'
     >
       <AiOutlineSearch size={32} />
     </button>

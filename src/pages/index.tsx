@@ -21,25 +21,25 @@ type HomeProps = {
 const initialQueryString = `Typescript`;
 
 const Home: NextPage<HomeProps> = () => {
-  const { replace } = useRouter();
+  const router = useRouter();
   const { searchedValue } = useSearchedValue();
   const { activePage } = useActivePage();
 
   useEffect(() => {
     if (searchedValue.trim() !== '') {
-      replace(`/?q=${searchedValue}&page=${activePage}`, undefined, {
+      router.replace(`/?q=${searchedValue}&page=${activePage}`, undefined, {
         shallow: true,
       });
     }
 
     if (searchedValue.trim() === '') {
-      replace(`/?page=${activePage}`, undefined, {
+      router.replace(`/?page=${activePage}`, undefined, {
         shallow: true,
       });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activePage]);
+  }, []);
 
   return (
     <Layout>

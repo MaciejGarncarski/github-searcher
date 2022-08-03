@@ -1,22 +1,22 @@
-import { motion } from 'framer-motion';
 import { IoMdClose } from 'react-icons/io';
 
-import { useSearchedValue } from '@/hooks/useContexts';
+import { clsxm } from '@/lib/clsxm';
 
-export const ResetButton = () => {
-  const { searchedValue } = useSearchedValue();
+type ResetButtonProps = {
+  inputValue: string;
+};
 
+export const ResetButton = ({ inputValue }: ResetButtonProps) => {
   return (
-    <motion.button
+    <button
       type='reset'
       data-testid='reset-btn'
-      disabled={searchedValue === '' ? true : false}
-      whileTap={{ scale: 0.9 }}
-      className={`cursor-pointer bg-slate-200 px-2 text-slate-900  transition-colors disabled:cursor-not-allowed disabled:bg-slate-600 disabled:text-slate-200 ${
-        searchedValue === '' ? '' : 'hover:bg-slate-500 hover:text-white'
-      }`}
+      disabled={inputValue === '' ? true : false}
+      className={clsxm(
+        'rounded-sm  border-0 px-3 text-white enabled:bg-slate-500 enabled:transition enabled:hover:rounded-full enabled:focus:rounded-full enabled:focus:bg-slate-200  disabled:text-slate-300'
+      )}
     >
-      <IoMdClose size={32} />
-    </motion.button>
+      <IoMdClose size={28} />
+    </button>
   );
 };

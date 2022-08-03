@@ -18,32 +18,23 @@ describe('<Input />', () => {
           setSearchedValue: jest.fn(),
         }}
       >
-        <Input type='text' />
-        <ResetButton />
+        <Input type='text' setInputValue={jest.fn()} inputValue='' />
+        <ResetButton inputValue='' />
       </SearchContext.Provider>
     );
     expect(screen.getByTestId('reset-btn')).toHaveProperty('disabled', true);
-  });
-  test('reset should be active', () => {
-    render(
-      <SearchContext.Provider
-        value={{
-          searchedValue: 'hello',
-          setSearchedValue: jest.fn(),
-        }}
-      >
-        <Input type='text' />
-        <ResetButton />
-      </SearchContext.Provider>
-    );
-    expect(screen.getByTestId('reset-btn')).toHaveProperty('disabled', false);
   });
 
   test('should inherit text from query params', () => {
     render(
       <RouterContext.Provider value={createMockRouter({ query: { q: 'elo' } })}>
         <SearchProvider>
-          <Input type='text' placeholder='myinput' />
+          <Input
+            type='text'
+            placeholder='myinput'
+            setInputValue={jest.fn()}
+            inputValue='elo'
+          />
         </SearchProvider>
       </RouterContext.Provider>
     );
