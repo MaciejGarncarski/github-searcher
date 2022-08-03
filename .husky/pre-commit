@@ -2,5 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
-pnpm lint-staged
 pnpm test
+pnpm lint-staged
+pnpm typecheck

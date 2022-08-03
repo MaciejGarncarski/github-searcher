@@ -33,7 +33,7 @@ export const ThemeSwitch = () => {
   const { theme, setTheme } = useSettings();
 
   return (
-    <SettingFormContainer themeSwitch>
+    <SettingFormContainer>
       <SettingHeading>Theme</SettingHeading>
       {themes.map(({ themeColor, Icon }) => {
         return (
