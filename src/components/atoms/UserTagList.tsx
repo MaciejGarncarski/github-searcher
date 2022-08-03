@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
-
 import { clsxm } from '@/lib/clsxm';
-import { useSettings } from '@/hooks/useContexts';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { tagColors } from '@/utils/colorsData';
 
-import { Color } from '@/components/molecules/ColorSwitch';
 import type { TagData } from '@/components/organisms/UserProfile';
 
 type UserTagListProps = {
@@ -12,13 +9,7 @@ type UserTagListProps = {
 };
 
 export const UserTagList = ({ data }: UserTagListProps) => {
-  const { accentColor } = useSettings();
-
-  const [color, setColor] = useState<Color>('blue');
-
-  useEffect(() => {
-    setColor(accentColor);
-  }, [accentColor]);
+  const { accentColor } = useSSRAccentColor();
 
   return (
     <ul className='flex flex-wrap justify-center gap-4 text-xl font-semibold md:col-span-2 md:mx-auto md:max-w-prose md:justify-self-center md:text-xl'>
@@ -30,7 +21,7 @@ export const UserTagList = ({ data }: UserTagListProps) => {
           <li
             key={title}
             className={clsxm(
-              tagColors[color],
+              tagColors[accentColor],
               'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-md shadow-slate-600/40'
             )}
             title={title}

@@ -1,11 +1,10 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
-import { useSettings } from '@/hooks/useContexts';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { textColors } from '@/utils/colorsData';
 
 import { Text } from '@/components/atoms/Text';
-import { Color } from '@/components/molecules/ColorSwitch';
 
 type ResultsHeadingProps = {
   children: ReactNode;
@@ -13,16 +12,10 @@ type ResultsHeadingProps = {
 };
 
 export const ResultHeading = ({ children, className = '' }: ResultsHeadingProps) => {
-  const { accentColor } = useSettings();
-
-  const [color, setColor] = useState<Color>('blue');
-
-  useEffect(() => {
-    setColor(accentColor);
-  }, [accentColor]);
+  const { accentColor } = useSSRAccentColor();
 
   return (
-    <Text type='h2' className={clsxm('break-all text-3xl', textColors[color], className)}>
+    <Text type='h2' className={clsxm('break-all text-3xl', textColors[accentColor], className)}>
       {children}
     </Text>
   );

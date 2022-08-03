@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import { stringGuard } from '@/utils/stringGuard';
 
@@ -20,6 +20,10 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const { q } = router.query;
 
   const [searchedValue, setSearchedValue] = useState<string>(stringGuard(q));
+
+  useEffect(() => {
+    setSearchedValue(stringGuard(q));
+  }, [q]);
 
   const value = {
     searchedValue,

@@ -3,6 +3,7 @@ export const tagColors = {
   red: 'bg-red-300',
   yellow: 'bg-yellow-300',
   green: 'bg-green-300',
+  white: 'bg-slate-400',
 } as const;
 
 export const shieldColors = {
@@ -10,6 +11,7 @@ export const shieldColors = {
   red: 'bg-red-900',
   yellow: 'bg-yellow-900',
   green: 'bg-green-900',
+  white: 'bg-slate-500',
 } as const;
 
 export const backgroundColors = {
@@ -17,6 +19,7 @@ export const backgroundColors = {
   red: 'bg-red-500',
   yellow: 'bg-yellow-500',
   green: 'bg-green-500',
+  white: 'bg-slate-300',
 } as const;
 
 export const textColors = {
@@ -24,4 +27,13 @@ export const textColors = {
   red: 'text-red-500',
   yellow: 'text-yellow-500',
   green: 'text-green-500',
+  white: 'text-slate-400',
+} as const;
+
+export const borderColors = {
+  blue: 'border-blue-300',
+  red: 'border-red-300',
+  yellow: 'border-yellow-300',
+  green: 'border-green-300',
+  white: 'border-slate-300',
 } as const;

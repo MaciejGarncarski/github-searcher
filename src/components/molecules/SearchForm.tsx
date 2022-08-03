@@ -1,8 +1,11 @@
 import { FormEvent, useState } from 'react';
 
+import { clsxm } from '@/lib/clsxm';
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
+import { borderColors } from '@/utils/colorsData';
 
 import { Input } from '@/components/atoms/Input';
 import { ResetButton } from '@/components/atoms/ResetButton';
@@ -14,6 +17,8 @@ export const SearchForm = () => {
   const { activePage, setActivePage } = useActivePage();
   const { changeParams } = useChangeParams();
   const { fetchedRepos, fetchedUsers } = useResults(inputValue, activePage, true);
+
+  const { accentColor } = useSSRAccentColor();
 
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
@@ -32,7 +37,10 @@ export const SearchForm = () => {
 
   return (
     <form
-      className='col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border border-slate-200 py-0 md:w-auto lg:col-auto lg:ml-auto lg:justify-self-end'
+      className={clsxm(
+        borderColors[accentColor],
+        'col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border py-0 md:w-auto lg:col-auto lg:ml-auto lg:justify-self-end'
+      )}
       onReset={handleReset}
       onSubmit={handleSubmit}
     >

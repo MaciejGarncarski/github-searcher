@@ -2,16 +2,11 @@ import { ReactNode } from 'react';
 
 type SettingFormContainerProps = {
   children: ReactNode;
-  themeSwitch?: boolean;
 };
 
-export const SettingFormContainer = ({ children, themeSwitch }: SettingFormContainerProps) => {
+export const SettingFormContainer = ({ children }: SettingFormContainerProps) => {
   return (
-    <form
-      className={`mt-4 flex flex-col justify-center text-white landscape:mt-1 landscape:mr-7 ${
-        themeSwitch ? 'gap-y-[17px]' : 'gap-y-3'
-      }`}
-    >
+    <form className='mt-4 flex flex-col justify-start gap-y-4 text-white landscape:mt-1 landscape:mr-7'>
       {children}
     </form>
   );
