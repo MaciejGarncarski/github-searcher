@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { IoMdClose } from 'react-icons/io';
 
 import { clsxm } from '@/lib/clsxm';
@@ -8,15 +9,16 @@ type ResetButtonProps = {
 
 export const ResetButton = ({ inputValue }: ResetButtonProps) => {
   return (
-    <button
+    <motion.button
       type='reset'
       data-testid='reset-btn'
+      whileFocus={{ scale: 0.9 }}
       disabled={inputValue === '' ? true : false}
       className={clsxm(
-        'rounded-sm  border-0 px-3 text-white enabled:bg-slate-500 enabled:transition enabled:hover:rounded-full enabled:focus:rounded-full enabled:focus:bg-slate-200  disabled:text-slate-300'
+        'px-2 text-slate-200 transition-colors enabled:hover:bg-slate-200 enabled:hover:text-slate-600 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed disabled:text-slate-300'
       )}
     >
       <IoMdClose size={28} />
-    </button>
+    </motion.button>
   );
 };

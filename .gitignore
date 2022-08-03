@@ -10,6 +10,7 @@
 /.next/
 /out/
 
+
 # production
 /build
 
@@ -37,3 +38,5 @@ yarn-error.log*
 robots.txt
 sitemap.xml
 sitemap-*.xml
+
+.gitconfig
