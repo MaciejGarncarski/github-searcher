@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { screen } from '@testing-library/react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { PaginationNumber } from '@/components/atoms/PaginationNumber';
 
@@ -8,7 +7,7 @@ import { ActivePageContext } from '@/contexts/activePageContext';
 
 describe('<PaginationNumber />', () => {
   const queryClient = new QueryClient();
-  test('should be disabled', () => {
+  test('should be disabled', async () => {
     render(
       <ActivePageContext.Provider
         value={{ activePage: 69, setActivePage: jest.fn() }}
@@ -18,7 +17,7 @@ describe('<PaginationNumber />', () => {
         </QueryClientProvider>
       </ActivePageContext.Provider>
     );
-    expect(screen.getByText('pagination number')).toHaveClass(
+    expect(await screen.findByText('pagination number')).toHaveClass(
       'cursor-not-allowed'
     );
   });
