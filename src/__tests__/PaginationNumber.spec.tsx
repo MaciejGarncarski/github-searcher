@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 
-import { PaginationNumber } from '@/components/atoms/PaginationNumber';
+import { PaginationNumber } from '@/components/atoms/buttons/PaginationNumber';
 
 import { ActivePageContext } from '@/contexts/activePageContext';
 

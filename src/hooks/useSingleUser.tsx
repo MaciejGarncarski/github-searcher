@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getSingleUser } from '@/utils/queries';
+import { getSingleUser } from '@/lib/queries';
 
 const fetchHeaders = {
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },

@@ -1,4 +1,5 @@
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { IoMdClose } from 'react-icons/io';
 
 import { ColorSwitch } from '@/components/molecules/ColorSwitch';
@@ -33,7 +34,7 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
           type: 'spring',
         }}
         animate={isOpen ? 'open' : 'closed'}
-        className='absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-md bg-slate-700 p-8 shadow-xl shadow-slate-600/40  lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'
+        className='absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-md bg-slate-700 p-8 shadow-lg shadow-slate-600/40  lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'
       >
         <ThemeSwitch />
         <ColorSwitch />

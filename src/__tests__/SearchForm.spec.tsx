@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
-import { mockRouter } from '@/utils/mockRouter';
+import { mockRouter } from '@/lib/mockRouter';
 
+import { ResetButton } from '@/components/atoms/buttons/ResetButton';
 import { Input } from '@/components/atoms/Input';
-import { ResetButton } from '@/components/atoms/ResetButton';
 
 import { SearchContext } from '@/contexts/searchedValueContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';

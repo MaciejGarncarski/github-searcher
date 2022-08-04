@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
 import { useSettings } from '@/hooks/useContexts';
-import { shieldColors } from '@/utils/colorsData';
+import { SHIELD_COLORS } from '@/utils/colorsData';
 
 type ShieldProps = {
   children: ReactNode;
@@ -15,8 +15,8 @@ export const Shield = ({ children, className }: ShieldProps) => {
     <li
       className={clsxm(
         className,
-        shieldColors[accentColor],
-        'max-w-210px flex items-center break-words rounded-md py-1 px-4  text-center text-xl text-white shadow-md  shadow-slate-600/40   dark:text-white'
+        SHIELD_COLORS[accentColor],
+        'max-w-210px flex items-center break-words rounded-md py-1 px-4  text-center text-xl text-white shadow-lg  shadow-slate-600/50 dark:text-white'
       )}
     >
       {children}

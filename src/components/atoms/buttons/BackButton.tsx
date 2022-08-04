@@ -1,30 +1,37 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsArrowLeft } from 'react-icons/bs';
 
-import { useSearchedValue } from '@/hooks/useContexts';
-import type { ApiResponse } from '@/utils/queries';
-import { getColors, getRepos, getUsers } from '@/utils/queries';
+import { getColors, getRepos, getUsers } from '@/lib/queries';
+import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 
-import type { RepoTypes, UserTypes } from '@/types/responseTypes';
+import type { ApiResponse, RepoTypes, UserTypes } from '@/types/resultTypes';
 
 export const BackButton = () => {
   const { searchedValue } = useSearchedValue();
   const queryClient = useQueryClient();
+  const { activePage } = useActivePage();
+  const router = useRouter();
 
   const searchString = searchedValue === '' ? 'Typescript' : searchedValue;
 
+  const fetchValues = {
+    searchedValue: searchString,
+    page: activePage,
+  };
+
   const handleClick = async () => {
-    await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>(
-      [`repos`, { page: 1, search: searchString }],
-      () => getRepos(searchString, 1)
+    await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>([`repos`, fetchValues], () =>
+      getRepos(searchString, activePage)
     );
-    await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>(
-      [`users`, { page: 1, search: searchString }],
-      () => getUsers(searchString, 1)
+    await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>([`users`, fetchValues], () =>
+      getUsers(searchString, activePage)
     );
     await queryClient.prefetchQuery(['github language color'], getColors);
+
+    router.back();
   };
 
   return (

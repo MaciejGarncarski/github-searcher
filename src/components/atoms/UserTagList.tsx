@@ -1,6 +1,6 @@
 import { clsxm } from '@/lib/clsxm';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
-import { tagColors } from '@/utils/colorsData';
+import { TAG_COLORS } from '@/utils/colorsData';
 
 import type { TagData } from '@/components/organisms/UserProfile';
 
@@ -21,8 +21,8 @@ export const UserTagList = ({ data }: UserTagListProps) => {
           <li
             key={title}
             className={clsxm(
-              tagColors[accentColor],
-              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-md shadow-slate-600/40'
+              TAG_COLORS[accentColor],
+              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-lg shadow-slate-900/70'
             )}
             title={title}
           >

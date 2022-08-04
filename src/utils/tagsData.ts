@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
-import { UserTypes } from '@/types/responseTypes';
+import { UserTypes } from '@/types/resultTypes';
 
 export const getTagsData = (data: UserTypes | undefined) => {
   const dateObject = new Date(data?.created_at ?? new Date());
@@ -9,7 +9,7 @@ export const getTagsData = (data: UserTypes | undefined) => {
 
   const repos = data?.public_repos === 1 ? 'repo' : 'repos';
 
-  const tagsData = [
+  const TAGS_DATA = [
     {
       Icon: GoRepo,
       value: `${data?.public_repos} ${repos}`,
@@ -42,5 +42,5 @@ export const getTagsData = (data: UserTypes | undefined) => {
     },
   ];
 
-  return tagsData;
+  return TAGS_DATA;
 };

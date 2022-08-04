@@ -1,4 +1,5 @@
-import { motion, Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Logo } from '@/components/atoms/Logo';
@@ -54,7 +55,7 @@ export const Header = () => {
       variants={headerVariants}
       animate={isVisible ? 'visible' : 'hidden'}
       initial='visible'
-      className='top-0 z-20 flex items-center justify-between gap-x-6 bg-slate-700 px-4 py-3 shadow-xl sm:gap-x-20 sm:px-10 sm:py-3'
+      className='top-0 z-20 flex items-center justify-between gap-x-4 bg-slate-700 px-4 py-3 shadow-lg shadow-slate-600/40 sm:gap-x-20 sm:px-10 sm:py-3'
     >
       <Logo src={logoImg} alt='github mark' size={48} placeholder='empty' />
       <SearchForm />

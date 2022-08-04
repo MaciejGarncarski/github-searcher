@@ -3,8 +3,8 @@ import { usePagination } from '@/hooks/usePagination';
 import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
 
-import { PaginationButton } from '@/components/atoms/PaginationButton';
-import { PaginationNumber } from '@/components/atoms/PaginationNumber';
+import { PaginationButton } from '@/components/atoms/buttons/PaginationButton';
+import { PaginationNumber } from '@/components/atoms/buttons/PaginationNumber';
 
 export const Pagination = () => {
   const { activePage } = useActivePage();

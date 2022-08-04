@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { ApiResponse } from '@/utils/queries';
-
-import { RepoTypes, UserTypes } from '@/types/responseTypes';
+import type { ApiResponse, RepoTypes, UserTypes } from '@/types/resultTypes';
 
 export const useResultsData = (
   reposData: ApiResponse<RepoTypes> | undefined,

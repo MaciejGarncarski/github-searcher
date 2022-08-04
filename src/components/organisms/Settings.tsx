@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useSettings } from '@/hooks/useContexts';
 import { useThemeChange } from '@/hooks/useThemeChange';
 
-import { SettingsToggleButton } from '@/components/atoms/SettingsToggleButton';
+import { SettingsToggleButton } from '@/components/atoms/buttons/SettingsToggleButton';
 import { SettingsMenu } from '@/components/molecules/SettingsMenu';
 
 export const Settings = () => {

@@ -1,6 +1,7 @@
 import { StaticImageData } from 'next/image';
 
 type Placeholders = 'blur' | 'empty';
+
 type Sizes = 16 | 32 | 48 | 64 | 128 | 256;
 
 type LogoProps = {

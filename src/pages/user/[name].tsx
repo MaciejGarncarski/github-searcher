@@ -3,7 +3,7 @@ import { dehydrate } from '@tanstack/react-query';
 import { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
-import { getSingleUser } from '@/utils/queries';
+import { getSingleUser } from '@/lib/queries';
 import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';

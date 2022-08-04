@@ -1,17 +1,17 @@
-import { IconType } from 'react-icons';
+import type { IconType } from 'react-icons';
 
-import type { ThemeColors } from '@/components/molecules/ThemeSwitch';
+import type { ThemeColor } from '@/types/types';
 
 type ThemeButtonProps = {
-  themeColor: ThemeColors;
+  themeColor: ThemeColor;
   Icon: IconType;
-  activeThemeColor: ThemeColors;
+  activeThemeColor: ThemeColor;
   onChange: () => void;
 };
 
 export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: ThemeButtonProps) => {
   return (
-    <label className='w-full cursor-pointer justify-self-start shadow-slate-600/40  drop-shadow-lg  lg:self-center'>
+    <label className='w-full cursor-pointer justify-self-start shadow-lg  shadow-slate-500/40  lg:self-center'>
       <input
         className='peer absolute h-0 w-0 opacity-0'
         type='radio'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useSettings } from '@/hooks/useContexts';
 
-import type { Color } from '@/components/molecules/ColorSwitch';
+import type { Color } from '@/types/types';
 
 export const useSSRAccentColor = () => {
   const { accentColor: contextAccentColor } = useSettings();

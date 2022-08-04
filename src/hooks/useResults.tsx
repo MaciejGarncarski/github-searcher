@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
+import { getRepos, getUsers } from '@/lib/queries';
 import { useDebounce } from '@/hooks/useDebounce';
-import { getRepos, getUsers } from '@/utils/queries';
 
 export const useResults = (searchedValue: string, activePage: number, enabled?: boolean) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(enabled ?? false);

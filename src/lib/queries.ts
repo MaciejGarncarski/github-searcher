@@ -1,9 +1,5 @@
-import { RepoTypes, UserTypes } from '../types/responseTypes';
-
-export type ApiResponse<T> = {
-  totalCount: number;
-  data: T[];
-};
+import type { ApiResponse } from '../types/resultTypes';
+import { RepoTypes, UserTypes } from '../types/resultTypes';
 
 const perPage = 4;
 const headers = {

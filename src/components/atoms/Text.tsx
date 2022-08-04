@@ -10,5 +10,5 @@ type TextProps = {
 
 export const Text = ({ type = 'p', children, className }: TextProps) => {
   const TagName = type;
-  return <TagName className={clsxm(className, type !== 'p' && 'font-bold')}>{children}</TagName>;
+  return <TagName className={clsxm(className, type === 'p' && 'font-normal')}>{children}</TagName>;
 };

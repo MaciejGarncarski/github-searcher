@@ -70,7 +70,7 @@ type Favicons = {
   type?: string;
 };
 
-const favicons: Array<Favicons> = [
+const favicons: Favicons[] = [
   {
     rel: 'apple-touch-icon',
     sizes: '180x180',

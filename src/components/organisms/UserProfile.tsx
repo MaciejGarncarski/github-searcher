@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { IconType } from 'react-icons';
+import type { IconType } from 'react-icons';
 
 import { useSingleUser } from '@/hooks/useSingleUser';
 import { stringGuard } from '@/utils/stringGuard';
 import { getTagsData } from '@/utils/tagsData';
 
-import { BackButton } from '@/components/atoms/BackButton';
+import { BackButton } from '@/components/atoms/buttons/BackButton';
 import { NextImage } from '@/components/atoms/NextImage';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
@@ -53,14 +53,14 @@ export const UserProfile = () => {
       className='mt-8 flex min-h-profile flex-col items-center justify-center sm:mx-8 md:items-start  lg:mx-24 lg:px-8 xl:mx-32'
     >
       <BackButton />
-      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl shadow-slate-600/40 md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-700 md:py-20 md:px-4 md:shadow-xl '>
-        <div className='flex flex-col justify-center gap-10 md:flex-row'>
+      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-700 md:py-20 md:px-4 md:shadow-xl md:shadow-slate-600/40 '>
+        <div className='flex flex-col items-center justify-center gap-10 md:flex-row'>
           <NextImage
             src={data.avatar_url}
             alt={`${data.login}'s avatar`}
             width={200}
             height={200}
-            className='flex items-center justify-center shadow-slate-600/40 drop-shadow-xl md:justify-end '
+            className='flex items-center justify-center  md:justify-end '
             imgClassName='h-44 w-44 rounded-full'
             priority
           />

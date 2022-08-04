@@ -1,4 +1,5 @@
-import { motion, TargetAndTransition, VariantLabels, Variants } from 'framer-motion';
+import type { VariantLabels, Variants } from 'framer-motion';
+import { motion, TargetAndTransition } from 'framer-motion';
 import { ReactNode } from 'react';
 
 type Variant = TargetAndTransition | VariantLabels;

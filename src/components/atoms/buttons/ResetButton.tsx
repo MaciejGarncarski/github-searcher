@@ -15,10 +15,10 @@ export const ResetButton = ({ inputValue }: ResetButtonProps) => {
       whileFocus={{ scale: 0.9 }}
       disabled={inputValue === '' ? true : false}
       className={clsxm(
-        'px-2 text-slate-200 transition-colors enabled:hover:bg-slate-200 enabled:hover:text-slate-600 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed disabled:text-slate-300'
+        'hidden px-2 text-slate-200 transition-colors enabled:hover:bg-slate-200 enabled:hover:text-slate-600 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed disabled:text-slate-300 md:inline md:text-3xl'
       )}
     >
-      <IoMdClose size={28} />
+      <IoMdClose />
     </motion.button>
   );
 };
