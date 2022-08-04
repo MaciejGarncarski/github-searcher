@@ -7,7 +7,7 @@ const fetchHeaders = {
 };
 
 export const useSingleUser = (userName: string) => {
-  const { data, isError, isFetching, isLoading } = useQuery(['users', { username: userName }], () =>
+  const { data, isError, isFetching, isLoading } = useQuery(['user', { username: userName }], () =>
     getSingleUser(userName, fetchHeaders)
   );
 

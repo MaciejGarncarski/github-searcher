@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 import { useSearchedValue } from '@/hooks/useContexts';
 import { useActivePage } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
-import { stringGuard } from '@/utils/stringGuard';
 
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
@@ -16,23 +13,14 @@ import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
-  const { searchedValue, setSearchedValue } = useSearchedValue();
-  const { activePage, setActivePage } = useActivePage();
-  const router = useRouter();
-  const { q, page } = router.query;
+  const { searchedValue } = useSearchedValue();
+  const { activePage } = useActivePage();
 
   const { fetchedRepos, fetchedUsers, isError, isFetching } = useResults(
     searchedValue,
     activePage,
     true
   );
-
-  useEffect(() => {
-    setActivePage(typeof page === 'number' ? page : 1);
-    setSearchedValue(stringGuard(q));
-
-    // eslint-disable-next-line prettier/prettier, react-hooks/exhaustive-deps
-  }, []);
 
   const { totalCount, sortedResults } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 

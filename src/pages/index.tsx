@@ -2,6 +2,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 
 import { getRepos, getUsers } from '@/lib/queries';
+import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';
 import { ResultsPage } from '@/components/molecules/ResultsPage';
@@ -14,8 +15,6 @@ type HomeProps = {
   initialUsersData: ApiResponse<User[]>;
 };
 
-const initialQueryString = `Typescript`;
-
 const Home: NextPage<HomeProps> = () => {
   return (
     <Layout>
@@ -27,14 +26,19 @@ const Home: NextPage<HomeProps> = () => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
+
+  const pageNumber = typeof page === 'number' ? page : 1;
+  const searchedValue = stringGuard(q);
+
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery<ApiResponse<Repo> | null>(
-    [`repos`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
-    () => getRepos(initialQueryString, 1)
+    ['repos', { page: pageNumber, searchedValue: searchedValue }],
+    () => getRepos('searchedValue', 1)
   );
   await queryClient.prefetchQuery<ApiResponse<User> | null>(
-    [`users`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
-    () => getUsers(initialQueryString, 1)
+    ['users', { page: pageNumber, searchedValue: searchedValue }],
+    () => getUsers(searchedValue, 1)
   );
   return {
     props: {
