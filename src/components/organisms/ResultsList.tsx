@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { useSearchedValue } from '@/hooks/useContexts';
 import { useActivePage } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
+import { stringGuard } from '@/utils/stringGuard';
 
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
@@ -13,14 +16,23 @@ import { RepositoryResult } from '@/components/organisms/RepositoryResult';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
-  const { searchedValue } = useSearchedValue();
-  const { activePage } = useActivePage();
+  const { searchedValue, setSearchedValue } = useSearchedValue();
+  const { activePage, setActivePage } = useActivePage();
+  const router = useRouter();
+  const { q, page } = router.query;
 
   const { fetchedRepos, fetchedUsers, isError, isFetching } = useResults(
     searchedValue,
     activePage,
     true
   );
+
+  useEffect(() => {
+    setActivePage(typeof page === 'number' ? page : 1);
+    setSearchedValue(stringGuard(q));
+
+    // eslint-disable-next-line prettier/prettier, react-hooks/exhaustive-deps
+  }, []);
 
   const { totalCount, sortedResults } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 
@@ -38,36 +50,15 @@ export const ResultsList = () => {
   return (
     <section className='align-center flex flex-col justify-start px-5 py-7  xl:px-24'>
       <Text type='h2' className='break-words py-4 text-4xl dark:text-white'>
-        {totalCount.toLocaleString('en-GB')}
-
-        {totalCount > 1 ? ' results' : ' result'}
+        {totalCount.toLocaleString('en-GB')} {totalCount > 1 ? ' results' : ' result'}
       </Text>
       <motion.ul variants={placeholderVariants} initial='initial' animate='animate'>
         {sortedResults.map((result) => {
           if ('avatar_url' in result) {
-            return (
-              <UserResult
-                key={result.id}
-                login={result.login}
-                fullName={result.name}
-                avatar={result.avatar_url}
-                bio={result.bio}
-                location={result.location}
-              />
-            );
+            return <UserResult key={result.id} resultData={result} />;
           }
           if ('updated_at' in result) {
-            return (
-              <RepositoryResult
-                key={result.id}
-                fullName={result.full_name}
-                description={result.description}
-                stars={result.stargazers_count}
-                language={result.language}
-                license={result.license}
-                updatedAt={result.updated_at}
-              />
-            );
+            return <RepositoryResult key={result.id} resultData={result} />;
           }
           return null;
         })}

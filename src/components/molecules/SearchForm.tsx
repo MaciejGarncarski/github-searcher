@@ -22,9 +22,14 @@ export const SearchForm = () => {
 
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
-    setSearchedValue(inputValue);
+
+    if (inputValue.trim() === '') {
+      return;
+    }
+
+    setSearchedValue(inputValue.trim());
     setActivePage(1);
-    changeParams(inputValue, activePage);
+    changeParams(inputValue.trim(), activePage);
     setTimeout(() => {
       fetchedRepos.refetch();
       fetchedUsers.refetch();
@@ -39,7 +44,7 @@ export const SearchForm = () => {
     <form
       className={clsxm(
         BORDER_COLORS[accentColor],
-        'col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border py-0 md:w-auto lg:col-auto lg:ml-auto lg:justify-self-end'
+        'col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border py-0 md:w-auto md:border-2 lg:col-auto lg:ml-auto lg:justify-self-end'
       )}
       onReset={handleReset}
       onSubmit={handleSubmit}

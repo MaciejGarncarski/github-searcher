@@ -7,11 +7,11 @@ import { Layout } from '@/components/Layout';
 import { ResultsPage } from '@/components/molecules/ResultsPage';
 import { Seo } from '@/components/Seo';
 
-import type { ApiResponse, RepoTypes, UserTypes } from '@/types/resultTypes';
+import type { ApiResponse, Repo, User } from '@/types/resultTypes';
 
 type HomeProps = {
-  initialReposData: ApiResponse<RepoTypes[]>;
-  initialUsersData: ApiResponse<UserTypes[]>;
+  initialReposData: ApiResponse<Repo[]>;
+  initialUsersData: ApiResponse<User[]>;
 };
 
 const initialQueryString = `Typescript`;
@@ -28,11 +28,11 @@ const Home: NextPage<HomeProps> = () => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>(
+  await queryClient.prefetchQuery<ApiResponse<Repo> | null>(
     [`repos`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
     () => getRepos(initialQueryString, 1)
   );
-  await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>(
+  await queryClient.prefetchQuery<ApiResponse<User> | null>(
     [`users`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
     () => getUsers(initialQueryString, 1)
   );

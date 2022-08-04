@@ -1,5 +1,7 @@
 import type { IconType } from 'react-icons';
 
+import { clsxm } from '@/lib/clsxm';
+
 import type { ThemeColor } from '@/types/types';
 
 type ThemeButtonProps = {
@@ -18,14 +20,13 @@ export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: Th
         checked={themeColor === activeThemeColor}
         onChange={onChange}
       />
-      <div
-        className='opacity-85 flex items-center justify-between gap-x-2 rounded border border-slate-500 px-4 py-1 transition-colors hover:bg-slate-500 hover:opacity-100 peer-checked:bg-slate-500
-      peer-checked:opacity-100 peer-focus:border-white'
-      >
+      <div className='flex items-center justify-between gap-x-2 rounded border border-slate-300 px-3 py-1 opacity-80 peer-checked:border-transparent peer-checked:bg-slate-500 peer-checked:opacity-100 peer-focus:border-slate-100 peer-focus:bg-slate-500 peer-focus:opacity-100'>
         <span className='text-xl'>{themeColor} theme</span>
         <span
-          className='flex items-center
-        rounded border-2 border-transparent text-2xl'
+          className={clsxm(
+            themeColor === activeThemeColor ? 'opacity-100' : 'opacity-40',
+            'flex items-center rounded border-2 border-transparent text-2xl'
+          )}
         >
           <Icon />
         </span>

@@ -19,7 +19,7 @@ describe('useSettings', () => {
       </SettingsContext.Provider>
     );
 
-    expect(screen.getByText('typescript')).toHaveClass('text-red-500');
+    expect(screen.getByText('typescript')).toHaveClass('text-red-400');
   });
   test('color should not match context color', () => {
     render(
@@ -35,6 +35,6 @@ describe('useSettings', () => {
       </SettingsContext.Provider>
     );
 
-    expect(screen.getByText('typescript')).not.toHaveClass('text-red-500');
+    expect(screen.getByText('typescript')).not.toHaveClass('text-red-400');
   });
 });

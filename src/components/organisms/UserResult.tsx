@@ -10,16 +10,16 @@ import { Shield } from '@/components/atoms/Shield';
 import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 import { Text } from '@/components/atoms/Text';
 
+import { User } from '@/types/resultTypes';
+
 type UserResultProps = {
-  login: string;
-  fullName: string;
-  avatar: string;
-  bio?: string;
-  location: string;
+  resultData: User;
 };
 
-export const UserResult = ({ login, fullName, avatar, bio, location }: UserResultProps) => {
+export const UserResult = ({ resultData }: UserResultProps) => {
   const whileHover = { scale: 1.02 };
+
+  const { bio, login, avatar_url, name, location } = resultData;
 
   const userDescription = bio?.substring(0, 200) + '\u2026';
 
@@ -30,7 +30,7 @@ export const UserResult = ({ login, fullName, avatar, bio, location }: UserResul
           <ResultContainer>
             <Suspense fallback={<p>loading...</p>}>
               <NextImage
-                src={avatar}
+                src={avatar_url}
                 width={176}
                 height={176}
                 alt={`${login}'s avatar`}
@@ -41,9 +41,7 @@ export const UserResult = ({ login, fullName, avatar, bio, location }: UserResul
             </Suspense>
 
             <div className='col-start-2 row-span-full '>
-              <ResultHeading className='flex items-center gap-3 underline'>
-                {fullName}
-              </ResultHeading>
+              <ResultHeading className='flex items-center gap-3 underline'>{name}</ResultHeading>
               <Text type='p' className='text-2xl dark:text-white'>
                 @{login}
               </Text>

@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import type { IconType } from 'react-icons';
+import { HiExternalLink } from 'react-icons/hi';
 
+import { clsxm } from '@/lib/clsxm';
 import { useSingleUser } from '@/hooks/useSingleUser';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
+import { BORDER_COLORS } from '@/utils/colorsData';
 import { stringGuard } from '@/utils/stringGuard';
 import { getTagsData } from '@/utils/tagsData';
 
@@ -27,16 +31,17 @@ export type TagData = {
 export const UserProfile = () => {
   const { query, isReady } = useRouter();
   const userName = isReady ? stringGuard(query.name) : 'typescript';
+  const { accentColor } = useSSRAccentColor();
 
   const { data, isError, isFetching, isLoading } = useSingleUser(userName);
 
   const tagsData = getTagsData(data);
 
-  if (isLoading || isFetching || !isReady) {
+  if (isLoading || isFetching || !data) {
     return <UserProfilePlaceholder />;
   }
 
-  if (!data || isError) {
+  if (isError) {
     return (
       <main className='text-3xl md:text-4xl'>
         <BackButton />
@@ -53,7 +58,7 @@ export const UserProfile = () => {
       className='mt-8 flex min-h-profile flex-col items-center justify-center sm:mx-8 md:items-start  lg:mx-24 lg:px-8 xl:mx-32'
     >
       <BackButton />
-      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-700 md:py-20 md:px-4 md:shadow-xl md:shadow-slate-600/40 '>
+      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-4 md:shadow-xl md:shadow-slate-600/40 md:dark:bg-slate-700 '>
         <div className='flex flex-col items-center justify-center gap-10 md:flex-row'>
           <NextImage
             src={data.avatar_url}
@@ -61,13 +66,27 @@ export const UserProfile = () => {
             width={200}
             height={200}
             className='flex items-center justify-center  md:justify-end '
-            imgClassName='h-44 w-44 rounded-full'
+            imgClassName={clsxm(
+              'h-44 w-44 rounded-full border-4 bg-slate-200',
+              BORDER_COLORS[accentColor]
+            )}
             priority
           />
           <div className='flex flex-col items-center justify-center gap-2 justify-self-start md:items-start '>
-            <ResultHeading className='break-normal break-words text-center text-4xl md:text-left md:text-5xl'>
-              {data.name}
-            </ResultHeading>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={data.html_url}
+              target='_blank'
+              rel='noreferrer noopener'
+            >
+              <ResultHeading className='flex items-center gap-2 break-normal break-words text-center text-4xl underline md:text-left md:text-5xl'>
+                {data.name}
+                <span className='mt-2 text-slate-600 dark:text-slate-200 md:text-slate-200'>
+                  <HiExternalLink />
+                </span>
+              </ResultHeading>
+            </motion.a>
             <Text className='text-3xl font-semibold md:text-white'>@{data.login}</Text>
           </div>
         </div>

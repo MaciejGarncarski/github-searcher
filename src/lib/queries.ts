@@ -1,5 +1,5 @@
 import type { ApiResponse } from '../types/resultTypes';
-import { RepoTypes, UserTypes } from '../types/resultTypes';
+import { Repo, User } from '../types/resultTypes';
 
 const perPage = 4;
 const headers = {
@@ -9,7 +9,7 @@ const headers = {
 export const getUsers = async (
   username: string,
   activePage: number
-): Promise<ApiResponse<UserTypes>> => {
+): Promise<ApiResponse<User>> => {
   const res = await fetch(
     `https://api.github.com/search/users?q=${username}&per_page=${perPage}&page=${activePage}`,
     headers
@@ -35,7 +35,7 @@ export const getUsers = async (
 export const getRepos = async (
   username: string,
   activePage: number
-): Promise<ApiResponse<RepoTypes>> => {
+): Promise<ApiResponse<Repo>> => {
   const res = await fetch(
     `https://api.github.com/search/repositories?q=${username}&per_page=${perPage}&page=${activePage}`,
     headers
@@ -61,7 +61,7 @@ type Headers = {
 export const getSingleUser = async (
   name: string,
   fetchHeaders: Headers | undefined
-): Promise<UserTypes> => {
+): Promise<User> => {
   const resp = await fetch(`https://api.github.com/users/${name}`, fetchHeaders);
   if (resp.ok) {
     return resp.json();

@@ -7,7 +7,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { getColors, getRepos, getUsers } from '@/lib/queries';
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 
-import type { ApiResponse, RepoTypes, UserTypes } from '@/types/resultTypes';
+import type { ApiResponse, Repo, User } from '@/types/resultTypes';
 
 export const BackButton = () => {
   const { searchedValue } = useSearchedValue();
@@ -23,10 +23,10 @@ export const BackButton = () => {
   };
 
   const handleClick = async () => {
-    await queryClient.prefetchQuery<ApiResponse<RepoTypes> | null>([`repos`, fetchValues], () =>
+    await queryClient.prefetchQuery<ApiResponse<Repo> | null>([`repos`, fetchValues], () =>
       getRepos(searchString, activePage)
     );
-    await queryClient.prefetchQuery<ApiResponse<UserTypes> | null>([`users`, fetchValues], () =>
+    await queryClient.prefetchQuery<ApiResponse<User> | null>([`users`, fetchValues], () =>
       getUsers(searchString, activePage)
     );
     await queryClient.prefetchQuery(['github language color'], getColors);
@@ -41,7 +41,7 @@ export const BackButton = () => {
         whileHover={{ scale: 1.05 }}
         whileFocus={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
-        className='z-10 inline-flex max-w-max items-center gap-2 rounded-md bg-slate-700 px-4 py-2 text-3xl text-white shadow-lg shadow-slate-600/40 dark:bg-slate-600 lg:col-span-3'
+        className='z-10 inline-flex max-w-max items-center gap-2 rounded-md bg-slate-600 px-4 py-2 text-3xl text-white shadow-lg shadow-slate-600/40 dark:bg-slate-700  lg:col-span-3'
       >
         <BsArrowLeft />
         Back

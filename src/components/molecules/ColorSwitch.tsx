@@ -9,7 +9,7 @@ export const ColorSwitch = () => {
     <SettingFormContainer>
       <SettingHeading>Accent color</SettingHeading>
 
-      <div className='flex items-center justify-center gap-2 landscape:max-h-40 landscape:flex-col landscape:flex-wrap landscape:gap-x-4 landscape:gap-y-5'>
+      <div className='flex items-center justify-center gap-2 landscape:mx-auto landscape:max-w-[100px] landscape:flex-wrap landscape:gap-x-4 landscape:gap-y-5'>
         {COMPATIBLE_COLORS.map((color) => {
           return <ColorButton key={color} color={color} />;
         })}

@@ -1,9 +1,10 @@
 import dayjs from 'dayjs';
+import { BsTwitter } from 'react-icons/bs';
 import { GoOrganization, GoRepo } from 'react-icons/go';
 
-import { UserTypes } from '@/types/resultTypes';
+import { User } from '@/types/resultTypes';
 
-export const getTagsData = (data: UserTypes | undefined) => {
+export const getTagsData = (data: User | undefined) => {
   const dateObject = new Date(data?.created_at ?? new Date());
   const createdAt = dayjs(dateObject).format('YYYY-MM-DD');
 
@@ -33,7 +34,12 @@ export const getTagsData = (data: UserTypes | undefined) => {
     {
       Icon: '⏰',
       value: `Joined: ${createdAt}`,
-      title: 'Joined',
+      title: 'Joined at',
+    },
+    {
+      Icon: BsTwitter,
+      value: `@${data?.twitter_username}`,
+      title: 'Twitter',
     },
     {
       Icon: '👷‍♂️',

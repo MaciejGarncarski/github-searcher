@@ -20,7 +20,7 @@ export const Input = ({ type, placeholder, setInputValue, inputValue }: InputPro
     <motion.input
       type={type}
       placeholder={placeholder}
-      className='w-full border-0 bg-slate-700 text-xl text-white transition-colors placeholder:text-slate-200 hover:bg-slate-600 focus:bg-slate-600 md:text-2xl'
+      className='w-full border-0 bg-transparent text-xl text-white opacity-80 placeholder:text-slate-200 hover:bg-slate-600 focus:opacity-100 dark:bg-slate-700 md:text-2xl'
       value={inputValue}
       onInput={onInput}
     />

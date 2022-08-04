@@ -3,7 +3,7 @@ export const TAG_COLORS = {
   red: 'bg-red-300',
   yellow: 'bg-yellow-300',
   green: 'bg-green-300',
-  white: 'bg-slate-400',
+  white: 'bg-slate-300',
 } as const;
 
 export const SHIELD_COLORS = {
@@ -23,17 +23,25 @@ export const BG_COLORS = {
 } as const;
 
 export const TEXT_COLORS = {
-  blue: 'text-blue-500',
-  red: 'text-red-500',
-  yellow: 'text-yellow-500',
-  green: 'text-green-500',
-  white: 'text-slate-400',
+  blue: 'dark:text-blue-500 text-blue-400',
+  red: 'dark:text-red-500 text-red-400',
+  yellow: 'dark:text-yellow-500 text-yellow-400',
+  green: 'dark:text-green-500 text-green-400',
+  white: 'dark:text-slate-300 text-slate-200',
 } as const;
 
 export const BORDER_COLORS = {
-  blue: 'border-blue-300',
-  red: 'border-red-300',
-  yellow: 'border-yellow-300',
-  green: 'border-green-300',
+  blue: 'border-blue-200',
+  red: 'border-red-200',
+  yellow: 'border-yellow-200',
+  green: 'border-green-200',
   white: 'border-slate-300',
+} as const;
+
+export const BUTTON_COLORS = {
+  blue: 'bg-blue-200',
+  red: 'bg-red-200',
+  yellow: 'bg-yellow-200',
+  green: 'bg-green-200',
+  white: 'bg-slate-300',
 } as const;

@@ -3,7 +3,7 @@ export type ApiResponse<T> = {
   data: T[];
 };
 
-export type UserTypes = {
+export type User = {
   message?: string;
   login: string;
   id: number;
@@ -39,7 +39,7 @@ export type UserTypes = {
   updated_at: Date;
 };
 
-type OwnerTypes = {
+type Owner = {
   login: string;
   id: number;
   node_id: string;
@@ -60,13 +60,13 @@ type OwnerTypes = {
   site_admin: boolean;
 };
 
-export type RepoTypes = {
+export type Repo = {
   id: number;
   node_id: string;
   name: string;
   full_name: string;
   private: boolean;
-  owner: OwnerTypes;
+  owner: Owner;
   html_url: string;
   description: string;
   fork: boolean;
