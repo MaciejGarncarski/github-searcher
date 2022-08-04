@@ -1,6 +1,8 @@
 import type { IconType } from 'react-icons';
 
 import { clsxm } from '@/lib/clsxm';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
+import { ACTIVE_BUTTON_COLORS, BORDER_COLORS } from '@/utils/colorsData';
 
 import type { ThemeColor } from '@/types/types';
 
@@ -12,6 +14,8 @@ type ThemeButtonProps = {
 };
 
 export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: ThemeButtonProps) => {
+  const { accentColor } = useSSRAccentColor();
+
   return (
     <label className='w-full cursor-pointer justify-self-start shadow-lg  shadow-slate-500/40  lg:self-center'>
       <input
@@ -20,7 +24,13 @@ export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: Th
         checked={themeColor === activeThemeColor}
         onChange={onChange}
       />
-      <div className='flex items-center justify-between gap-x-2 rounded border border-slate-300 px-3 py-1 opacity-80 peer-checked:border-transparent peer-checked:bg-slate-500 peer-checked:opacity-100 peer-focus:border-slate-100 peer-focus:bg-slate-500 peer-focus:opacity-100'>
+      <div
+        className={clsxm(
+          BORDER_COLORS[accentColor],
+          ACTIVE_BUTTON_COLORS[accentColor],
+          'flex items-center justify-between gap-x-2 rounded border  px-3 py-1 opacity-80 peer-checked:border-transparent peer-checked:opacity-100 peer-focus:border-slate-100 peer-focus:opacity-100'
+        )}
+      >
         <span className='text-xl'>{themeColor} theme</span>
         <span
           className={clsxm(

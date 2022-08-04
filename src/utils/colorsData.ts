@@ -27,7 +27,7 @@ export const TEXT_COLORS = {
   red: 'dark:text-red-500 text-red-400',
   yellow: 'dark:text-yellow-500 text-yellow-400',
   green: 'dark:text-green-500 text-green-400',
-  white: 'dark:text-slate-300 text-slate-200',
+  white: 'dark:text-slate-300 text-slate-400',
 } as const;
 
 export const BORDER_COLORS = {
@@ -44,4 +44,12 @@ export const BUTTON_COLORS = {
   yellow: 'bg-yellow-200',
   green: 'bg-green-200',
   white: 'bg-slate-300',
+} as const;
+
+export const ACTIVE_BUTTON_COLORS = {
+  blue: 'peer-checked:bg-blue-800 peer-focus:bg-blue-800',
+  red: 'peer-checked:bg-red-800 peer-focus:bg-red-800',
+  yellow: 'peer-checked:bg-yellow-800 peer-focus:bg-yellow-800',
+  green: 'peer-checked:bg-green-800 peer-focus:bg-green-800',
+  white: 'peer-checked:bg-slate-500 peer-focus:bg-slate-500',
 } as const;
