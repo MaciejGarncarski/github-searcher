@@ -1,4 +1,5 @@
-import { motion, Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Dispatch, SetStateAction } from 'react';
 import { IoMdSettings } from 'react-icons/io';
 
@@ -26,7 +27,7 @@ export const SettingsToggleButton = ({ isOpen, setIsOpen }: SettingsToggleButton
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       title='settings'
-      className='overflow-hidden rounded-full p-1 text-5xl text-white transition-colors hover:bg-slate-500 focus:bg-slate-500 focus:outline-offset-4'
+      className='overflow-hidden rounded-full p-1 text-5xl text-white transition-colors hover:bg-slate-500 focus:bg-slate-500 focus:outline-offset-4 '
       type='button'
       onClick={handleToggle}
     >

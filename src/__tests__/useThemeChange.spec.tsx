@@ -1,9 +1,9 @@
 import { act, renderHook } from '@testing-library/react';
 import { render } from '@testing-library/react';
 
+import { mockWindow } from '@/lib/mockWindow';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useThemeChange } from '@/hooks/useThemeChange';
-import { mockWindow } from '@/utils/mockWindow';
 
 import { Text } from '@/components/atoms/Text';
 

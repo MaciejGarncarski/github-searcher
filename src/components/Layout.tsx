@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
 
+import { useSettings } from '@/hooks/useContexts';
+import { useThemeChange } from '@/hooks/useThemeChange';
+
 import { Header } from '@/components/organisms/Header';
 
 type LayoutProps = {
@@ -7,6 +10,8 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps) => {
+  const { theme } = useSettings();
+  useThemeChange(theme);
   return (
     <>
       <Header />

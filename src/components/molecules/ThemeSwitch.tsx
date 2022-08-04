@@ -1,20 +1,12 @@
-import { IconType } from 'react-icons';
 import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 
 import { useSettings } from '@/hooks/useContexts';
 
+import { ThemeButton } from '@/components/atoms/buttons/ThemeButton';
 import { SettingFormContainer } from '@/components/atoms/SettingFormContainer';
 import { SettingHeading } from '@/components/atoms/SettingHeading';
-import { ThemeButton } from '@/components/atoms/ThemeButton';
 
-export type ThemeColors = 'dark' | 'light' | 'system';
-
-type ThemeInfo = {
-  themeColor: ThemeColors;
-  Icon: IconType;
-};
-
-const themes: ThemeInfo[] = [
+const themes = [
   {
     themeColor: 'light',
     Icon: BsSun,
@@ -27,7 +19,7 @@ const themes: ThemeInfo[] = [
     themeColor: 'system',
     Icon: BsLaptop,
   },
-];
+] as const;
 
 export const ThemeSwitch = () => {
   const { theme, setTheme } = useSettings();

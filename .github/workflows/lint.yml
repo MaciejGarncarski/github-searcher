@@ -19,12 +19,12 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🛠️ Setup pnpm
+      - name: 🛠️ Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
 
-      - name: ⎔ Setup node
+      - name: ⎔ Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -47,12 +47,12 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🛠️ Setup pnpm
+      - name: 🛠️ Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
 
-      - name: ⎔ Setup node
+      - name: ⎔ Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -75,12 +75,12 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🛠️ Setup pnpm
+      - name: 🛠️ Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
 
-      - name: ⎔ Setup node
+      - name: ⎔ Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -103,12 +103,12 @@ jobs:
         with:
           persist-credentials: false      
 
-      - name: 🛠️ Setup pnpm
+      - name: 🛠️ Set up pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.5.0
 
-      - name: ⎔ Setup node
+      - name: ⎔ Set up node
         uses: actions/setup-node@v3
         with:
           node-version: 16

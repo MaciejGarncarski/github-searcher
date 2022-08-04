@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 type ActivePageContextProps = {
   activePage: number;
@@ -20,10 +20,6 @@ export const ActivePageProvider = ({ children }: { children: ReactNode }) => {
   const [activePage, setActivePage] = useState<number>(
     typeof page === 'string' ? parseInt(page, 10) : 1
   );
-
-  useEffect(() => {
-    setActivePage(typeof page === 'string' ? parseInt(page, 10) : 1);
-  }, [page]);
 
   const value = {
     activePage,

@@ -4,9 +4,9 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
-import { textColors } from '@/utils/colorsData';
-type PaginationButtonType = 'prev' | 'next';
+import { TEXT_COLORS } from '@/utils/colorsData';
 
+type PaginationButtonType = 'prev' | 'next';
 type PaginationButtonProps = {
   totalPages: number;
   type: PaginationButtonType;
@@ -45,7 +45,7 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   const commonProps = {
     className: `flex items-center gap-2 justify-self-center transition-colors 
     hover:cursor-pointer
-    ${textColors[accentColor]}
+    ${TEXT_COLORS[accentColor]}
     disabled:cursor-not-allowed
     disabled:opacity-50`,
     whileTap: { scale: 0.9 },

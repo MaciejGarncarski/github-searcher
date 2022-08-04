@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { ApiResponse } from '@/utils/queries';
-
-import { RepoTypes, UserTypes } from '@/types/responseTypes';
+import type { ApiResponse, Repo, User } from '@/types/resultTypes';
 
 export const useResultsData = (
-  reposData: ApiResponse<RepoTypes> | undefined,
-  usersData: ApiResponse<UserTypes> | undefined
+  reposData: ApiResponse<Repo> | undefined,
+  usersData: ApiResponse<User> | undefined
 ) => {
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [sortedResults, setSortedResults] = useState<(UserTypes | RepoTypes)[]>([]);
+  const [sortedResults, setSortedResults] = useState<(User | Repo)[]>([]);
 
   useEffect(() => {
     if (reposData && usersData) {

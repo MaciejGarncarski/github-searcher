@@ -1,4 +1,7 @@
-import { motion, Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
+
+import { Text } from '@/components/atoms/Text';
 
 const errorVariants: Variants = {
   initial: {
@@ -24,29 +27,28 @@ type ErrorMessageProps = {
 
 export const ErrorMessage = ({ error = 'Error', emoji = '🌋' }: ErrorMessageProps) => {
   return (
-    <motion.div
-      variants={errorVariants}
-      initial='initial'
-      animate='animate'
-      exit='initial'
-      className='mx-10 grid min-h-state-messsage place-content-center overflow-hidden text-center text-5xl shadow-slate-600/40 drop-shadow-xl  dark:text-white lg:text-6xl'
-    >
-      {error}
-      <motion.span
-        initial={{ rotate: 100 }}
-        animate={{
-          rotate: [100, -50, 0],
-          transition: {
-            duration: 1.5,
-            delay: 0.3,
-            type: 'spring',
-            bounce: 0.3,
-          },
-        }}
-        className='mt-10 text-7xl  lg:text-8xl'
+    <motion.section variants={errorVariants} initial='initial' animate='animate' exit='initial'>
+      <Text
+        type='h2'
+        className='mx-10 grid min-h-state-messsage place-content-center text-center text-5xl dark:text-white  lg:text-6xl'
       >
-        {emoji}
-      </motion.span>
-    </motion.div>
+        {error}
+        <motion.span
+          initial={{ rotate: 100 }}
+          animate={{
+            rotate: [100, -50, 0],
+            transition: {
+              duration: 1.5,
+              delay: 0.3,
+              type: 'spring',
+              bounce: 0.3,
+            },
+          }}
+          className='mt-10 text-7xl  lg:text-8xl'
+        >
+          {emoji}
+        </motion.span>
+      </Text>
+    </motion.section>
   );
 };

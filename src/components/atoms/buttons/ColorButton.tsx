@@ -1,8 +1,8 @@
 import { clsxm } from '@/lib/clsxm';
 import { useSettings } from '@/hooks/useContexts';
-import { backgroundColors } from '@/utils/colorsData';
+import { BG_COLORS } from '@/utils/colorsData';
 
-import { Color } from '@/components/molecules/ColorSwitch';
+import type { Color } from '@/types/types';
 
 type ColorButtonProps = {
   color: Color;
@@ -21,8 +21,8 @@ export const ColorButton = ({ color }: ColorButtonProps) => {
       />
       <span
         className={clsxm(
-          backgroundColors[color],
-          'inline-block h-8 w-8 rounded-full border-2 border-transparent text-xl opacity-80 shadow-slate-600/40  drop-shadow-lg transition-all peer-checked:scale-110 peer-checked:border-slate-200 peer-checked:opacity-100  peer-focus:outline peer-focus:outline-offset-2 '
+          BG_COLORS[color],
+          'inline-block h-8 w-8 rounded-full border-2 border-transparent text-xl opacity-80 transition-all peer-checked:scale-110 peer-checked:border-slate-200 peer-checked:opacity-100  peer-focus:outline peer-focus:outline-offset-2 '
         )}
       ></span>
     </label>

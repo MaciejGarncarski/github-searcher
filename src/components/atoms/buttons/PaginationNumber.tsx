@@ -5,7 +5,7 @@ import { clsxm } from '@/lib/clsxm';
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
-import { backgroundColors } from '@/utils/colorsData';
+import { BG_COLORS } from '@/utils/colorsData';
 
 type PaginationNumberProps = {
   children: ReactNode;
@@ -37,7 +37,7 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
       className={clsxm(
         'flex-grow rounded-md px-2 py-0.5 dark:text-white md:px-4 md:py-1.5',
         activePage === pageNumber
-          ? `cursor-not-allowed ${backgroundColors[accentColor]} text-white transition-colors`
+          ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-white transition-colors`
           : 'cursor-pointer'
       )}
       whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}

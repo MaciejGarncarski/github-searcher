@@ -11,26 +11,16 @@ import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Shield } from '@/components/atoms/Shield';
 import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 
+import { Repo } from '@/types/resultTypes';
+
 type RepositoryResultProps = {
-  fullName: string;
-  description?: string;
-  stars: number;
-  language?: string;
-  license?: {
-    name: string;
-  };
-  updatedAt: Date;
+  resultData: Repo;
 };
 
-export const RepositoryResult = ({
-  fullName,
-  description,
-  stars,
-  language,
-  license,
-  updatedAt,
-}: RepositoryResultProps) => {
-  const dateObject = new Date(updatedAt);
+export const RepositoryResult = ({ resultData }: RepositoryResultProps) => {
+  const { updated_at, language, name, stargazers_count, description, license } = resultData;
+
+  const dateObject = new Date(updated_at);
   dayjs.extend(relativeTime);
   const dateFromNow = dayjs(dateObject).fromNow();
 
@@ -59,11 +49,11 @@ export const RepositoryResult = ({
     <ResultListItem>
       <ResultContainer>
         <GoRepo size={32} className='mt-1' />
-        <ResultHeading>{fullName}</ResultHeading>
+        <ResultHeading>{name}</ResultHeading>
 
         {description && <ResultDescription className='w-full'>{description}</ResultDescription>}
         <ShieldsContainer>
-          <Shield className='gap-x-1'>⭐ {stars}</Shield>
+          <Shield className='gap-x-1'>⭐ {stargazers_count}</Shield>
           <RepositoryLangugage />
           {license && <Shield>📜 {license.name}</Shield>}
           <Shield>⏰ Updated {dateFromNow}</Shield>

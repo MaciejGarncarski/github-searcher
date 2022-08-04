@@ -1,4 +1,9 @@
-export interface UserTypes {
+export type ApiResponse<T> = {
+  totalCount: number;
+  data: T[];
+};
+
+export type User = {
   message?: string;
   login: string;
   id: number;
@@ -32,9 +37,9 @@ export interface UserTypes {
   following: number;
   created_at: Date;
   updated_at: Date;
-}
+};
 
-interface OwnerTypes {
+type Owner = {
   login: string;
   id: number;
   node_id: string;
@@ -53,15 +58,15 @@ interface OwnerTypes {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
-export interface RepoTypes {
+export type Repo = {
   id: number;
   node_id: string;
   name: string;
   full_name: string;
   private: boolean;
-  owner: OwnerTypes;
+  owner: Owner;
   html_url: string;
   description: string;
   fork: boolean;
@@ -136,4 +141,4 @@ export interface RepoTypes {
   watchers: number;
   default_branch: string;
   score: number;
-}
+};

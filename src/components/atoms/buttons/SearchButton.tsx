@@ -4,7 +4,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { clsxm } from '@/lib/clsxm';
 import { useSearchedValue } from '@/hooks/useContexts';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
-import { tagColors } from '@/utils/colorsData';
+import { BUTTON_COLORS } from '@/utils/colorsData';
 
 type SearchButtonProps = {
   inputValue: string;
@@ -13,7 +13,7 @@ type SearchButtonProps = {
 export const SearchButton = ({ inputValue }: SearchButtonProps) => {
   const { searchedValue } = useSearchedValue();
   const { accentColor } = useSSRAccentColor();
-  const isDisabled = searchedValue === '' && inputValue === '';
+  const isDisabled = searchedValue.trim() === '' && inputValue.trim() === '';
 
   return (
     <motion.button
@@ -21,11 +21,11 @@ export const SearchButton = ({ inputValue }: SearchButtonProps) => {
       whileFocus={{ scale: 0.8 }}
       disabled={isDisabled}
       className={clsxm(
-        tagColors[accentColor],
-        ' px-2 text-slate-900 hover:transition-colors enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-700 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed'
+        BUTTON_COLORS[accentColor],
+        'px-2 text-2xl text-slate-900 hover:transition-colors enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-700 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed md:px-3 md:text-3xl'
       )}
     >
-      <AiOutlineSearch size={32} />
+      <AiOutlineSearch />
     </motion.button>
   );
 };

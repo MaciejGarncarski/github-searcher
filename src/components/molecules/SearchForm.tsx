@@ -5,11 +5,11 @@ import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
-import { borderColors } from '@/utils/colorsData';
+import { BORDER_COLORS } from '@/utils/colorsData';
 
+import { ResetButton } from '@/components/atoms/buttons/ResetButton';
+import { SearchButton } from '@/components/atoms/buttons/SearchButton';
 import { Input } from '@/components/atoms/Input';
-import { ResetButton } from '@/components/atoms/ResetButton';
-import { SearchButton } from '@/components/atoms/SearchButton';
 
 export const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
@@ -22,9 +22,14 @@ export const SearchForm = () => {
 
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
-    setSearchedValue(inputValue);
+
+    if (inputValue.trim() === '') {
+      return;
+    }
+
+    setSearchedValue(inputValue.trim());
     setActivePage(1);
-    changeParams(inputValue, activePage);
+    changeParams(inputValue.trim(), activePage);
     setTimeout(() => {
       fetchedRepos.refetch();
       fetchedUsers.refetch();
@@ -38,8 +43,8 @@ export const SearchForm = () => {
   return (
     <form
       className={clsxm(
-        borderColors[accentColor],
-        'col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border py-0 md:w-auto lg:col-auto lg:ml-auto lg:justify-self-end'
+        BORDER_COLORS[accentColor],
+        'col-span-2 row-start-2 flex justify-end self-center justify-self-center overflow-hidden rounded-md border py-0 md:w-auto md:border-2 lg:col-auto lg:ml-auto lg:justify-self-end'
       )}
       onReset={handleReset}
       onSubmit={handleSubmit}

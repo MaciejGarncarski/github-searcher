@@ -1,6 +1,6 @@
 README.md
-.eslintrc.js
-.prettierrc.js
+.eslintrc
+.prettierrc
 public/favicon/site.webmanifest
 pnpm-lock.yaml
 .github/
