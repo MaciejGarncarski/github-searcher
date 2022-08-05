@@ -15,6 +15,8 @@ type HomeProps = {
   initialUsersData: ApiResponse<User[]>;
 };
 
+export const initialQueryString = 'typescript';
+
 const Home: NextPage<HomeProps> = () => {
   return (
     <Layout>
@@ -27,19 +29,24 @@ const Home: NextPage<HomeProps> = () => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
 
-  const pageNumber = typeof page === 'number' ? page : 1;
-  const searchedValue = stringGuard(q);
+  const routerQ = stringGuard(q).trim() === '' ? initialQueryString : stringGuard(q);
+  const routerPage = typeof page === 'string' ? parseInt(page, 10) : 1;
+
+  const queryValues = {
+    page: routerPage ?? 1,
+    searchedValue: routerQ,
+  };
+
+  const fetchArguments = [routerQ, routerPage ?? 1] as const;
 
   const queryClient = new QueryClient();
+  await queryClient.prefetchQuery<ApiResponse<Repo> | null>([`repos`, queryValues], () =>
+    getRepos(...fetchArguments)
+  );
+  await queryClient.prefetchQuery<ApiResponse<User> | null>([`users`, queryValues], () =>
+    getUsers(...fetchArguments)
+  );
 
-  await queryClient.prefetchQuery<ApiResponse<Repo> | null>(
-    ['repos', { page: pageNumber, searchedValue: searchedValue }],
-    () => getRepos('searchedValue', 1)
-  );
-  await queryClient.prefetchQuery<ApiResponse<User> | null>(
-    ['users', { page: pageNumber, searchedValue: searchedValue }],
-    () => getUsers(searchedValue, 1)
-  );
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useState } from 'react';
 
 type ActivePageContextProps = {
   activePage: number;

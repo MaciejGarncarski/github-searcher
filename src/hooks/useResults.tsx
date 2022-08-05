@@ -4,11 +4,13 @@ import { useState } from 'react';
 
 import { getRepos, getUsers } from '@/lib/queries';
 import { useDebounce } from '@/hooks/useDebounce';
-import { stringGuard } from '@/utils/stringGuard';
+
+import { initialQueryString } from '@/pages';
 
 export const useResults = (searchedValue: string, activePage: number, enabled?: boolean) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(enabled ?? false);
   const router = useRouter();
+  const { q } = router.query;
 
   const handleFinally = () => {
     setIsEnabled(false);
@@ -18,29 +20,24 @@ export const useResults = (searchedValue: string, activePage: number, enabled?: 
     enabled: isEnabled,
   };
 
-  const debouncedSearch = useDebounce(searchedValue, 1500);
+  const safeRouterQuery = typeof q === 'string' ? q : initialQueryString;
 
-  const searchParam =
-    stringGuard(router.query.q).trim() === '' ? 'Typescript' : stringGuard(router.query.q);
-
-  const safeSearchValue = debouncedSearch.trim() === '' ? searchParam : debouncedSearch;
+  const debouncedSearch = useDebounce(searchedValue === '' ? safeRouterQuery : searchedValue, 1200);
 
   const fetchValues = {
-    searchedValue: safeSearchValue,
+    searchedValue: debouncedSearch,
     page: activePage,
   };
 
-  const fetchArguments = [safeSearchValue, activePage] as const;
-
   const fetchedRepos = useQuery(
     ['repos', fetchValues],
-    () => getRepos(...fetchArguments).finally(handleFinally),
+    () => getRepos(debouncedSearch, activePage).finally(handleFinally),
     queryOptions
   );
 
   const fetchedUsers = useQuery(
     ['users', fetchValues],
-    () => getUsers(...fetchArguments).finally(handleFinally),
+    () => getUsers(debouncedSearch, activePage).finally(handleFinally),
     queryOptions
   );
 

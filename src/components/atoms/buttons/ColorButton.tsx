@@ -22,7 +22,7 @@ export const ColorButton = ({ color }: ColorButtonProps) => {
       <span
         className={clsxm(
           BG_COLORS[color],
-          'inline-block h-8 w-8 rounded-full border-2 border-transparent text-xl opacity-80 transition-all peer-checked:scale-110 peer-checked:border-slate-200 peer-checked:opacity-100  peer-focus:outline peer-focus:outline-offset-2 '
+          'inline-block h-8 w-8 rounded-full text-xl opacity-80 transition-all peer-checked:scale-110 peer-checked:outline peer-checked:outline-offset-1  peer-focus:outline peer-focus:outline-offset-2'
         )}
       ></span>
     </label>
