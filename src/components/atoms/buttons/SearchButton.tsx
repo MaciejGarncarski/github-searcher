@@ -18,11 +18,11 @@ export const SearchButton = ({ inputValue }: SearchButtonProps) => {
   return (
     <motion.button
       type='submit'
-      whileFocus={{ scale: 0.8 }}
       disabled={isDisabled}
+      whileFocus={{ scale: 0.8 }}
       className={clsxm(
         BUTTON_COLORS[accentColor],
-        'px-2 text-2xl text-slate-900 hover:transition-colors enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-700 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed disabled:opacity-80 md:px-3 md:text-3xl'
+        'border-transparent px-2 text-2xl text-slate-900 hover:transition-colors focus:outline-2 focus:outline-offset-4 enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-200 disabled:cursor-not-allowed disabled:opacity-80 md:px-3 md:text-3xl'
       )}
     >
       <AiOutlineSearch />
