@@ -1,26 +1,30 @@
 import { motion } from 'framer-motion';
-import { FormEvent } from 'react';
-
-type InputType = 'text' | 'number' | 'search' | 'password' | 'email' | 'telephone';
+import { FormEventHandler } from 'react';
 
 type InputProps = {
-  type: InputType;
+  type: JSX.IntrinsicElements['input']['type'];
   inputValue: string;
-  setInputValue: (value: string) => void;
   placeholder?: string;
+  required?: boolean;
+  onInput?: FormEventHandler<HTMLInputElement>;
+  autoComplete?: 'true' | 'false';
 };
 
-export const Input = ({ type, placeholder, setInputValue, inputValue }: InputProps) => {
-  const onInput = (event: FormEvent) => {
-    const target = event.target as HTMLInputElement;
-    setInputValue(target.value);
-  };
-
+export const Input = ({
+  type,
+  placeholder,
+  onInput,
+  inputValue,
+  required,
+  autoComplete,
+}: InputProps) => {
   return (
     <motion.input
       type={type}
+      autoComplete={autoComplete}
+      required={required}
       placeholder={placeholder}
-      className='w-full border-0 bg-transparent text-xl text-white opacity-80 placeholder:text-slate-200 hover:bg-slate-600 focus:opacity-100 dark:bg-slate-700 md:text-2xl'
+      className='w-full border-2 border-transparent bg-transparent text-xl text-white placeholder:text-slate-200 hover:bg-slate-600 focus:border-slate-200 dark:bg-slate-700 md:text-2xl'
       value={inputValue}
       onInput={onInput}
     />

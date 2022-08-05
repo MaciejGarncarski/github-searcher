@@ -36,6 +36,11 @@ export const SearchForm = () => {
     }, 1000);
   };
 
+  const onInput = (event: FormEvent) => {
+    const target = event.target as HTMLInputElement;
+    setInputValue(target.value);
+  };
+
   const handleReset = () => {
     setInputValue('');
   };
@@ -49,12 +54,7 @@ export const SearchForm = () => {
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
-      <Input
-        type='text'
-        placeholder='Search'
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-      />
+      <Input type='text' placeholder='Search' inputValue={inputValue} onInput={onInput} />
       <ResetButton inputValue={inputValue} />
       <SearchButton inputValue={inputValue} />
     </form>
