@@ -13,10 +13,10 @@ import { Input } from '@/components/atoms/Input';
 
 export const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
-  const { setSearchedValue } = useSearchedValue();
+  const { setSearchedValue, searchedValue } = useSearchedValue();
   const { activePage, setActivePage } = useActivePage();
   const { changeParams } = useChangeParams();
-  const { fetchedRepos, fetchedUsers } = useResults(inputValue, activePage, true);
+  const { fetchedRepos, fetchedUsers } = useResults(searchedValue, activePage, true);
 
   const { accentColor } = useSSRAccentColor();
 
