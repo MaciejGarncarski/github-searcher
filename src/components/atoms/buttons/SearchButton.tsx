@@ -22,7 +22,7 @@ export const SearchButton = ({ inputValue }: SearchButtonProps) => {
       disabled={isDisabled}
       className={clsxm(
         BUTTON_COLORS[accentColor],
-        'px-2 text-2xl text-slate-900 hover:transition-colors enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-700 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed md:px-3 md:text-3xl'
+        'px-2 text-2xl text-slate-900 hover:transition-colors enabled:hover:border-slate-700 enabled:hover:bg-slate-600 enabled:hover:text-slate-200 enabled:focus:border-slate-700 enabled:focus:bg-slate-200 enabled:focus:text-slate-600 disabled:cursor-not-allowed disabled:opacity-80 md:px-3 md:text-3xl'
       )}
     >
       <AiOutlineSearch />
