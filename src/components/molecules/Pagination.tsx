@@ -26,13 +26,13 @@ export const Pagination = () => {
       <span className='col-start-1 col-end-3 row-start-1 row-end-2 mx-auto md:hidden'>
         {activePage}/{totalPages}
       </span>
-      <div className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
+      <ul className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
         {pageQueue.map((pageNumber) => {
           if (pageNumber === '...') {
             return (
-              <span className='text-center dark:text-white ' key={pageNumber + Math.random()}>
+              <li className='text-center dark:text-white ' key={pageNumber + Math.random()}>
                 &hellip;
-              </span>
+              </li>
             );
           }
           return (
@@ -41,7 +41,7 @@ export const Pagination = () => {
             </PaginationNumber>
           );
         })}
-      </div>
+      </ul>
       <PaginationButton totalPages={totalPages} type='next' />
     </nav>
   );

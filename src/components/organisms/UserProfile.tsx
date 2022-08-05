@@ -29,8 +29,10 @@ export type TagData = {
 };
 
 export const UserProfile = () => {
-  const { query, isReady } = useRouter();
-  const userName = isReady ? stringGuard(query.name) : 'typescript';
+  const router = useRouter();
+  const { name } = router.query;
+
+  const userName = router.isReady ? stringGuard(name) : 'typescript';
   const { accentColor } = useSSRAccentColor();
 
   const { data, isError, isFetching, isLoading } = useSingleUser(userName);

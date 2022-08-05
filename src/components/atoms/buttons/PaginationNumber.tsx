@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { clsxm } from '@/lib/clsxm';
 import { useChangeParams } from '@/hooks/useChangeParams';
@@ -31,20 +31,22 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
   };
 
   return (
-    <motion.button
-      type='button'
-      onClick={handleClick}
-      className={clsxm(
-        'flex-grow rounded-md px-2 py-0.5 dark:text-white md:px-4 md:py-1.5',
-        activePage === pageNumber
-          ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-white transition-colors`
-          : 'cursor-pointer'
-      )}
-      whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}
-      whileHover={animateY}
-      whileFocus={animateY}
-    >
-      {children}
-    </motion.button>
+    <li className='flex-grow'>
+      <motion.button
+        type='button'
+        onClick={handleClick}
+        className={clsxm(
+          'rounded-md px-2 py-0.5 dark:text-white md:px-4 md:py-1.5',
+          activePage === pageNumber
+            ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-white transition-colors`
+            : 'cursor-pointer'
+        )}
+        whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}
+        whileHover={animateY}
+        whileFocus={animateY}
+      >
+        {children}
+      </motion.button>
+    </li>
   );
 };

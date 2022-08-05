@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import { useSettings } from '@/hooks/useContexts';
 import { useThemeChange } from '@/hooks/useThemeChange';

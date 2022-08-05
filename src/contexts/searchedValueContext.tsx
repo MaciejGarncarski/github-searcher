@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { createContext, ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useState } from 'react';
 
 import { stringGuard } from '@/utils/stringGuard';
 
@@ -17,9 +18,11 @@ export const SearchContext = createContext<SearchContextProps>(contextDefaultVal
 
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+
   const { q } = router.query;
 
   const [searchedValue, setSearchedValue] = useState<string>(stringGuard(q));
+  // console.log(q, searchedValue);
 
   const value = {
     searchedValue,

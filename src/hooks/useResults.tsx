@@ -1,11 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { getRepos, getUsers } from '@/lib/queries';
 import { useDebounce } from '@/hooks/useDebounce';
 
+import { initialQueryString } from '@/pages';
+
 export const useResults = (searchedValue: string, activePage: number, enabled?: boolean) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(enabled ?? false);
+  const router = useRouter();
+  const { q } = router.query;
 
   const handleFinally = () => {
     setIsEnabled(false);
@@ -15,7 +20,9 @@ export const useResults = (searchedValue: string, activePage: number, enabled?: 
     enabled: isEnabled,
   };
 
-  const debouncedSearch = useDebounce(searchedValue === `` ? 'Typescript' : searchedValue, 1200);
+  const safeRouterQuery = typeof q === 'string' ? q : initialQueryString;
+
+  const debouncedSearch = useDebounce(searchedValue === '' ? safeRouterQuery : searchedValue, 1200);
 
   const fetchValues = {
     searchedValue: debouncedSearch,

@@ -2,6 +2,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 
 import { getRepos, getUsers } from '@/lib/queries';
+import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';
 import { ResultsPage } from '@/components/molecules/ResultsPage';
@@ -14,7 +15,7 @@ type HomeProps = {
   initialUsersData: ApiResponse<User[]>;
 };
 
-const initialQueryString = `Typescript`;
+export const initialQueryString = 'typescript';
 
 const Home: NextPage<HomeProps> = () => {
   return (
@@ -27,15 +28,25 @@ const Home: NextPage<HomeProps> = () => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
+
+  const routerQ = stringGuard(q).trim() === '' ? initialQueryString : stringGuard(q);
+  const routerPage = typeof page === 'string' ? parseInt(page, 10) : 1;
+
+  const queryValues = {
+    page: routerPage ?? 1,
+    searchedValue: routerQ,
+  };
+
+  const fetchArguments = [routerQ, routerPage ?? 1] as const;
+
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<ApiResponse<Repo> | null>(
-    [`repos`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
-    () => getRepos(initialQueryString, 1)
+  await queryClient.prefetchQuery<ApiResponse<Repo> | null>([`repos`, queryValues], () =>
+    getRepos(...fetchArguments)
   );
-  await queryClient.prefetchQuery<ApiResponse<User> | null>(
-    [`users`, { page: page ?? 1, searchedValue: q ?? initialQueryString }],
-    () => getUsers(initialQueryString, 1)
+  await queryClient.prefetchQuery<ApiResponse<User> | null>([`users`, queryValues], () =>
+    getUsers(...fetchArguments)
   );
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
