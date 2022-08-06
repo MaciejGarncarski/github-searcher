@@ -1,8 +1,14 @@
+import type { IconType } from 'react-icons';
+
 import { clsxm } from '@/lib/clsxm';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { TAG_COLORS } from '@/utils/colorsData';
 
-import type { TagData } from '@/components/organisms/UserProfile';
+type TagData = {
+  Icon: IconType | string;
+  value: string;
+  title: string;
+};
 
 type UserTagListProps = {
   data: TagData[];
@@ -22,7 +28,7 @@ export const UserTagList = ({ data }: UserTagListProps) => {
             key={title}
             className={clsxm(
               TAG_COLORS[accentColor],
-              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800 shadow-lg shadow-slate-600/40 md:shadow-slate-700/70'
+              'flex items-center justify-center gap-2 rounded-md py-2 px-4 text-slate-800'
             )}
             title={title}
           >

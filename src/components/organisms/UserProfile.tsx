@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import type { IconType } from 'react-icons';
 import { HiExternalLink } from 'react-icons/hi';
 
 import { clsxm } from '@/lib/clsxm';
@@ -22,12 +21,6 @@ import {
   UserProfilePlaceholder,
 } from '@/components/molecules/UserProfilePlaceholder';
 
-export type TagData = {
-  Icon: IconType | string;
-  value: string;
-  title: string;
-};
-
 export const UserProfile = () => {
   const router = useRouter();
   const { name } = router.query;
@@ -39,15 +32,17 @@ export const UserProfile = () => {
 
   const tagsData = getTagsData(data);
 
-  if (isLoading || isFetching || !data) {
+  if (isLoading || isFetching) {
     return <UserProfilePlaceholder />;
   }
 
-  if (isError) {
+  if (isError || !data) {
     return (
-      <main className='text-3xl md:text-4xl'>
-        <BackButton />
-        <ErrorMessage error="Couldn't load this profile" emoji='😣' />;
+      <main className='grid place-content-center text-3xl md:text-4xl'>
+        <span className='mx-auto translate-y-10 transform lg:translate-y-24'>
+          <BackButton />
+        </span>
+        <ErrorMessage error="Couldn't load this profile" emoji='😣' />
       </main>
     );
   }
@@ -60,7 +55,7 @@ export const UserProfile = () => {
       className='mt-8 flex min-h-profile flex-col items-center justify-center sm:mx-8 md:items-start  lg:mx-24 lg:px-8 xl:mx-32'
     >
       <BackButton />
-      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-4 md:shadow-xl md:shadow-slate-600/40 md:dark:bg-slate-700 '>
+      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-4 md:dark:bg-slate-700 '>
         <div className='flex flex-col items-center justify-center gap-10 md:flex-row'>
           <NextImage
             src={data.avatar_url}
@@ -82,7 +77,7 @@ export const UserProfile = () => {
               target='_blank'
               rel='noreferrer noopener'
             >
-              <ResultHeading className='flex items-center gap-2 break-normal break-words text-center text-4xl underline md:text-left md:text-5xl'>
+              <ResultHeading className='flex flex-col-reverse items-center gap-2 break-normal break-words text-center text-4xl underline md:flex-row md:text-left md:text-5xl'>
                 {data.name}
                 <span className='mt-2 text-slate-600 dark:text-slate-200 md:text-slate-200'>
                   <HiExternalLink />
