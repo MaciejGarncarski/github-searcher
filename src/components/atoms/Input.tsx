@@ -24,7 +24,7 @@ export const Input = ({
       autoComplete={autoComplete}
       required={required}
       placeholder={placeholder}
-      className='w-full border-2 border-transparent bg-transparent text-xl text-white placeholder:text-slate-200 hover:bg-slate-600 focus:border-slate-200 dark:bg-slate-700 md:text-2xl'
+      className='peer w-full rounded-l-md border-2 border-transparent bg-transparent text-xl text-white placeholder:text-slate-200 hover:bg-slate-600 focus:border-slate-200 dark:bg-slate-700 md:text-2xl'
       value={inputValue}
       onInput={onInput}
     />
