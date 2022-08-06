@@ -28,13 +28,13 @@ export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: Th
         className={clsxm(
           BORDER_COLORS[accentColor],
           ACTIVE_BUTTON_COLORS[accentColor],
-          'flex items-center justify-between gap-x-2 rounded border px-3 py-1 opacity-80 peer-checked:border-slate-300 peer-checked:opacity-100  peer-focus:bg-slate-600 peer-focus:opacity-100 peer-focus:outline peer-focus:outline-2 peer-focus:outline-offset-4'
+          'flex items-center justify-between gap-x-3 rounded border px-3 py-1 opacity-80 peer-checked:border-slate-300 peer-checked:opacity-100 peer-focus:bg-slate-600  peer-focus:opacity-100 peer-focus:outline peer-focus:outline-2 peer-focus:outline-offset-4 md:gap-x-6'
         )}
       >
-        <span className='text-xl'>{themeColor} theme</span>
         <span className='flex items-center rounded border-2 border-transparent text-2xl'>
           <Icon />
         </span>
+        <span className='text-xl'>{themeColor}</span>
       </div>
     </label>
   );

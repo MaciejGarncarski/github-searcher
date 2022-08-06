@@ -22,7 +22,6 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const { q } = router.query;
 
   const [searchedValue, setSearchedValue] = useState<string>(stringGuard(q));
-  // console.log(q, searchedValue);
 
   const value = {
     searchedValue,
