@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import CountUp from 'react-countup';
 
 import { useSearchedValue } from '@/hooks/useContexts';
 import { useActivePage } from '@/hooks/useContexts';
@@ -57,7 +58,8 @@ export const ResultsList = () => {
   return (
     <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
       <Text type='h2' className='break-words py-4 text-4xl dark:text-white'>
-        {totalCount.toLocaleString('en-GB')} {totalCount > 1 ? ' results' : ' result'}
+        <CountUp start={0} end={totalCount} duration={0.5} separator=',' />
+        {totalCount > 1 ? ' results' : ' result'}
       </Text>
       <motion.ul variants={placeholderVariants} initial='initial' animate='animate'>
         {sortedResults.map((result) => {

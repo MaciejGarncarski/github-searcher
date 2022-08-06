@@ -47,9 +47,9 @@ export const BUTTON_COLORS = {
 } as const;
 
 export const ACTIVE_BUTTON_COLORS = {
-  blue: 'peer-checked:bg-blue-800 peer-focus:bg-blue-800',
-  red: 'peer-checked:bg-red-800 peer-focus:bg-red-800',
-  yellow: 'peer-checked:bg-yellow-800 peer-focus:bg-yellow-800',
-  green: 'peer-checked:bg-green-800 peer-focus:bg-green-800',
-  white: 'peer-checked:bg-slate-500 peer-focus:bg-slate-500',
+  blue: 'peer-checked:bg-blue-800',
+  red: 'peer-checked:bg-red-800',
+  yellow: 'peer-checked:bg-yellow-800',
+  green: 'peer-checked:bg-green-800',
+  white: 'peer-checked:bg-slate-500',
 } as const;
