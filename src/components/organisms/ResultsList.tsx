@@ -36,7 +36,7 @@ export const ResultsList = () => {
   const router = useRouter();
   const { page } = router.query;
 
-  const { fetchedRepos, fetchedUsers, isError, isFetching } = useResults(
+  const { fetchedRepos, fetchedUsers, isError, isLoading } = useResults(
     searchedValue,
     activePage,
     true
@@ -44,11 +44,11 @@ export const ResultsList = () => {
 
   const { totalCount, sortedResults } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 
-  if (isFetching) {
+  if (isLoading) {
     return <ResultPlaceholder placeholderAmount={5} />;
   }
 
-  if (isError || (totalCount === 0 && fetchedUsers.status === 'loading')) {
+  if (isError || totalCount === 0 || fetchedUsers.status === 'loading') {
     return <ErrorMessage error="Couldn't load data" emoji='😭' />;
   }
   if (totalCount === 0 || sortedResults.length === 0) {
@@ -57,7 +57,7 @@ export const ResultsList = () => {
 
   return (
     <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
-      <Text type='h2' className='break-words py-4 text-4xl dark:text-white'>
+      <Text type='h2' className='break-words py-4 text-4xl dark:text-slate-200'>
         <CountUp start={0} end={totalCount} duration={0.5} separator=',' />
         {totalCount > 1 ? ' results' : ' result'}
       </Text>

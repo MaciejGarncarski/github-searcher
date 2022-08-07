@@ -11,6 +11,7 @@ export const Pagination = () => {
   const { searchedValue } = useSearchedValue();
 
   const { fetchedRepos, fetchedUsers, isError } = useResults(searchedValue, activePage);
+
   const { totalCount } = useResultsData(fetchedRepos.data, fetchedUsers.data);
 
   const totalPages = Math.ceil(totalCount / 10);

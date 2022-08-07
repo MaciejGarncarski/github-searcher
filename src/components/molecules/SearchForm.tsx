@@ -3,8 +3,8 @@ import { FormEvent, useState } from 'react';
 import { clsxm } from '@/lib/clsxm';
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
+import { useInputFocus } from '@/hooks/useInputFocus';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { useResults } from '@/hooks/useResults';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { BORDER_COLORS } from '@/utils/colorsData';
 import { setSearchHistory } from '@/utils/setSearchHistory';
@@ -17,11 +17,11 @@ import { SearchHistory } from '@/components/molecules/SearchHistory';
 export const SearchForm = () => {
   const [inputValue, setInputValue] = useState('');
   const [history, setHistory] = useLocalStorage<string[]>('searchHistory', []);
+  const [inputFocus] = useInputFocus();
 
-  const { setSearchedValue, searchedValue } = useSearchedValue();
-  const { activePage, setActivePage } = useActivePage();
+  const { setSearchedValue } = useSearchedValue();
+  const { setActivePage } = useActivePage();
   const { changeParams } = useChangeParams();
-  const { fetchedRepos, fetchedUsers } = useResults(searchedValue, activePage, true);
 
   const { accentColor } = useSSRAccentColor();
 
@@ -33,14 +33,11 @@ export const SearchForm = () => {
     }
 
     setSearchedValue(inputValue.trim());
-    setSearchHistory(inputValue, history, setHistory);
-
     setActivePage(1);
-    changeParams(inputValue.trim(), activePage);
-    setTimeout(() => {
-      fetchedRepos.refetch();
-      fetchedUsers.refetch();
-    }, 1000);
+
+    changeParams(inputValue.trim(), 1);
+
+    setSearchHistory(inputValue, history, setHistory);
   };
 
   const onInput = (event: FormEvent) => {
@@ -56,14 +53,20 @@ export const SearchForm = () => {
     <form
       className={clsxm(
         BORDER_COLORS[accentColor],
-        'search-form',
         'relative col-span-2 row-start-2 flex justify-end self-center justify-self-center rounded-md border py-0 md:w-auto md:border-2 lg:col-auto lg:ml-auto lg:justify-self-end'
       )}
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
       <Input type='text' placeholder='Search' inputValue={inputValue} onInput={onInput} />
-      <SearchHistory historyData={history} setHistory={setHistory} setInputValue={setInputValue} />
+      {inputFocus && (
+        <SearchHistory
+          historyData={history}
+          setHistory={setHistory}
+          inputFocus={inputFocus}
+          setInputValue={setInputValue}
+        />
+      )}
       <ResetButton inputValue={inputValue} />
       <SearchButton inputValue={inputValue} />
     </form>

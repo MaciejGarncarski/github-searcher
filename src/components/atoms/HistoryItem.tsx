@@ -1,7 +1,7 @@
 import { RiHistoryFill } from 'react-icons/ri';
 
 import { useChangeParams } from '@/hooks/useChangeParams';
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
+import { useSearchedValue } from '@/hooks/useContexts';
 
 import { DeleteHistoryButton } from '@/components/atoms/buttons/DeleteHistoryButton';
 
@@ -14,7 +14,6 @@ type HistoryItemProps = {
 
 export const HistoryItem = ({ text, setInputValue, historyData, setHistory }: HistoryItemProps) => {
   const { searchedValue, setSearchedValue } = useSearchedValue();
-  const { activePage } = useActivePage();
 
   const { changeParams } = useChangeParams();
 
@@ -25,7 +24,8 @@ export const HistoryItem = ({ text, setInputValue, historyData, setHistory }: Hi
 
     setInputValue(text);
     setSearchedValue(text);
-    changeParams(text, activePage);
+
+    changeParams(text, 1);
   };
 
   const handleDelete = () => {
@@ -34,16 +34,19 @@ export const HistoryItem = ({ text, setInputValue, historyData, setHistory }: Hi
   };
 
   return (
-    <li className='flex w-full items-center justify-between md:text-2xl'>
+    <li data-focus='true' className='flex w-full items-center justify-between md:text-2xl'>
       <button
         type='button'
+        data-focus='true'
         className='flex w-3/4 cursor-pointer items-center gap-3 rounded py-2 pl-2 text-left text-slate-200 transition-colors hover:bg-slate-500 focus:bg-slate-500 md:w-4/5 md:pl-4 '
         onClick={handleClick}
       >
-        <span className='mt-1 flex-shrink-0'>
+        <span className='mt-1 flex-shrink-0' data-focus='true'>
           <RiHistoryFill />
         </span>
-        <span className='w-full overflow-hidden text-ellipsis'>{text}</span>
+        <span className='w-full overflow-hidden text-ellipsis' data-focus='true'>
+          {text}
+        </span>
       </button>
       <DeleteHistoryButton onClick={handleDelete} />
     </li>

@@ -3,7 +3,6 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
-import { useResults } from '@/hooks/useResults';
 import { TEXT_COLORS } from '@/utils/colorsData';
 
 type PaginationButtonType = 'prev' | 'next';
@@ -17,19 +16,11 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   const { searchedValue } = useSearchedValue();
   const { activePage, setActivePage } = useActivePage();
 
-  const { fetchedRepos, fetchedUsers } = useResults(searchedValue, activePage);
-
   const { changeParams } = useChangeParams();
-
-  const refetchData = () => {
-    fetchedUsers.refetch();
-    fetchedRepos.refetch();
-  };
 
   const handlePrevPage = () => {
     if (1 < activePage) {
       setActivePage(activePage - 1);
-      refetchData();
       changeParams(searchedValue, activePage - 1);
     }
   };
@@ -37,7 +28,6 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   const handleNextPage = () => {
     if (activePage <= totalPages - 1) {
       setActivePage(activePage + 1);
-      refetchData();
       changeParams(searchedValue, activePage + 1);
     }
   };

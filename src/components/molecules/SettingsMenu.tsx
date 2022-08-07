@@ -1,11 +1,11 @@
 import type { Variants } from 'framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
-import { IoMdClose } from 'react-icons/io';
 
 import { clsxm } from '@/lib/clsxm';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { BORDER_COLORS } from '@/utils/colorsData';
 
+import { MenuCloseButton } from '@/components/atoms/buttons/MenuCloseButton';
 import { ColorSwitch } from '@/components/molecules/ColorSwitch';
 import { ThemeSwitch } from '@/components/molecules/ThemeSwitch';
 
@@ -23,24 +23,6 @@ const menuVariants: Variants = {
     y: -20,
     opacity: 0,
   },
-};
-
-type MenuCloseButtonProps = {
-  setIsOpen: (isOpen: boolean) => void;
-};
-
-const MenuCloseButton = ({ setIsOpen }: MenuCloseButtonProps) => {
-  return (
-    <motion.button
-      type='button'
-      onClick={() => setIsOpen(false)}
-      className='absolute right-2 top-2 rounded-full p-1 text-4xl text-white hover:bg-slate-500 focus:bg-slate-500'
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-    >
-      <IoMdClose />
-    </motion.button>
-  );
 };
 
 export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
