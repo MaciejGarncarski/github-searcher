@@ -8,9 +8,9 @@ type DeleteHistoryButtonProps = {
 };
 
 const animation: Variant = {
-  rotate: [0, 90],
+  rotate: -90,
   transition: {
-    duration: 0.4,
+    duration: 0.55,
     type: 'spring',
   },
 };
@@ -19,6 +19,7 @@ export const DeleteHistoryButton = ({ onClick }: DeleteHistoryButtonProps) => {
   return (
     <motion.button
       type='button'
+      data-focus='true'
       whileHover={animation}
       whileFocus={animation}
       onClick={onClick}

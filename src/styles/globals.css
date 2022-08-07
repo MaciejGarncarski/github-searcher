@@ -88,12 +88,6 @@
   }
 }
 
-@layer components {
-  .search-form:focus-within > .history-menu {
-    display: flex;
-  }
-}
-
 @layer utilities {
   .animated-underline {
     background-image: linear-gradient(#33333300, #33333300),

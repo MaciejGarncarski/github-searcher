@@ -30,7 +30,7 @@ export const ErrorMessage = ({ error = 'Error', emoji = '🌋' }: ErrorMessagePr
     <motion.section variants={errorVariants} initial='initial' animate='animate' exit='initial'>
       <Text
         type='h2'
-        className='mx-10 grid min-h-state-messsage place-content-center text-center text-5xl dark:text-white  lg:text-6xl'
+        className='mx-10 grid min-h-state-messsage place-content-center text-center text-5xl dark:text-slate-200  lg:text-6xl'
       >
         {error}
         <motion.span

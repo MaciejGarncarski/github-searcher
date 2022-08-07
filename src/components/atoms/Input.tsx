@@ -20,6 +20,7 @@ export const Input = ({
 }: InputProps) => {
   return (
     <motion.input
+      data-focus='true'
       type={type}
       autoComplete={autoComplete}
       required={required}

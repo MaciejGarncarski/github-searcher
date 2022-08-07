@@ -84,12 +84,12 @@ export const UserProfile = () => {
                 </span>
               </ResultHeading>
             </motion.a>
-            <Text className='text-3xl font-semibold md:text-white'>@{data.login}</Text>
+            <Text className='text-3xl font-semibold md:text-slate-200'>@{data.login}</Text>
           </div>
         </div>
 
         {data.bio && (
-          <ResultDescription className='justify-self-center text-center text-3xl md:col-start-1 md:col-end-3 md:mx-28 md:max-w-prose md:break-normal md:text-white'>
+          <ResultDescription className='justify-self-center text-center text-3xl md:col-start-1 md:col-end-3 md:mx-28 md:max-w-prose md:break-normal md:text-slate-200'>
             {data.bio}
           </ResultDescription>
         )}
