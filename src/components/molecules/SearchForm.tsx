@@ -27,10 +27,6 @@ export const SearchForm = () => {
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
 
-    if (inputValue.trim() === '') {
-      return;
-    }
-
     setSearchedValue(inputValue.trim());
     setActivePage(1);
     changeParams(inputValue.trim(), 1);
@@ -65,7 +61,7 @@ export const SearchForm = () => {
         />
       )}
       <ResetButton inputValue={inputValue} />
-      <SearchButton inputValue={inputValue} />
+      <SearchButton />
     </form>
   );
 };

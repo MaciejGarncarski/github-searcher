@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
+import { HiExternalLink } from 'react-icons/hi';
 
 import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
@@ -11,12 +12,12 @@ import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 
 import { Repo } from '@/types/resultTypes';
 
-type Color = {
-  [key: string]: {
-    color: string;
-    url: string;
-  };
+type ColorResponse = {
+  color: string;
+  url: string;
 };
+
+type Color = Record<string, ColorResponse>;
 
 type RepositoryResultProps = {
   resultData: Repo;
@@ -24,7 +25,7 @@ type RepositoryResultProps = {
 };
 
 export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProps) => {
-  const { updated_at, language, name, stargazers_count, description, license } = resultData;
+  const { updated_at, language, name, stargazers_count, description, license, owner } = resultData;
 
   const dateObject = new Date(updated_at);
   dayjs.extend(relativeTime);
@@ -53,7 +54,16 @@ export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProp
     <ResultListItem>
       <ResultContainer>
         <GoRepo size={32} className='mt-1' />
-        <ResultHeading>{name}</ResultHeading>
+        <a
+          href={`https://github.com/${owner.login}/${name}`}
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          <ResultHeading className='flex items-center gap-2 underline'>
+            {name}
+            <HiExternalLink className='text-slate-700 transition-colors dark:text-slate-200' />
+          </ResultHeading>
+        </a>
 
         {description && <ResultDescription className='w-full'>{description}</ResultDescription>}
         <ShieldsContainer>

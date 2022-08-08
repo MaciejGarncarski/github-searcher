@@ -3,7 +3,7 @@ import { BsLaptop, BsMoon, BsSun } from 'react-icons/bs';
 import { useSettings } from '@/hooks/useContexts';
 
 import { ThemeButton } from '@/components/atoms/buttons/ThemeButton';
-import { SettingFormContainer } from '@/components/atoms/SettingFormContainer';
+import { SettingContainer } from '@/components/atoms/SettingContainer';
 import { SettingHeading } from '@/components/atoms/SettingHeading';
 
 const themes = [
@@ -25,7 +25,7 @@ export const ThemeSwitch = () => {
   const { theme, setTheme } = useSettings();
 
   return (
-    <SettingFormContainer>
+    <SettingContainer>
       <SettingHeading>Theme</SettingHeading>
       {themes.map(({ themeColor, Icon }) => {
         return (
@@ -38,6 +38,6 @@ export const ThemeSwitch = () => {
           />
         );
       })}
-    </SettingFormContainer>
+    </SettingContainer>
   );
 };

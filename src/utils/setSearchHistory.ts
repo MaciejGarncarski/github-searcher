@@ -5,7 +5,7 @@ export const setSearchHistory = (
 ) => {
   const historyEntry = inputValue.trim();
 
-  if (history.includes(historyEntry) || historyEntry === '') {
+  if (historyEntry === '') {
     return null;
   }
 
@@ -13,6 +13,11 @@ export const setSearchHistory = (
 
   if (history.length > 3) {
     const oldHistory = history.slice(0, -1);
+    setHistory([historyEntry, ...oldHistory]);
+  }
+
+  if (history.includes(historyEntry)) {
+    const oldHistory = history.filter((oldHistoryEntry) => oldHistoryEntry !== historyEntry);
     setHistory([historyEntry, ...oldHistory]);
   }
 };

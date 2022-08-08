@@ -28,13 +28,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
 
   const queryClient = new QueryClient();
 
-  const fetchHeaders = {
-    headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
-  };
-
-  await queryClient.prefetchQuery(['users', { username: userName }], () =>
-    getSingleUser(userName, fetchHeaders)
-  );
+  await queryClient.prefetchQuery(['users', { username: userName }], () => getSingleUser(userName));
 
   return {
     props: {

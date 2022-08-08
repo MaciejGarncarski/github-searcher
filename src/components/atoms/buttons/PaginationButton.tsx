@@ -20,15 +20,15 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
 
   const handlePrevPage = () => {
     if (1 < activePage) {
-      setActivePage(activePage - 1);
       changeParams(searchedValue, activePage - 1);
+      setActivePage(activePage - 1);
     }
   };
 
   const handleNextPage = () => {
     if (activePage <= totalPages - 1) {
-      setActivePage(activePage + 1);
       changeParams(searchedValue, activePage + 1);
+      setActivePage(activePage + 1);
     }
   };
 
@@ -43,7 +43,7 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
 
   const animation: Variant = {
     scale: 1.05,
-    y: -7,
+    y: -4,
   };
 
   const prevDisabled = activePage === 1;

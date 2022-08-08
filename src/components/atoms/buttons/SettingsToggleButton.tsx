@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Dispatch, SetStateAction } from 'react';
 import { IoMdSettings } from 'react-icons/io';
 
+import { clsxm } from '@/lib/clsxm';
+
 type SettingsToggleButtonProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -27,7 +29,10 @@ export const SettingsToggleButton = ({ isOpen, setIsOpen }: SettingsToggleButton
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       title='settings'
-      className='overflow-hidden rounded-full p-1 text-5xl text-slate-200 transition hover:bg-slate-500 focus:bg-slate-500 focus:outline-offset-4 '
+      className={clsxm(
+        isOpen && 'bg-slate-500',
+        'overflow-hidden rounded-full p-1 text-5xl text-slate-200 transition hover:bg-slate-500 focus:bg-slate-500 focus:outline-offset-4 '
+      )}
       type='button'
       onClick={handleToggle}
     >

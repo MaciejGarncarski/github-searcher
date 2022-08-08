@@ -18,7 +18,7 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
 
   const { changeParams } = useChangeParams();
 
-  const animateY = activePage === pageNumber ? { y: 0 } : { y: -8, scale: 1.05 };
+  const animateY = activePage === pageNumber ? { y: 0 } : { y: -4, scale: 1.05 };
 
   const handleClick = () => {
     setActivePage(pageNumber);
