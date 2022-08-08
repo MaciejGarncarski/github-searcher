@@ -10,10 +10,15 @@ export const useResultsData = (
   const [sortedResults, setSortedResults] = useState<(User | Repo)[]>([]);
 
   useEffect(() => {
-    if (reposData && usersData) {
-      const totalCount = usersData.totalCount + reposData.totalCount;
-      setTotalCount(totalCount);
+    if (!reposData || !usersData) {
+      return;
     }
+
+    const { totalCount: usersTotal } = usersData;
+    const { totalCount: reposTotal } = reposData;
+
+    const totalCount = usersTotal + reposTotal;
+    setTotalCount(totalCount);
     return () => setTotalCount(0);
   }, [reposData, usersData]);
 
@@ -22,7 +27,10 @@ export const useResultsData = (
       return;
     }
 
-    const mergedData = [...usersData.data, ...reposData.data];
+    const { data: users } = usersData;
+    const { data: repos } = reposData;
+
+    const mergedData = [...users, ...repos];
     const mergedAndSortedData = mergedData.sort((a, b) => a.id - b.id);
     setSortedResults(mergedAndSortedData);
 

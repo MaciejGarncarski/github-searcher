@@ -5,7 +5,7 @@ export const setSearchHistory = (
 ) => {
   const historyEntry = inputValue.trim();
 
-  if (history.includes(historyEntry)) {
+  if (history.includes(historyEntry) || historyEntry === '') {
     return null;
   }
 

@@ -2,8 +2,6 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
 
-import { useColor } from '@/hooks/useColor';
-
 import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
@@ -13,27 +11,33 @@ import { ShieldsContainer } from '@/components/atoms/ShieldsContainer';
 
 import { Repo } from '@/types/resultTypes';
 
-type RepositoryResultProps = {
-  resultData: Repo;
+type Color = {
+  [key: string]: {
+    color: string;
+    url: string;
+  };
 };
 
-export const RepositoryResult = ({ resultData }: RepositoryResultProps) => {
+type RepositoryResultProps = {
+  resultData: Repo;
+  colorData: Color | undefined;
+};
+
+export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProps) => {
   const { updated_at, language, name, stargazers_count, description, license } = resultData;
 
   const dateObject = new Date(updated_at);
   dayjs.extend(relativeTime);
   const dateFromNow = dayjs(dateObject).fromNow();
 
-  const color = useColor();
-
   const RepositoryLangugage = () => {
     if (language) {
       return (
         <Shield className='gap-x-2'>
-          {color.data && (
+          {colorData && (
             <span
               style={{
-                backgroundColor: color.data[language ?? '']?.color,
+                backgroundColor: colorData[language]?.color,
               }}
               className='h-5 w-5 rounded-xl border dark:border-white'
             ></span>

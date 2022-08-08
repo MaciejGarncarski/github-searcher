@@ -10,32 +10,31 @@ type ThemeButtonProps = {
   themeColor: ThemeColor;
   Icon: IconType;
   activeThemeColor: ThemeColor;
-  onChange: () => void;
+  setTheme: (theme: ThemeColor) => void;
 };
 
-export const ThemeButton = ({ themeColor, Icon, activeThemeColor, onChange }: ThemeButtonProps) => {
+export const ThemeButton = ({ themeColor, Icon, activeThemeColor, setTheme }: ThemeButtonProps) => {
   const { accentColor } = useSSRAccentColor();
 
+  const isActive = activeThemeColor === themeColor;
+
+  const handleClick = () => setTheme(themeColor);
+
   return (
-    <label className='w-full cursor-pointer justify-self-start lg:self-center'>
-      <input
-        className='peer absolute h-0 w-0 opacity-0'
-        type='radio'
-        checked={themeColor === activeThemeColor}
-        onChange={onChange}
-      />
-      <div
-        className={clsxm(
-          BORDER_COLORS[accentColor],
-          ACTIVE_BUTTON_COLORS[accentColor],
-          'flex items-center justify-between gap-x-3 rounded border px-3 py-1 opacity-80 peer-checked:border-slate-300 peer-checked:opacity-100 peer-focus:bg-slate-600  peer-focus:opacity-100 peer-focus:outline peer-focus:outline-2 peer-focus:outline-offset-4 md:gap-x-6'
-        )}
-      >
-        <span className='flex items-center rounded border-2 border-transparent text-2xl'>
-          <Icon />
-        </span>
-        <span className='text-xl'>{themeColor}</span>
-      </div>
-    </label>
+    <button
+      type='button'
+      className={clsxm(
+        BORDER_COLORS[accentColor],
+        isActive && ACTIVE_BUTTON_COLORS[accentColor],
+        isActive && 'text-slate-600',
+        'flex items-center justify-between gap-x-3 rounded border px-3 py-1 outline-slate-200 transition md:gap-x-6'
+      )}
+      onClick={handleClick}
+    >
+      <span className='flex items-center rounded text-2xl'>
+        <Icon />
+      </span>
+      <span className='text-xl'>{themeColor}</span>
+    </button>
   );
 };

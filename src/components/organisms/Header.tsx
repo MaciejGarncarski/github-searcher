@@ -13,6 +13,10 @@ export const Header = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     const handleScroll = () => {
       setPosY(window.scrollY);
       if (window.scrollY > posY && window.scrollY > 300) {
@@ -22,9 +26,7 @@ export const Header = () => {
       }
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [posY]);
@@ -40,9 +42,9 @@ export const Header = () => {
     },
     hidden: {
       opacity: 0.7,
-      y: -200,
+      y: -60,
       transition: {
-        ease: 'easeInOut',
+        type: 'linear',
       },
       transitionEnd: {
         position: 'static',

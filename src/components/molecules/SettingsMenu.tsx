@@ -16,11 +16,11 @@ type SettingsMenuProps = {
 
 const menuVariants: Variants = {
   open: {
-    y: [-20, 5, 0],
+    y: [-8, 5, 0],
     opacity: 1,
   },
   closed: {
-    y: -20,
+    y: -8,
     opacity: 0,
   },
 };
@@ -32,7 +32,7 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
     <AnimatePresence>
       <motion.aside
         data-testid='settings-menu'
-        variants={window.innerWidth > 768 ? menuVariants : {}}
+        variants={menuVariants}
         initial='closed'
         exit='closed'
         transition={{

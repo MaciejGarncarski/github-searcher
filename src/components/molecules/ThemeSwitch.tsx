@@ -34,7 +34,7 @@ export const ThemeSwitch = () => {
             themeColor={themeColor}
             Icon={Icon}
             activeThemeColor={theme}
-            onChange={() => setTheme(themeColor)}
+            setTheme={setTheme}
           />
         );
       })}

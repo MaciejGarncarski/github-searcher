@@ -38,10 +38,10 @@ export const HistoryItem = ({ text, setInputValue, historyData, setHistory }: Hi
       <button
         type='button'
         data-focus='true'
-        className='flex w-3/4 cursor-pointer items-center gap-3 rounded py-2 pl-2 text-left text-slate-200 transition-colors hover:bg-slate-500 focus:bg-slate-500 md:w-4/5 md:pl-4 '
+        className='flex w-3/4 cursor-pointer items-center gap-3 rounded py-2 pl-2 text-left text-slate-200 transition hover:bg-slate-500 focus:bg-slate-500 md:w-4/5 md:pl-4 '
         onClick={handleClick}
       >
-        <span className='mt-1 flex-shrink-0' data-focus='true'>
+        <span className='flex-shrink-0 md:mt-0.5' data-focus='true'>
           <RiHistoryFill />
         </span>
         <span className='w-full overflow-hidden text-ellipsis' data-focus='true'>

@@ -18,7 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       queries: {
         retry: 2,
         refetchOnWindowFocus: false,
-        staleTime: 30 * 1000,
       },
     },
   };
