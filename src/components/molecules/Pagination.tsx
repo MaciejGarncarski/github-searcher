@@ -10,9 +10,9 @@ export const Pagination = () => {
   const { activePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
 
-  const { fetchedRepos, fetchedUsers, isError } = useResults(searchedValue, activePage);
+  const { usersData, reposData, isError } = useResults(searchedValue, activePage);
 
-  const { totalCount } = useResultsData(fetchedRepos.data, fetchedUsers.data);
+  const { totalCount } = useResultsData(reposData, usersData);
 
   const totalPages = Math.ceil(totalCount / 10);
   const pageQueue = usePagination(activePage, totalPages);

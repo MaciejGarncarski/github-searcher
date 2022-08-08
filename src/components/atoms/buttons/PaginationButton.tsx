@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, Variant } from 'framer-motion';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
 import { useChangeParams } from '@/hooks/useChangeParams';
@@ -33,20 +33,29 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   };
 
   const commonProps = {
-    className: `flex items-center gap-2 justify-self-center transition-colors 
+    className: `flex items-center gap-2 justify-self-center 
     hover:cursor-pointer
     ${TEXT_COLORS[accentColor]}
     disabled:cursor-not-allowed
     disabled:opacity-50`,
     whileTap: { scale: 0.9 },
-    whileFocus: { scale: 1.08 },
   };
+
+  const animation: Variant = {
+    scale: 1.05,
+    y: -7,
+  };
+
+  const prevDisabled = activePage === 1;
+  const nextDisabled = activePage > totalPages - 1;
 
   if (type === 'prev') {
     return (
       <motion.button
         type='button'
-        disabled={activePage === 1}
+        whileHover={prevDisabled ? {} : animation}
+        whileFocus={animation}
+        disabled={prevDisabled}
         onClick={handlePrevPage}
         {...commonProps}
       >
@@ -59,7 +68,9 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   return (
     <motion.button
       type='button'
-      disabled={activePage > totalPages - 1}
+      whileHover={nextDisabled ? {} : animation}
+      whileFocus={animation}
+      disabled={nextDisabled}
       onClick={handleNextPage}
       {...commonProps}
     >

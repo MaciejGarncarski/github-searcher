@@ -49,7 +49,7 @@ export const SearchHistory = ({
       <motion.ul
         data-focus='true'
         variants={historyVariants}
-        initial='closed'
+        initial={inputFocus ? 'open' : 'closed'}
         exit='closed'
         animate={inputFocus ? 'open' : 'closed'}
         transition={{

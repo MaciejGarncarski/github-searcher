@@ -15,15 +15,14 @@ import { Input } from '@/components/atoms/Input';
 import { SearchHistory } from '@/components/molecules/SearchHistory';
 
 export const SearchForm = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [history, setHistory] = useLocalStorage<string[]>('searchHistory', []);
-  const [inputFocus] = useInputFocus();
-
-  const { setSearchedValue } = useSearchedValue();
+  const { searchedValue, setSearchedValue } = useSearchedValue();
   const { setActivePage } = useActivePage();
   const { changeParams } = useChangeParams();
-
   const { accentColor } = useSSRAccentColor();
+
+  const [history, setHistory] = useLocalStorage<string[]>('searchHistory', []);
+  const [inputValue, setInputValue] = useState<string>(searchedValue);
+  const [inputFocus] = useInputFocus();
 
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
@@ -34,9 +33,7 @@ export const SearchForm = () => {
 
     setSearchedValue(inputValue.trim());
     setActivePage(1);
-
     changeParams(inputValue.trim(), 1);
-
     setSearchHistory(inputValue, history, setHistory);
   };
 
@@ -53,7 +50,7 @@ export const SearchForm = () => {
     <form
       className={clsxm(
         BORDER_COLORS[accentColor],
-        'relative col-span-2 row-start-2 flex justify-end self-center justify-self-center rounded-md border py-0 md:w-auto md:border-2 lg:col-auto lg:ml-auto lg:justify-self-end'
+        'relative col-span-2 row-start-2 flex justify-end self-center justify-self-center rounded-md border py-0 transition md:w-auto md:border-2 lg:col-auto lg:ml-auto lg:justify-self-end'
       )}
       onReset={handleReset}
       onSubmit={handleSubmit}

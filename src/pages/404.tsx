@@ -16,7 +16,7 @@ const NotFoundPage = () => {
             <RiAlarmWarningFill size={60} className=' animate-flicker text-red-500' />
             <h1 className='mt-8 text-4xl dark:text-slate-200 md:text-6xl'>Page Not Found</h1>
             <Link href='/'>
-              <a className='mt-10 rounded-md bg-blue-500 py-3 px-8 text-4xl text-slate-200 transition-transform hover:scale-110'>
+              <a className='mt-10 rounded-md bg-blue-500 py-3 px-8 text-4xl text-slate-200 transition hover:scale-110'>
                 Back To Homepage
               </a>
             </Link>

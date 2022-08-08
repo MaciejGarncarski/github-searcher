@@ -69,7 +69,14 @@ export const getSingleUser = async (
   throw new Error("Could'nt fetch user profile");
 };
 
-export const getColors = async () => {
+type Color = {
+  [key: string]: {
+    color: string;
+    url: string;
+  };
+};
+
+export const getColors = async (): Promise<Color> => {
   const res = await fetch('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json');
   if (res.ok) {
     return res.json();

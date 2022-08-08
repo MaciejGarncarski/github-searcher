@@ -18,11 +18,10 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
 
   const { changeParams } = useChangeParams();
 
-  const animateY = activePage === pageNumber ? { y: 0 } : { y: -8 };
+  const animateY = activePage === pageNumber ? { y: 0 } : { y: -8, scale: 1.05 };
 
   const handleClick = () => {
     setActivePage(pageNumber);
-
     changeParams(searchedValue, pageNumber);
   };
 
@@ -34,7 +33,7 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
         className={clsxm(
           'rounded-md px-2 py-0.5 dark:text-white md:px-4 md:py-1.5',
           activePage === pageNumber
-            ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-slate-200 transition-colors`
+            ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-slate-200`
             : 'cursor-pointer'
         )}
         whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}

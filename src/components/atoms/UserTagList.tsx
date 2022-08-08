@@ -11,15 +11,15 @@ type TagData = {
 };
 
 type UserTagListProps = {
-  data: TagData[];
+  tagsData: TagData[];
 };
 
-export const UserTagList = ({ data }: UserTagListProps) => {
+export const UserTagList = ({ tagsData }: UserTagListProps) => {
   const { accentColor } = useSSRAccentColor();
 
   return (
     <ul className='flex flex-wrap justify-center gap-4 text-xl font-semibold md:col-span-2 md:mx-auto md:max-w-prose md:justify-self-center md:px-10 md:text-xl'>
-      {data.map(({ Icon, value, title }) => {
+      {tagsData.map(({ Icon, value, title }) => {
         if (value === 'null' || value === '' || value === '@null') {
           return null;
         }

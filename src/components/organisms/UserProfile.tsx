@@ -47,6 +47,8 @@ export const UserProfile = () => {
     );
   }
 
+  const { avatar_url, login, html_url, name: user_name, bio } = data;
+
   return (
     <motion.main
       variants={placeholderVariants}
@@ -58,8 +60,8 @@ export const UserProfile = () => {
       <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-4 md:dark:bg-slate-700 '>
         <div className='flex flex-col items-center justify-center gap-10 md:flex-row'>
           <NextImage
-            src={data.avatar_url}
-            alt={`${data.login}'s avatar`}
+            src={avatar_url}
+            alt={`${login}'s avatar`}
             width={200}
             height={200}
             className='flex items-center justify-center  md:justify-end '
@@ -73,27 +75,27 @@ export const UserProfile = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href={data.html_url}
+              href={html_url}
               target='_blank'
               rel='noreferrer noopener'
             >
               <ResultHeading className='flex flex-col-reverse items-center gap-2 break-normal break-words text-center text-4xl underline md:flex-row md:text-left md:text-5xl'>
-                {data.name}
+                {user_name}
                 <span className='mt-2 text-slate-600 dark:text-slate-200 md:text-slate-200'>
                   <HiExternalLink />
                 </span>
               </ResultHeading>
             </motion.a>
-            <Text className='text-3xl font-semibold md:text-slate-200'>@{data.login}</Text>
+            <Text className='text-3xl font-semibold md:text-slate-200'>@{login}</Text>
           </div>
         </div>
 
-        {data.bio && (
+        {bio && (
           <ResultDescription className='justify-self-center text-center text-3xl md:col-start-1 md:col-end-3 md:mx-28 md:max-w-prose md:break-normal md:text-slate-200'>
-            {data.bio}
+            {bio}
           </ResultDescription>
         )}
-        <UserTagList data={tagsData} />
+        <UserTagList tagsData={tagsData} />
       </section>
     </motion.main>
   );
