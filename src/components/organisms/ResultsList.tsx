@@ -51,7 +51,10 @@ export const ResultsList = () => {
 
   return (
     <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
-      <Text type='h2' className='break-words py-4 text-4xl dark:text-slate-200'>
+      <Text
+        type='h2'
+        className='break-words py-4 text-4xl text-slate-800 dark:text-slate-200 md:mt-4'
+      >
         <CountUp start={0} end={totalCount} duration={0.5} separator=',' />
         {totalCount > 1 ? ' results' : ' result'}
       </Text>
