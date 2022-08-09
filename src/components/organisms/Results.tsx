@@ -47,7 +47,7 @@ export const Results = () => {
   }
 
   return (
-    <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
+    <section className=' flex flex-col justify-start px-5 py-7 xl:px-24'>
       <div className='my-2 flex flex-col justify-between md:flex-row md:items-center'>
         <Text
           type='h2'

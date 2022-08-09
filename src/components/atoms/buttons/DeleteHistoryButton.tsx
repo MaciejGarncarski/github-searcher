@@ -23,7 +23,7 @@ export const DeleteHistoryButton = ({ onClick }: DeleteHistoryButtonProps) => {
       whileHover={animation}
       whileFocus={animation}
       onClick={onClick}
-      className='flex justify-center rounded-full p-2 text-2xl text-slate-200 hover:bg-slate-500 focus:bg-slate-500 md:text-3xl'
+      className='flex justify-center rounded-full p-2 text-2xl text-slate-200 hover:bg-slate-500 focus:bg-slate-500'
     >
       <IoMdClose data-focus='true' className='pointer-events-none' />
     </motion.button>

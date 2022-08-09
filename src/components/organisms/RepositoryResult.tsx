@@ -58,8 +58,9 @@ export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProp
           href={`https://github.com/${owner.login}/${name}`}
           target='_blank'
           rel='noreferrer noopener'
+          className='max-w-max'
         >
-          <ResultHeading className='flex items-center gap-2 underline'>
+          <ResultHeading className='inline-flex items-center gap-2 underline'>
             {name}
             <HiExternalLink className='text-slate-700 transition-colors dark:text-slate-200' />
           </ResultHeading>
