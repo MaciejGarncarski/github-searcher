@@ -26,7 +26,7 @@ export const ThemeButton = ({ themeColor, Icon, activeThemeColor, setTheme }: Th
       className={clsxm(
         BORDER_COLORS[accentColor],
         isActive && ACTIVE_BUTTON_COLORS[accentColor],
-        isActive && 'text-slate-600',
+        isActive && 'text-slate-700',
         'flex items-center justify-between gap-x-3 rounded border px-3 py-1 outline-slate-200 transition md:gap-x-6'
       )}
       onClick={handleClick}

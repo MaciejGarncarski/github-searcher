@@ -12,6 +12,7 @@ const perPageData = [2, 4, 6, 8];
 export const ResultsPerPage = () => {
   const { accentColor } = useSSRAccentColor();
   const { perPage, setPerPage } = useResultsSettings();
+
   const handleChange = (selectEv: ChangeEvent<HTMLSelectElement>) => {
     setPerPage(parseInt(selectEv.target.value, 10));
   };
@@ -20,18 +21,15 @@ export const ResultsPerPage = () => {
     <SelectContainer>
       Per page:
       <select
+        value={perPage}
         onChange={handleChange}
         className={clsxm(
           BORDER_COLORS[accentColor],
-          'rounded border-2 bg-slate-600 py-1 text-2xl text-slate-200 dark:bg-slate-700'
+          'rounded border-2 bg-slate-600 py-1 px-10 text-2xl text-slate-200 focus:border-slate-200 dark:bg-slate-700'
         )}
       >
         {perPageData.map((number) => {
-          return (
-            <option key={number} defaultValue={number} selected={perPage === number}>
-              {number}
-            </option>
-          );
+          return <option key={number}>{number}</option>;
         })}
       </select>
     </SelectContainer>
