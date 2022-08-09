@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { createContext } from 'react';
+import { useMemo } from 'react';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
@@ -18,13 +19,17 @@ export const ResultsSettingsContext = createContext<ResultsSettingsProps>(contex
 export const ResultsSettingsProvider = ({ children }: { children: ReactNode }) => {
   const [perPage, setPerPage] = useLocalStorage('perPage', 4);
 
-  const settingValues = {
-    perPage,
-    setPerPage,
-  };
+  const memoizedValue = useMemo(
+    () => ({
+      perPage,
+      setPerPage,
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [perPage]
+  );
 
   return (
-    <ResultsSettingsContext.Provider value={settingValues}>
+    <ResultsSettingsContext.Provider value={memoizedValue}>
       {children}
     </ResultsSettingsContext.Provider>
   );

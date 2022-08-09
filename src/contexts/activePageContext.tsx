@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import type { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { createContext, useState } from 'react';
 
 type ActivePageContextProps = {
@@ -22,10 +22,13 @@ export const ActivePageProvider = ({ children }: { children: ReactNode }) => {
     typeof page === 'string' ? parseInt(page, 10) : 1
   );
 
-  const value = {
-    activePage,
-    setActivePage,
-  };
+  const memoizedValue = useMemo(
+    () => ({
+      activePage,
+      setActivePage,
+    }),
+    [activePage]
+  );
 
-  return <ActivePageContext.Provider value={value}>{children}</ActivePageContext.Provider>;
+  return <ActivePageContext.Provider value={memoizedValue}>{children}</ActivePageContext.Provider>;
 };

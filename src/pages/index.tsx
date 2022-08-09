@@ -6,7 +6,7 @@ import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';
 import { Pagination } from '@/components/molecules/Pagination';
-import { ResultsList } from '@/components/organisms/ResultsList';
+import { Results } from '@/components/organisms/Results';
 import { Seo } from '@/components/Seo';
 
 import type { ApiResponse, Repo, User } from '@/types/resultTypes';
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <Seo />
-      <ResultsList />
+      <Results />
       <Pagination />
     </Layout>
   );

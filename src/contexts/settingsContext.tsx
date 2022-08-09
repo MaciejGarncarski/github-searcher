@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { createContext } from 'react';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
@@ -34,12 +34,17 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
 
   const isThemeCompatible = COMPATIBLE_THEMES.some((compatibleTheme) => compatibleTheme === theme);
 
-  const settingValues = {
-    accentColor: isAccentColorCompatible ? accentColor : 'blue',
-    setAccentColor,
-    theme: isThemeCompatible ? theme : 'system',
-    setTheme,
-  };
+  const memoizedValues = useMemo(
+    () => ({
+      accentColor: isAccentColorCompatible ? accentColor : 'blue',
+      setAccentColor,
+      theme: isThemeCompatible ? theme : 'system',
+      setTheme,
+    }),
 
-  return <SettingsContext.Provider value={settingValues}>{children}</SettingsContext.Provider>;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [accentColor, isAccentColorCompatible, isThemeCompatible, theme]
+  );
+
+  return <SettingsContext.Provider value={memoizedValues}>{children}</SettingsContext.Provider>;
 };

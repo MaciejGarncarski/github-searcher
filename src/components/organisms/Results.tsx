@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import CountUp from 'react-countup';
 
 import { useChangeParams } from '@/hooks/useChangeParams';
-import { useColor } from '@/hooks/useColor';
 import { useSearchedValue } from '@/hooks/useContexts';
 import { useActivePage } from '@/hooks/useContexts';
 import { useResults } from '@/hooks/useResults';
@@ -12,11 +11,10 @@ import { useResultsData } from '@/hooks/useResultsData';
 import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
-import { RepositoryResult } from '@/components/organisms/RepositoryResult';
+import { ResultsList } from '@/components/molecules/ResultsList';
 import { ResultsSettings } from '@/components/organisms/ResultsSettings';
-import { UserResult } from '@/components/organisms/UserResult';
 
-export const ResultsList = () => {
+export const Results = () => {
   const { searchedValue } = useSearchedValue();
   const { activePage } = useActivePage();
 
@@ -32,8 +30,6 @@ export const ResultsList = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const { data: colorData } = useColor();
 
   const { reposData, usersData, isError, isLoading } = useResults(searchedValue, activePage);
   const { totalCount, sortedResults } = useResultsData(reposData, usersData);
@@ -62,17 +58,7 @@ export const ResultsList = () => {
         </Text>
         <ResultsSettings />
       </div>
-      <ul>
-        {sortedResults.map((result) => {
-          if ('avatar_url' in result) {
-            return <UserResult key={result.id} resultData={result} />;
-          }
-          if ('updated_at' in result) {
-            return <RepositoryResult key={result.id} resultData={result} colorData={colorData} />;
-          }
-          return null;
-        })}
-      </ul>
+      <ResultsList sortedResults={sortedResults} />
     </section>
   );
 };

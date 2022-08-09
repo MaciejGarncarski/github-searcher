@@ -38,4 +38,4 @@ yarn dev
 ```
 
 ## Live 📍
-https://github-api-chi-seven.vercel.app/
+https://github-searcher-maciek.vercel.app/
