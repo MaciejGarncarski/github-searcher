@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { ActivePageContext } from '@/contexts/activePageContext';
+import { ResultsSettingsContext } from '@/contexts/resultsSettingsContext';
 import { SearchContext } from '@/contexts/searchedValueContext';
 import { SettingsContext } from '@/contexts/settingsContext';
 
@@ -22,6 +23,14 @@ export const useSearchedValue = () => {
 
 export const useSettings = () => {
   const context = useContext(SettingsContext);
+  if (context === undefined) {
+    throw new Error('useSearchValue must be used within a SearchContextProvider');
+  }
+  return context;
+};
+
+export const useResultsSettings = () => {
+  const context = useContext(ResultsSettingsContext);
   if (context === undefined) {
     throw new Error('useSearchValue must be used within a SearchContextProvider');
   }

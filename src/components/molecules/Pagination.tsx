@@ -1,4 +1,4 @@
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
+import { useActivePage, useResultsSettings, useSearchedValue } from '@/hooks/useContexts';
 import { usePagination } from '@/hooks/usePagination';
 import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
@@ -9,12 +9,13 @@ import { PaginationNumber } from '@/components/atoms/buttons/PaginationNumber';
 export const Pagination = () => {
   const { activePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
-
   const { usersData, reposData, isError } = useResults(searchedValue, activePage);
+  const { perPage } = useResultsSettings();
 
   const { totalCount } = useResultsData(reposData, usersData);
 
-  const totalPages = Math.ceil(totalCount / 10);
+  const totalPages = Math.ceil(totalCount / (perPage * 2));
+
   const pageQueue = usePagination(activePage, totalPages);
 
   if (totalPages <= 1 || isError) {
@@ -22,7 +23,7 @@ export const Pagination = () => {
   }
 
   return (
-    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-3xl md:mt-20  md:flex md:justify-center md:gap-10 '>
+    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-3xl md:mt-14  md:flex md:justify-center md:gap-10 '>
       <PaginationButton totalPages={totalPages} type='prev' />
       <span className='col-start-1 col-end-3 row-start-1 row-end-2 mx-auto md:hidden'>
         {activePage}/{totalPages}

@@ -4,7 +4,7 @@ import { ResultContainer } from '@/components/atoms/ResultContainer';
 
 const bgColors = 'bg-slate-300 dark:bg-slate-600';
 
-export const ResultSkeleton = () => {
+const ResultSkeleton = () => {
   return (
     <ResultContainer>
       <div className={` h-8 w-8 rounded-full opacity-90 ${bgColors}`}></div>

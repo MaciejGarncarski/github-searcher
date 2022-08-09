@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { BsArrowLeft } from 'react-icons/bs';
 
 import { getColors, getRepos, getUsers } from '@/lib/queries';
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
+import { useActivePage, useResultsSettings, useSearchedValue } from '@/hooks/useContexts';
 
 import type { ApiResponse, Repo, User } from '@/types/resultTypes';
 
@@ -13,6 +13,7 @@ export const BackButton = () => {
   const queryClient = useQueryClient();
   const { activePage } = useActivePage();
   const router = useRouter();
+  const { perPage } = useResultsSettings();
 
   const searchString = searchedValue === '' ? 'Typescript' : searchedValue;
 
@@ -24,10 +25,10 @@ export const BackButton = () => {
   const handleClick = async () => {
     router.back();
     await queryClient.prefetchQuery<ApiResponse<Repo> | null>([`repos`, fetchValues], () =>
-      getRepos(searchString, activePage)
+      getRepos(searchString, activePage, perPage)
     );
     await queryClient.prefetchQuery<ApiResponse<User> | null>([`users`, fetchValues], () =>
-      getUsers(searchString, activePage)
+      getUsers(searchString, activePage, perPage)
     );
     await queryClient.prefetchQuery(['github language color'], getColors);
   };

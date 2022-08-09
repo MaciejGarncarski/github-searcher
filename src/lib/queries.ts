@@ -1,18 +1,18 @@
 import type { ApiResponse } from '../types/resultTypes';
 import { Repo, User } from '../types/resultTypes';
 
-const perPage = 4;
-const headers = {
+const HEADERS = {
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
 };
 
 export const getUsers = async (
   username: string,
-  activePage: number
+  activePage: number,
+  perPage: number
 ): Promise<ApiResponse<User>> => {
   const res = await fetch(
-    `https://api.github.com/search/users?q=${username}&per_page=${perPage}&page=${activePage}`,
-    headers
+    `https://api.github.com/search/users?q=${username}&per_page=${perPage / 2}&page=${activePage}`,
+    HEADERS
   );
   const usersJson = await res.json();
   const usersData = usersJson.items;
@@ -34,11 +34,14 @@ export const getUsers = async (
 
 export const getRepos = async (
   username: string,
-  activePage: number
+  activePage: number,
+  perPage: number
 ): Promise<ApiResponse<Repo>> => {
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=${username}&per_page=${perPage}&page=${activePage}`,
-    headers
+    `https://api.github.com/search/repositories?q=${username}&per_page=${
+      perPage / 2
+    }&page=${activePage}`,
+    HEADERS
   );
   if (res.ok) {
     const resJson = await res.json();
@@ -52,29 +55,20 @@ export const getRepos = async (
   throw new Error(`Failed to fetch repos`);
 };
 
-type Headers = {
-  headers: {
-    Authorization: string;
-  };
-};
-
-export const getSingleUser = async (
-  name: string,
-  fetchHeaders: Headers | undefined
-): Promise<User> => {
-  const resp = await fetch(`https://api.github.com/users/${name}`, fetchHeaders);
+export const getSingleUser = async (name: string): Promise<User> => {
+  const resp = await fetch(`https://api.github.com/users/${name}`, HEADERS);
   if (resp.ok) {
     return resp.json();
   }
   throw new Error("Could'nt fetch user profile");
 };
 
-type Color = {
-  [key: string]: {
-    color: string;
-    url: string;
-  };
+type ColorResponse = {
+  color: string;
+  url: string;
 };
+
+type Color = Record<string, ColorResponse>;
 
 export const getColors = async (): Promise<Color> => {
   const res = await fetch('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json');

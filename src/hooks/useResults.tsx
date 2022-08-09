@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 import { getRepos, getUsers } from '@/lib/queries';
+import { useResultsSettings } from '@/hooks/useContexts';
 import { useDebounce } from '@/hooks/useDebounce';
 
 import { initialQueryString } from '@/pages';
@@ -9,6 +10,7 @@ import { initialQueryString } from '@/pages';
 export const useResults = (searchedValue: string, activePage: number) => {
   const router = useRouter();
   const { q } = router.query;
+  const { perPage } = useResultsSettings();
 
   const safeRouterQuery = typeof q === 'string' ? q : initialQueryString;
 
@@ -24,14 +26,15 @@ export const useResults = (searchedValue: string, activePage: number) => {
   const fetchValues = {
     searchedValue: debouncedSearch,
     page: debouncedPage,
+    perPage: perPage,
   };
 
   const fetchedRepos = useQuery(['repos', fetchValues], () =>
-    getRepos(debouncedSearch, debouncedPage)
+    getRepos(debouncedSearch, debouncedPage, perPage)
   );
 
   const fetchedUsers = useQuery(['users', fetchValues], () =>
-    getUsers(debouncedSearch, debouncedPage)
+    getUsers(debouncedSearch, debouncedPage, perPage)
   );
 
   const usersData = fetchedUsers.data;

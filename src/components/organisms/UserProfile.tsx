@@ -57,7 +57,7 @@ export const UserProfile = () => {
       className='mt-8 flex min-h-profile flex-col items-center justify-center sm:mx-8 md:items-start  lg:mx-24 lg:px-8 xl:mx-32'
     >
       <BackButton />
-      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-4 md:dark:bg-slate-700 '>
+      <section className='mx-6 my-6  flex flex-col justify-center gap-14 rounded-xl md:mx-auto md:my-14 md:max-w-screen-xl md:bg-slate-600 md:py-20 md:px-20 md:dark:bg-slate-700 '>
         <div className='flex flex-col items-center justify-center gap-10 md:flex-row'>
           <NextImage
             src={avatar_url}

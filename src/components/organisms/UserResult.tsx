@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+import { clsxm } from '@/lib/clsxm';
+import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
+import { BORDER_COLORS } from '@/utils/colorsData';
+
 import { NextImage } from '@/components/atoms/NextImage';
 import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
@@ -17,10 +21,10 @@ type UserResultProps = {
 };
 
 export const UserResult = ({ resultData }: UserResultProps) => {
+  const { accentColor } = useSSRAccentColor();
   const whileHover = { scale: 1.02 };
 
   const { bio, login, avatar_url, name, location } = resultData;
-
   const userDescription = bio?.substring(0, 200) + '\u2026';
 
   return (
@@ -34,8 +38,8 @@ export const UserResult = ({ resultData }: UserResultProps) => {
                 width={176}
                 height={176}
                 alt={`${login}'s avatar`}
-                className='w-9 rounded-full'
-                imgClassName='rounded-3xl'
+                className='w-9 '
+                imgClassName={clsxm(BORDER_COLORS[accentColor], 'rounded-3xl border bg-slate-500')}
                 priority={true}
               />
             </Suspense>

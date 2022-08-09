@@ -27,10 +27,6 @@ export const SearchForm = () => {
   const handleSubmit = (formEv: FormEvent) => {
     formEv.preventDefault();
 
-    if (inputValue.trim() === '') {
-      return;
-    }
-
     setSearchedValue(inputValue.trim());
     setActivePage(1);
     changeParams(inputValue.trim(), 1);
@@ -55,7 +51,13 @@ export const SearchForm = () => {
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
-      <Input type='text' placeholder='Search' inputValue={inputValue} onInput={onInput} />
+      <Input
+        type='text'
+        placeholder='Search'
+        className='w-full rounded-l-md border-2'
+        value={inputValue}
+        onInput={onInput}
+      />
       {inputFocus && (
         <SearchHistory
           historyData={history}
@@ -65,7 +67,7 @@ export const SearchForm = () => {
         />
       )}
       <ResetButton inputValue={inputValue} />
-      <SearchButton inputValue={inputValue} />
+      <SearchButton />
     </form>
   );
 };

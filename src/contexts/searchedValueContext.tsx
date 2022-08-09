@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import type { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { createContext, useState } from 'react';
 
 import { stringGuard } from '@/utils/stringGuard';
@@ -23,10 +23,13 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
 
   const [searchedValue, setSearchedValue] = useState<string>(stringGuard(q));
 
-  const value = {
-    searchedValue,
-    setSearchedValue,
-  };
+  const memoizedValue = useMemo(
+    () => ({
+      searchedValue,
+      setSearchedValue,
+    }),
+    [searchedValue]
+  );
 
-  return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
+  return <SearchContext.Provider value={memoizedValue}>{children}</SearchContext.Provider>;
 };

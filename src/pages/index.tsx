@@ -5,30 +5,26 @@ import { getRepos, getUsers } from '@/lib/queries';
 import { stringGuard } from '@/utils/stringGuard';
 
 import { Layout } from '@/components/Layout';
-import { ResultsPage } from '@/components/molecules/ResultsPage';
+import { Pagination } from '@/components/molecules/Pagination';
+import { Results } from '@/components/organisms/Results';
 import { Seo } from '@/components/Seo';
 
 import type { ApiResponse, Repo, User } from '@/types/resultTypes';
 
-type HomeProps = {
-  initialReposData: ApiResponse<Repo[]>;
-  initialUsersData: ApiResponse<User[]>;
-};
-
 export const initialQueryString = 'typescript';
 
-const Home: NextPage<HomeProps> = () => {
+const Home: NextPage = () => {
   return (
     <Layout>
       <Seo />
-      <ResultsPage />
+      <Results />
+      <Pagination />
     </Layout>
   );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
-
   const routerQ = stringGuard(q).trim() === '' ? initialQueryString : stringGuard(q);
   const routerPage = typeof page === 'string' ? parseInt(page, 10) : 1;
 
@@ -40,11 +36,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const fetchArguments = [routerQ, routerPage ?? 1] as const;
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<ApiResponse<Repo> | null>([`repos`, queryValues], () =>
-    getRepos(...fetchArguments)
+  await queryClient.prefetchQuery<ApiResponse<Repo>>([`repos`, queryValues], () =>
+    getRepos(...fetchArguments, 4)
   );
-  await queryClient.prefetchQuery<ApiResponse<User> | null>([`users`, queryValues], () =>
-    getUsers(...fetchArguments)
+  await queryClient.prefetchQuery<ApiResponse<User>>([`users`, queryValues], () =>
+    getUsers(...fetchArguments, 4)
   );
 
   return {
