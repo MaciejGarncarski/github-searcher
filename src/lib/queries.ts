@@ -1,17 +1,17 @@
 import type { ApiResponse } from '../types/resultTypes';
 import { Repo, User } from '../types/resultTypes';
 
-const PER_PAGE = 4;
 const HEADERS = {
   headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}` },
 };
 
 export const getUsers = async (
   username: string,
-  activePage: number
+  activePage: number,
+  perPage: number
 ): Promise<ApiResponse<User>> => {
   const res = await fetch(
-    `https://api.github.com/search/users?q=${username}&per_page=${PER_PAGE}&page=${activePage}`,
+    `https://api.github.com/search/users?q=${username}&per_page=${perPage / 2}&page=${activePage}`,
     HEADERS
   );
   const usersJson = await res.json();
@@ -34,10 +34,13 @@ export const getUsers = async (
 
 export const getRepos = async (
   username: string,
-  activePage: number
+  activePage: number,
+  perPage: number
 ): Promise<ApiResponse<Repo>> => {
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=${username}&per_page=${PER_PAGE}&page=${activePage}`,
+    `https://api.github.com/search/repositories?q=${username}&per_page=${
+      perPage / 2
+    }&page=${activePage}`,
     HEADERS
   );
   if (res.ok) {

@@ -31,7 +31,7 @@ export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProp
   dayjs.extend(relativeTime);
   const dateFromNow = dayjs(dateObject).fromNow();
 
-  const RepositoryLangugage = () => {
+  const RepositoryLanguage = () => {
     if (language) {
       return (
         <Shield className='gap-x-2'>
@@ -68,7 +68,7 @@ export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProp
         {description && <ResultDescription className='w-full'>{description}</ResultDescription>}
         <ShieldsContainer>
           <Shield className='gap-x-1'>⭐ {stargazers_count}</Shield>
-          <RepositoryLangugage />
+          <RepositoryLanguage />
           {license && <Shield>📜 {license.name}</Shield>}
           <Shield>⏰ Updated {dateFromNow}</Shield>
         </ShieldsContainer>

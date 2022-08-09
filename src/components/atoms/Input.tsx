@@ -1,33 +1,24 @@
-import { motion } from 'framer-motion';
-import { FormEventHandler } from 'react';
+import { motion, MotionProps } from 'framer-motion';
+import { InputHTMLAttributes } from 'react';
+
+import { clsxm } from '@/lib/clsxm';
 
 type InputProps = {
   type: JSX.IntrinsicElements['input']['type'];
-  inputValue: string;
-  placeholder?: string;
-  required?: boolean;
-  onInput?: FormEventHandler<HTMLInputElement>;
-  autoComplete?: 'true' | 'false';
-};
+  className?: string;
+} & InputHTMLAttributes<HTMLInputElement> &
+  MotionProps;
 
-export const Input = ({
-  type,
-  placeholder,
-  onInput,
-  inputValue,
-  required,
-  autoComplete,
-}: InputProps) => {
+export const Input = ({ type, className, ...otherProps }: InputProps) => {
   return (
     <motion.input
       data-focus='true'
       type={type}
-      autoComplete={autoComplete}
-      required={required}
-      placeholder={placeholder}
-      className='peer w-full rounded-l-md border-2 border-transparent bg-transparent text-xl text-white transition placeholder:text-slate-200 hover:bg-slate-600 focus:border-slate-200 dark:bg-slate-700 md:text-2xl'
-      value={inputValue}
-      onInput={onInput}
+      className={clsxm(
+        'peer border-transparent bg-transparent text-xl text-white transition placeholder:text-slate-200 hover:bg-slate-600 focus:border-slate-200 dark:bg-slate-700 md:text-2xl',
+        className
+      )}
+      {...otherProps}
     />
   );
 };

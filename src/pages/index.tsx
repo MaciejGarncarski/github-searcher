@@ -25,7 +25,6 @@ const Home: NextPage = () => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { q, page } = context.query;
-
   const routerQ = stringGuard(q).trim() === '' ? initialQueryString : stringGuard(q);
   const routerPage = typeof page === 'string' ? parseInt(page, 10) : 1;
 
@@ -38,10 +37,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<ApiResponse<Repo>>([`repos`, queryValues], () =>
-    getRepos(...fetchArguments)
+    getRepos(...fetchArguments, 4)
   );
   await queryClient.prefetchQuery<ApiResponse<User>>([`users`, queryValues], () =>
-    getUsers(...fetchArguments)
+    getUsers(...fetchArguments, 4)
   );
 
   return {

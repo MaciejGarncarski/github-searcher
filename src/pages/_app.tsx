@@ -9,6 +9,7 @@ import { useState } from 'react';
 import '@/styles/globals.css';
 
 import { ActivePageProvider } from '@/contexts/activePageContext';
+import { ResultsSettingsProvider } from '@/contexts/resultsSettingsContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';
 import { SettingsProvider } from '@/contexts/settingsContext';
 
@@ -25,21 +26,23 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient(queryOptions));
 
   return (
-    <ActivePageProvider>
-      <SearchProvider>
-        <SettingsProvider>
-          <QueryClientProvider client={queryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <NextProgress color='#2563eb' height={3} options={{ showSpinner: false }} />
-              <MotionConfig reducedMotion='user'>
-                <ReactQueryDevtools />
-                <Component {...pageProps} />
-              </MotionConfig>
-            </Hydrate>
-          </QueryClientProvider>
-        </SettingsProvider>
-      </SearchProvider>
-    </ActivePageProvider>
+    <ResultsSettingsProvider>
+      <ActivePageProvider>
+        <SearchProvider>
+          <SettingsProvider>
+            <QueryClientProvider client={queryClient}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <NextProgress color='#2563eb' height={3} options={{ showSpinner: false }} />
+                <MotionConfig reducedMotion='user'>
+                  <ReactQueryDevtools />
+                  <Component {...pageProps} />
+                </MotionConfig>
+              </Hydrate>
+            </QueryClientProvider>
+          </SettingsProvider>
+        </SearchProvider>
+      </ActivePageProvider>
+    </ResultsSettingsProvider>
   );
 };
 

@@ -31,10 +31,8 @@ export const useResultsData = (
     const { data: repos } = reposData;
 
     const mergedData = [...users, ...repos];
-    const mergedAndSortedData = mergedData.sort((a, b) => a.id - b.id);
-    setSortedResults(mergedAndSortedData);
 
-    return () => setSortedResults([]);
+    setSortedResults(mergedData.sort((a, b) => a.id - b.id));
   }, [reposData, usersData]);
 
   return { totalCount, sortedResults };

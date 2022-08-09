@@ -13,6 +13,7 @@ import { Text } from '@/components/atoms/Text';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import { ResultPlaceholder } from '@/components/molecules/ResultPlaceholder';
 import { RepositoryResult } from '@/components/organisms/RepositoryResult';
+import { ResultsSettings } from '@/components/organisms/ResultsSettings';
 import { UserResult } from '@/components/organisms/UserResult';
 
 export const ResultsList = () => {
@@ -51,13 +52,16 @@ export const ResultsList = () => {
 
   return (
     <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
-      <Text
-        type='h2'
-        className='break-words py-4 text-4xl text-slate-800 dark:text-slate-200 md:mt-4'
-      >
-        <CountUp start={0} end={totalCount} duration={0.5} separator=',' />
-        {totalCount > 1 ? ' results' : ' result'}
-      </Text>
+      <div className='flex items-center justify-between'>
+        <Text
+          type='h2'
+          className='break-words py-4 text-4xl text-slate-800 dark:text-slate-200 md:mt-4'
+        >
+          <CountUp start={0} end={totalCount} duration={0.5} separator=',' />
+          {totalCount > 1 ? ' results' : ' result'}
+        </Text>
+        <ResultsSettings />
+      </div>
       <ul>
         {sortedResults.map((result) => {
           if ('avatar_url' in result) {

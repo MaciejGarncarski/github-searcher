@@ -18,7 +18,7 @@ describe('<Input />', () => {
           setSearchedValue: jest.fn(),
         }}
       >
-        <Input type='text' inputValue='' />
+        <Input type='text' value='' />
         <ResetButton inputValue='' />
       </SearchContext.Provider>
     );
@@ -29,7 +29,7 @@ describe('<Input />', () => {
     render(
       <RouterContext.Provider value={mockRouter({ query: { q: 'elo' } })}>
         <SearchProvider>
-          <Input type='text' placeholder='myinput' inputValue='elo' />
+          <Input type='text' placeholder='myinput' value='elo' />
         </SearchProvider>
       </RouterContext.Provider>
     );

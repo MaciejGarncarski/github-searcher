@@ -1,4 +1,4 @@
-import { useActivePage, useSearchedValue } from '@/hooks/useContexts';
+import { useActivePage, useResultsSettings, useSearchedValue } from '@/hooks/useContexts';
 import { usePagination } from '@/hooks/usePagination';
 import { useResults } from '@/hooks/useResults';
 import { useResultsData } from '@/hooks/useResultsData';
@@ -9,12 +9,13 @@ import { PaginationNumber } from '@/components/atoms/buttons/PaginationNumber';
 export const Pagination = () => {
   const { activePage } = useActivePage();
   const { searchedValue } = useSearchedValue();
-
   const { usersData, reposData, isError } = useResults(searchedValue, activePage);
+  const { perPage } = useResultsSettings();
 
   const { totalCount } = useResultsData(reposData, usersData);
 
-  const totalPages = Math.ceil(totalCount / 10);
+  const totalPages = Math.ceil(totalCount / (perPage * 2));
+
   const pageQueue = usePagination(activePage, totalPages);
 
   if (totalPages <= 1 || isError) {

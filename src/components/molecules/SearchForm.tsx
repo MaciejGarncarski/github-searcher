@@ -51,7 +51,13 @@ export const SearchForm = () => {
       onReset={handleReset}
       onSubmit={handleSubmit}
     >
-      <Input type='text' placeholder='Search' inputValue={inputValue} onInput={onInput} />
+      <Input
+        type='text'
+        placeholder='Search'
+        className='w-full rounded-l-md border-2'
+        value={inputValue}
+        onInput={onInput}
+      />
       {inputFocus && (
         <SearchHistory
           historyData={history}
