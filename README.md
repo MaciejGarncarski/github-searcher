@@ -2,6 +2,9 @@
 ## Overview 🎉
 It's a simple Next app, It uses Github's REST API to render users and repositories. I hope this app is useful for someone :)
 
+## Live 📍
+https://github-searcher-maciek.vercel.app/
+
 ## List of functions 📃
 - Search users
 - Search repositories
@@ -19,12 +22,22 @@ It's a simple Next app, It uses Github's REST API to render users and repositori
 - Jest + React Testing Library
 - Github API
 
-## Screenshot 📺
+## Screenshots 📺
 ### Mobile
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/screenshot-mobile.png?raw=true?raw=true "Desktop view")
+
+#### Light theme
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/mobile-light.png?raw=true?raw=true "Mobile light")
+
+#### Dark theme
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/mobile-dark.png?raw=true?raw=true "Mobile Dark")
 
 ### Desktop
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/screenshot-desktop.png?raw=true?raw=true "Desktop view")
+
+#### Dark theme
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/desktop-dark.png?raw=true?raw=true "Desktop Dark")
+
+#### User profile
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/user-profile-desktop.png?raw=true?raw=true "Desktop user profile")
 
 ## Installation & running 💾
 
@@ -37,6 +50,3 @@ pnpm install
 ```
 pnpm dev
 ```
-
-## Live 📍
-https://github-searcher-maciek.vercel.app/
