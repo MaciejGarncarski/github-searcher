@@ -17,9 +17,9 @@ type SettingsContextProps = {
 
 const contextDefaultValues: SettingsContextProps = {
   accentColor: 'blue',
-  setAccentColor: () => null,
+  setAccentColor: (color: Color) => color,
   theme: 'system',
-  setTheme: () => null,
+  setTheme: (theme: ThemeColor) => theme,
 };
 
 export const SettingsContext = createContext<SettingsContextProps>(contextDefaultValues);
