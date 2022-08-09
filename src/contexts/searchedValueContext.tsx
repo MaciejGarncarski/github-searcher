@@ -11,7 +11,7 @@ type SearchContextProps = {
 
 const contextDefaultValues: SearchContextProps = {
   searchedValue: '',
-  setSearchedValue: () => null,
+  setSearchedValue: (searchedValue: string) => searchedValue,
 };
 
 export const SearchContext = createContext<SearchContextProps>(contextDefaultValues);

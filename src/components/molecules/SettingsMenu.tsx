@@ -42,7 +42,7 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
         animate={isOpen ? 'open' : 'closed'}
         className={clsxm(
           BORDER_COLORS[accentColor],
-          'absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-lg border-2 bg-slate-600 p-8 dark:bg-slate-700  lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'
+          'absolute right-2 top-24 z-20 min-w-max justify-evenly gap-x-6 rounded-lg border-2 bg-slate-600 p-6 pt-3 dark:bg-slate-700 md:p-8 lg:top-20 lg:-right-6 lg:rounded-xl landscape:flex landscape:px-11'
         )}
       >
         <ThemeSwitch />

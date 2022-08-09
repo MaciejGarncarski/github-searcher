@@ -9,7 +9,7 @@ type ActivePageContextProps = {
 
 const contextDefaultValues: ActivePageContextProps = {
   activePage: 1,
-  setActivePage: () => null,
+  setActivePage: (activePage: number) => activePage,
 };
 
 export const ActivePageContext = createContext<ActivePageContextProps>(contextDefaultValues);

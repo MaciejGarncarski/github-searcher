@@ -47,8 +47,8 @@ export const Results = () => {
   }
 
   return (
-    <section className=' flex min-h-screen flex-col justify-start px-5 py-7  xl:px-24'>
-      <div className='flex items-center justify-between'>
+    <section className=' flex flex-col justify-start px-5 py-7 xl:px-24'>
+      <div className='my-2 flex flex-col justify-between md:flex-row md:items-center'>
         <Text
           type='h2'
           className='break-words py-4 text-4xl text-slate-800 dark:text-slate-200 md:mt-4'

@@ -13,7 +13,7 @@ export const Settings = () => {
 
   return (
     <div
-      className='col-span-2 row-start-1 flex items-end justify-self-end lg:relative'
+      className='col-span-2 row-start-1 ml-4 flex items-end justify-self-end lg:relative'
       ref={formRef}
     >
       <SettingsToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
