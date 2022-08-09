@@ -28,11 +28,8 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   const [accentColor, setAccentColor] = useLocalStorage<Color>('accentColor', 'blue');
   const [theme, setTheme] = useLocalStorage<ThemeColor>('theme', 'system');
 
-  const isAccentColorCompatible = COMPATIBLE_COLORS.some(
-    (compatibleColor) => compatibleColor === accentColor
-  );
-
-  const isThemeCompatible = COMPATIBLE_THEMES.some((compatibleTheme) => compatibleTheme === theme);
+  const isAccentColorCompatible = COMPATIBLE_COLORS.includes(accentColor);
+  const isThemeCompatible = COMPATIBLE_THEMES.includes(theme);
 
   const memoizedValues = useMemo(
     () => ({
