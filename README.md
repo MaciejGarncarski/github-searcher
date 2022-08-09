@@ -1,11 +1,11 @@
 
 ## Overview 🎉
-It's a simple Next app, It uses Github's REST API to render users and repositories. I hope this app is useful for someone :)
+Github Searcher is NextJS app, which uses Github's REST API to show users and repositories. I hope this app is useful for someone :)
 
 ## Live 📍
 https://github-searcher-maciek.vercel.app/
 
-## List of functions 📃
+## List of functionalities 📃
 - Search users
 - Search repositories
 - Search history
