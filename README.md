@@ -1,13 +1,14 @@
 
 ## Overview 🎉
-It's a simple Next app, It uses Github's REST API to render users and repositories.
-I made this app, because I was bored as hell ⚆_⚆
-
+It's a simple Next app, It uses Github's REST API to render users and repositories. I hope this app is useful for someone :)
 
 ## List of functions 📃
-- Search
-	- Users
-	- Repositories
+- Search users
+- Search repositories
+- Search history
+- Set results per page
+- Set accent color
+- Set app theme
 - Pagination
 
 ## Tech used 🔧
@@ -25,16 +26,16 @@ I made this app, because I was bored as hell ⚆_⚆
 ### Desktop
 ![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/screenshot-desktop.png?raw=true?raw=true "Desktop view")
 
-## Instalation & running 💾
+## Installation & running 💾
 
 ### Install node dependencies
 ```
-yarn install
+pnpm install
 ```
 
 ### Start dev server
 ```
-yarn dev
+pnpm dev
 ```
 
 ## Live 📍
