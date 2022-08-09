@@ -37,7 +37,7 @@ https://github-searcher-maciek.vercel.app/
 ![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/desktop-dark.png?raw=true?raw=true "Desktop Dark")
 
 #### User profile
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/user-profile-desktop.png?raw=true?raw=true "Desktop user profile")
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/desktop-user-profile.png?raw=true?raw=true "Desktop user profile")
 
 ## Installation & running 💾
 
