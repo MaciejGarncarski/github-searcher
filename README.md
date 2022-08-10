@@ -5,6 +5,18 @@ Github Searcher is NextJS app, which uses Github's REST API to show users and re
 ## Live 📍
 https://github-searcher-maciek.vercel.app/
 
+## Installation & running 💾
+
+### Install node dependencies
+```
+pnpm install
+```
+
+### Start dev server
+```
+pnpm dev
+```
+
 ## List of functionalities 📃
 - Search users
 - Search repositories
@@ -26,27 +38,15 @@ https://github-searcher-maciek.vercel.app/
 ### Mobile
 
 #### Light theme
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/mobile-light.png?raw=true?raw=true "Mobile light")
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/.github/readme-screenshots/mobile-light.png?raw=true?raw=true "Mobile light")
 
 #### Dark theme
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/mobile-dark.png?raw=true?raw=true "Mobile Dark")
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/.github/readme-screenshots/mobile-dark.png?raw=true?raw=true "Mobile Dark")
 
 ### Desktop
 
 #### Dark theme
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/desktop-dark.png?raw=true?raw=true "Desktop Dark")
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/.github/readme-screenshots/desktop-dark.png?raw=true?raw=true "Desktop Dark")
 
 #### User profile
-![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/readme-screenshots/desktop-user-profile.png?raw=true?raw=true "Desktop user profile")
-
-## Installation & running 💾
-
-### Install node dependencies
-```
-pnpm install
-```
-
-### Start dev server
-```
-pnpm dev
-```
+![Website preview](https://raw.githubusercontent.com/MaciejGarncarski/github-api/main/.github/readme-screenshots/desktop-user-profile.png?raw=true?raw=true "Desktop user profile")
