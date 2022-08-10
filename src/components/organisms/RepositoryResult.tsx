@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { GoRepo } from 'react-icons/go';
-import { HiExternalLink } from 'react-icons/hi';
 
 import { ResultListItem } from '@/components/atoms/RepositoryListItem';
 import { ResultContainer } from '@/components/atoms/ResultContainer';
@@ -54,17 +53,9 @@ export const RepositoryResult = ({ resultData, colorData }: RepositoryResultProp
     <ResultListItem>
       <ResultContainer>
         <GoRepo size={32} className='mt-1' />
-        <a
-          href={`https://github.com/${owner.login}/${name}`}
-          target='_blank'
-          rel='noreferrer noopener'
-          className='max-w-max'
-        >
-          <ResultHeading className='inline-flex items-center gap-2 underline'>
-            {name}
-            <HiExternalLink className='text-slate-700 transition-colors dark:text-slate-200' />
-          </ResultHeading>
-        </a>
+        <ResultHeading external href={`https://github.com/${owner.login}/${name}`}>
+          {name}
+        </ResultHeading>
 
         {description && <ResultDescription className='w-full'>{description}</ResultDescription>}
         <ShieldsContainer>

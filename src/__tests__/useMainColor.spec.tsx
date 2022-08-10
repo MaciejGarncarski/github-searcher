@@ -15,7 +15,7 @@ describe('useSettings', () => {
           setTheme: jest.fn(),
         }}
       >
-        <ResultHeading>typescript</ResultHeading>
+        <ResultHeading href='#'>typescript</ResultHeading>
       </SettingsContext.Provider>
     );
 
@@ -31,7 +31,7 @@ describe('useSettings', () => {
           setTheme: jest.fn(),
         }}
       >
-        <ResultHeading>typescript</ResultHeading>
+        <ResultHeading href='#'>typescript</ResultHeading>
       </SettingsContext.Provider>
     );
 
