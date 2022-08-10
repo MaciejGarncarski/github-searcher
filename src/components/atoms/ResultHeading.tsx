@@ -43,11 +43,11 @@ export const ResultHeading = ({
 
   return (
     <Link href={href} passHref>
-      <a className='max-w-max'>
+      <a>
         <Text
           type='h2'
           className={clsxm(
-            'inline-flex items-center gap-2 break-all text-3xl underline',
+            'inline-flex max-w-max items-center gap-2 break-all text-3xl underline',
             TEXT_COLORS[accentColor],
             className
           )}
