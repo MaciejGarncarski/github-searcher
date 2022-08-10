@@ -22,13 +22,11 @@ type UserResultProps = {
 
 export const UserResult = ({ resultData }: UserResultProps) => {
   const { accentColor } = useSSRAccentColor();
-  const whileHover = { scale: 1.02 };
-
   const { bio, login, avatar_url, name, location } = resultData;
   const userDescription = bio?.substring(0, 200) + '\u2026';
 
   return (
-    <ResultListItem whileHover={whileHover}>
+    <ResultListItem>
       <Link href={`/user/${login}`} passHref>
         <a>
           <ResultContainer>

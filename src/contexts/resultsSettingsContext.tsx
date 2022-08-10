@@ -4,9 +4,11 @@ import { useMemo } from 'react';
 
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 
+import { PER_PAGE, PerPageNumbers } from '@/constants/ResultsPerPage';
+
 type ResultsSettingsProps = {
-  perPage: number;
-  setPerPage: (number: number) => void;
+  perPage: PerPageNumbers;
+  setPerPage: (number: PerPageNumbers) => void;
 };
 
 const contextDefaultValues: ResultsSettingsProps = {
@@ -16,12 +18,18 @@ const contextDefaultValues: ResultsSettingsProps = {
 
 export const ResultsSettingsContext = createContext<ResultsSettingsProps>(contextDefaultValues);
 
-export const ResultsSettingsProvider = ({ children }: { children: ReactNode }) => {
-  const [perPage, setPerPage] = useLocalStorage('perPage', 4);
+type MemoValues = {
+  perPage: PerPageNumbers;
+  setPerPage: (value: PerPageNumbers | ((val: PerPageNumbers) => PerPageNumbers)) => void;
+};
 
-  const memoizedValue = useMemo(
+export const ResultsSettingsProvider = ({ children }: { children: ReactNode }) => {
+  const [perPage, setPerPage] = useLocalStorage<PerPageNumbers>('perPage', 6);
+  const isPageCompatible = PER_PAGE.includes(perPage);
+
+  const memoizedValue: MemoValues = useMemo(
     () => ({
-      perPage,
+      perPage: isPageCompatible ? perPage : 6,
       setPerPage,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
