@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { HiExternalLink } from 'react-icons/hi';
 
 import { clsxm } from '@/lib/clsxm';
 import { useSingleUser } from '@/hooks/useSingleUser';
@@ -72,21 +71,15 @@ export const UserProfile = () => {
             priority
           />
           <div className='flex flex-col items-center justify-center gap-2 justify-self-start md:items-start '>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <ResultHeading
               href={html_url}
-              target='_blank'
-              rel='noreferrer noopener'
+              className='flex flex-col-reverse items-center gap-2 break-normal break-words text-center text-4xl underline md:flex-row md:text-left md:text-5xl'
             >
-              <ResultHeading className='flex flex-col-reverse items-center gap-2 break-normal break-words text-center text-4xl underline md:flex-row md:text-left md:text-5xl'>
-                {user_name}
-                <span className='mt-2 text-slate-600 dark:text-slate-200 md:text-slate-200'>
-                  <HiExternalLink />
-                </span>
-              </ResultHeading>
-            </motion.a>
-            <Text className='text-3xl font-semibold md:text-slate-200'>@{login}</Text>
+              {user_name ? user_name : `@${login}`}
+            </ResultHeading>
+            {user_name && (
+              <Text className='text-3xl font-semibold md:text-slate-200'>@{login}</Text>
+            )}
           </div>
         </div>
 
