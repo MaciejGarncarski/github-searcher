@@ -7,28 +7,32 @@ import { BORDER_COLORS } from '@/utils/colorsData';
 
 import { SelectContainer } from '@/components/atoms/SelectContainer';
 
-const perPageData = [2, 4, 6, 8];
+import { PER_PAGE, PerPageNumbers } from '@/constants/ResultsPerPage';
 
 export const ResultsPerPage = () => {
   const { accentColor } = useSSRAccentColor();
   const { perPage, setPerPage } = useResultsSettings();
 
   const handleChange = (selectEv: ChangeEvent<HTMLSelectElement>) => {
-    setPerPage(parseInt(selectEv.target.value, 10));
+    const valueToNumber = parseInt(selectEv.target.value, 10) as PerPageNumbers;
+
+    if (PER_PAGE.includes(valueToNumber)) {
+      setPerPage(valueToNumber);
+    }
   };
 
   return (
     <SelectContainer>
-      Per page:
+      Results per page:
       <select
-        value={perPage}
         onChange={handleChange}
+        value={perPage}
         className={clsxm(
           BORDER_COLORS[accentColor],
           'rounded border-2 bg-slate-600 py-1 px-10 text-2xl text-slate-200 focus:border-slate-200 dark:bg-slate-700'
         )}
       >
-        {perPageData.map((number) => {
+        {PER_PAGE.map((number) => {
           return <option key={number}>{number}</option>;
         })}
       </select>

@@ -36,6 +36,7 @@ export const Header = () => {
       position: 'sticky',
       opacity: 1,
       y: 0,
+
       transition: {
         type: 'linear',
       },

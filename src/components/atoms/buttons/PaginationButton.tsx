@@ -1,6 +1,7 @@
 import { motion, Variant } from 'framer-motion';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 
+import { clsxm } from '@/lib/clsxm';
 import { useChangeParams } from '@/hooks/useChangeParams';
 import { useActivePage, useSearchedValue, useSettings } from '@/hooks/useContexts';
 import { TEXT_COLORS } from '@/utils/colorsData';
@@ -33,11 +34,10 @@ export const PaginationButton = ({ type, totalPages }: PaginationButtonProps) =>
   };
 
   const commonProps = {
-    className: `flex items-center gap-2 justify-self-center 
-    hover:cursor-pointer
-    ${TEXT_COLORS[accentColor]}
-    disabled:cursor-not-allowed
-    disabled:opacity-50`,
+    className: clsxm(
+      TEXT_COLORS[accentColor],
+      'flex items-center gap-2 justify-self-center font-semibold hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50'
+    ),
     whileTap: { scale: 0.9 },
   };
 
