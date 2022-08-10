@@ -17,6 +17,15 @@ pnpm install
 pnpm dev
 ```
 
+### Env example
+```bash
+# env.local
+NEXT_PUBLIC_API_KEY=YOUR_GITHUB_PERSONAL_ACCESS_TOKEN
+# how to create personal access token: 
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+```
+
 ## List of functionalities 📃
 - Search users
 - Search repositories
