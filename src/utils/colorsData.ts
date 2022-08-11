@@ -35,16 +35,16 @@ export const TEXT_COLORS: ColorRecord = {
 };
 
 export const BORDER_COLORS: ColorRecord = {
-  blue: 'border-blue-200',
-  red: 'border-red-200',
+  blue: 'border-blue-300',
+  red: 'border-red-300',
   yellow: 'border-yellow-200',
   green: 'border-green-200',
   white: 'border-slate-300',
 };
 
 export const BUTTON_COLORS: ColorRecord = {
-  blue: 'bg-blue-200',
-  red: 'bg-red-200',
+  blue: 'bg-blue-300',
+  red: 'bg-red-300',
   yellow: 'bg-yellow-200',
   green: 'bg-green-200',
   white: 'bg-slate-300',

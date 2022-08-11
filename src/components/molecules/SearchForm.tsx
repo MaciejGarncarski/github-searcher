@@ -57,6 +57,7 @@ export const SearchForm = () => {
         className='w-full rounded-l-md border-2'
         value={inputValue}
         onInput={onInput}
+        data-focus
       />
       {inputFocus && (
         <SearchHistory

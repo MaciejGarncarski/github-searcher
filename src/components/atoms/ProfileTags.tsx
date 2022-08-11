@@ -10,11 +10,11 @@ type TagData = {
   title: string;
 };
 
-type UserTagListProps = {
+type ProfileTagsProps = {
   tagsData: TagData[];
 };
 
-export const UserTagList = ({ tagsData }: UserTagListProps) => {
+export const ProfileTags = ({ tagsData }: ProfileTagsProps) => {
   const { accentColor } = useSSRAccentColor();
 
   return (

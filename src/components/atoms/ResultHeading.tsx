@@ -1,3 +1,4 @@
+import { motion, Variant } from 'framer-motion';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { HiExternalLink } from 'react-icons/hi';
@@ -15,6 +16,14 @@ type ResultsHeadingProps = {
   href: string;
 };
 
+const whileHover: Variant = {
+  scale: 1.05,
+  transition: {
+    type: 'spring',
+    stiffness: 200,
+  },
+};
+
 export const ResultHeading = ({
   children,
   className = '',
@@ -25,7 +34,14 @@ export const ResultHeading = ({
 
   if (external) {
     return (
-      <a href={href} className='max-w-max' target='_blank' rel='noopener noreferrer'>
+      <motion.a
+        whileHover={whileHover}
+        whileFocus={whileHover}
+        href={href}
+        className='max-w-max'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <Text
           type='h2'
           className={clsxm(
@@ -37,13 +53,13 @@ export const ResultHeading = ({
           {children}
           <HiExternalLink className='text-slate-700 transition-colors dark:text-slate-200' />
         </Text>
-      </a>
+      </motion.a>
     );
   }
 
   return (
     <Link href={href} passHref>
-      <a>
+      <motion.a whileHover={whileHover} whileFocus={whileHover} className='inline-block'>
         <Text
           type='h2'
           className={clsxm(
@@ -54,7 +70,7 @@ export const ResultHeading = ({
         >
           {children}
         </Text>
-      </a>
+      </motion.a>
     </Link>
   );
 };
