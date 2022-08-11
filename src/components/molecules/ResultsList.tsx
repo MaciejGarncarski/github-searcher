@@ -13,7 +13,7 @@ export const ResultsList = ({ sortedResults }: ResultsListProps) => {
   const { data: colorData } = useColor();
 
   return (
-    <ul>
+    <ul className='min-h-state-messsage'>
       {sortedResults.map((result) => {
         if ('avatar_url' in result) {
           return <UserResult key={result.id} resultData={result} />;
