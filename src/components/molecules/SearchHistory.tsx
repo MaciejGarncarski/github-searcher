@@ -47,7 +47,7 @@ export const SearchHistory = ({
   return (
     <AnimatePresence>
       <motion.ul
-        data-focus='true'
+        data-focus
         variants={historyVariants}
         initial={inputFocus ? 'open' : 'closed'}
         exit='closed'

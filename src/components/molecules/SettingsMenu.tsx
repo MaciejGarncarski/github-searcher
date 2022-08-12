@@ -5,7 +5,7 @@ import { clsxm } from '@/lib/clsxm';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { BORDER_COLORS } from '@/utils/colorsData';
 
-import { MenuCloseButton } from '@/components/atoms/buttons/MenuCloseButton';
+import { CrossButton } from '@/components/atoms/buttons/CrossButton';
 import { ColorSwitch } from '@/components/molecules/ColorSwitch';
 import { ThemeSwitch } from '@/components/molecules/ThemeSwitch';
 
@@ -47,7 +47,7 @@ export const SettingsMenu = ({ isOpen, setIsOpen }: SettingsMenuProps) => {
       >
         <ThemeSwitch />
         <ColorSwitch />
-        <MenuCloseButton setIsOpen={setIsOpen} />
+        <CrossButton onClick={() => setIsOpen(false)} className='absolute right-2 top-2 text-4xl' />
       </motion.aside>
     </AnimatePresence>
   );

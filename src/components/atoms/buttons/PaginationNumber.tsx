@@ -18,12 +18,13 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
 
   const { changeParams } = useChangeParams();
 
-  const animateY = activePage === pageNumber ? { y: 0 } : { y: -4, scale: 1.05 };
-
   const handleClick = () => {
     setActivePage(pageNumber);
     changeParams(searchedValue, pageNumber);
   };
+
+  const isActive = activePage === pageNumber;
+  const animateY = isActive ? { y: 0 } : { y: -4, scale: 1.05 };
 
   return (
     <li className='flex-grow'>
@@ -31,10 +32,11 @@ export const PaginationNumber = ({ children, pageNumber }: PaginationNumberProps
         type='button'
         onClick={handleClick}
         className={clsxm(
-          'rounded-md px-2 py-0.5 dark:text-white md:px-4 md:py-1.5',
-          activePage === pageNumber
+          'rounded-md px-2 py-0.5 md:px-4 md:py-1.5',
+          isActive
             ? `cursor-not-allowed ${BG_COLORS[accentColor]} text-slate-200`
-            : 'cursor-pointer'
+            : 'cursor-pointer',
+          accentColor === 'white' && isActive ? 'text-slate-700' : 'dark:text-white'
         )}
         whileTap={activePage === pageNumber ? {} : { scale: 0.9 }}
         whileHover={animateY}

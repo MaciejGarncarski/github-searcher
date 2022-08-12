@@ -14,12 +14,13 @@ type LogoProps = {
 import Link from 'next/link';
 
 import { NextImage } from '@/components/atoms/NextImage';
+import { Text } from '@/components/atoms/Text';
 
 export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
   return (
     <Link href='/?page=1'>
       <a className='row-start-1 flex '>
-        <h1 className='flex items-center gap-5'>
+        <Text type='h1' className='flex items-center gap-5'>
           <NextImage
             src={src}
             width={size}
@@ -30,7 +31,7 @@ export const Logo = ({ src, alt, placeholder, size }: LogoProps) => {
             priority
           />
           <span className='hidden text-5xl text-white lg:inline'>Github Searcher</span>
-        </h1>
+        </Text>
       </a>
     </Link>
   );

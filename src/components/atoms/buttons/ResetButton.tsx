@@ -10,10 +10,10 @@ export const ResetButton = ({ inputValue }: ResetButtonProps) => {
     <motion.button
       type='reset'
       id='reset-btn'
-      data-testid='reset-btn'
       whileFocus={{ scale: 0.8, borderRadius: '8px' }}
       disabled={inputValue === '' ? true : false}
       className='hidden px-4 text-2xl text-slate-200 transition enabled:hover:bg-slate-500 enabled:focus:bg-slate-500 disabled:opacity-40 sm:inline'
+      data-testid='reset-btn'
     >
       <IoMdClose />
     </motion.button>

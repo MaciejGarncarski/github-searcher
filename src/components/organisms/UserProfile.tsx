@@ -10,10 +10,10 @@ import { getTagsData } from '@/utils/tagsData';
 
 import { BackButton } from '@/components/atoms/buttons/BackButton';
 import { NextImage } from '@/components/atoms/NextImage';
+import { ProfileTags } from '@/components/atoms/ProfileTags';
 import { ResultDescription } from '@/components/atoms/ResultDescription';
 import { ResultHeading } from '@/components/atoms/ResultHeading';
 import { Text } from '@/components/atoms/Text';
-import { UserTagList } from '@/components/atoms/UserTagList';
 import { ErrorMessage } from '@/components/molecules/ErrorMessage';
 import {
   placeholderVariants,
@@ -21,14 +21,13 @@ import {
 } from '@/components/molecules/UserProfilePlaceholder';
 
 export const UserProfile = () => {
-  const router = useRouter();
-  const { name } = router.query;
-
-  const userName = router.isReady ? stringGuard(name) : 'typescript';
   const { accentColor } = useSSRAccentColor();
 
-  const { data, isError, isFetching, isLoading } = useSingleUser(userName);
+  const router = useRouter();
+  const { name } = router.query;
+  const userName = router.isReady ? stringGuard(name) : 'typescript';
 
+  const { data, isError, isFetching, isLoading } = useSingleUser(userName);
   const tagsData = getTagsData(data);
 
   if (isLoading || isFetching) {
@@ -72,6 +71,7 @@ export const UserProfile = () => {
           />
           <div className='flex flex-col items-center justify-center gap-2 justify-self-start md:items-start '>
             <ResultHeading
+              external
               href={html_url}
               className='flex flex-col-reverse items-center gap-2 break-normal break-words text-center text-4xl underline md:flex-row md:text-left md:text-5xl'
             >
@@ -88,7 +88,7 @@ export const UserProfile = () => {
             {bio}
           </ResultDescription>
         )}
-        <UserTagList tagsData={tagsData} />
+        <ProfileTags tagsData={tagsData} />
       </section>
     </motion.main>
   );

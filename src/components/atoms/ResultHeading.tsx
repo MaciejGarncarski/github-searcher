@@ -1,4 +1,6 @@
+import { motion, Variant } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
 import { HiExternalLink } from 'react-icons/hi';
 
@@ -15,6 +17,14 @@ type ResultsHeadingProps = {
   href: string;
 };
 
+const whileHover: Variant = {
+  scale: 1.05,
+  transition: {
+    type: 'spring',
+    stiffness: 200,
+  },
+};
+
 export const ResultHeading = ({
   children,
   className = '',
@@ -22,10 +32,21 @@ export const ResultHeading = ({
   href,
 }: ResultsHeadingProps) => {
   const { accentColor } = useSSRAccentColor();
+  const router = useRouter();
+
+  const isProfile =
+    router.pathname === '/user/[name]' ? 'text-slate-200' : 'text-slate-700 dark:text-slate-200';
 
   if (external) {
     return (
-      <a href={href} className='max-w-max' target='_blank' rel='noopener noreferrer'>
+      <motion.a
+        whileHover={whileHover}
+        whileFocus={whileHover}
+        href={href}
+        className='max-w-max'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
         <Text
           type='h2'
           className={clsxm(
@@ -35,15 +56,15 @@ export const ResultHeading = ({
           )}
         >
           {children}
-          <HiExternalLink className='text-slate-700 transition-colors dark:text-slate-200' />
+          <HiExternalLink className={clsxm(' transition-colors ', isProfile)} />
         </Text>
-      </a>
+      </motion.a>
     );
   }
 
   return (
     <Link href={href} passHref>
-      <a>
+      <motion.a whileHover={whileHover} whileFocus={whileHover} className='inline-block'>
         <Text
           type='h2'
           className={clsxm(
@@ -54,7 +75,7 @@ export const ResultHeading = ({
         >
           {children}
         </Text>
-      </a>
+      </motion.a>
     </Link>
   );
 };

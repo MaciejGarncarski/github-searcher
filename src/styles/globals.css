@@ -37,7 +37,6 @@
   }
 
   body {
-    @apply min-h-screen;
     @apply transition;
     @apply bg-slate-100;
     @apply dark:bg-slate-800;

@@ -5,8 +5,6 @@ import { useResultsSettings } from '@/hooks/useContexts';
 import { useSSRAccentColor } from '@/hooks/useSSRAccentColor';
 import { BORDER_COLORS } from '@/utils/colorsData';
 
-import { SelectContainer } from '@/components/atoms/SelectContainer';
-
 import { PER_PAGE, PerPageNumbers } from '@/constants/ResultsPerPage';
 
 export const ResultsPerPage = () => {
@@ -22,7 +20,7 @@ export const ResultsPerPage = () => {
   };
 
   return (
-    <SelectContainer>
+    <label className='flex items-center gap-2 text-2xl'>
       Results per page:
       <select
         onChange={handleChange}
@@ -36,6 +34,6 @@ export const ResultsPerPage = () => {
           return <option key={number}>{number}</option>;
         })}
       </select>
-    </SelectContainer>
+    </label>
   );
 };
