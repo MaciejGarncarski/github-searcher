@@ -27,8 +27,8 @@ export const UserResult = ({ resultData }: UserResultProps) => {
       <ResultContainer>
         <NextImage
           src={avatar_url}
-          width={176}
-          height={176}
+          width={36}
+          height={36}
           alt={`${login}'s avatar`}
           className='w-9 '
           imgClassName={clsxm(BORDER_COLORS[accentColor], 'rounded-3xl border bg-slate-500')}

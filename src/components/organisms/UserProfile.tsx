@@ -60,8 +60,8 @@ export const UserProfile = () => {
           <NextImage
             src={avatar_url}
             alt={`${login}'s avatar`}
-            width={200}
-            height={200}
+            width={176}
+            height={176}
             className='flex items-center justify-center  md:justify-end '
             imgClassName={clsxm(
               'h-44 w-44 rounded-full border-4 bg-slate-200',
