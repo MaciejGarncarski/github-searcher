@@ -21,6 +21,7 @@ export const ColorButton = ({ color }: ColorButtonProps) => {
         className='peer absolute h-0 w-0 opacity-0'
         type='radio'
         checked={color === accentColor}
+        name={`color ${color}`}
         onChange={() => setAccentColor(color)}
       />
       <span

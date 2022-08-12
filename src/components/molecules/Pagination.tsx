@@ -23,12 +23,9 @@ export const Pagination = () => {
   }
 
   return (
-    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-3xl md:mt-14  md:flex md:justify-center md:gap-10 '>
+    <nav className='my-10 grid w-full grid-cols-2 grid-rows-2 gap-4 text-3xl md:mt-14 md:flex md:justify-center md:gap-10 '>
       <PaginationButton totalPages={totalPages} type='prev' />
-      <span className='col-start-1 col-end-3 row-start-1 row-end-2 mx-auto md:hidden'>
-        {activePage}/{totalPages}
-      </span>
-      <ul className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 hidden gap-1 md:flex md:gap-2'>
+      <ul className='col-start-1 col-end-3 row-start-1 row-end-2 mx-8 flex gap-1 text-xl md:gap-2 md:text-3xl'>
         {pageQueue.map((pageNumber) => {
           if (pageNumber === '...') {
             return (
