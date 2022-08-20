@@ -4,14 +4,28 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MotionConfig } from 'framer-motion';
 import { AppProps } from 'next/app';
 import NextProgress from 'next-progress';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import '@/styles/globals.css';
+
+import { Layout } from '@/components/Layout';
 
 import { ActivePageProvider } from '@/contexts/activePageContext';
 import { ResultsSettingsProvider } from '@/contexts/resultsSettingsContext';
 import { SearchProvider } from '@/contexts/searchedValueContext';
 import { SettingsProvider } from '@/contexts/settingsContext';
+
+const Contexts = ({ children }: { children: ReactNode }) => {
+  return (
+    <ResultsSettingsProvider>
+      <ActivePageProvider>
+        <SearchProvider>
+          <SettingsProvider>{children}</SettingsProvider>
+        </SearchProvider>
+      </ActivePageProvider>
+    </ResultsSettingsProvider>
+  );
+};
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryOptions: QueryClientConfig = {
@@ -26,23 +40,19 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient(queryOptions));
 
   return (
-    <ResultsSettingsProvider>
-      <ActivePageProvider>
-        <SearchProvider>
-          <SettingsProvider>
-            <QueryClientProvider client={queryClient}>
-              <Hydrate state={pageProps.dehydratedState}>
-                <NextProgress color='#2563eb' height={3} options={{ showSpinner: false }} />
-                <MotionConfig reducedMotion='user'>
-                  <ReactQueryDevtools />
-                  <Component {...pageProps} />
-                </MotionConfig>
-              </Hydrate>
-            </QueryClientProvider>
-          </SettingsProvider>
-        </SearchProvider>
-      </ActivePageProvider>
-    </ResultsSettingsProvider>
+    <Contexts>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <NextProgress color='#2563eb' height={3} options={{ showSpinner: false }} />
+          <MotionConfig reducedMotion='user'>
+            <ReactQueryDevtools />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </MotionConfig>
+        </Hydrate>
+      </QueryClientProvider>
+    </Contexts>
   );
 };
 

@@ -2,12 +2,11 @@ import Link from 'next/link';
 import { RiAlarmWarningFill } from 'react-icons/ri';
 
 import { Text } from '@/components/atoms/Text';
-import { Layout } from '@/components/Layout';
 import { Seo } from '@/components/Seo';
 
 const NotFoundPage = () => {
   return (
-    <Layout>
+    <>
       <Seo templateTitle='Not Found' />
 
       <main>
@@ -25,7 +24,7 @@ const NotFoundPage = () => {
           </div>
         </section>
       </main>
-    </Layout>
+    </>
   );
 };
 
