@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { getSingleUser } from '@/lib/queries';
 import { stringGuard } from '@/utils/stringGuard';
 
-import { Layout } from '@/components/Layout';
 import { UserProfile } from '@/components/organisms/UserProfile';
 import { Seo } from '@/components/Seo';
 
@@ -14,10 +13,10 @@ const ProfilePage: NextPage = () => {
   const { query } = useRouter();
 
   return (
-    <Layout>
+    <>
       <Seo templateTitle={query.name ? `${query.name}` : 'Loading Profile'} />
       <UserProfile />
-    </Layout>
+    </>
   );
 };
 

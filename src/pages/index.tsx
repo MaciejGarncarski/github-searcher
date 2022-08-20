@@ -4,7 +4,6 @@ import type { GetServerSidePropsContext, NextPage } from 'next';
 import { getRepos, getUsers } from '@/lib/queries';
 import { stringGuard } from '@/utils/stringGuard';
 
-import { Layout } from '@/components/Layout';
 import { Pagination } from '@/components/molecules/Pagination';
 import { Results } from '@/components/organisms/Results';
 import { Seo } from '@/components/Seo';
@@ -15,11 +14,11 @@ export const initialQueryString = 'typescript';
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <>
       <Seo />
       <Results />
       <Pagination />
-    </Layout>
+    </>
   );
 };
 

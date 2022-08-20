@@ -10,6 +10,7 @@ module.exports = withBundleAnalyzer({
   },
 
   reactStrictMode: true,
+  swcMinify: true,
 
   images: {
     domains: ['avatars.github.com', 'avatars.githubusercontent.com'],
